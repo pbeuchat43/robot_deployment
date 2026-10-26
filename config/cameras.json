@@ -8,14 +8,44 @@
     "stall_timeout_s": 2.0
   },
   "profiles": {
-    "d455-30": {"backend": "realsense", "fps": 30.0, "pairing_tolerance_ms": 16.6, "width": 640, "height": 480},
-    "d455-60": {"backend": "realsense", "fps": 60.0, "pairing_tolerance_ms": 8.3, "width": 640, "height": 480},
-    "oak-30": {"backend": "oak", "fps": 30.0, "pairing_tolerance_ms": 5.0, "width": 640, "height": 640},
-    "oak-35": {"backend": "oak", "fps": 35.0, "pairing_tolerance_ms": 5.0, "width": 640, "height": 640},
-    "oak-40": {"backend": "oak", "fps": 40.0, "pairing_tolerance_ms": 5.0, "width": 640, "height": 640}
+    "d455-30": {
+      "backend": "realsense",
+      "fps": 30.0,
+      "pairing_tolerance_ms": 16.6,
+      "width": 640,
+      "height": 480
+    },
+    "d455-60": {
+      "backend": "realsense",
+      "fps": 60.0,
+      "pairing_tolerance_ms": 8.3,
+      "width": 640,
+      "height": 480
+    },
+    "oak-30": {
+      "backend": "oak",
+      "fps": 30.0,
+      "pairing_tolerance_ms": 5.0,
+      "width": 640,
+      "height": 640
+    },
+    "oak-35": {
+      "backend": "oak",
+      "fps": 35.0,
+      "pairing_tolerance_ms": 5.0,
+      "width": 640,
+      "height": 640
+    },
+    "oak-40": {
+      "backend": "oak",
+      "fps": 40.0,
+      "pairing_tolerance_ms": 5.0,
+      "width": 640,
+      "height": 640
+    }
   },
   "limits": [
-    "These are declared trials, not complete-system performance acceptance.",
+    "These named configurations completed finite live integration checks on 27 October 2026; see integration evidence for rates, losses and unobserved physical checks.",
     "OAK 60 Hz fails RGB/depth pairing with the current DENSITY/subpixel profile and is not offered.",
     "D455 native 60 Hz delivery passed previous camera/detector checks; an additional recipe observed invalid spatial results.",
     "SDK clock mapping uncertainty is not measured; pairing tolerances are admission policy, not synchronization accuracy."

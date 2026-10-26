@@ -10,7 +10,9 @@ D455/cones, D455/COCO 80, OAK-D/cones, and OAK-D/COCO 80. Selection changes use 
 controlled stop/start and require explicit video reconnection to the new source.
 Acquisition, inference, presentation and media keep their component boundaries.
 
+- [Integration evidence and supported configurations](docs/evidence/2026-10-27-integration/README.md)
 - [Launch and configuration](docs/launch.md)
+- [Jah deployment and rollback](docs/deployment-jah.md)
 - [Component and dependency pins](sources.json)
 - [Named camera configurations](config/cameras.json)
 - [Private deployment configuration example](config/deployment.example.json)

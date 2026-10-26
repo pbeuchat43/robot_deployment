@@ -1,0 +1,53 @@
+{
+  "passed": true,
+  "candidate_cases": [
+    {
+      "mode": "d455-cones",
+      "passed": true,
+      "exact_overlay_samples": 25
+    },
+    {
+      "mode": "oak-coco",
+      "passed": true,
+      "exact_overlay_samples": 25
+    }
+  ],
+  "candidate_cleanup_errors": [],
+  "persistent_exact_samples": 25,
+  "persistent_cleanup_errors": [],
+  "unauthenticated_commands_locked": true,
+  "final_workloads": [
+    {
+      "unit_id": "perception",
+      "blocked": false,
+      "lifecycle": "exited",
+      "stop_phase": "complete"
+    },
+    {
+      "unit_id": "video",
+      "blocked": false,
+      "lifecycle": "exited",
+      "stop_phase": "complete"
+    }
+  ],
+  "selected_release": "rgbd-20261027-dev20",
+  "previous_release_preserved": "0.1.0.dev17",
+  "boot_tested": false,
+  "rollback_executed": false,
+  "remaining_local_action": "Install the prepared one-device D455 USB access rule with sudo after temporary access restoration.",
+  "preservation_audit": {
+    "original_release_files_unchanged": 1453,
+    "original_configuration_files_unchanged": 4,
+    "power_mode_unchanged": true,
+    "unrelated_classroom_commit_and_status_unchanged": true,
+    "relocated_ros_environment_verified": true
+  },
+  "cleanup": {
+    "passed": true,
+    "task_browser_profiles_remaining": 0,
+    "checked_campaigns": 13,
+    "reservation_released": true,
+    "temporary_d455_acl_restored": true,
+    "workloads_stopped": true
+  }
+}

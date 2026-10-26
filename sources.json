@@ -9,15 +9,19 @@
     },
     "rgbd_object_detector": {
       "url": "https://github.com/pbeuchat43/rgbd_object_detector.git",
-      "commit": "01e36cbc27f56e0c283c5d1d472789c19ecd537d",
+      "commit": "cca101ccdda7d70b945973f6cd9711316da63547",
       "baseline_main": "b5a70986d1c210f4ef47cf3d3b2393b40de4dbd4",
-      "baseline_commit": "b5a70986d1c210f4ef47cf3d3b2393b40de4dbd4"
+      "baseline_commit": "b5a70986d1c210f4ef47cf3d3b2393b40de4dbd4",
+      "tested_implementation_commit": "01e36cbc27f56e0c283c5d1d472789c19ecd537d",
+      "development_archive": "archive/2026-10-27-selectable-model-viewer"
     },
     "robot_runtime": {
       "url": "https://github.com/pbeuchat43/robot_runtime.git",
-      "commit": "cbfed17c5f872afb2218987b1731c5373b152bd0",
+      "commit": "9c5f6a98f67786fb7c57bb56542d31a381e0f275",
       "baseline_main": "be1ed63d3ce870205513b0b37e97f2292d656bd6",
-      "baseline_commit": "be1ed63d3ce870205513b0b37e97f2292d656bd6"
+      "baseline_commit": "be1ed63d3ce870205513b0b37e97f2292d656bd6",
+      "tested_implementation_commit": "cbfed17c5f872afb2218987b1731c5373b152bd0",
+      "development_archive": "archive/2026-10-27-rgbd-perception-viewer"
     }
   },
   "dependencies": {
