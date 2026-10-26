@@ -1,0 +1,21 @@
+{
+  "schema_version": 1,
+  "robot_id": "research-robot",
+  "runtime_namespace": "rgbd-development",
+  "ros_namespace": "perception",
+  "ros_domain_id": 230,
+  "ros_setup": "/opt/robot/rgbd/install/setup.bash",
+  "runtime_python": "/opt/robot/runtime/venv/bin/python",
+  "native_prefix": "/opt/robot/runtime/native",
+  "sdk_library_paths": ["/opt/robot/depthai/lib", "/opt/robot/realsense/lib"],
+  "workdir": "/opt/robot/rgbd-integration",
+  "state": "/opt/robot/rgbd-integration/state",
+  "media_host": "192.0.2.1",
+  "media_udp_port": 41800,
+  "device_ids": {"realsense": "EXACT_D455_SERIAL", "oak": "EXACT_OAK_MXID"},
+  "models": {
+    "cones": {"profile": "/opt/robot/models/cones.json", "engine": "/opt/robot/models/cones.engine"},
+    "coco": {"profile": "/opt/robot/models/yolov8n-coco80.json", "engine": "/opt/robot/models/yolov8n-coco80.engine"}
+  },
+  "measurement_marker": false
+}
