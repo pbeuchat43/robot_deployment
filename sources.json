@@ -1,0 +1,31 @@
+{
+  "schema_version": 1,
+  "purpose": "Verified starting points for the selectable RGB-D perception/viewer development push",
+  "components": {
+    "rgbd_camera": {
+      "url": "https://github.com/pbeuchat43/rgbd_camera.git",
+      "commit": "0f4b82958f0d7798f0bf911641d0aa67084cc927",
+      "baseline_main": "0f26452e4e30e7fe68a0bbb1a0488c4eda33450d"
+    },
+    "rgbd_object_detector": {
+      "url": "https://github.com/pbeuchat43/rgbd_object_detector.git",
+      "commit": "b5a70986d1c210f4ef47cf3d3b2393b40de4dbd4",
+      "baseline_main": "b5a70986d1c210f4ef47cf3d3b2393b40de4dbd4"
+    },
+    "robot_runtime": {
+      "url": "https://github.com/pbeuchat43/robot_runtime.git",
+      "commit": "be1ed63d3ce870205513b0b37e97f2292d656bd6",
+      "baseline_main": "be1ed63d3ce870205513b0b37e97f2292d656bd6"
+    }
+  },
+  "dependencies": {
+    "depthai": {"version": "3.9.0", "commit": "ac928141ef7750bf3082b5e1c319a115618660e7"},
+    "librealsense": {"version": "2.56.5", "commit": "38a41441971387197193ad3aeae3cefe6a11f2cb", "backend": "RSUSB"},
+    "vision_msgs": {"commit": "adbf56af9f77e3c8ab2552e25dc99e4a8a77fb27"},
+    "ros": "Jazzy",
+    "tensorrt": "10.16.2.10",
+    "cuda_runtime": "13.2",
+    "opencv_native": "4.8",
+    "platform": "Ubuntu 24.04 arm64, Jetson Orin"
+  }
+}
