@@ -37,6 +37,12 @@ def main():
                 publish_overlay=True, overlay_spatial=True,
                 overlay_capture_marker=site.get("measurement_marker", False))],
             remappings=[("frames", "camera/frames")], **common))
+    if args.model == "both":
+        detectors.append(ComposableNode(package="rgbd_object_detector", plugin="rgbd_object_detector::CombinedOverlayNode",
+            name="combined_overlay", parameters=[dict(overlay_spatial=True,
+                overlay_capture_marker=site.get("measurement_marker", False))],
+            remappings=[("frames", "camera/frames"), ("first_batches", "detector_cones/batches"),
+                ("second_batches", "detector_coco/batches")], **common))
     container = ComposableNodeContainer(name="perception_container", namespace=namespace,
         package="rclcpp_components", executable="component_container_mt", output="screen",
         # Validate/load inference before opening the sole camera session.

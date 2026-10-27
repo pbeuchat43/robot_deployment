@@ -1,0 +1,316 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "camera_rate_hz": 30,
+  "cases": [
+    {
+      "mode": "d455-both",
+      "passed": true,
+      "exact_samples": {
+        "cones": 25,
+        "coco": 25,
+        "combined": 25
+      },
+      "selections": [
+        {
+          "overlay": "cones",
+          "changed": false,
+          "source_revision": 1,
+          "video_frames": 73,
+          "presentation_callbacks": 73,
+          "processed_delta": {
+            "cones": 265,
+            "coco": 265
+          },
+          "detector_generations_unchanged": true,
+          "perception_run_unchanged": true,
+          "video_run_unchanged": true,
+          "camera_generation_unchanged": true,
+          "source_startup_seconds": 3.476921339999535,
+          "combined_status": {
+            "detail": "",
+            "evicted": "0",
+            "expired": "0",
+            "failures": "0",
+            "last_render_ns": "647560",
+            "matched": "487",
+            "no_consumers": "942",
+            "pending": 0,
+            "processing": false,
+            "rejected": "0",
+            "rendered": "487",
+            "replaced": "0",
+            "retained": 0,
+            "state": "idle",
+            "superseded": "0"
+          }
+        },
+        {
+          "overlay": "combined",
+          "changed": true,
+          "source_revision": 2,
+          "video_frames": 91,
+          "presentation_callbacks": 86,
+          "processed_delta": {
+            "cones": 212,
+            "coco": 212
+          },
+          "detector_generations_unchanged": true,
+          "perception_run_unchanged": true,
+          "video_run_unchanged": true,
+          "camera_generation_unchanged": true,
+          "source_startup_seconds": 2.3871725339995464,
+          "combined_status": {
+            "detail": "",
+            "evicted": "0",
+            "expired": "0",
+            "failures": "0",
+            "last_render_ns": "645065",
+            "matched": "599",
+            "no_consumers": "1242",
+            "pending": 0,
+            "processing": false,
+            "rejected": "0",
+            "rendered": "599",
+            "replaced": "0",
+            "retained": 1,
+            "state": "streaming",
+            "superseded": "0"
+          }
+        },
+        {
+          "overlay": "coco",
+          "changed": true,
+          "source_revision": 3,
+          "video_frames": 100,
+          "presentation_callbacks": 90,
+          "processed_delta": {
+            "cones": 195,
+            "coco": 206
+          },
+          "detector_generations_unchanged": true,
+          "perception_run_unchanged": true,
+          "video_run_unchanged": true,
+          "camera_generation_unchanged": true,
+          "source_startup_seconds": 2.1973005990003003,
+          "combined_status": {
+            "detail": "",
+            "evicted": "0",
+            "expired": "0",
+            "failures": "0",
+            "last_render_ns": "633512",
+            "matched": "623",
+            "no_consumers": "1809",
+            "pending": 0,
+            "processing": false,
+            "rejected": "0",
+            "rendered": "623",
+            "replaced": "0",
+            "retained": 0,
+            "state": "idle",
+            "superseded": "0"
+          }
+        },
+        {
+          "overlay": "cones",
+          "changed": true,
+          "source_revision": 4,
+          "video_frames": 78,
+          "presentation_callbacks": 75,
+          "processed_delta": {
+            "cones": 277,
+            "coco": 272
+          },
+          "detector_generations_unchanged": true,
+          "perception_run_unchanged": true,
+          "video_run_unchanged": true,
+          "camera_generation_unchanged": true,
+          "source_startup_seconds": 4.452362071999232,
+          "combined_status": {
+            "detail": "",
+            "evicted": "0",
+            "expired": "0",
+            "failures": "0",
+            "last_render_ns": "633512",
+            "matched": "623",
+            "no_consumers": "2640",
+            "pending": 0,
+            "processing": false,
+            "rejected": "0",
+            "rendered": "623",
+            "replaced": "0",
+            "retained": 0,
+            "state": "idle",
+            "superseded": "0"
+          }
+        }
+      ]
+    },
+    {
+      "mode": "oak-both",
+      "passed": true,
+      "exact_samples": {
+        "cones": 25,
+        "coco": 25,
+        "combined": 25
+      },
+      "selections": [
+        {
+          "overlay": "cones",
+          "changed": false,
+          "source_revision": 5,
+          "video_frames": 81,
+          "presentation_callbacks": 80,
+          "processed_delta": {
+            "cones": 204,
+            "coco": 204
+          },
+          "detector_generations_unchanged": true,
+          "perception_run_unchanged": true,
+          "video_run_unchanged": true,
+          "camera_generation_unchanged": true,
+          "source_startup_seconds": 2.1685839319980005,
+          "combined_status": {
+            "detail": "",
+            "evicted": "0",
+            "expired": "0",
+            "failures": "0",
+            "last_render_ns": "680938",
+            "matched": "652",
+            "no_consumers": "1024",
+            "pending": 0,
+            "processing": false,
+            "rejected": "0",
+            "rendered": "652",
+            "replaced": "0",
+            "retained": 0,
+            "state": "idle",
+            "superseded": "3"
+          }
+        },
+        {
+          "overlay": "combined",
+          "changed": true,
+          "source_revision": 6,
+          "video_frames": 106,
+          "presentation_callbacks": 97,
+          "processed_delta": {
+            "cones": 198,
+            "coco": 204
+          },
+          "detector_generations_unchanged": true,
+          "perception_run_unchanged": true,
+          "video_run_unchanged": true,
+          "camera_generation_unchanged": true,
+          "source_startup_seconds": 2.1748466519929934,
+          "combined_status": {
+            "detail": "",
+            "evicted": "0",
+            "expired": "0",
+            "failures": "0",
+            "last_render_ns": "668905",
+            "matched": "762",
+            "no_consumers": "1303",
+            "pending": 0,
+            "processing": false,
+            "rejected": "0",
+            "rendered": "762",
+            "replaced": "0",
+            "retained": 1,
+            "state": "streaming",
+            "superseded": "4"
+          }
+        },
+        {
+          "overlay": "coco",
+          "changed": true,
+          "source_revision": 7,
+          "video_frames": 95,
+          "presentation_callbacks": 91,
+          "processed_delta": {
+            "cones": 294,
+            "coco": 300
+          },
+          "detector_generations_unchanged": true,
+          "perception_run_unchanged": true,
+          "video_run_unchanged": true,
+          "camera_generation_unchanged": true,
+          "source_startup_seconds": 4.926436876994558,
+          "combined_status": {
+            "detail": "",
+            "evicted": "0",
+            "expired": "0",
+            "failures": "0",
+            "last_render_ns": "647785",
+            "matched": "793",
+            "no_consumers": "2146",
+            "pending": 0,
+            "processing": false,
+            "rejected": "0",
+            "rendered": "793",
+            "replaced": "0",
+            "retained": 0,
+            "state": "idle",
+            "superseded": "5"
+          }
+        },
+        {
+          "overlay": "cones",
+          "changed": true,
+          "source_revision": 8,
+          "video_frames": 85,
+          "presentation_callbacks": 80,
+          "processed_delta": {
+            "cones": 204,
+            "coco": 198
+          },
+          "detector_generations_unchanged": true,
+          "perception_run_unchanged": true,
+          "video_run_unchanged": true,
+          "camera_generation_unchanged": true,
+          "source_startup_seconds": 2.0570858720020624,
+          "combined_status": {
+            "detail": "",
+            "evicted": "0",
+            "expired": "0",
+            "failures": "0",
+            "last_render_ns": "647785",
+            "matched": "793",
+            "no_consumers": "2740",
+            "pending": 0,
+            "processing": false,
+            "rejected": "0",
+            "rendered": "793",
+            "replaced": "0",
+            "retained": 0,
+            "state": "idle",
+            "superseded": "5"
+          }
+        }
+      ]
+    }
+  ],
+  "exact_images": 150,
+  "exact_combined_images": 50,
+  "exact_check": "Combined output batches are compared with independently received batches using initialized CDR serialization; pixels are compared with a fresh render from the exact original RGB capture.",
+  "browser_check": "Each source must become streaming within 15 seconds after WebRTC connection; each subsequent four-second window must have more than 20 presentation callbacks. Detector counters advance and source/video runs and camera/detector generations stay unchanged.",
+  "report_sha256": "9f5ba7303160a784ee5855654239f71cc8b68cdd78b5a8098c001d56f8672ef1",
+  "browser_exceptions": [],
+  "cleanup_errors": [],
+  "persistent_workloads_unchanged": true,
+  "retained_initial_failure": {
+    "report_sha256": "3489f75cb078fdd65249eca56d24b3c202984fd7252ba97566ce00ed22efb1c3",
+    "case": "d455-both",
+    "overlay": "coco",
+    "presentation_callbacks": 7,
+    "explanation": "The first four-second window started at transport connection while the new ROS image subscription was still starting. Native COCO no-consumer counts rose until near the end of the window. Combined rendering and both inference workers had already passed.",
+    "correction": "The harness now bounds source startup separately and retains the same four-second delivery threshold. No runtime or detector implementation changed between these two campaigns.",
+    "cleanup_errors": [],
+    "persistent_workloads_unchanged": true
+  },
+  "limits": [
+    "Headless Chromium on Jah; no physical display, motion, newly arranged empty-scene, USB recovery or multi-viewer check.",
+    "Finite functional switching evidence, not a sustained FPS, latency or detection-accuracy guarantee. Exact pairing can skip captures when either model has no matching fresh result.",
+    "Processed deltas cover selection, reconnection, source startup and the delivery window; they are not four-second inference rate measurements."
+  ]
+}

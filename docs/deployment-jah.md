@@ -1,6 +1,6 @@
 # Jah development deployment
 
-The selected persistent release is `rgbd-20261028-dev21` under
+The selected persistent release is `rgbd-20261028-combined` under
 `~/.local/share/robot-runtime-dev/releases/`; `current` points to it. It contains
 the tested runtime wheel/venv, native video support, ROS install, both SDKs,
 model descriptors/engines and this minimal composition. The private configuration
@@ -13,7 +13,7 @@ HTTPS origin and port 8443. Existing credential and TLS files are reused. Only
 management services start automatically; camera/inference/video workloads were
 left stopped at initial deployment. The subsequent operator-assisted physical
 checks left the user's D455/COCO and video workloads running. The user later
-stopped both; the dev21 upgrade preserved that stopped workload state. User lingering was
+stopped both; the dev21 and combined-overlay upgrades preserved that stopped workload state. User lingering was
 already enabled and was preserved. A reboot was not performed.
 
 The relocated candidate passed D455/cones and OAK-D/COCO with measurement markers
@@ -43,7 +43,31 @@ selection serial is recorded separately in the private site file. OAK-D does not
 need this step. See [the physical-check follow-up](evidence/2026-10-27-integration/physical-checks.md)
 for the observed recovery behavior and remaining viewer/empty-scene findings.
 
-## Dual-mode update and dev20 rollback
+## Combined-overlay update and dev21 rollback
+
+The combined release adds a separate presentation node and a third video choice
+in dual mode. Both-camera checks verified 50 exact combined images, all three
+video choices and uninterrupted detector progress. The runtime wheel remains
+0.1.0.dev21; its source and installed package files are unchanged. The updated
+ROS install retains the existing isolated package layout. See
+[the combined-overlay evidence](evidence/2026-10-28-combined-overlay/README.md).
+
+The previous `rgbd-20261028-dev21` release is intact. Its configuration, unchanged
+service files and coherent stopped state are retained under
+`~/.local/state/rgbd-verification/combined-20261028/rollback-dev21`. After stopping
+all workloads and resolving any uncertain ownership, return to it with:
+
+```bash
+~/.local/share/robot-runtime-dev/current/venv/bin/python \
+  ~/.local/state/rgbd-verification/combined-20261028/rollback_dev21.py
+```
+
+The script checks current selection and service identity, restores the prior
+site/profile and release selection, and restarts the same management pair. It
+starts no workload and retains both releases and runtime history. It was
+inspected; a rollback round trip was not performed.
+
+## Historical dual-mode update and dev20 rollback
 
 The dev21 update adds six camera/model launches, separate model processing
 observations, and live selection of a cone or COCO overlay. Both detectors keep
@@ -56,8 +80,9 @@ were verified with camera and video workloads stopped. See
 The dev20 release remains intact. Its configuration, service files and coherent
 stopped manager state are retained under
 `~/.local/state/rgbd-verification/dual-viewer-20261028/rollback-dev20`.
-The current service files were not changed. To return to dev20 after stopping
-all workloads and resolving any uncertain ownership:
+The service files were not changed. This older rollback expects dev21 to be
+selected: return from the combined release to dev21 first. Then, with workloads
+stopped and ownership resolved, return from dev21 to dev20 with:
 
 ```bash
 ~/.local/share/robot-runtime-dev/current/venv/bin/python \

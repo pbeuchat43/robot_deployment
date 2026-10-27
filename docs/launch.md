@@ -73,8 +73,8 @@ A disconnected viewer releases rendering demand; a slow viewer cannot hold the
 inference worker. The overlay queue retains at most one pending frame plus the
 frame being rendered.
 
-The default video canvas is 640×480 at a maximum 30 fps and 2.5 Mbit/s. Square OAK
-images are fitted to 480×480 with side bars. This preserves proportions. Higher
+The default video canvas is 640Ã—480 at a maximum 30 fps and 2.5 Mbit/s. Square OAK
+images are fitted to 480Ã—480 with side bars. This preserves proportions. Higher
 camera rates improve the availability of recent results, not the declared video
 frame-rate ceiling. Observer freshness monitors arrival and camera availability;
 it does not claim measured capture-to-display age in the normal UI.
@@ -111,18 +111,33 @@ must select the appropriate model path and use the batch capture/model identity.
 
 The processing panel shows separate inference and presentation observations for
 each model. A model absent from a single-model launch is explicitly **Not selected
-in this run**. In dual mode, choose Cones or COCO 80 under **Video source**, then
+in this run**. In dual mode, choose Cones, COCO 80 or Combined under **Video source**, then
 Connect video. Switching the overlay changes only the video subscription: both
 inference workers, the camera, and their run/generation identities continue.
 The video service has one shared selection, so other viewers must reconnect too.
 Only the selected overlay normally has media demand; disconnected overlays skip
 rendering. A diagnostic subscriber can independently create rendering demand.
 
-Each detector node currently owns its optional presentation worker. It draws
+Each detector node owns its optional presentation worker. It draws
 boxes on a separate copy of the exact RGB image retained for that inference.
-For a future combined overlay, use a separate presentation component with a
-bounded join of original frames and both result batches keyed by source,
-generation and capture sequence. Render only matching captures, expire missing
-partners, and never delay inference. Combining already annotated images or
-putting an older batch on the latest image would violate the matching contract.
-A combined-overlay component is not included in this version.
+Dual mode also starts `combined_overlay`, a separate ROS node in that same
+component container. It subscribes to `camera/frames`, `detector_cones/batches`
+and `detector_coco/batches`, sharing the original immutable input storage. It
+joins both results with their exact source capture and copies RGB once for
+drawing. The cone model is amber, COCO cyan, with separate model/count legends.
+Both models must have completed the same capture; missing or expired partners
+are skipped, and a valid empty result clears that model's boxes.
+
+The combined join retains at most eight unmatched captures, plus one active and
+one pending render. Source generation changes invalidate old work. Its dedicated
+render thread keeps inference independent of drawing and video delivery.
+`combined_overlay/overlay/image` feeds video; `combined_overlay/overlay/frame`
+contains the two original batches and image for capture-aware consumers. The
+processing panel adds **Combined presentation** with join/render counters and
+occupancy. It is inactive in single-model modes and idle without subscribers.
+
+`combined_probe`, built alongside `integration_probe`, compares a finite set of
+combined images against the original RGB, both independently received batches,
+and a fresh reference render. It releases full-image subscriptions after the
+requested sample count. This check establishes exact association and pixels,
+not detection accuracy or physical display latency.

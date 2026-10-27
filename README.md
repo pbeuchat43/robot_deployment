@@ -7,14 +7,16 @@ COCO 80 detector, or both TensorRT detectors, renders overlays on exact retained
 
 Camera and model choices are independent. Six fixed combinations are declared:
 cones, COCO 80, or both for each camera. Camera/model changes use a controlled
-stop/start. In dual mode, the displayed overlay can switch between models while
+stop/start. In dual mode, the displayed overlay can switch between models or show both while
 both detectors continue running. Changing the overlay requires video reconnection.
 Each model has separate inference and presentation status.
+Combined presentation is a separate ROS node with a bounded exact-capture join.
 Acquisition, inference, presentation and media keep their component boundaries.
 
 - [Integration evidence and supported configurations](docs/evidence/2026-10-27-integration/README.md)
 - [Shared-camera dual-detector performance experiment](docs/evidence/2026-10-28-dual-detectors/README.md)
 - [Dual-mode viewer and uninterrupted overlay-switch checks](docs/evidence/2026-10-28-dual-viewer/README.md)
+- [Combined overlay and both-camera switching checks](docs/evidence/2026-10-28-combined-overlay/README.md)
 - [Launch and configuration](docs/launch.md)
 - [Jah deployment and rollback](docs/deployment-jah.md)
 - [Component and dependency pins](sources.json)

@@ -9,11 +9,11 @@
     },
     "rgbd_object_detector": {
       "url": "https://github.com/pbeuchat43/rgbd_object_detector.git",
-      "commit": "cca101ccdda7d70b945973f6cd9711316da63547",
+      "commit": "61219c6c1a692d311383cede66f1fb45b20f36e0",
       "baseline_main": "b5a70986d1c210f4ef47cf3d3b2393b40de4dbd4",
       "baseline_commit": "b5a70986d1c210f4ef47cf3d3b2393b40de4dbd4",
-      "tested_implementation_commit": "01e36cbc27f56e0c283c5d1d472789c19ecd537d",
-      "development_archive": "archive/2026-10-27-selectable-model-viewer"
+      "tested_implementation_commit": "db77e7ecd7824a31c9c176f0db2718cc49b5f31e",
+      "development_archive": "archive/2026-10-28-combined-overlay"
     },
     "robot_runtime": {
       "url": "https://github.com/pbeuchat43/robot_runtime.git",

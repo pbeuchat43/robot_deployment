@@ -1,0 +1,37 @@
+{
+  "passed": true,
+  "selected_release": "rgbd-20261028-combined",
+  "previous_release": "rgbd-20261028-dev21",
+  "services_unchanged": true,
+  "workloads_started": false,
+  "profile_revision": "8ea7a4c7a1ae1102566109c8bac284940e7025364c3b5d3e15f758768060859f",
+  "coherent_rollback_backup": true,
+  "rollback_round_trip_tested": false,
+  "final_workloads": [
+    {
+      "unit_id": "perception",
+      "lifecycle": "exited",
+      "blocked": false
+    },
+    {
+      "unit_id": "video",
+      "lifecycle": "exited",
+      "blocked": false
+    }
+  ],
+  "https_audit": {
+    "routes": {
+      "/video": 200,
+      "/api/status": 200,
+      "/api/av": 200,
+      "/api/ros": 200,
+      "/api/session": 200,
+      "/assets/av/components/camera-picker.js": 200,
+      "/assets/ros.js": 200
+    },
+    "tls_verified": true,
+    "unauthenticated_commands_locked": true,
+    "served_assets_match_package": true,
+    "combined_choice_only_in_dual_modes": true
+  }
+}

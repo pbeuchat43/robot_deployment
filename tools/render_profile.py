@@ -60,6 +60,11 @@ def render(site_path, output, d455="d455-30", oak="oak-30"):
             ["overlay_enabled", "overlay_state", "overlay_detail", "overlay_processing", "overlay_pending", "overlay_rendered",
              "overlay_replaced", "overlay_stale", "overlay_superseded", "overlay_no_consumers", "overlay_failures", "overlay_last_render_ns"], active_modes)
         overlay_choices.append(dict(id=model, label=label, topic=namespace + "/" + node + "/overlay/image", active_modes=active_modes))
+    dual_modes = [mode["id"] for mode in modes if mode["selections"]["model"] == "both"]
+    status("combined_overlay", "Combined presentation", "combined_overlay", "rgbd_object_detector_interfaces/msg/CombinedOverlayStatus",
+        ["state", "detail", "generation", "matched", "rendered", "rejected", "expired", "evicted",
+         "replaced", "superseded", "no_consumers", "failures", "retained", "pending", "processing", "last_render_ns"], dual_modes)
+    overlay_choices.append(dict(id="combined", label="Combined", topic=namespace + "/combined_overlay/overlay/image", active_modes=dual_modes))
     video_settings = dict(width=640, height=480, fps=30, mode="fixed", bitrate=2500000, min_bitrate=250000, max_bitrate=2500000, keyframe_interval=1.0)
     profile = dict(schema_version=1, robot_id=site["robot_id"], namespace=site["runtime_namespace"], units=[perception, video],
         ros=dict(schema_version=1, python="/usr/bin/python3", setup_scripts=["/opt/ros/jazzy/setup.bash", site["ros_setup"]],
