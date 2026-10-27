@@ -1,0 +1,25 @@
+{
+  "passed": true,
+  "selected": "/home/poi/.local/share/robot-runtime-dev/releases/rgbd-20261028-dev22",
+  "previous": "/home/poi/.local/share/robot-runtime-dev/releases/rgbd-20261028-combined",
+  "revision": "7f0fdea16813751315004f6a0abb7fcca0f536166708fcccb8ee80e85c377e33",
+  "package_wheel_sha256": "31d7f06c3bafe3623965af373bbbf87cda8b91e914fc8411fd5e196489cb35fd",
+  "workloads_started": false,
+  "services_unchanged": true,
+  "https_audit": {
+    "routes": {
+      "/video": 200,
+      "/api/status": 200,
+      "/api/av": 200,
+      "/api/ros": 200,
+      "/api/session": 200,
+      "/assets/av/media-client.js": 200,
+      "/assets/ros.js": 200
+    },
+    "tls_verified": true,
+    "unauthenticated_commands_locked": true,
+    "served_assets_match_package": true,
+    "combined_choice_only_in_dual_modes": true
+  },
+  "rollback_retained": true
+}

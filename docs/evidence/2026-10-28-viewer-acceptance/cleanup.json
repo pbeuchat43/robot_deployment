@@ -1,0 +1,21 @@
+{
+  "passed": true,
+  "observers_stopped": [
+    "rr-acceptance-empty-cones-20261028.service",
+    "rr-acceptance-empty-coco-20261028.service"
+  ],
+  "reservation_released": true,
+  "user_workloads_preserved": true,
+  "power_unchanged": true,
+  "management_active": true,
+  "metadata_sha256": {
+    "coco/detector.csv": "2c3a0d76fafbbdb1023f5e9acb6ba7063bd62bc2e780423b3af048759c1a1a73",
+    "coco/batches.csv": "6b6df368a96d45c233a28f49cb4b2b153d16c762805edc9a4052778efc344a03",
+    "coco/exact.csv": "524cc78e2dc5827cb377d615515742eb5b743ca854c938d291832ea3aa13544f",
+    "coco/camera.csv": "441d9f9a2bfc3a000a71180b21cb43bd339ce69aa29c0192aa30eab09682e04c",
+    "cones/detector.csv": "93b3a43385ec1ac66e82a73cfc4f0c8a75605e3560ee153d6423be8008b10fb1",
+    "cones/batches.csv": "573c09bbf4ccaaf8db4d392dbdfbb8ff918d2a18cec9b369ffac304db3eab488",
+    "cones/exact.csv": "524cc78e2dc5827cb377d615515742eb5b743ca854c938d291832ea3aa13544f",
+    "cones/camera.csv": "928810d09f6eaba6a120ebdf1807e055e0d22f426e9ffe4065d2feb6e28e661c"
+  }
+}

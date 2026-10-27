@@ -1,6 +1,6 @@
 # Jah development deployment
 
-The selected persistent release is `rgbd-20261028-combined` under
+The selected persistent release is `rgbd-20261028-dev22` under
 `~/.local/share/robot-runtime-dev/releases/`; `current` points to it. It contains
 the tested runtime wheel/venv, native video support, ROS install, both SDKs,
 model descriptors/engines and this minimal composition. The private configuration
@@ -13,7 +13,8 @@ HTTPS origin and port 8443. Existing credential and TLS files are reused. Only
 management services start automatically; camera/inference/video workloads were
 left stopped at initial deployment. The subsequent operator-assisted physical
 checks left the user's D455/COCO and video workloads running. The user later
-stopped both; the dev21 and combined-overlay upgrades preserved that stopped workload state. User lingering was
+stopped both; the dev21, combined-overlay and dev22 upgrades preserved that stopped workload state. The subsequent OAK/both-detector
+empty-scene checks left the user's current camera and video runs active. User lingering was
 already enabled and was preserved. A reboot was not performed.
 
 The relocated candidate passed D455/cones and OAK-D/COCO with measurement markers
@@ -41,9 +42,33 @@ passed a read/write open check. D455 acquisition and inference recovered at abou
 30 Hz after manual restart. No additional permission step is pending. The SDK
 selection serial is recorded separately in the private site file. OAK-D does not
 need this step. See [the physical-check follow-up](evidence/2026-10-27-integration/physical-checks.md)
-for the observed recovery behavior and remaining viewer/empty-scene findings.
+for the observed recovery behavior, and [the latest follow-up](evidence/2026-10-28-viewer-acceptance/README.md)
+for the completed empty-scene checks and remaining brief viewer stalls.
 
-## Combined-overlay update and dev21 rollback
+## Viewer renewal update and combined-release rollback
+
+Dev22 adds bounded retry of a transient network renewal failure for the existing
+video subscription. Expiry and authority rejection still require explicit
+Connect. The native camera, detector, model and composition files are unchanged.
+The installed package passed 147 unit checks, 22 packaged browser checks and a
+live OAK-D/COCO fault-injection comparison. HTTPS assets were verified after the
+upgrade with workloads stopped. See [the acceptance follow-up](evidence/2026-10-28-viewer-acceptance/README.md).
+
+The previous `rgbd-20261028-combined` release is intact. Its configuration,
+service files and coherent stopped state are retained under
+`~/.local/state/rgbd-verification/acceptance-20261028/rollback-combined`.
+After stopping all workloads and resolving uncertain ownership, return to it:
+
+```bash
+~/.local/share/robot-runtime-dev/current/venv/bin/python \
+  ~/.local/state/rgbd-verification/acceptance-20261028/rollback_combined.py
+```
+
+This restores the prior site/profile and release selection and restarts the
+unchanged management pair. It starts no workload. The rollback script was
+inspected; a rollback round trip was not performed.
+
+## Historical combined-overlay update and dev21 rollback
 
 The combined release adds a separate presentation node and a third video choice
 in dual mode. Both-camera checks verified 50 exact combined images, all three
@@ -52,7 +77,8 @@ video choices and uninterrupted detector progress. The runtime wheel remains
 ROS install retains the existing isolated package layout. See
 [the combined-overlay evidence](evidence/2026-10-28-combined-overlay/README.md).
 
-The previous `rgbd-20261028-dev21` release is intact. Its configuration, unchanged
+After returning to the combined release, the previous `rgbd-20261028-dev21`
+release is also intact. Its configuration, unchanged
 service files and coherent stopped state are retained under
 `~/.local/state/rgbd-verification/combined-20261028/rollback-dev21`. After stopping
 all workloads and resolving any uncertain ownership, return to it with:

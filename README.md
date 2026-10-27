@@ -17,6 +17,7 @@ Acquisition, inference, presentation and media keep their component boundaries.
 - [Shared-camera dual-detector performance experiment](docs/evidence/2026-10-28-dual-detectors/README.md)
 - [Dual-mode viewer and uninterrupted overlay-switch checks](docs/evidence/2026-10-28-dual-viewer/README.md)
 - [Combined overlay and both-camera switching checks](docs/evidence/2026-10-28-combined-overlay/README.md)
+- [Viewer renewal recovery and OAK empty-scene follow-up](docs/evidence/2026-10-28-viewer-acceptance/README.md)
 - [Launch and configuration](docs/launch.md)
 - [Jah deployment and rollback](docs/deployment-jah.md)
 - [Component and dependency pins](sources.json)

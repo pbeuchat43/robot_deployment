@@ -1,0 +1,72 @@
+{
+  "mode": "oak-both",
+  "models": [
+    {
+      "model": "cones",
+      "ready": true,
+      "batch_samples": 14832,
+      "camera_counters": {
+        "frames": 14796,
+        "rejected": 0,
+        "gaps": 0
+      },
+      "detector_counters": {
+        "processed": 14825,
+        "replaced": 0,
+        "rejected": 0,
+        "stale": 0,
+        "failures": 0,
+        "overlay_failures": 0
+      },
+      "health_passed": true,
+      "one_capture_generation": true,
+      "earlier_generations_excluded": 1,
+      "max_observed_acquisition_interval_ms": 133.48342,
+      "max_result_source_age_ms": 173.086662,
+      "latest_detections": 1,
+      "latest_receipt_age_s": 0.023057248,
+      "longest_bounded_empty_seconds": 20.099840315,
+      "returned_detection_seconds": 244.398547458,
+      "empty_return_observed": true,
+      "longest_unbounded_empty_seconds": 20.099840315
+    },
+    {
+      "model": "coco",
+      "ready": true,
+      "batch_samples": 14820,
+      "camera_counters": {
+        "frames": 14826,
+        "rejected": 0,
+        "gaps": 0
+      },
+      "detector_counters": {
+        "processed": 14826,
+        "replaced": 0,
+        "rejected": 0,
+        "stale": 0,
+        "failures": 0,
+        "overlay_failures": 0
+      },
+      "health_passed": true,
+      "one_capture_generation": true,
+      "earlier_generations_excluded": 1,
+      "max_observed_acquisition_interval_ms": 133.48342,
+      "max_result_source_age_ms": 178.51499,
+      "latest_detections": 2,
+      "latest_receipt_age_s": 0.022470036,
+      "longest_bounded_empty_seconds": 24.499807097,
+      "returned_detection_seconds": 381.464279203,
+      "empty_return_observed": true,
+      "longest_unbounded_empty_seconds": 24.499807097
+    }
+  ],
+  "threshold_seconds": 10,
+  "metadata_only": true,
+  "operator_report": {
+    "boxes_cleared_and_returned": true,
+    "video_smooth": false,
+    "observation": "Boxes cleared and returned. A few occurrences of Video stalled lasted about 1-2 seconds each, then cleared automatically and smooth video resumed."
+  },
+  "passed": true,
+  "uninterrupted_viewer_accepted": false
+}

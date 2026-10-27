@@ -42,9 +42,12 @@ diagnostic window was 133.54 ms, rather than a multi-second acquisition stall.
 
 This points to a viewer connection/demand interruption but does not identify why
 the subscription disappeared. Browser telemetry was not retained for that event.
-The issue remains unresolved; uninterrupted viewer operation is not accepted for
-this case. A follow-up should capture browser connection and subscription-renewal
-diagnostics around a reproduction.
+The [28 October follow-up](../2026-10-28-viewer-acceptance/README.md) reproduced
+lost demand from one failed subscription renewal and deployed bounded recovery
+in runtime dev22. The original event's exact trigger remains unproven. Both
+ten-second OAK empty-scene checks subsequently passed. The operator still saw
+brief, automatically recovering stalls, so uninterrupted physical viewing remains
+unaccepted and further diagnosis was deferred at the operator's request.
 
 ## Physical USB disconnect and recovery
 

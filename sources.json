@@ -17,11 +17,11 @@
     },
     "robot_runtime": {
       "url": "https://github.com/pbeuchat43/robot_runtime.git",
-      "commit": "c2b2b6d16964b00caa543006d814c9b112520843",
+      "commit": "3ab1cd84330985d5b2aa0a6a06986d1a84c6f1a4",
       "baseline_main": "be1ed63d3ce870205513b0b37e97f2292d656bd6",
       "baseline_commit": "be1ed63d3ce870205513b0b37e97f2292d656bd6",
-      "tested_implementation_commit": "015c1772ed8193883b991a1940dda804d727ebc9",
-      "development_archive": "archive/2026-10-28-dual-detector-viewer"
+      "tested_implementation_commit": "fba3eac4cb0d547bda2a3f03be4eff3b5a961b1c",
+      "development_archive": "archive/2026-10-28-viewer-renewal"
     }
   },
   "dependencies": {

@@ -1,0 +1,216 @@
+{
+  "campaigns": [
+    {
+      "package_version": "0.1.0.dev21",
+      "passed": true,
+      "cleanup_errors": [],
+      "persistent_workloads_unchanged": true,
+      "headless": true,
+      "phases": [
+        {
+          "name": "baseline",
+          "samples": 138,
+          "seconds": 119.675595062,
+          "browser_states": [
+            "connected"
+          ],
+          "browser_errors": [],
+          "max_browser_frame_age_ms": 71.50000000595901,
+          "subscription_range": [
+            1,
+            1
+          ],
+          "camera_states": [
+            "streaming"
+          ],
+          "successful_renewals": 17,
+          "failed_renewals": 0,
+          "inference_processed_delta": 3600
+        },
+        {
+          "name": "signalling_recovery",
+          "samples": 23,
+          "seconds": 19.272586527,
+          "browser_states": [
+            "connected"
+          ],
+          "browser_errors": [],
+          "max_browser_frame_age_ms": 61.20000000298023,
+          "subscription_range": [
+            1,
+            1
+          ],
+          "camera_states": [
+            "streaming"
+          ],
+          "successful_renewals": 3,
+          "failed_renewals": 0,
+          "inference_processed_delta": 570
+        },
+        {
+          "name": "single_transient_renew_failure",
+          "samples": 21,
+          "seconds": 17.392361052,
+          "browser_states": [
+            "connected",
+            "disconnected"
+          ],
+          "browser_errors": [
+            "Media subscription lost: Injected one-off network failure. Reconnect to retry."
+          ],
+          "max_browser_frame_age_ms": 87.8999999940279,
+          "subscription_range": [
+            0,
+            1
+          ],
+          "camera_states": [
+            "idle",
+            "streaming"
+          ],
+          "successful_renewals": 0,
+          "failed_renewals": 1,
+          "inference_processed_delta": 528
+        },
+        {
+          "name": "explicit_reconnect",
+          "samples": 23,
+          "seconds": 19.184272939,
+          "browser_states": [
+            "connected"
+          ],
+          "browser_errors": [],
+          "max_browser_frame_age_ms": 275.79999999701977,
+          "subscription_range": [
+            1,
+            1
+          ],
+          "camera_states": [
+            "streaming"
+          ],
+          "successful_renewals": 3,
+          "failed_renewals": 0,
+          "inference_processed_delta": 576
+        }
+      ],
+      "timeline_sha256": "48ba6ec2f2fe19a4688ad58a222b44506fa516642fb17b7b6037c6c29d955923"
+    },
+    {
+      "package_version": "0.1.0.dev22",
+      "passed": true,
+      "cleanup_errors": [],
+      "persistent_workloads_unchanged": true,
+      "headless": true,
+      "phases": [
+        {
+          "name": "baseline",
+          "samples": 138,
+          "seconds": 119.886882789,
+          "browser_states": [
+            "connected"
+          ],
+          "browser_errors": [],
+          "max_browser_frame_age_ms": 89.39999999702013,
+          "subscription_range": [
+            1,
+            1
+          ],
+          "camera_states": [
+            "streaming"
+          ],
+          "successful_renewals": 17,
+          "failed_renewals": 0,
+          "inference_processed_delta": 3600
+        },
+        {
+          "name": "signalling_recovery",
+          "samples": 23,
+          "seconds": 19.253860178,
+          "browser_states": [
+            "connected"
+          ],
+          "browser_errors": [],
+          "max_browser_frame_age_ms": 54.09999998807325,
+          "subscription_range": [
+            1,
+            1
+          ],
+          "camera_states": [
+            "streaming"
+          ],
+          "successful_renewals": 3,
+          "failed_renewals": 0,
+          "inference_processed_delta": 570
+        },
+        {
+          "name": "single_transient_renew_failure",
+          "samples": 21,
+          "seconds": 17.446827628,
+          "browser_states": [
+            "connected"
+          ],
+          "browser_errors": [],
+          "max_browser_frame_age_ms": 57.59999998807325,
+          "subscription_range": [
+            1,
+            1
+          ],
+          "camera_states": [
+            "streaming"
+          ],
+          "successful_renewals": 2,
+          "failed_renewals": 1,
+          "inference_processed_delta": 516
+        },
+        {
+          "name": "renewal_deadline",
+          "samples": 27,
+          "seconds": 22.720255151,
+          "browser_states": [
+            "connected",
+            "disconnected"
+          ],
+          "browser_errors": [
+            "Media subscription lost: renewal deadline expired. Reconnect to retry."
+          ],
+          "max_browser_frame_age_ms": 63.699999994045356,
+          "subscription_range": [
+            0,
+            1
+          ],
+          "camera_states": [
+            "streaming"
+          ],
+          "successful_renewals": 1,
+          "failed_renewals": 5,
+          "inference_processed_delta": 684
+        },
+        {
+          "name": "explicit_reconnect",
+          "samples": 23,
+          "seconds": 19.218090059,
+          "browser_states": [
+            "connected"
+          ],
+          "browser_errors": [],
+          "max_browser_frame_age_ms": 61.10000000000582,
+          "subscription_range": [
+            1,
+            1
+          ],
+          "camera_states": [
+            "streaming"
+          ],
+          "successful_renewals": 2,
+          "failed_renewals": 0,
+          "inference_processed_delta": 576
+        }
+      ],
+      "timeline_sha256": "9b48ad8d06cb6926572ed7b36c3581d4f1df3407a6cd1dc2e17081e9adbc4117"
+    }
+  ],
+  "original_event": {
+    "exact_trigger_proven": false,
+    "operator_report": "Viewer stayed visible; operator reports weak Wi-Fi at Jetson location.",
+    "conclusion": "One failed client renewal reproduces lost viewer demand while native inference continues. Transient Wi-Fi is plausible but was not measured."
+  }
+}
