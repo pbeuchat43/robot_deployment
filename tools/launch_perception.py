@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""Explicit single-camera/single-model composition; no installer behavior."""
+"""One shared camera with one or both detector components; no installer behavior."""
 # Copyright (c) 2026 Paul N. Beuchat. MIT License.
 import argparse
 import json
@@ -12,29 +12,35 @@ def main():
     parser = argparse.ArgumentParser()
     parser.add_argument("--site", type=Path, required=True)
     parser.add_argument("--camera", choices=cameras["profiles"], required=True)
-    parser.add_argument("--model", choices=("cones", "coco"), required=True)
+    parser.add_argument("--model", choices=("cones", "coco", "both"), required=True)
     args = parser.parse_args()
     site = json.loads(args.site.read_text())
     camera = {**cameras["defaults"], **cameras["profiles"][args.camera]}
     camera.pop("width"); camera.pop("height")  # Geometry is verified by the camera provider.
     camera["device_id"] = site["device_ids"][camera["backend"]]
-    model = site["models"][args.model]
-    for name in ("engine", "profile"):
-        if not Path(model[name]).is_file(): parser.error(f"Missing model {name}: {model[name]}")
+    selected = ("cones", "coco") if args.model == "both" else (args.model,)
+    for selected_model in selected:
+        model = site["models"][selected_model]
+        for name in ("engine", "profile"):
+            if not Path(model[name]).is_file(): parser.error(f"Missing model {name}: {model[name]}")
     from launch import LaunchDescription, LaunchService
     from launch_ros.actions import ComposableNodeContainer
     from launch_ros.descriptions import ComposableNode
     namespace = site["ros_namespace"]
     common = dict(namespace=namespace, extra_arguments=[{"use_intra_process_comms": True}])
+    detectors = []
+    for selected_model in selected:
+        model = site["models"][selected_model]
+        detectors.append(ComposableNode(package="rgbd_object_detector", plugin="rgbd_object_detector::DetectorNode",
+            name="detector_" + selected_model,
+            parameters=[dict(engine_path=model["engine"], model_profile=model["profile"],
+                publish_overlay=True, overlay_spatial=True,
+                overlay_capture_marker=site.get("measurement_marker", False))],
+            remappings=[("frames", "camera/frames")], **common))
     container = ComposableNodeContainer(name="perception_container", namespace=namespace,
         package="rclcpp_components", executable="component_container_mt", output="screen",
         # Validate/load inference before opening the sole camera session.
-        composable_node_descriptions=[
-            ComposableNode(package="rgbd_object_detector", plugin="rgbd_object_detector::DetectorNode", name="detector",
-                parameters=[dict(engine_path=model["engine"], model_profile=model["profile"],
-                    publish_overlay=True, overlay_spatial=True,
-                    overlay_capture_marker=site.get("measurement_marker", False))],
-                remappings=[("frames", "camera/frames")], **common),
+        composable_node_descriptions=[*detectors,
             ComposableNode(package="rgbd_camera", plugin="rgbd_camera::CameraNode", name="camera", parameters=[camera], **common),
         ])
     service = LaunchService()

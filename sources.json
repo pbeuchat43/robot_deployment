@@ -17,11 +17,11 @@
     },
     "robot_runtime": {
       "url": "https://github.com/pbeuchat43/robot_runtime.git",
-      "commit": "9c5f6a98f67786fb7c57bb56542d31a381e0f275",
+      "commit": "c2b2b6d16964b00caa543006d814c9b112520843",
       "baseline_main": "be1ed63d3ce870205513b0b37e97f2292d656bd6",
       "baseline_commit": "be1ed63d3ce870205513b0b37e97f2292d656bd6",
-      "tested_implementation_commit": "cbfed17c5f872afb2218987b1731c5373b152bd0",
-      "development_archive": "archive/2026-10-27-rgbd-perception-viewer"
+      "tested_implementation_commit": "015c1772ed8193883b991a1940dda804d727ebc9",
+      "development_archive": "archive/2026-10-28-dual-detector-viewer"
     }
   },
   "dependencies": {

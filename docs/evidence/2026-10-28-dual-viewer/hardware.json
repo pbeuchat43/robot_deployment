@@ -1,0 +1,230 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "scope": "Finite six-mode camera/model and live WebRTC overlay-selection checks",
+  "camera_rate_hz": 30,
+  "cases": [
+    {
+      "mode": "d455-cones",
+      "passed": true,
+      "exact_samples": {
+        "cones": 25
+      },
+      "switches": [
+        {
+          "overlay": "cones",
+          "changed": false,
+          "source_revision": 1,
+          "video_frames": 68,
+          "processed_delta": {
+            "cones": 144
+          },
+          "detector_generations_unchanged": true,
+          "perception_run_unchanged": true,
+          "video_run_unchanged": true
+        }
+      ]
+    },
+    {
+      "mode": "d455-coco",
+      "passed": true,
+      "exact_samples": {
+        "coco": 25
+      },
+      "switches": [
+        {
+          "overlay": "coco",
+          "changed": false,
+          "source_revision": 2,
+          "video_frames": 51,
+          "processed_delta": {
+            "coco": 141
+          },
+          "detector_generations_unchanged": true,
+          "perception_run_unchanged": true,
+          "video_run_unchanged": true
+        }
+      ]
+    },
+    {
+      "mode": "oak-cones",
+      "passed": true,
+      "exact_samples": {
+        "cones": 25
+      },
+      "switches": [
+        {
+          "overlay": "cones",
+          "changed": false,
+          "source_revision": 7,
+          "video_frames": 47,
+          "processed_delta": {
+            "cones": 131
+          },
+          "detector_generations_unchanged": true,
+          "perception_run_unchanged": true,
+          "video_run_unchanged": true
+        }
+      ]
+    },
+    {
+      "mode": "oak-coco",
+      "passed": true,
+      "exact_samples": {
+        "coco": 25
+      },
+      "switches": [
+        {
+          "overlay": "coco",
+          "changed": false,
+          "source_revision": 8,
+          "video_frames": 55,
+          "processed_delta": {
+            "coco": 144
+          },
+          "detector_generations_unchanged": true,
+          "perception_run_unchanged": true,
+          "video_run_unchanged": true
+        }
+      ]
+    },
+    {
+      "mode": "d455-both",
+      "passed": true,
+      "exact_samples": {
+        "cones": 25,
+        "coco": 25
+      },
+      "switches": [
+        {
+          "overlay": "cones",
+          "changed": false,
+          "source_revision": 1,
+          "video_frames": 62,
+          "presentation_callbacks": 62,
+          "processed_delta": {
+            "cones": 174,
+            "coco": 174
+          },
+          "detector_generations_unchanged": true,
+          "perception_run_unchanged": true,
+          "video_run_unchanged": true
+        },
+        {
+          "overlay": "coco",
+          "changed": true,
+          "source_revision": 2,
+          "video_frames": 53,
+          "presentation_callbacks": 49,
+          "processed_delta": {
+            "cones": 144,
+            "coco": 144
+          },
+          "detector_generations_unchanged": true,
+          "perception_run_unchanged": true,
+          "video_run_unchanged": true
+        },
+        {
+          "overlay": "cones",
+          "changed": true,
+          "source_revision": 3,
+          "video_frames": 48,
+          "presentation_callbacks": 45,
+          "processed_delta": {
+            "cones": 144,
+            "coco": 143
+          },
+          "detector_generations_unchanged": true,
+          "perception_run_unchanged": true,
+          "video_run_unchanged": true
+        }
+      ]
+    },
+    {
+      "mode": "oak-both",
+      "passed": true,
+      "exact_samples": {
+        "cones": 25,
+        "coco": 25
+      },
+      "switches": [
+        {
+          "overlay": "cones",
+          "changed": false,
+          "source_revision": 4,
+          "video_frames": 70,
+          "presentation_callbacks": 66,
+          "processed_delta": {
+            "cones": 144,
+            "coco": 144
+          },
+          "detector_generations_unchanged": true,
+          "perception_run_unchanged": true,
+          "video_run_unchanged": true
+        },
+        {
+          "overlay": "coco",
+          "changed": true,
+          "source_revision": 5,
+          "video_frames": 56,
+          "presentation_callbacks": 54,
+          "processed_delta": {
+            "cones": 145,
+            "coco": 144
+          },
+          "detector_generations_unchanged": true,
+          "perception_run_unchanged": true,
+          "video_run_unchanged": true
+        },
+        {
+          "overlay": "cones",
+          "changed": true,
+          "source_revision": 6,
+          "video_frames": 36,
+          "presentation_callbacks": 35,
+          "processed_delta": {
+            "cones": 143,
+            "coco": 144
+          },
+          "detector_generations_unchanged": true,
+          "perception_run_unchanged": true,
+          "video_run_unchanged": true
+        }
+      ]
+    }
+  ],
+  "exact_overlay_samples_in_selected_cases": 200,
+  "native_pixel_checks": "Each atomic overlay is compared with a fresh render from its exact original capture and result batch.",
+  "final_release_dual_check": {
+    "passed": true,
+    "browser_exceptions": [],
+    "cleanup_errors": [],
+    "persistent_workloads_unchanged": true,
+    "report_sha256": "7eb5851aac040ad2eec0ec5842c3a31ef9ce9db26b9d12142b0778f336fa0c57"
+  },
+  "retained_initial_results": [
+    {
+      "result": "harness readiness timeout",
+      "cause": "Used image-snapshot RPC instead of ros_status",
+      "cleanup_errors": []
+    },
+    {
+      "result": "diagnostic rerun interrupted after confirming the RPC error",
+      "cleanup_errors": []
+    },
+    {
+      "result": "Initial six-mode campaign passed five modes; OAK dual video-progress assertion failed during the COCO selection",
+      "cause": "Undetermined: the failing short window did not retain its before/after frame counters.",
+      "followup": "Focused OAK dual check passed with frame-count and media-state diagnostics; both cameras passed the final-release check with presentation callbacks.",
+      "report_sha256": "2f65b4bf1fcb58ac606c2d29ed96c7bfea7cec0a9c7d77466a55670d4e48a563",
+      "followup_sha256": "af611e31d83d52b611af1f2f4299f84fecfb3d6087d6d186191b3ee964a504b2",
+      "cleanup_errors": []
+    }
+  ],
+  "limitations": [
+    "Headless Chromium on Jah; no physical motion, new empty scenes, USB recovery or physical screen scanout checks.",
+    "This is functional switching evidence, not a sustained display-frame-rate benchmark, multi-viewer hardware test or driving acceptance.",
+    "Prior accepted physical-check findings were not reinvestigated.",
+    "Only one displayed model overlay is implemented; no combined renderer."
+  ]
+}

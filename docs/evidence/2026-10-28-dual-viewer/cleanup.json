@@ -1,0 +1,20 @@
+{
+  "passed": true,
+  "reservation_released": true,
+  "isolated_processes_remaining": [],
+  "management_services_active": true,
+  "power_mode_unchanged": true,
+  "workloads": [
+    {
+      "unit_id": "perception",
+      "lifecycle": "exited",
+      "blocked": false
+    },
+    {
+      "unit_id": "video",
+      "lifecycle": "exited",
+      "blocked": false
+    }
+  ],
+  "selected_release": "rgbd-20261028-dev21"
+}

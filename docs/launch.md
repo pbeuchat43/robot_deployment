@@ -1,6 +1,6 @@
 # Selectable RGB-D perception and video
 
-This composition runs one camera and one TensorRT model in a ROS component
+This composition runs one camera and one or both TensorRT models in a ROS component
 container. Camera selection and model selection are independent. The detector
 retains each atomic RGB-D frame through inference; a separate bounded presentation
 worker draws on a copy of that exact frame. The media process subscribes to the
@@ -37,7 +37,7 @@ robot-runtime-manager --profile /absolute/profile.json --state /absolute/state
 ```
 
 The renderer validates the runtime schema and refuses to overwrite a profile.
-The default is D455 30 Hz plus cones. It declares all four camera/model combinations
+The default is D455 30 Hz plus cones. It declares all six camera/model combinations
 as fixed launch arguments. Higher-rate trials use a new profile while stopped:
 
 ```bash
@@ -54,7 +54,7 @@ startup does not start camera or inference workloads.
 ## Reference viewer
 
 Open `/video` and unlock commands. Start the video service, choose Camera and
-Model independently, then select **Start source**. Wait for streaming acquisition
+Models independently (Cones, COCO 80, or Cones + COCO 80), then select **Start source**. Wait for streaming acquisition
 and processing observations, then **Connect video**. The requested selection and
 current run are displayed separately; provider observations report actual model
 and engine identity, processing counters, ages and overlay state.
@@ -94,3 +94,35 @@ clock estimate. It is not a measurement of physical screen scanout or photons.
 SDK clock mapping uncertainty, physical motion, newly arranged empty scenes and
 physical USB recovery require separate observation. Read the integration evidence
 before interpreting the named camera profiles as performance guarantees.
+
+## Dual detectors and overlay selection
+
+Runtime 0.1.0.dev21 or later is required. Both detector components receive the
+same immutable RGB-D capture in one process, using ROS intra-process sharing.
+Each retains its own bounded inference queue and TensorRT context. Camera
+acquisition and alignment happen once; model preprocessing and GPU transfers
+remain separate. There is no priority or rate cap between the detectors.
+
+The cone component is named `detector_cones`; COCO is `detector_coco`, in both
+single and dual modes. Under the configured namespace, each exposes its own
+`batches`, `status`, `overlay/frame` and `overlay/image` topics. This replaces
+the earlier composition's single `detector` node path. Downstream data consumers
+must select the appropriate model path and use the batch capture/model identity.
+
+The processing panel shows separate inference and presentation observations for
+each model. A model absent from a single-model launch is explicitly **Not selected
+in this run**. In dual mode, choose Cones or COCO 80 under **Video source**, then
+Connect video. Switching the overlay changes only the video subscription: both
+inference workers, the camera, and their run/generation identities continue.
+The video service has one shared selection, so other viewers must reconnect too.
+Only the selected overlay normally has media demand; disconnected overlays skip
+rendering. A diagnostic subscriber can independently create rendering demand.
+
+Each detector node currently owns its optional presentation worker. It draws
+boxes on a separate copy of the exact RGB image retained for that inference.
+For a future combined overlay, use a separate presentation component with a
+bounded join of original frames and both result batches keyed by source,
+generation and capture sequence. Render only matching captures, expire missing
+partners, and never delay inference. Combining already annotated images or
+putting an older batch on the latest image would violate the matching contract.
+A combined-overlay component is not included in this version.
