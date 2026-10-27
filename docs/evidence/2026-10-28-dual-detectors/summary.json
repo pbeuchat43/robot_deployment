@@ -1,0 +1,982 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-28",
+  "host": "reserved Jah",
+  "platform": "Jetson Orin / Ubuntu 24.04 arm64",
+  "purpose": "one-camera shared-frame dual TensorRT detector",
+  "configuration": {
+    "camera_rate_hz": 30,
+    "overlays_enabled": false,
+    "external_image_subscribers": false,
+    "power_mode": "NV Power Mode: 15W\n2",
+    "warmup_seconds": 10,
+    "measurement_seconds": 45
+  },
+  "cases": [
+    {
+      "label": "d455-30-cones",
+      "camera": "d455-30",
+      "models": [
+        "cones"
+      ],
+      "measurement_seconds": 45.164759722,
+      "resources": {
+        "duration_seconds": 44.157406196012744,
+        "samples": 44,
+        "host_cpu_percent_all_cores": 35.160905840286055,
+        "host_used_memory_peak_mib": 2233.015625,
+        "host_swap_used_peak_mib": 0.0,
+        "groups": {
+          "perception": {
+            "cpu_one_core_percent": 123.8467919905542,
+            "peak_rss_mib": 725.953125,
+            "peak_charged_memory_mib": 222.80859375
+          }
+        },
+        "processes": {
+          "probe_cones": {
+            "cpu_one_core_percent": 1.9475781620471515,
+            "peak_rss_mib": 32.625
+          }
+        },
+        "collection_cpu_one_core_percent": 0.24471140247761486
+      },
+      "detectors": {
+        "cones": {
+          "hz": 29.97603125296059,
+          "states": [
+            "streaming"
+          ],
+          "overlay_states": [
+            "disabled"
+          ],
+          "model_ids": [
+            "cones-2024-standard-20260927"
+          ],
+          "model_profile_sha256": [
+            "75ab94e47c585c2af8d4e0e0ca8b9901ac0427ffa281f235e3b62a1e82182648"
+          ],
+          "samples": 1354,
+          "counters": {
+            "received": 1348,
+            "processed": 1349,
+            "replaced": 0,
+            "rejected": 0,
+            "stale": 0,
+            "superseded": 0,
+            "failures": 0,
+            "overlay_rendered": 0,
+            "overlay_failures": 0
+          },
+          "maximum_pending": 0,
+          "acquisition_to_result_ms": {
+            "p50": 42.7350175,
+            "p95": 43.426758,
+            "p99": 43.819462,
+            "max": 46.011383,
+            "min": 33.29832
+          },
+          "inference_and_transfer_ms": {
+            "p50": 7.153048,
+            "p95": 7.229497,
+            "p99": 7.379069,
+            "max": 7.479135,
+            "min": 6.917779
+          },
+          "preprocess_ms": {
+            "p50": 4.8480229999999995,
+            "p95": 5.049579,
+            "p99": 5.270096,
+            "max": 7.163896,
+            "min": 2.872925
+          },
+          "postprocess_ms": {
+            "p50": 0.39172,
+            "p95": 0.434985,
+            "p99": 0.472554,
+            "max": 0.820497,
+            "min": 0.206692
+          },
+          "detections_per_batch": {
+            "p50": 1.0,
+            "p95": 2,
+            "p99": 2,
+            "max": 2,
+            "min": 1
+          },
+          "empty_batches": 0,
+          "valid_spatial": 1433,
+          "invalid_spatial": 0,
+          "truncated_batches": 0,
+          "observed_labels": [
+            "blue_cone",
+            "yellow_cone"
+          ],
+          "healthy": true
+        }
+      },
+      "acquisition": {
+        "hz": 29.954908807107476,
+        "states": [
+          "streaming"
+        ],
+        "rejected": 0,
+        "sequence_gaps": 0
+      },
+      "gpu_utilization_percent": {
+        "p50": 17.5,
+        "p95": 40,
+        "p99": 40,
+        "max": 40,
+        "min": 0
+      },
+      "gpu_frequency_observations": null,
+      "emc_utilization_percent": null,
+      "temperature_max_c": {
+        "cpu": 52.593,
+        "cv0": 51.25,
+        "cv1": 51.406,
+        "cv2": 49.875,
+        "gpu": 52.0,
+        "soc0": 51.5,
+        "soc1": 54.218,
+        "soc2": 50.75,
+        "tj": 54.218
+      }
+    },
+    {
+      "label": "d455-30-cones+coco",
+      "camera": "d455-30",
+      "models": [
+        "cones",
+        "coco"
+      ],
+      "measurement_seconds": 45.685569216,
+      "resources": {
+        "duration_seconds": 44.67265112500172,
+        "samples": 44,
+        "host_cpu_percent_all_cores": 46.44062078272604,
+        "host_used_memory_peak_mib": 2286.5703125,
+        "host_swap_used_peak_mib": 0.0,
+        "groups": {
+          "perception": {
+            "cpu_one_core_percent": 166.23137004385057,
+            "peak_rss_mib": 769.59375,
+            "peak_charged_memory_mib": 261.3671875
+          }
+        },
+        "processes": {
+          "probe_cones": {
+            "cpu_one_core_percent": 1.9475002671446366,
+            "peak_rss_mib": 32.48046875
+          },
+          "probe_coco": {
+            "cpu_one_core_percent": 1.9251152066027442,
+            "peak_rss_mib": 32.5
+          }
+        },
+        "collection_cpu_one_core_percent": 0.20680350432189948
+      },
+      "detectors": {
+        "cones": {
+          "hz": 29.97800702083242,
+          "states": [
+            "streaming"
+          ],
+          "overlay_states": [
+            "disabled"
+          ],
+          "model_ids": [
+            "cones-2024-standard-20260927"
+          ],
+          "model_profile_sha256": [
+            "75ab94e47c585c2af8d4e0e0ca8b9901ac0427ffa281f235e3b62a1e82182648"
+          ],
+          "samples": 1368,
+          "counters": {
+            "received": 1360,
+            "processed": 1361,
+            "replaced": 0,
+            "rejected": 0,
+            "stale": 0,
+            "superseded": 0,
+            "failures": 0,
+            "overlay_rendered": 0,
+            "overlay_failures": 0
+          },
+          "maximum_pending": 0,
+          "acquisition_to_result_ms": {
+            "p50": 45.4389665,
+            "p95": 46.824926,
+            "p99": 47.349413,
+            "max": 47.829802,
+            "min": 38.847051
+          },
+          "inference_and_transfer_ms": {
+            "p50": 10.268237,
+            "p95": 10.971948,
+            "p99": 11.161713,
+            "max": 11.274258,
+            "min": 7.102745
+          },
+          "preprocess_ms": {
+            "p50": 5.018572000000001,
+            "p95": 5.946752,
+            "p99": 6.705297,
+            "max": 9.390378,
+            "min": 3.323496
+          },
+          "postprocess_ms": {
+            "p50": 0.382776,
+            "p95": 0.430442,
+            "p99": 0.465258,
+            "max": 0.623533,
+            "min": 0.219173
+          },
+          "detections_per_batch": {
+            "p50": 1.0,
+            "p95": 2,
+            "p99": 2,
+            "max": 2,
+            "min": 1
+          },
+          "empty_batches": 0,
+          "valid_spatial": 1479,
+          "invalid_spatial": 0,
+          "truncated_batches": 0,
+          "observed_labels": [
+            "blue_cone",
+            "yellow_cone"
+          ],
+          "healthy": true
+        },
+        "coco": {
+          "hz": 29.955871357446835,
+          "states": [
+            "streaming"
+          ],
+          "overlay_states": [
+            "disabled"
+          ],
+          "model_ids": [
+            "yolov8n-coco80-ultralytics-8.3.0-opset17"
+          ],
+          "model_profile_sha256": [
+            "7ee01dbf72a47b96e5277b6a530b97c655398430a8c7f523afd2f34a9867e883"
+          ],
+          "samples": 1368,
+          "counters": {
+            "received": 1361,
+            "processed": 1360,
+            "replaced": 0,
+            "rejected": 0,
+            "stale": 0,
+            "superseded": 0,
+            "failures": 0,
+            "overlay_rendered": 0,
+            "overlay_failures": 0
+          },
+          "maximum_pending": 0,
+          "acquisition_to_result_ms": {
+            "p50": 50.5339415,
+            "p95": 52.650139,
+            "p99": 53.224735,
+            "max": 56.404729,
+            "min": 41.432121
+          },
+          "inference_and_transfer_ms": {
+            "p50": 11.2407375,
+            "p95": 11.515705,
+            "p99": 11.623162,
+            "max": 11.720349,
+            "min": 7.962348
+          },
+          "preprocess_ms": {
+            "p50": 3.9173165,
+            "p95": 4.872201,
+            "p99": 5.48447,
+            "max": 5.820157,
+            "min": 2.755803
+          },
+          "postprocess_ms": {
+            "p50": 6.1163555,
+            "p95": 6.525644,
+            "p99": 6.750993,
+            "max": 9.1233,
+            "min": 3.503563
+          },
+          "detections_per_batch": {
+            "p50": 2.0,
+            "p95": 2,
+            "p99": 2,
+            "max": 3,
+            "min": 1
+          },
+          "empty_batches": 0,
+          "valid_spatial": 2549,
+          "invalid_spatial": 0,
+          "truncated_batches": 0,
+          "observed_labels": [
+            "keyboard",
+            "laptop",
+            "tv"
+          ],
+          "healthy": true
+        }
+      },
+      "acquisition": {
+        "hz": 29.978050475389022,
+        "states": [
+          "streaming"
+        ],
+        "rejected": 0,
+        "sequence_gaps": 0
+      },
+      "shared_capture_identity_samples": 1368,
+      "same_camera_generation": true,
+      "gpu_utilization_percent": {
+        "p50": 25,
+        "p95": 64,
+        "p99": 64,
+        "max": 65,
+        "min": 0
+      },
+      "gpu_frequency_observations": null,
+      "emc_utilization_percent": null,
+      "temperature_max_c": {
+        "cpu": 54.593,
+        "cv0": 52.968,
+        "cv1": 53.218,
+        "cv2": 51.656,
+        "gpu": 53.718,
+        "soc0": 53.218,
+        "soc1": 55.812,
+        "soc2": 52.468,
+        "tj": 55.812
+      }
+    },
+    {
+      "label": "d455-30-coco",
+      "camera": "d455-30",
+      "models": [
+        "coco"
+      ],
+      "measurement_seconds": 45.169091019,
+      "resources": {
+        "duration_seconds": 44.161208338002325,
+        "samples": 44,
+        "host_cpu_percent_all_cores": 33.26283297130445,
+        "host_used_memory_peak_mib": 2243.89453125,
+        "host_swap_used_peak_mib": 0.0,
+        "groups": {
+          "perception": {
+            "cpu_one_core_percent": 120.46009382905032,
+            "peak_rss_mib": 725.8828125,
+            "peak_charged_memory_mib": 219.55859375
+          }
+        },
+        "processes": {
+          "probe_coco": {
+            "cpu_one_core_percent": 1.9700547895817728,
+            "peak_rss_mib": 32.3671875
+          }
+        },
+        "collection_cpu_one_core_percent": 0.2559811116008826
+      },
+      "detectors": {
+        "coco": {
+          "hz": 29.955583218538138,
+          "states": [
+            "streaming"
+          ],
+          "overlay_states": [
+            "disabled"
+          ],
+          "model_ids": [
+            "yolov8n-coco80-ultralytics-8.3.0-opset17"
+          ],
+          "model_profile_sha256": [
+            "7ee01dbf72a47b96e5277b6a530b97c655398430a8c7f523afd2f34a9867e883"
+          ],
+          "samples": 1353,
+          "counters": {
+            "received": 1349,
+            "processed": 1348,
+            "replaced": 0,
+            "rejected": 0,
+            "stale": 0,
+            "superseded": 0,
+            "failures": 0,
+            "overlay_rendered": 0,
+            "overlay_failures": 0
+          },
+          "maximum_pending": 0,
+          "acquisition_to_result_ms": {
+            "p50": 46.32631,
+            "p95": 47.008845,
+            "p99": 47.360918,
+            "max": 47.992394,
+            "min": 36.89045
+          },
+          "inference_and_transfer_ms": {
+            "p50": 6.883638,
+            "p95": 6.96508,
+            "p99": 7.138235,
+            "max": 7.202077,
+            "min": 6.810612
+          },
+          "preprocess_ms": {
+            "p50": 2.626234,
+            "p95": 2.749179,
+            "p99": 2.850942,
+            "max": 3.821876,
+            "min": 1.929866
+          },
+          "postprocess_ms": {
+            "p50": 6.345929,
+            "p95": 6.688786,
+            "p99": 6.801171,
+            "max": 7.050457,
+            "min": 3.530221
+          },
+          "detections_per_batch": {
+            "p50": 2,
+            "p95": 2,
+            "p99": 3,
+            "max": 3,
+            "min": 1
+          },
+          "empty_batches": 0,
+          "valid_spatial": 2669,
+          "invalid_spatial": 0,
+          "truncated_batches": 0,
+          "observed_labels": [
+            "keyboard",
+            "laptop",
+            "tv"
+          ],
+          "healthy": true
+        }
+      },
+      "acquisition": {
+        "hz": 29.977712506466787,
+        "states": [
+          "streaming"
+        ],
+        "rejected": 0,
+        "sequence_gaps": 0
+      },
+      "gpu_utilization_percent": {
+        "p50": 13.5,
+        "p95": 38,
+        "p99": 38,
+        "max": 38,
+        "min": 0
+      },
+      "gpu_frequency_observations": null,
+      "emc_utilization_percent": null,
+      "temperature_max_c": {
+        "cpu": 54.468,
+        "cv0": 53.093,
+        "cv1": 53.25,
+        "cv2": 51.718,
+        "gpu": 53.593,
+        "soc0": 53.468,
+        "soc1": 55.968,
+        "soc2": 52.531,
+        "tj": 55.968
+      }
+    },
+    {
+      "label": "oak-30-cones",
+      "camera": "oak-30",
+      "models": [
+        "cones"
+      ],
+      "measurement_seconds": 45.175917618,
+      "resources": {
+        "duration_seconds": 44.16756229499879,
+        "samples": 44,
+        "host_cpu_percent_all_cores": 13.501299288216021,
+        "host_used_memory_peak_mib": 2360.34765625,
+        "host_swap_used_peak_mib": 0.0,
+        "groups": {
+          "perception": {
+            "cpu_one_core_percent": 35.668452550716964,
+            "peak_rss_mib": 848.6328125,
+            "peak_charged_memory_mib": 335.5
+          }
+        },
+        "processes": {
+          "probe_cones": {
+            "cpu_one_core_percent": 1.7886429745058714,
+            "peak_rss_mib": 32.375
+          }
+        },
+        "collection_cpu_one_core_percent": 0.2523410625553589
+      },
+      "detectors": {
+        "cones": {
+          "hz": 30.000041770058157,
+          "states": [
+            "streaming"
+          ],
+          "overlay_states": [
+            "disabled"
+          ],
+          "model_ids": [
+            "cones-2024-standard-20260927"
+          ],
+          "model_profile_sha256": [
+            "75ab94e47c585c2af8d4e0e0ca8b9901ac0427ffa281f235e3b62a1e82182648"
+          ],
+          "samples": 1355,
+          "counters": {
+            "received": 1350,
+            "processed": 1350,
+            "replaced": 0,
+            "rejected": 0,
+            "stale": 0,
+            "superseded": 0,
+            "failures": 0,
+            "overlay_rendered": 0,
+            "overlay_failures": 0
+          },
+          "maximum_pending": 0,
+          "acquisition_to_result_ms": {
+            "p50": 49.533221,
+            "p95": 56.037529,
+            "p99": 56.5794,
+            "max": 57.272217,
+            "min": 47.425044
+          },
+          "inference_and_transfer_ms": {
+            "p50": 7.078844,
+            "p95": 7.151677,
+            "p99": 7.319329,
+            "max": 7.44298,
+            "min": 6.89676
+          },
+          "preprocess_ms": {
+            "p50": 2.491158,
+            "p95": 2.617881,
+            "p99": 2.715899,
+            "max": 3.554702,
+            "min": 1.686661
+          },
+          "postprocess_ms": {
+            "p50": 0.414473,
+            "p95": 0.448266,
+            "p99": 0.46129,
+            "max": 0.64635,
+            "min": 0.222724
+          },
+          "detections_per_batch": {
+            "p50": 2,
+            "p95": 2,
+            "p99": 2,
+            "max": 2,
+            "min": 2
+          },
+          "empty_batches": 0,
+          "valid_spatial": 2710,
+          "invalid_spatial": 0,
+          "truncated_batches": 0,
+          "observed_labels": [
+            "blue_cone",
+            "yellow_cone"
+          ],
+          "healthy": true
+        }
+      },
+      "acquisition": {
+        "hz": 29.99996542670651,
+        "states": [
+          "streaming"
+        ],
+        "rejected": 0,
+        "sequence_gaps": 0
+      },
+      "gpu_utilization_percent": {
+        "p50": 11.0,
+        "p95": 39,
+        "p99": 39,
+        "max": 39,
+        "min": 0
+      },
+      "gpu_frequency_observations": null,
+      "emc_utilization_percent": null,
+      "temperature_max_c": {
+        "cpu": 54.312,
+        "cv0": 52.906,
+        "cv1": 53.125,
+        "cv2": 51.625,
+        "gpu": 53.531,
+        "soc0": 53.281,
+        "soc1": 55.906,
+        "soc2": 52.375,
+        "tj": 55.906
+      }
+    },
+    {
+      "label": "oak-30-cones+coco",
+      "camera": "oak-30",
+      "models": [
+        "cones",
+        "coco"
+      ],
+      "measurement_seconds": 45.830665097,
+      "resources": {
+        "duration_seconds": 44.81894144399848,
+        "samples": 44,
+        "host_cpu_percent_all_cores": 26.614048038157968,
+        "host_used_memory_peak_mib": 2429.2578125,
+        "host_swap_used_peak_mib": 0.0,
+        "groups": {
+          "perception": {
+            "cpu_one_core_percent": 89.5081358628827,
+            "peak_rss_mib": 898.4921875,
+            "peak_charged_memory_mib": 378.9296875
+          }
+        },
+        "processes": {
+          "probe_cones": {
+            "cpu_one_core_percent": 1.8965195799237686,
+            "peak_rss_mib": 32.73828125
+          },
+          "probe_coco": {
+            "cpu_one_core_percent": 1.8072715996920619,
+            "peak_rss_mib": 32.61328125
+          }
+        },
+        "collection_cpu_one_core_percent": 0.2331469968574913
+      },
+      "detectors": {
+        "cones": {
+          "hz": 30.00002421383533,
+          "states": [
+            "streaming"
+          ],
+          "overlay_states": [
+            "disabled"
+          ],
+          "model_ids": [
+            "cones-2024-standard-20260927"
+          ],
+          "model_profile_sha256": [
+            "75ab94e47c585c2af8d4e0e0ca8b9901ac0427ffa281f235e3b62a1e82182648"
+          ],
+          "samples": 1375,
+          "counters": {
+            "received": 1368,
+            "processed": 1368,
+            "replaced": 0,
+            "rejected": 0,
+            "stale": 0,
+            "superseded": 0,
+            "failures": 0,
+            "overlay_rendered": 0,
+            "overlay_failures": 0
+          },
+          "maximum_pending": 0,
+          "acquisition_to_result_ms": {
+            "p50": 53.252737,
+            "p95": 59.950517,
+            "p99": 60.443567,
+            "max": 62.913418,
+            "min": 50.238086
+          },
+          "inference_and_transfer_ms": {
+            "p50": 10.190754,
+            "p95": 10.576458,
+            "p99": 10.874513,
+            "max": 11.67613,
+            "min": 8.557886
+          },
+          "preprocess_ms": {
+            "p50": 2.571897,
+            "p95": 2.773533,
+            "p99": 3.192838,
+            "max": 5.68387,
+            "min": 1.716198
+          },
+          "postprocess_ms": {
+            "p50": 0.41825,
+            "p95": 0.449386,
+            "p99": 0.470538,
+            "max": 0.672175,
+            "min": 0.235494
+          },
+          "detections_per_batch": {
+            "p50": 2,
+            "p95": 2,
+            "p99": 2,
+            "max": 3,
+            "min": 2
+          },
+          "empty_batches": 0,
+          "valid_spatial": 2751,
+          "invalid_spatial": 0,
+          "truncated_batches": 0,
+          "observed_labels": [
+            "blue_cone",
+            "yellow_cone"
+          ],
+          "healthy": true
+        },
+        "coco": {
+          "hz": 29.999988211846738,
+          "states": [
+            "streaming"
+          ],
+          "overlay_states": [
+            "disabled"
+          ],
+          "model_ids": [
+            "yolov8n-coco80-ultralytics-8.3.0-opset17"
+          ],
+          "model_profile_sha256": [
+            "7ee01dbf72a47b96e5277b6a530b97c655398430a8c7f523afd2f34a9867e883"
+          ],
+          "samples": 1375,
+          "counters": {
+            "received": 1368,
+            "processed": 1368,
+            "replaced": 0,
+            "rejected": 0,
+            "stale": 0,
+            "superseded": 0,
+            "failures": 0,
+            "overlay_rendered": 0,
+            "overlay_failures": 0
+          },
+          "maximum_pending": 0,
+          "acquisition_to_result_ms": {
+            "p50": 60.507657,
+            "p95": 67.383792,
+            "p99": 67.77518,
+            "max": 70.280429,
+            "min": 55.450172
+          },
+          "inference_and_transfer_ms": {
+            "p50": 9.806361,
+            "p95": 10.137792,
+            "p99": 10.523433,
+            "max": 11.397404,
+            "min": 7.891215
+          },
+          "preprocess_ms": {
+            "p50": 4.012408,
+            "p95": 4.258334,
+            "p99": 4.439618,
+            "max": 6.225994,
+            "min": 2.750621
+          },
+          "postprocess_ms": {
+            "p50": 6.667347,
+            "p95": 7.100029,
+            "p99": 7.275265,
+            "max": 7.46551,
+            "min": 3.658897
+          },
+          "detections_per_batch": {
+            "p50": 2,
+            "p95": 2,
+            "p99": 2,
+            "max": 2,
+            "min": 2
+          },
+          "empty_batches": 0,
+          "valid_spatial": 2750,
+          "invalid_spatial": 0,
+          "truncated_batches": 0,
+          "observed_labels": [
+            "laptop",
+            "tv"
+          ],
+          "healthy": true
+        }
+      },
+      "acquisition": {
+        "hz": 30.0000034768563,
+        "states": [
+          "streaming"
+        ],
+        "rejected": 0,
+        "sequence_gaps": 0
+      },
+      "shared_capture_identity_samples": 1375,
+      "same_camera_generation": true,
+      "gpu_utilization_percent": {
+        "p50": 36,
+        "p95": 65,
+        "p99": 65,
+        "max": 65,
+        "min": 0
+      },
+      "gpu_frequency_observations": null,
+      "emc_utilization_percent": null,
+      "temperature_max_c": {
+        "cpu": 55.031,
+        "cv0": 53.562,
+        "cv1": 53.812,
+        "cv2": 52.281,
+        "gpu": 54.281,
+        "soc0": 53.968,
+        "soc1": 56.468,
+        "soc2": 53.031,
+        "tj": 56.468
+      }
+    },
+    {
+      "label": "oak-30-coco",
+      "camera": "oak-30",
+      "models": [
+        "coco"
+      ],
+      "measurement_seconds": 45.164939443,
+      "resources": {
+        "duration_seconds": 44.15597577500739,
+        "samples": 44,
+        "host_cpu_percent_all_cores": 18.367805755395683,
+        "host_used_memory_peak_mib": 2401.71875,
+        "host_swap_used_peak_mib": 0.0,
+        "groups": {
+          "perception": {
+            "cpu_one_core_percent": 54.164865751958345,
+            "peak_rss_mib": 869.890625,
+            "peak_charged_memory_mib": 352.55859375
+          }
+        },
+        "processes": {
+          "probe_coco": {
+            "cpu_one_core_percent": 1.857053288049238,
+            "peak_rss_mib": 32.625
+          }
+        },
+        "collection_cpu_one_core_percent": 0.2506698721006386
+      },
+      "detectors": {
+        "coco": {
+          "hz": 29.99997480735449,
+          "states": [
+            "streaming"
+          ],
+          "overlay_states": [
+            "disabled"
+          ],
+          "model_ids": [
+            "yolov8n-coco80-ultralytics-8.3.0-opset17"
+          ],
+          "model_profile_sha256": [
+            "7ee01dbf72a47b96e5277b6a530b97c655398430a8c7f523afd2f34a9867e883"
+          ],
+          "samples": 1355,
+          "counters": {
+            "received": 1350,
+            "processed": 1350,
+            "replaced": 0,
+            "rejected": 0,
+            "stale": 0,
+            "superseded": 0,
+            "failures": 0,
+            "overlay_rendered": 0,
+            "overlay_failures": 0
+          },
+          "maximum_pending": 0,
+          "acquisition_to_result_ms": {
+            "p50": 55.517513,
+            "p95": 62.068957,
+            "p99": 62.674034,
+            "max": 63.641139,
+            "min": 51.675522
+          },
+          "inference_and_transfer_ms": {
+            "p50": 6.873497,
+            "p95": 6.942714,
+            "p99": 7.111615,
+            "max": 7.212161,
+            "min": 6.802007
+          },
+          "preprocess_ms": {
+            "p50": 2.481463,
+            "p95": 2.60281,
+            "p99": 2.691932,
+            "max": 2.965026,
+            "min": 1.81204
+          },
+          "postprocess_ms": {
+            "p50": 6.685014,
+            "p95": 6.878105,
+            "p99": 6.978651,
+            "max": 7.118047,
+            "min": 4.246494
+          },
+          "detections_per_batch": {
+            "p50": 2,
+            "p95": 2,
+            "p99": 2,
+            "max": 2,
+            "min": 1
+          },
+          "empty_batches": 0,
+          "valid_spatial": 2709,
+          "invalid_spatial": 0,
+          "truncated_batches": 0,
+          "observed_labels": [
+            "laptop",
+            "tv"
+          ],
+          "healthy": true
+        }
+      },
+      "acquisition": {
+        "hz": 29.99999812299119,
+        "states": [
+          "streaming"
+        ],
+        "rejected": 0,
+        "sequence_gaps": 0
+      },
+      "gpu_utilization_percent": {
+        "p50": 13.5,
+        "p95": 38,
+        "p99": 38,
+        "max": 38,
+        "min": 0
+      },
+      "gpu_frequency_observations": null,
+      "emc_utilization_percent": null,
+      "temperature_max_c": {
+        "cpu": 54.656,
+        "cv0": 53.25,
+        "cv1": 53.468,
+        "cv2": 51.937,
+        "gpu": 53.75,
+        "soc0": 53.625,
+        "soc1": 56.093,
+        "soc2": 52.687,
+        "tj": 56.093
+      }
+    }
+  ],
+  "cleanup": {
+    "errors": [],
+    "persistent_workloads_unchanged": true,
+    "power_mode_unchanged": true
+  },
+  "limitations": [
+    "Static room scene; not driving or avoidance validation",
+    "No active viewer or overlay work",
+    "CPU percentages use one core as 100%; RSS can count shared mappings more than once",
+    "GPU/EMC percentages are whole-host utilization at current dynamic clocks, not isolated model demand or a headroom guarantee",
+    "Separate metadata probe processes; best-effort receipts may miss results",
+    "Finite 45-second windows, not endurance or thermal-soak testing"
+  ],
+  "experiment_source_sha256": {
+    "launch_dual.py": "9f0bdc63e12759eb6b19e569790a94b5fece5467da8dfe3ece92aae75e25373e",
+    "benchmark.py": "c7fd2eb5f5ed0867f6e6a2bd6388484eef3f6038aaf68609580fda53f24da3fb",
+    "cameras.json": "6320ee0773168b786bed5547f3a27eacc6542dee1146fcf0187b5e99e44be02f",
+    "resource_capture.py": "ea4c7869e718f322d18c23532fb8faee868598774e76efa9103f14c5200f6c70"
+  }
+}

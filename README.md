@@ -11,6 +11,7 @@ controlled stop/start and require explicit video reconnection to the new source.
 Acquisition, inference, presentation and media keep their component boundaries.
 
 - [Integration evidence and supported configurations](docs/evidence/2026-10-27-integration/README.md)
+- [Shared-camera dual-detector performance experiment](docs/evidence/2026-10-28-dual-detectors/README.md)
 - [Launch and configuration](docs/launch.md)
 - [Jah deployment and rollback](docs/deployment-jah.md)
 - [Component and dependency pins](sources.json)

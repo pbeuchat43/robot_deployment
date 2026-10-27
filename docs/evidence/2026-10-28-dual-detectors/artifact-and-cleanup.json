@@ -1,0 +1,76 @@
+{
+  "selected_release": "rgbd-20261027-dev20",
+  "models": {
+    "cones": {
+      "engine_sha256": "243a991f9ec2fe7980d34beff1f8154972192a0b75632464e35318064b212148",
+      "model_id": "cones-2024-standard-20260927",
+      "model_sha256": "dcf4d911dee975944a3cca895d92803c3181d8dba670759276c4d71901c8040d",
+      "profile_sha256": "75ab94e47c585c2af8d4e0e0ca8b9901ac0427ffa281f235e3b62a1e82182648"
+    },
+    "coco": {
+      "engine_sha256": "db14b34e3d5ae68bff26b776bcc015b6067012ef1b69901be97212a61b392bfc",
+      "model_id": "yolov8n-coco80-ultralytics-8.3.0-opset17",
+      "model_sha256": "3bd80055fc88933446e2d6d4a7ed346caf65f35bd881fd8b2452924d521bf71d",
+      "profile_sha256": "7ee01dbf72a47b96e5277b6a530b97c655398430a8c7f523afd2f34a9867e883"
+    }
+  },
+  "cpu_online": "0-3",
+  "cpu_count": 4,
+  "cleanup": {
+    "experiment_units_stopped": true,
+    "experiment_probe_processes_remaining": [],
+    "persistent_workloads": [
+      {
+        "unit": "perception",
+        "lifecycle": "exited",
+        "run_preserved": true,
+        "blocked": false
+      },
+      {
+        "unit": "video",
+        "lifecycle": "exited",
+        "run_preserved": true,
+        "blocked": false
+      }
+    ],
+    "management_services": {
+      "robot-runtime-dev-manager.service": "active",
+      "robot-runtime-dev-web.service": "active"
+    },
+    "power_mode_unchanged": true
+  },
+  "raw_metadata_sha256": {
+    "d455-30-coco/coco/batches.csv": "7dcd24d17ab163b1ffbfd13112ea77a6584603e019efe49e5cd28d1d0aca4682",
+    "d455-30-coco/coco/camera.csv": "90431aeb918a4c1712a8cc696cb57527f731b11fea4194e588ee803ea58cab25",
+    "d455-30-coco/coco/detector.csv": "cbf568466c8deeba3acea97413bb93479d2e56ed3c817438b705ef319192043e",
+    "d455-30-coco/coco/exact.csv": "524cc78e2dc5827cb377d615515742eb5b743ca854c938d291832ea3aa13544f",
+    "d455-30-cones/cones/batches.csv": "faa49d43322fce276e859088d4f1a0064bce4dfae68ce33eea0db853b7e9dd3f",
+    "d455-30-cones/cones/camera.csv": "ee6400fe39941d904516419850b12da4e5fb286ecfcabbb496a640fcea10e838",
+    "d455-30-cones/cones/detector.csv": "8e037b97d8b4ddb5b427636a6b61a559c9b84c8292e65d2cce82c3ab8d83a0d7",
+    "d455-30-cones/cones/exact.csv": "524cc78e2dc5827cb377d615515742eb5b743ca854c938d291832ea3aa13544f",
+    "d455-30-cones+coco/coco/batches.csv": "16b1f57e4c8391684b87ec5e328ef6ee1555ed8dddee2d45448f5711bf232e00",
+    "d455-30-cones+coco/coco/camera.csv": "fa81e1e91bc09c0d2656685ef24c797f0287754be7f5518bee3232b1fd64a733",
+    "d455-30-cones+coco/coco/detector.csv": "4d7c9d31570981d8755e6cce58c97ac04647e48dfa2187e49d2b18be877b10d3",
+    "d455-30-cones+coco/coco/exact.csv": "524cc78e2dc5827cb377d615515742eb5b743ca854c938d291832ea3aa13544f",
+    "d455-30-cones+coco/cones/batches.csv": "eb94e4b87a623f9974daa9437e81c67665a2c3299afea76bb463637f68d31312",
+    "d455-30-cones+coco/cones/camera.csv": "06d7c66c6a7d25bf8e4b99d2332634eb97051841a4dbc5ac4f37294e7677970e",
+    "d455-30-cones+coco/cones/detector.csv": "8547fe67559b718ffc6151256c474445d5c33882c99856f790b276cda4dcc129",
+    "d455-30-cones+coco/cones/exact.csv": "524cc78e2dc5827cb377d615515742eb5b743ca854c938d291832ea3aa13544f",
+    "oak-30-coco/coco/batches.csv": "41a4797741bdf952b7bf4062dc8959e63f72b887a6cedff21b43ba8dddd72dcc",
+    "oak-30-coco/coco/camera.csv": "581be9b7b104399f7e657fce6a63d099d197c7fa68b2344363df65de329dab1d",
+    "oak-30-coco/coco/detector.csv": "3ce642df1845795efcffcb1d9745174f440dd935aa6cec96d717f651ea0d6266",
+    "oak-30-coco/coco/exact.csv": "524cc78e2dc5827cb377d615515742eb5b743ca854c938d291832ea3aa13544f",
+    "oak-30-cones/cones/batches.csv": "e88e1efd31e63d7dcbfd5e8e194da2131c32d6c05f5cd170ebb72dbd5c8d1fb3",
+    "oak-30-cones/cones/camera.csv": "11b0451989540e1bc8155d33e723aaf74f1786ed578bb158f1c81a79f3947373",
+    "oak-30-cones/cones/detector.csv": "f25e2a785d93682d0c15d9856ebe5fa92fd72fd9f0ecb8a1508f14f81ee3f0a3",
+    "oak-30-cones/cones/exact.csv": "524cc78e2dc5827cb377d615515742eb5b743ca854c938d291832ea3aa13544f",
+    "oak-30-cones+coco/coco/batches.csv": "304c2ed47e0fada8a0a31be3855c4c960efe8f3e9682ea1de6131af21937cf6f",
+    "oak-30-cones+coco/coco/camera.csv": "cd92619905493cb1a810441f9c19159a7c3adaf9b216affebc8323474c10073e",
+    "oak-30-cones+coco/coco/detector.csv": "7a2529eea88d01ef08bb150ad9b0c2876dc77e422d2451047e3edcb3ec01e77e",
+    "oak-30-cones+coco/coco/exact.csv": "524cc78e2dc5827cb377d615515742eb5b743ca854c938d291832ea3aa13544f",
+    "oak-30-cones+coco/cones/batches.csv": "b70e3b1c44899b9f3029164088f1d89a6673144a8928eaaaa21735909ced9d5f",
+    "oak-30-cones+coco/cones/camera.csv": "7fd75c12b3da4ed96703fad16cf4070d457cba02c9d5d04edc75134a81539913",
+    "oak-30-cones+coco/cones/detector.csv": "e11626f9a07070ba40b35dde4f886c81c2cab97db09b38b9b09ca13966e2bfdf",
+    "oak-30-cones+coco/cones/exact.csv": "524cc78e2dc5827cb377d615515742eb5b743ca854c938d291832ea3aa13544f"
+  }
+}
