@@ -11,8 +11,9 @@ directories. No running process depends on the temporary package build directory
 user services. They replace the selected dev17 management pair on the existing
 HTTPS origin and port 8443. Existing credential and TLS files are reused. Only
 management services start automatically; camera/inference/video workloads were
-left stopped. User lingering was already enabled and was preserved. A reboot
-was not performed.
+left stopped at initial deployment. The subsequent operator-assisted physical
+checks left the user's D455/COCO and video workloads running. User lingering was
+already enabled and was preserved. A reboot was not performed.
 
 The relocated candidate passed D455/cones and OAK-D/COCO with measurement markers
 disabled, including 25 exact overlays per case and live WebRTC. The selected
@@ -24,8 +25,8 @@ locked unauthenticated commands and clean workload stop. See
 ## D455 USB access
 
 The overnight verification used the explicitly started temporary root helper.
-Its original USB ACL was verified restored when the hardware reservation ended. Permanent
-D455 access therefore needs this one local step on Jah:
+Its original USB ACL was verified restored when the hardware reservation ended.
+The operator subsequently installed permanent D455 access using:
 
 ```bash
 sudo bash ~/.config/robot-runtime-dev/enable-d455-usb.sh
@@ -33,10 +34,13 @@ sudo bash ~/.config/robot-runtime-dev/enable-d455-usb.sh
 
 The prepared helper installs one rule for the selected D455's exact USB identity,
 grants access to the local operator, and refuses to overwrite a different rule.
-It has not been executed with root privileges or verified after installation.
-The SDK selection serial is recorded separately in the private site file. OAK-D
-does not need this step. The temporary helper's node/ACL identity checks must
-complete before applying the permanent rule.
+Installation was verified, including after physical USB unplug/replug: the newly
+enumerated device node belonged to the configured operator, had mode `0660`, and
+passed a read/write open check. D455 acquisition and inference recovered at about
+30 Hz after manual restart. No additional permission step is pending. The SDK
+selection serial is recorded separately in the private site file. OAK-D does not
+need this step. See [the physical-check follow-up](evidence/2026-10-27-integration/physical-checks.md)
+for the observed recovery behavior and remaining viewer/empty-scene findings.
 
 ## Rollback
 

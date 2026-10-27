@@ -1,5 +1,10 @@
 # RGB-D perception/viewer integration — 27 October 2026
 
+The [operator-assisted physical follow-up](physical-checks.md) records subsequent
+motion, empty-scene and real USB recovery checks, verified permanent D455 access,
+and the remaining OAK viewer interruption and empty-hold limitations. The results
+below describe the earlier automated integration campaign.
+
 Ten camera/model/rate cases completed on reserved Jah with zero cleanup errors.
 Each case verified 25 exact original-RGB/batch/overlay matches before releasing
 full-image diagnostic subscriptions. The finite measurement windows were about
@@ -102,7 +107,7 @@ image reference inference covers both models on eight images each, including
 ordinary-object photos, retained captures and blank rectangular/square fixtures.
 Those synthetic and saved-image checks are not live empty-scene or motion tests.
 
-Unobserved: physical motion, a newly arranged empty scene, physical USB unplug/
+Unobserved in this automated campaign: physical motion, a newly arranged empty scene, physical USB unplug/
 replug, surveyed distance accuracy, physical screen scanout, long-duration load,
 multi-viewer performance and post-reboot behavior. The user explicitly chose the
 current static scene and left the cameras/lights available overnight. OAK 60 Hz
@@ -141,4 +146,6 @@ The final cleanup audit checked 13 campaign profiles, found no remaining task
 browser profiles, confirmed both selected workloads stopped/unblocked, released
 the exact hardware reservation, and verified restoration of the D455's original
 owner/mode/ACL. Persistent management services remain selected. The prepared
-permanent D455 permission helper still requires the operator's sudo step.
+permanent D455 permission helper required the operator's sudo step at that point.
+The later [physical follow-up](physical-checks.md) verifies its installation and
+USB replug permissions, and records the current workload state.
