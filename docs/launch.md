@@ -6,6 +6,17 @@ retains each atomic RGB-D frame through inference; a separate bounded presentati
 worker draws on a copy of that exact frame. The media process subscribes to the
 annotated ROS image and encodes it with the existing runtime WebRTC path.
 
+The current pins select detector/interface 0.2.0: `CaptureDetections` replaces
+`Batch`, `capture_detections` replaces `batches`, and both atomic overlay messages
+use a `capture_detections` field (a fixed two-element array for the combined
+overlay). Rebuild the interfaces, detector, presentation components and probes
+together in a clean prefix. Old ROS bindings and recordings need their original
+types; topic remapping alone cannot make them compatible. External capture-result
+and atomic-overlay subscribers must update their bindings and field access.
+Standard image/status consumers, including `robot_runtime`, need no code change.
+The earlier evidence and everyday installation retain their original revisions;
+the source rename does not update that installed deployment.
+
 ## Install and select a mode
 
 Follow [installation and maintenance](operations.md) to bootstrap the selected
@@ -59,7 +70,7 @@ ready; its admission is bound to that new source run.
 
 A stopped/lost camera is unavailable, not an empty detection result. Empty results
 still publish their matching image with no boxes. Invalid spatial estimates retain
-2D boxes and show `2D only`. The status/batch contract exposes truncation explicitly.
+2D boxes and show `2D only`. The status/result contract exposes truncation explicitly.
 A disconnected viewer releases rendering demand; a slow viewer cannot hold the
 inference worker. The overlay queue retains at most one pending frame plus the
 frame being rendered.
@@ -74,11 +85,14 @@ it does not claim measured capture-to-display age in the normal UI.
 
 `tools/integration_probe` is a finite diagnostic subscriber: it can compare a
 received atomic overlay against a fresh render of the matching original RGB and
-batch, then drop full-image subscriptions and record only bounded metadata.
+result, then drop full-image subscriptions and record only bounded metadata.
 Build it against the installed component packages using CMake. Enable the private
 diagnostic profile's `measurement_marker` only for measurement: the image carries acquisition
 time and sequence protected by a CRC, allowing browser presentation callbacks to
-be correlated with native batches. It is not a browser-side detection join.
+be correlated with native results. It is not a browser-side detection join.
+
+New probe metadata is written to `capture_detections.csv` instead of `batches.csv`.
+Update external CSV readers for new runs; historical CSVs and evidence stay as recorded.
 
 Reported browser latency uses Chromium's estimated presentation time and an HTTP
 clock estimate. It is not a measurement of physical screen scanout or photons.
@@ -96,9 +110,9 @@ remain separate. There is no priority or rate cap between the detectors.
 
 The cone component is named `detector_cones`; COCO is `detector_coco`, in both
 single and dual modes. Under the configured namespace, each exposes its own
-`batches`, `status`, `overlay/frame` and `overlay/image` topics. This replaces
+`capture_detections`, `status`, `overlay/frame` and `overlay/image` topics. This replaces
 the earlier composition's single `detector` node path. Downstream data consumers
-must select the appropriate model path and use the batch capture/model identity.
+must select the appropriate model path and use the result capture/model identity.
 
 The processing panel shows separate inference and presentation observations for
 each model. A model absent from a single-model launch is explicitly **Not selected
@@ -112,8 +126,8 @@ rendering. A diagnostic subscriber can independently create rendering demand.
 Each detector node owns its optional presentation worker. It draws
 boxes on a separate copy of the exact RGB image retained for that inference.
 Dual mode also starts `combined_overlay`, a separate ROS node in that same
-component container. It subscribes to `camera/frames`, `detector_cones/batches`
-and `detector_coco/batches`, sharing the original immutable input storage. It
+component container. It subscribes to `camera/frames`, `detector_cones/capture_detections`
+and `detector_coco/capture_detections`, sharing the original immutable input storage. It
 joins both results with their exact source capture and copies RGB once for
 drawing. The cone model is amber, COCO cyan, with separate model/count legends.
 Both models must have completed the same capture; missing or expired partners
@@ -123,12 +137,12 @@ The combined join retains at most eight unmatched captures, plus one active and
 one pending render. Source generation changes invalidate old work. Its dedicated
 render thread keeps inference independent of drawing and video delivery.
 `combined_overlay/overlay/image` feeds video; `combined_overlay/overlay/frame`
-contains the two original batches and image for capture-aware consumers. The
+contains the two original results and image for capture-aware consumers. The
 processing panel adds **Combined presentation** with join/render counters and
 occupancy. It is inactive in single-model modes and idle without subscribers.
 
 `combined_probe`, built alongside `integration_probe`, compares a finite set of
-combined images against the original RGB, both independently received batches,
+combined images against the original RGB, both independently received results,
 and a fresh reference render. It releases full-image subscriptions after the
 requested sample count. This check establishes exact association and pixels,
 not detection accuracy or physical display latency.

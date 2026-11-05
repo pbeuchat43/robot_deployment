@@ -4,12 +4,12 @@
   "components": {
     "rgbd_camera": {
       "url": "https://github.com/pbeuchat43/rgbd_camera.git",
-      "commit": "0f4b82958f0d7798f0bf911641d0aa67084cc927",
+      "commit": "e225ea79c885b29d54f1fee2861c9d3a25e60cb0",
       "baseline_main": "0f26452e4e30e7fe68a0bbb1a0488c4eda33450d"
     },
     "rgbd_object_detector": {
       "url": "https://github.com/pbeuchat43/rgbd_object_detector.git",
-      "commit": "61219c6c1a692d311383cede66f1fb45b20f36e0",
+      "commit": "68215056f36a423458c7968111ccfb6ff247e834",
       "baseline_main": "b5a70986d1c210f4ef47cf3d3b2393b40de4dbd4",
       "baseline_commit": "b5a70986d1c210f4ef47cf3d3b2393b40de4dbd4",
       "historical_tested_implementation_commit": "db77e7ecd7824a31c9c176f0db2718cc49b5f31e",
@@ -17,7 +17,7 @@
     },
     "robot_runtime": {
       "url": "https://github.com/pbeuchat43/robot_runtime.git",
-      "commit": "36249160ead1f4f9bf67ad7f6ccf8497f883b651",
+      "commit": "3f50ffb006df7df4401370c31b5f2e0e625be96f",
       "baseline_main": "be1ed63d3ce870205513b0b37e97f2292d656bd6",
       "baseline_commit": "be1ed63d3ce870205513b0b37e97f2292d656bd6",
       "historical_tested_implementation_commit": "753ba241034371bcc93b7157ad7e63d03753aaf4",

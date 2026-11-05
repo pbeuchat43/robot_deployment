@@ -1,0 +1,176 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-06",
+  "host": "reserved Jah",
+  "passed": true,
+  "evidence_kind": "software only; synthetic captures; no deployment or camera/GPU execution",
+  "baseline": {
+    "robot_deployment": "b8d4019",
+    "rgbd_object_detector": "61219c6c1a692d311383cede66f1fb45b20f36e0",
+    "rgbd_camera": "0f4b82958f0d7798f0bf911641d0aa67084cc927",
+    "robot_runtime": "36249160ead1f4f9bf67ad7f6ccf8497f883b651"
+  },
+  "selected_components": {
+    "rgbd_camera": "b43cb999f57bb834b756a0eb7f7213b02bf249fc",
+    "rgbd_object_detector": "cda6e3efd6aa75b6581a95088c999c0e5df0c21f",
+    "robot_runtime": "36249160ead1f4f9bf67ad7f6ccf8497f883b651"
+  },
+  "tested_deployment_commit": "400e3e5fd5a3f308e243c3da1f14ca08a163707c",
+  "native_build_commits": {
+    "rgbd_object_detector": "cda6e3efd6aa75b6581a95088c999c0e5df0c21f",
+    "rgbd_camera": "6fa3100f4e3b79ab55be8c5d889c94f6830f149f",
+    "robot_deployment": "950cdb6c60fd29fac40f38226230c7bae5156e56"
+  },
+  "native_source_equivalence": "Final camera interface/rate-probe and deployment integration-probe files are byte-identical to their native-build revisions; later camera commit changes only benchmark Python/current docs, later deployment commit changes only camera pin.",
+  "build": {
+    "fresh_prefix": true,
+    "packages": [
+      "rgbd_camera_interfaces",
+      "vision_msgs",
+      "rgbd_object_detector_interfaces",
+      "rgbd_object_detector"
+    ],
+    "interfaces_version": "0.2.0",
+    "detector_version": "0.2.0",
+    "probe_targets": [
+      "integration_probe",
+      "combined_probe",
+      "rate_probe"
+    ],
+    "warnings": [
+      "Existing TensorRT kFP16 builder-flag deprecation; build_engine.cpp unchanged"
+    ]
+  },
+  "native_tests": [
+    {
+      "name": "detector_contract",
+      "status": "passed"
+    },
+    {
+      "name": "detector_adapter",
+      "status": "passed"
+    },
+    {
+      "name": "detector_overlay",
+      "status": "passed"
+    },
+    {
+      "name": "combined_overlay",
+      "status": "passed"
+    }
+  ],
+  "deployment_unit_tests": {
+    "passed": 38,
+    "failed": 0
+  },
+  "launch_tests": {
+    "passed": true,
+    "modes": [
+      "oak-cones",
+      "oak-coco",
+      "oak-both",
+      "d455-cones",
+      "d455-coco",
+      "d455-both"
+    ],
+    "processes_started": false,
+    "actual_composable_descriptions": true,
+    "namespace": "capture_rename"
+  },
+  "consumers": {
+    "passed": true,
+    "generated_bindings_round_trip": [
+      "CaptureDetections",
+      "OverlayFrame",
+      "CombinedOverlayFrame"
+    ],
+    "old_type_and_embedded_fields_absent": true,
+    "fresh_prefix_without_batch_artifacts": true,
+    "benchmark_summary": {
+      "samples": 2,
+      "empty_capture_detections": 1,
+      "valid_xyz": 1
+    },
+    "syntax_checked": {
+      "camera-final/tools/benchmark_rates.py": "869a5b3d2b2cde42434529cb23833e26d677f2c0a2ffea4364fdecfa6852caf7",
+      "ws/src/rgbd_object_detector/tools/verify_hardware.py": "a617d004b962b3dbb93c79e89cc74cc62b9cd2bfb8a976622d0965b92dd01bdc",
+      "ws/src/rgbd_object_detector/rgbd_object_detector/launch/oak_cones.launch.py": "61c113c3d2e2626aff252e907cfd4ead37d829c5c926fbd7b0be85e9ff597869",
+      "deployment-git/src/robot_deployment/launch.py": "f58f6422d154c0d53632bd5de2ce07de8ae5e552a26120bcb51ca7f83f95a648",
+      "deployment-git/tests/integration_launch.py": "38d135b30ad437db7da6db317b31863718933fcb20f48dd566083345a7c79370"
+    },
+    "limitations": "Synthetic binding/report checks only; hardware runners were not executed."
+  },
+  "bootstrap": {
+    "result": "succeeded",
+    "source_identity": {
+      "deployment_commit": "400e3e5fd5a3f308e243c3da1f14ca08a163707c",
+      "runtime_commit": "36249160ead1f4f9bf67ad7f6ccf8497f883b651",
+      "schema_version": 1,
+      "sources_sha256": "0b251f4930a02d689b30bd6acbd39af806b50b7e1294f4990d1327247d1614cb"
+    },
+    "artifacts": {
+      "PyYAML-6.0.2-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl": "1f71ea527786de97d1a0cc0eacd1defc0985dcf6b3f17bb77dcfc8c34bec4dc5",
+      "aiohappyeyeballs-2.7.1-py3-none-any.whl": "9243213661e29250eb41368e5daa826fc017156c3b8a11440826b2e3ed376472",
+      "aiohttp-3.14.4-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl": "322e3d741b3133bcbb981a41d4f9b8ac3545c18de49c662c2b1f4e1c770b98ad",
+      "aiosignal-1.4.0-py3-none-any.whl": "053243f8b92b990551949e63930a839ff0cf0b0ebbe0597b0f3fb19e1a0fe82e",
+      "attrs-23.2.0-py3-none-any.whl": "99b87a485a5820b23b879f04c2305b44b951b502fd64be915879d77a7e8fc6f1",
+      "frozenlist-1.8.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl": "96f423a119f4777a4a056b66ce11527366a8bb92f54e541ade21f2374433f6d4",
+      "idna-3.6-py3-none-any.whl": "c05567e9c24a6b9faaa835c4821bad0590fbb9d5779e7caa6e1cc4978e7eb24f",
+      "multidict-6.9.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl": "35fc236507fb1b3138f0af5ecd5f94ed752d4d6d826248eae425f86204013eea",
+      "propcache-0.5.4-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl": "60a64cbccaa11b7760ce705a14ada17ba459e7ca9f23ba587eb013821032d7ef",
+      "pyserial-3.5-py2.py3-none-any.whl": "c4451db6ba391ca6ca299fb3ec7bae67a5c55dde170964c7a14ceefec02f2cf0",
+      "robot_deployment-0.1.0.dev2-py3-none-any.whl": "3a3a6a2f8b68e908a3ff2f4ca5476a36ed6c2248572d28715cc22261f6da92ef",
+      "robot_deployment-0.1.0.dev2.tar.gz": "679e72d570e351ee8e02a37692e2e392752da01552db9e589be42fdde70ef35a",
+      "robot_runtime-0.1.0.dev24-py3-none-any.whl": "7ef87db7bac4cab7258aa387f3e7c57848e02802204fad4f7b0e7b7975bc7498",
+      "robot_runtime-0.1.0.dev24.tar.gz": "9ab1f30ddebdbc94ca9c31a7cd09ca47347bff6fe11c044d537f99603e16f47f",
+      "typing_extensions-4.10.0-py3-none-any.whl": "69b1a937c3a517342112fb4c6df7e72fc39a38e7891a5730ed4985b5214b5475",
+      "yarl-1.25.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl": "4d781294bb815ecb5ea57ff6bbf8038e0a31a95fdf3e1788f66e0dc100d64b58"
+    }
+  },
+  "isolation": {
+    "ros_domain_id": 231,
+    "discovery": "LOCALHOST",
+    "parallel_build_jobs": 2
+  },
+  "cleanup": {
+    "reservation_released": true,
+    "shared_lock_file_retained": true,
+    "remaining_task_processes": [],
+    "cleanup_errors": [],
+    "management_active": true,
+    "manager_generation_unchanged": true,
+    "workload_run_ids_unchanged": true,
+    "workloads_inactive_and_empty": true,
+    "selected_deployment_unchanged": true,
+    "power_mode_unchanged": true
+  },
+  "artifacts_sha256": {
+    "build.log": "8fa87dbb446bc4a380ba09bb4ed6f8188f3ff09d46071eed4715c366006fc1ff",
+    "native-test-results.txt": "30486a8587e236385d36bec31bf4130ae9ac039f0a8ea70e17730d3ddd8e46a7",
+    "bootstrap-final/bootstrap.json": "d5ecafdf7aec6c837933ff9d0bfae2e289649119bd0dc79e639862e9d30c7bd9",
+    "deployment-tests.txt": "53e27eea36e9d01b6bb7266ea584de5ac81419a0fd8bccb77275e18dd4a5c7a2",
+    "launch-tests.txt": "93bcd26d91738098fc3c38ac5c32f2763f762813143b44d1f8fa5a3789201441",
+    "consumer-checks.json": "3df67657a437969849a9b5a72f1509a56bcbc598ef34141e4e2e983a23ae4cb6",
+    "build.sh": "596f78dfb431d258a3b9576a92bd7a464aa892c71fbc32ec80ba513778c1dabf",
+    "python-checks.sh": "35f9e4cdc9626ff9c387f8219b8d73fd27e5d5a30bc8c452e7dabad67e97f794",
+    "verify_consumers.py": "03f24c64392036a21774c3a5892489b3681d0d4b1daee1df7eb2f601621e0944",
+    "finish.py": "034659cdca6f9a4495e16d18a0401500c87ddfecddf1ffda510b84200369a7dd",
+    "rgbd_object_detector.tar": "b80409dfb71190aa9716610daad20cf4bde2950451417a30768ba19c1fd6f412",
+    "rgbd_camera.tar": "a46973e2ef41083da944d06c721b91e32b246b514590fce752ee8bd375a9eb63",
+    "camera-final.tar": "184493645bed34635901420ba4ad3256ee8f64b71b10c3068682d686b0f686e1",
+    "robot_deployment.tar": "46065c71b9c3e8c3d13cfcd92425eaa24ae8837e9b8be6baf28bad77805b1661",
+    "robot_runtime.tar": "2600f5c0f88b36d9bab5a1e5edd207271687f642a28968cd580a3cf597564fa7",
+    "ws/install/rgbd_object_detector/lib/librgbd_detector_component.so": "ea839f9a01888e015a25e291afee6ebf0a0dca39c1e1bcc3ae79076286e8a3ce",
+    "ws/install/rgbd_object_detector/lib/librgbd_detector_overlay.so": "921502e1b5c099c1e890da1ba98bdc52291ee8356eacd0d6fc267ed85f373171",
+    "ws/install/rgbd_object_detector/lib/librgbd_combined_overlay_component.so": "2de475d934bf1af7decc60a489845e9fb4f8fd94498a878eb458fba6ceb347be",
+    "integration-probe-build/integration_probe": "057d9a722d69fee3b043b1aabfca6851b4e76d4ce993ec9f9ff76c820bb2394a",
+    "integration-probe-build/combined_probe": "1731032aa231dbb9be687e74063ff51bff7813df9f67e610de753095d64b5a35",
+    "rate-probe-build/rate_probe": "6e9dbc1317aac3f72245846b220e42fbe41a5e951c1b7d9c2623ad80bc6611b3"
+  },
+  "limits": [
+    "No deployment, live camera, GPU inference, browser or hardware acceptance.",
+    "No full installer/maintenance or unrelated runtime/provider regression rerun.",
+    "Historical evidence retains its original Batch interface and software identity.",
+    "Feature branches only; integration branches unchanged; squash consolidation awaits user confirmation."
+  ]
+}

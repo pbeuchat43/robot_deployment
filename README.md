@@ -7,6 +7,10 @@ The [deployment design](docs/design/2026-11-01-robot-deployment-design.md) and
 authorized work. Installer/operator checks and all six D455/OAK-D modes pass on
 the existing Jah host. Fresh-host qualification remains separate. Historical
 perception evidence below does not qualify a fresh installation.
+The current development pins use `CaptureDetections` and the renamed capture-result
+topics. Their [6 November software verification](docs/evidence/2026-11-06-capture-detections/README.md)
+is separate from the earlier hardware/installation records, which retain their
+original interfaces and revisions. The installed everyday release is unchanged.
 The composition connects one selected D455 or OAK-D to the cone detector,
 COCO 80 detector, or both TensorRT detectors, renders overlays on exact retained RGB captures, and uses
 `robot_runtime`'s ROS-image/WebRTC reference viewer.
@@ -25,6 +29,7 @@ Acquisition, inference, presentation and media keep their component boundaries.
 - [Combined overlay and both-camera switching checks](docs/evidence/2026-10-28-combined-overlay/README.md)
 - [Viewer renewal recovery and OAK empty-scene follow-up](docs/evidence/2026-10-28-viewer-acceptance/README.md)
 - [Deployment implementation verification on Jah](docs/evidence/2026-11-03-deployment/README.md)
+- [CaptureDetections rename and software verification](docs/evidence/2026-11-06-capture-detections/README.md)
 - [Launch and configuration](docs/launch.md)
 - [Installation, CLI and maintenance](docs/operations.md)
 - [Jah everyday installation and commands](docs/everyday-jah.md)
@@ -38,6 +43,9 @@ The default camera rate is 30 Hz and the default video ceiling is 30 fps.
 Higher camera rates are evaluated separately. Observed rates, exact-overlay
 checks, synthetic cases and unobserved physical checks are reported separately.
 
-Development uses feature branches and `dev`. No remote has been created and
-`main` promotion is separate from implementation. Device identities,
+Development uses feature branches and `dev` in the canonical
+[GitHub repository](https://github.com/pbeuchat43/robot_deployment). The published
+default branch is `dev`; creating or promoting `main` is a separate milestone.
+The [consolidation record](docs/evidence/2026-11-06-capture-detections/consolidation.md)
+maps the selected commits to their tested sources. Device identities,
 authentication material and private imagery are excluded from source control.

@@ -24,6 +24,21 @@ private credentials and state; publish only the redacted result report.
 Require `passed: true`, empty `cleanup_errors` and final unblocked/empty workload
 ownership. It is synthetic lifecycle evidence, not fresh-host or camera acceptance.
 
+For a perception topic/remapping change, use a test venv with system site
+packages so ROS's native Python dependencies are available, and install the
+selected deployment/runtime wheels there. Source ROS Jazzy and the rebuilt
+component workspace, then run the installed deployment package's launch check:
+
+```bash
+/absolute/venv/bin/python /absolute/robot_deployment/tests/integration_launch.py -v
+```
+
+It evaluates actual composable-node descriptions for all six modes and resolves
+the detector output and combined inputs in a non-default namespace. The launch
+service is intercepted before execution; no component, camera or GPU is started.
+The detector's native `combined_overlay` test separately exercises these remaps
+through actual ROS callbacks with synthetic captures.
+
 Bootstrap must also be run from the selected clean Git commit on Jah. Check its
 receipt, wheel/source distributions, installed source/assets, dependency consistency
 and console help. The real installer exercises pinned acquisition, SDK/ROS builds,

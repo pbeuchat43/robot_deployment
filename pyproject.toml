@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "robot-deployment"
-version = "0.1.0.dev1"
+version = "0.1.0.dev2"
 description = "Reproducible robot composition, installation and operator interface"
 requires-python = ">=3.12"
 dependencies = ["PyYAML==6.0.2", "robot-runtime==0.1.0.dev24"]

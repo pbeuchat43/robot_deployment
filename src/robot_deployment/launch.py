@@ -28,8 +28,8 @@ def main():
     if len(selected) == 2:
         detectors.append(ComposableNode(package="rgbd_object_detector", plugin="rgbd_object_detector::CombinedOverlayNode",
             name="combined_overlay", parameters=[snapshot["nodes"]["combined_overlay"]],
-            remappings=[("frames", "camera/frames"), ("first_batches", "detector_cones/batches"),
-                ("second_batches", "detector_coco/batches")], **common))
+            remappings=[("frames", "camera/frames"), ("first_capture_detections", "detector_cones/capture_detections"),
+                ("second_capture_detections", "detector_coco/capture_detections")], **common))
     container = ComposableNodeContainer(name="perception_container", namespace=namespace,
         package="rclcpp_components", executable="component_container_mt", output="screen",
         # Validate/load inference before opening the sole camera session.
