@@ -1,0 +1,35 @@
+schema_version: 1
+id: rgbd-demo
+robot_model: robot_models/example-car.yaml
+sources: sources.json
+cameras: config/cameras.json
+supported_platforms: [orin-nano-jp721, orin-nx-jp721]
+hardware:
+  front_camera:
+    default_variant: oak_d_rvc2
+    allowed_variants: [oak_d_rvc2, realsense_d455]
+models:
+  cones: {component: rgbd_object_detector, descriptor: models/cones.json}
+  coco: {component: rgbd_object_detector, descriptor: models/yolov8n-coco80.json}
+units:
+  perception:
+    launcher: rgbd_perception
+    parameter_files: [parameters/perception.yaml]
+  video:
+    launcher: runtime_ros_video
+    choices: [cones, coco, combined]
+    default_choice: combined
+    maximum_fps: 30
+workload_requests:
+  student:
+    workspace_binding: student
+    file: config/requests.yaml
+    optional: true
+    mappings:
+      cones_score_threshold:
+        target: {unit: perception, node: detector_cones, parameter: score_threshold}
+        type: double
+        units: dimensionless
+        minimum: 0.30
+        maximum: 0.90
+        apply: startup

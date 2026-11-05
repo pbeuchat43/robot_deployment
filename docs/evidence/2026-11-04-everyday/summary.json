@@ -1,0 +1,277 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-04",
+  "qualification": "Existing Jah Orin NX host; permanent user installation",
+  "deployment_identity": {
+    "deployment_commit": "7a682acafc52fc93d2b8cc02018c35842c4fdc4f",
+    "runtime_commit": "753ba241034371bcc93b7157ad7e63d03753aaf4",
+    "schema_version": 1,
+    "sources_sha256": "d677ad69b6e0b92587e7ccebab6eecf0830be72f07ad650733bf2780cce910ed"
+  },
+  "component_commits": {
+    "rgbd_camera": "0f4b82958f0d7798f0bf911641d0aa67084cc927",
+    "rgbd_object_detector": "61219c6c1a692d311383cede66f1fb45b20f36e0",
+    "robot_runtime": "753ba241034371bcc93b7157ad7e63d03753aaf4"
+  },
+  "release_id": "r20261104-everyday",
+  "profile_sha256": "23bf7fae8938b97fb7168d407cbf812014903225028dd80cf8210170d132a442",
+  "installation": {
+    "result": "succeeded",
+    "stages": [
+      {
+        "name": "sources",
+        "result": "succeeded"
+      },
+      {
+        "name": "sdk-depthai",
+        "result": "succeeded"
+      },
+      {
+        "name": "sdk-realsense",
+        "result": "succeeded"
+      },
+      {
+        "name": "ros",
+        "result": "succeeded"
+      },
+      {
+        "name": "python",
+        "result": "succeeded"
+      },
+      {
+        "name": "model-inputs",
+        "result": "succeeded"
+      },
+      {
+        "name": "engines",
+        "result": "succeeded"
+      },
+      {
+        "name": "native-video",
+        "result": "succeeded"
+      },
+      {
+        "name": "configuration",
+        "result": "succeeded"
+      }
+    ],
+    "verified_rerun_and_selection": true,
+    "model_export": "Reused hash-verified export cache"
+  },
+  "cli": {
+    "command": "lucid_conduct",
+    "context_without_explicit_site": true,
+    "interactive_bash_completion": true,
+    "optional_short_alias_installed": false,
+    "integrity_doctor": "passed"
+  },
+  "management": {
+    "units": [
+      "robot-manager-jah.service",
+      "robot-web-jah.service"
+    ],
+    "enabled": true,
+    "active": true,
+    "linger_enabled": true,
+    "application_autostart": false,
+    "stopped_after_management_restart": true,
+    "physical_reboot_tested": false
+  },
+  "browser": {
+    "permanent_https_pages_and_status": true,
+    "existing_tls_certificate_verified": true,
+    "unauthenticated_start_rejected": true,
+    "existing_credential_preserved": true,
+    "video_validation": "Temporary loopback HTTPS gateway using the permanent manager and native worker; operator passphrase unchanged"
+  },
+  "harness_corrections": [
+    "Initial browser attempt clicked before module initialization; retry waited for initialized controls and passed.",
+    "Successful completed stops are lifecycle=exited, stop_phase=complete, supervisor_state=inactive, with empty ownership. The original exact stopped-label assertion was incorrect. Camera results were preserved; only terminal validation and management restart were completed separately."
+  ],
+  "camera_cases": [
+    {
+      "mode": "d455-both",
+      "passed": true,
+      "exact_samples": {
+        "cones": 10,
+        "coco": 10,
+        "combined": 10
+      },
+      "model_identities_match_release": true,
+      "windows": [
+        {
+          "overlay": "cones",
+          "presentation_callbacks": 115,
+          "seconds": 4,
+          "detector_deltas": {
+            "cones": 114,
+            "coco": 108
+          }
+        },
+        {
+          "overlay": "combined",
+          "presentation_callbacks": 115,
+          "seconds": 4,
+          "detector_deltas": {
+            "cones": 126,
+            "coco": 132
+          }
+        },
+        {
+          "overlay": "coco",
+          "presentation_callbacks": 111,
+          "seconds": 4,
+          "detector_deltas": {
+            "cones": 114,
+            "coco": 108
+          }
+        }
+      ]
+    },
+    {
+      "mode": "oak-both",
+      "passed": true,
+      "exact_samples": {
+        "cones": 10,
+        "coco": 10,
+        "combined": 10
+      },
+      "model_identities_match_release": true,
+      "windows": [
+        {
+          "overlay": "cones",
+          "presentation_callbacks": 112,
+          "seconds": 4,
+          "detector_deltas": {
+            "cones": 114,
+            "coco": 114
+          }
+        },
+        {
+          "overlay": "combined",
+          "presentation_callbacks": 118,
+          "seconds": 4,
+          "detector_deltas": {
+            "cones": 108,
+            "coco": 108
+          }
+        },
+        {
+          "overlay": "coco",
+          "presentation_callbacks": 101,
+          "seconds": 4,
+          "detector_deltas": {
+            "cones": 126,
+            "coco": 114
+          }
+        }
+      ]
+    }
+  ],
+  "final_workloads": [
+    {
+      "unit_id": "perception",
+      "lifecycle": "exited",
+      "stop_phase": "complete",
+      "blocked": false,
+      "supervisor_state": "inactive",
+      "supervisor_result": "success",
+      "owned_member_count": 0
+    },
+    {
+      "unit_id": "video",
+      "lifecycle": "exited",
+      "stop_phase": "complete",
+      "blocked": false,
+      "supervisor_state": "inactive",
+      "supervisor_result": "success",
+      "owned_member_count": 0
+    }
+  ],
+  "cleanup": {
+    "older_test_cutoff_epoch": 1793112641.6862426,
+    "old_build_test_trees_removed": 35,
+    "legacy_installation_directories_removed": 8,
+    "old_management_units_removed": [
+      "robot-runtime-dev-manager.service",
+      "robot-runtime-dev-web.service",
+      "dream-runtime-dev-manager.service",
+      "dream-runtime-dev-web.service"
+    ],
+    "removed_test_trees": [
+      "build/dream-development-source-20261020-r6",
+      "build/dream-development-source-20261019-r3",
+      "build/dream-development-source-20261019-r5",
+      "build/dream-release-20260924",
+      "build/dream-system-integration-20260921",
+      "build/dream-amcl-profile-20261020",
+      "build/dream-amcl-clustering-20261021",
+      "build/dream-pico-info-20260924",
+      "build/dream-amcl-speed-20261020",
+      "build/dream-ros-build-20260922",
+      "build/dream-pico-cli-20260924",
+      "build/dream-camera-mount-20260922",
+      "build/dream-node-events-20260925",
+      "build/dream-development-source-20261018-r2",
+      "build/dream-release-v0.3.0-20260926",
+      "build/dream-amcl-resident-20261021",
+      "build/dream-manual-drive-20261022",
+      "build/dream-amcl-targeted-20261020",
+      "build/dream-ros-build-commit-20260922",
+      "build/dream-classroom-ros-environment-20260921",
+      "build/dream-development-source-20261018-r1",
+      "build/dream-release-20260922",
+      "build/dream-live-deploy-20260922",
+      "build/dream-slam-20261018",
+      "outreach_camera_spike_20261003",
+      "build/slam-toolbox-cuda-20261017",
+      "build/traxxas-release-20260921",
+      "build/traxxas-interface-20260921",
+      "build/ai4r-camera-mount-20260922",
+      ".local/state/rgbd-verification/dual-20261028",
+      ".local/state/rgbd-verification/physical-20261027",
+      ".local/state/rgbd-verification/hardening-20261026",
+      ".local/state/rgbd-verification/integration-20261027",
+      ".local/state/rgbd-verification/outputs-20261025",
+      ".local/state/rgbd-verification/dual-viewer-20261028"
+    ],
+    "legacy_global_ros_environment_removed": true,
+    "legacy_udev_rules_removed": true,
+    "new_camera_permissions": "Compatible OAK and D455 devices owned by runtime account, mode 0660",
+    "active_legacy_configuration_references": [],
+    "useful_independent_rollback_retained": true,
+    "recent_verification_and_shared_system_dependencies_retained": true,
+    "disk_before": {
+      "size": "116G",
+      "used": "90G",
+      "available": "20G",
+      "used_percent": 82,
+      "source": "Initial df -h observation"
+    },
+    "disk_after": {
+      "size_bytes": 123848085504,
+      "used_bytes": 58767933440,
+      "available_bytes": 58741772288,
+      "used_percent": 51,
+      "mount": "/"
+    }
+  },
+  "limits": [
+    "No fresh-image or Nano qualification",
+    "No physical reboot in this campaign",
+    "Headless viewer observation; no laptop-display or endurance claim",
+    "No firmware flash or vehicle-control test",
+    "Cone weights retain the agreed pinned legacy-repository artifact source; the legacy detector is not built or installed"
+  ],
+  "private_evidence_sha256": {
+    "installation": "f0501e73d6a4c263b68ea903ec98f8edd4cd42aec4bf335df2d022a334016815",
+    "verification": "35e0ef4dc0a10a433d76a3fb51ffcd6d0b259e9653981a8be4014b2f02161ec1",
+    "original_hardware_report": "6b3de64a6329ba0a463ed1cfc3cb183886e8ff7aabd8144dde44b90336081f5f",
+    "final_audit": "f2557998dc7e64d532d47ba0bac2c1865eef2f4715cac559f69554f8093e7e20",
+    "cleanup_old_builds": "5d60acdcfab8cf4880b5481c0a0e066add218ce85eee779dabe88afd7d0947b8",
+    "cleanup_old_tests": "e36753c4ed24906c7e36ebf48144a32ff86da88dd5f1c364f55794ba7f31c4e7",
+    "legacy_removal": "0cdaa2cc022850128ef631c12a350297893bc3714634ff3f21b5d1e9a73a1fa0",
+    "verification_harness": "a8106226a82d9d545300114dba92d22a8a1078822d99b9db19540af733e26211",
+    "host_cleanup_script": "31b4001cd58c2c7b78309f8c71f72173323a66938da4e11b5d108846f3a40dd9"
+  }
+}

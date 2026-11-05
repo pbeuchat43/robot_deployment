@@ -1,0 +1,30 @@
+[build-system]
+requires = ["setuptools>=69", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "robot-deployment"
+version = "0.1.0.dev1"
+description = "Reproducible robot composition, installation and operator interface"
+requires-python = ">=3.12"
+dependencies = ["PyYAML==6.0.2", "robot-runtime==0.1.0.dev24"]
+license = {text = "MIT"}
+authors = [{name = "Paul N. Beuchat"}]
+
+[project.scripts]
+lucid_conduct = "robot_deployment.cli:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.setuptools.package-data]
+robot_deployment = ["_build_identity.json"]
+
+[tool.setuptools.data-files]
+"share/robot_deployment" = ["sources.json"]
+"share/robot_deployment/platforms" = ["platforms/orin-nano-jp721.yaml", "platforms/orin-nx-jp721.yaml"]
+"share/robot_deployment/robot_models" = ["robot_models/example-car.yaml"]
+"share/robot_deployment/compositions" = ["compositions/rgbd-demo.yaml"]
+"share/robot_deployment/parameters" = ["parameters/perception.yaml"]
+"share/robot_deployment/config" = ["config/cameras.json", "config/site.example.yaml", "config/requirements-runtime.lock", "config/requirements-build.lock"]
+"share/robot_deployment/tools" = ["tools/with_ros.sh"]

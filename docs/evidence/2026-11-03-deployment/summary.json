@@ -1,0 +1,825 @@
+{
+  "schema_version": 1,
+  "date": "2026-11-03",
+  "host_family": "Jetson Orin NX 16GB / reference carrier",
+  "full_build_deployment_commit": "edb8aacbef5468788609f276a0ea1e0a2acc1dee",
+  "operator_deployment_commit": "3c73d6648914c451750fc23155afa0c399556411",
+  "components": {
+    "rgbd_camera": {
+      "url": "https://github.com/pbeuchat43/rgbd_camera.git",
+      "commit": "0f4b82958f0d7798f0bf911641d0aa67084cc927"
+    },
+    "rgbd_object_detector": {
+      "url": "https://github.com/pbeuchat43/rgbd_object_detector.git",
+      "commit": "61219c6c1a692d311383cede66f1fb45b20f36e0"
+    },
+    "robot_runtime": {
+      "url": "https://github.com/pbeuchat43/robot_runtime.git",
+      "commit": "753ba241034371bcc93b7157ad7e63d03753aaf4"
+    }
+  },
+  "release_id": "r20261103-final2",
+  "installation_result": "succeeded",
+  "installation_record_sha256": "313302d82e3896dcd42d2f6e39ae075bc6d56f6fc07dd038e87ed26bde512dd2",
+  "profile_sha256": "777f679ad07a8dabc58de72c53689393fc0fdb1257305c4de9b1daee19511f5e",
+  "build_stages": [
+    {
+      "name": "sources",
+      "result": "succeeded",
+      "seconds": 0.026
+    },
+    {
+      "name": "sdk-depthai",
+      "result": "succeeded",
+      "seconds": 992.502
+    },
+    {
+      "name": "sdk-realsense",
+      "result": "succeeded",
+      "seconds": 590.346
+    },
+    {
+      "name": "ros",
+      "result": "succeeded",
+      "seconds": 218.802
+    },
+    {
+      "name": "python",
+      "result": "succeeded",
+      "seconds": 21.579
+    },
+    {
+      "name": "model-inputs",
+      "result": "succeeded",
+      "seconds": 0.123
+    },
+    {
+      "name": "engines",
+      "result": "succeeded",
+      "seconds": 689.868
+    },
+    {
+      "name": "native-video",
+      "result": "succeeded",
+      "seconds": 504.036
+    },
+    {
+      "name": "configuration",
+      "result": "succeeded",
+      "seconds": 1.941
+    }
+  ],
+  "unit_checks": {
+    "deployment_final": {
+      "tests": 38,
+      "passed": true,
+      "log_sha256": "4c28a6ba5b67354198221874ded20324c70b14d45a74ffd24c344f588eddf032"
+    },
+    "runtime_restart_baseline": {
+      "tests": 169,
+      "passed": true,
+      "log_sha256": "39abebdd9e3c444e4c33738cbbe0ca7fc77beee41aaef08494a8ddba717a9b64"
+    },
+    "runtime_web_followup": {
+      "tests": 17,
+      "passed": true,
+      "log_sha256": "9f8e82a5b97dc86a8f9eb32366a2aa5a23216b720cef2d7022b7f0fbd2fea200"
+    },
+    "runtime_maintenance": {
+      "tests": 2,
+      "passed": true,
+      "log_sha256": "74fef57242ab11f862fd01de6754dac2b485d75d57b988b0e7e9079f55fa9434"
+    }
+  },
+  "integration": {
+    "lifecycle": {
+      "passed": true,
+      "checks": [
+        "startup_does_not_launch",
+        "cli_start_and_explicit_environment",
+        "abrupt_manager_restart_preserves_workload",
+        "stale_stop_rejected_and_graceful_stop_completes",
+        "bounded_journal_logs",
+        "success_without_restart",
+        "failure_without_restart",
+        "setsid_descendant_survives_parent_and_stops",
+        "timeout_survives_then_self_exits_with_one_signal",
+        "concurrent_conflicting_starts_allow_one_survive_manager_restart_and_release_after_stop"
+      ],
+      "cleanup_errors": [],
+      "report_sha256": "33f0f4c5fde56d5f200abfb2c690849f63ba2476c00a88297ee3d77826f2399f"
+    },
+    "browser": {
+      "passed": true,
+      "checks": [
+        "public_status_cannot_command",
+        "https_cookie_origin_host_and_csrf_enforced",
+        "real_chromium_unlock_start_status_logs_stop_lock",
+        "cli_operates_with_web_down_and_workload_survives_web_exit",
+        "web_restart_revokes_sessions",
+        "five_concurrent_observation_connections"
+      ],
+      "cleanup_errors": [],
+      "report_sha256": "5db2c7f79c9c46cecb6e17bc05be10884dfbf2bc5c38064f6d17c57559c28f8f"
+    },
+    "prepared_restart": {
+      "passed": true,
+      "checks": [
+        "invalid_preparation_keeps_original_process",
+        "replacement_uses_accepted_snapshot_and_records_both_runs",
+        "installed_log_aliases_are_equivalent",
+        "convenient_stop_preserves_exact_run_guard"
+      ],
+      "cleanup_errors": [],
+      "report_sha256": "f3d9a5ae2b5c94a8b341d125bcf7deee9032ef95a45917b71c2dad7f8a6dc776"
+    },
+    "native_browser": {
+      "passed": true,
+      "checks": [
+        "public_status_cannot_command",
+        "https_cookie_origin_host_and_csrf_enforced",
+        "input_alone_real_datachannel_receipt_pause_and_no_media_workload",
+        "video_alone_real_h264_webrtc_frames_and_no_input_peer",
+        "bounded_admission_before_native_video_and_foreign_owner_rejected",
+        "last_video_subscriber_releases_capture_and_encoders",
+        "combined_media_reconfiguration_preserves_independent_input_session",
+        "server_logout_revokes_native_sessions_without_client_cooperation",
+        "manager_generation_change_revokes_sessions_preserves_owned_services",
+        "web_restart_revokes_native_sessions_preserves_owned_services",
+        "credential_rotation_revokes_native_sessions",
+        "native_services_stop_gracefully_with_empty_owned_cgroups",
+        "real_chromium_unlock_start_status_logs_stop_lock",
+        "cli_operates_with_web_down_and_workload_survives_web_exit",
+        "web_restart_revokes_sessions",
+        "five_concurrent_observation_connections"
+      ],
+      "cleanup_errors": [],
+      "report_sha256": "bb40025fffbb51482e562885eb137c85f88041348e6ada1624a7a0fcd68142c3"
+    },
+    "maintenance": {
+      "passed": true,
+      "checks": [
+        "selection_starts_management_without_workloads",
+        "live_workload_blocks_selection_without_stopping_it",
+        "stopped_upgrade_rollback_preserves_history_without_replay",
+        "idempotent_reselection_and_incompatible_state_rejection"
+      ],
+      "cleanup_errors": [],
+      "report_sha256": "f26645dbb52a8bb987c8296ec88c7c1cd1eb77d9d8cbed933f349081ea807a49"
+    },
+    "installed": {
+      "passed": true,
+      "checks": [
+        "completed_installer_rerun_reuses_artifacts_and_preserves_selection",
+        "installed_context_catalog_doctor_and_call_explanation",
+        "system_build_uses_separate_pinned_outputs",
+        "student_build_and_clean_preserve_sources_and_use_selected_underlay"
+      ],
+      "report_sha256": "f54f754ce78a63d4a23127a3387170f167b84fefc4f819c44c53da33d2529643"
+    },
+    "bash_filename_completion": {
+      "passed": true,
+      "checks": [
+        "lucid_conduct_filename_completion",
+        "lucid_filename_completion"
+      ],
+      "report_sha256": "e47a8e7f246198d1b7bf1bb85c097a4f0be9656a00870ba657a5c10ad5a176aa"
+    }
+  },
+  "models": {
+    "cones": {
+      "engine_sha256": "a8e116e2bbdd1a1ae3e45fc9b00ed41855e051831b05ba58f6273212e2db8974",
+      "profile_sha256": "75ab94e47c585c2af8d4e0e0ca8b9901ac0427ffa281f235e3b62a1e82182648",
+      "onnx_sha256": "dcf4d911dee975944a3cca895d92803c3181d8dba670759276c4d71901c8040d",
+      "engine_manifest_sha256": "3c891838cf1ad2c251cdd668d8914acef881ddbbebd6da3bd58039dcbd5cf2f7"
+    },
+    "coco": {
+      "engine_sha256": "7396181a309f0e217dde422e110d545fed6e7312b2ab6b70f67bb02256d0543c",
+      "profile_sha256": "7ee01dbf72a47b96e5277b6a530b97c655398430a8c7f523afd2f34a9867e883",
+      "onnx_sha256": "3bd80055fc88933446e2d6d4a7ed346caf65f35bd881fd8b2452924d521bf71d",
+      "engine_manifest_sha256": "4723a76e3e950016bbfe5d87865e8c685327ef142f7b7a20cf607d31d2960533"
+    }
+  },
+  "hardware": [
+    {
+      "passed": true,
+      "report_sha256": "2af0b4c358b28889b2e0fd7d9e2227445767a8665e806c11cdb5ce32f8f5a82d",
+      "headless": true,
+      "unique_device_discovery": true,
+      "cleanup_errors": [],
+      "persistent_workloads_unchanged": true,
+      "cases": [
+        {
+          "mode": "d455-both",
+          "passed": true,
+          "exact_samples": {
+            "cones": 25,
+            "coco": 25,
+            "combined": 25
+          },
+          "model_identities_match_release": true,
+          "switches": [
+            {
+              "overlay": "cones",
+              "changed": true,
+              "video_frames": 102,
+              "presentation_callbacks": 92,
+              "processed_delta": {
+                "cones": 264,
+                "coco": 263
+              },
+              "detector_generations_unchanged": true,
+              "perception_run_unchanged": true,
+              "video_run_unchanged": true,
+              "camera_generation_unchanged": true,
+              "source_startup_seconds": 4.118108482000025
+            },
+            {
+              "overlay": "combined",
+              "changed": true,
+              "video_frames": 116,
+              "presentation_callbacks": 110,
+              "processed_delta": {
+                "cones": 191,
+                "coco": 204
+              },
+              "detector_generations_unchanged": true,
+              "perception_run_unchanged": true,
+              "video_run_unchanged": true,
+              "camera_generation_unchanged": true,
+              "source_startup_seconds": 1.4654872729997805
+            },
+            {
+              "overlay": "coco",
+              "changed": true,
+              "video_frames": 106,
+              "presentation_callbacks": 93,
+              "processed_delta": {
+                "cones": 234,
+                "coco": 234
+              },
+              "detector_generations_unchanged": true,
+              "perception_run_unchanged": true,
+              "video_run_unchanged": true,
+              "camera_generation_unchanged": true,
+              "source_startup_seconds": 2.8977956900007484
+            },
+            {
+              "overlay": "cones",
+              "changed": true,
+              "video_frames": 101,
+              "presentation_callbacks": 96,
+              "processed_delta": {
+                "cones": 276,
+                "coco": 281
+              },
+              "detector_generations_unchanged": true,
+              "perception_run_unchanged": true,
+              "video_run_unchanged": true,
+              "camera_generation_unchanged": true,
+              "source_startup_seconds": 4.354135255000074
+            }
+          ]
+        },
+        {
+          "mode": "oak-both",
+          "passed": true,
+          "exact_samples": {
+            "cones": 25,
+            "coco": 25,
+            "combined": 25
+          },
+          "model_identities_match_release": true,
+          "switches": [
+            {
+              "overlay": "cones",
+              "changed": false,
+              "video_frames": 110,
+              "presentation_callbacks": 98,
+              "processed_delta": {
+                "cones": 215,
+                "coco": 216
+              },
+              "detector_generations_unchanged": true,
+              "perception_run_unchanged": true,
+              "video_run_unchanged": true,
+              "camera_generation_unchanged": true,
+              "source_startup_seconds": 2.9180761179995898
+            },
+            {
+              "overlay": "combined",
+              "changed": true,
+              "video_frames": 98,
+              "presentation_callbacks": 96,
+              "processed_delta": {
+                "cones": 185,
+                "coco": 204
+              },
+              "detector_generations_unchanged": true,
+              "perception_run_unchanged": true,
+              "video_run_unchanged": true,
+              "camera_generation_unchanged": true,
+              "source_startup_seconds": 1.657939668999461
+            },
+            {
+              "overlay": "coco",
+              "changed": true,
+              "video_frames": 118,
+              "presentation_callbacks": 101,
+              "processed_delta": {
+                "cones": 245,
+                "coco": 257
+              },
+              "detector_generations_unchanged": true,
+              "perception_run_unchanged": true,
+              "video_run_unchanged": true,
+              "camera_generation_unchanged": true,
+              "source_startup_seconds": 3.9892425030002414
+            },
+            {
+              "overlay": "cones",
+              "changed": true,
+              "video_frames": 119,
+              "presentation_callbacks": 114,
+              "processed_delta": {
+                "cones": 204,
+                "coco": 222
+              },
+              "detector_generations_unchanged": true,
+              "perception_run_unchanged": true,
+              "video_run_unchanged": true,
+              "camera_generation_unchanged": true,
+              "source_startup_seconds": 2.3341450429998076
+            }
+          ]
+        }
+      ],
+      "parameter_restart": {
+        "passed": true,
+        "invalid_request_preserved_run": true,
+        "accepted_value": 0.6,
+        "request_edited_after_acceptance": 0.7,
+        "node_value": 0.6,
+        "mode_inherited": true
+      },
+      "camera_transitions": [
+        {
+          "from_mode": "d455-both",
+          "to_mode": "oak-both",
+          "passed": true,
+          "perception_run_replaced": true,
+          "video_run_preserved": true
+        }
+      ],
+      "final_status": {
+        "fresh": true,
+        "conflicts": [],
+        "units": [
+          {
+            "unit_id": "perception",
+            "lifecycle": "exited",
+            "blocked": false,
+            "members": 0
+          },
+          {
+            "unit_id": "video",
+            "lifecycle": "exited",
+            "blocked": false,
+            "members": 0
+          }
+        ]
+      }
+    },
+    {
+      "passed": true,
+      "report_sha256": "4a66f38de9e28a476683e81eca2eafde1ac4a0f6b05cd0c7bc2650fb71368106",
+      "headless": true,
+      "unique_device_discovery": true,
+      "cleanup_errors": [],
+      "persistent_workloads_unchanged": true,
+      "cases": [
+        {
+          "mode": "oak-cones",
+          "passed": true,
+          "exact_samples": {
+            "cones": 25
+          },
+          "model_identities_match_release": true,
+          "inactive_model": "coco",
+          "switches": [
+            {
+              "overlay": "cones",
+              "changed": false,
+              "video_frames": 120,
+              "presentation_callbacks": 114,
+              "processed_delta": {
+                "cones": 240
+              },
+              "detector_generations_unchanged": true,
+              "perception_run_unchanged": true,
+              "video_run_unchanged": true,
+              "camera_generation_unchanged": true,
+              "source_startup_seconds": 2.770968412000002
+            }
+          ]
+        },
+        {
+          "mode": "oak-coco",
+          "passed": true,
+          "exact_samples": {
+            "coco": 25
+          },
+          "model_identities_match_release": true,
+          "inactive_model": "cones",
+          "switches": [
+            {
+              "overlay": "coco",
+              "changed": false,
+              "video_frames": 118,
+              "presentation_callbacks": 112,
+              "processed_delta": {
+                "coco": 240
+              },
+              "detector_generations_unchanged": true,
+              "perception_run_unchanged": true,
+              "video_run_unchanged": true,
+              "camera_generation_unchanged": true,
+              "source_startup_seconds": 3.551055343000371
+            }
+          ]
+        },
+        {
+          "mode": "oak-both",
+          "passed": true,
+          "exact_samples": {
+            "cones": 25,
+            "coco": 25,
+            "combined": 25
+          },
+          "model_identities_match_release": true,
+          "switches": [
+            {
+              "overlay": "cones",
+              "changed": true,
+              "video_frames": 110,
+              "presentation_callbacks": 105,
+              "processed_delta": {
+                "cones": 174,
+                "coco": 173
+              },
+              "detector_generations_unchanged": true,
+              "perception_run_unchanged": true,
+              "video_run_unchanged": true,
+              "camera_generation_unchanged": true,
+              "source_startup_seconds": 1.3346532249997836
+            },
+            {
+              "overlay": "combined",
+              "changed": true,
+              "video_frames": 106,
+              "presentation_callbacks": 100,
+              "processed_delta": {
+                "cones": 192,
+                "coco": 193
+              },
+              "detector_generations_unchanged": true,
+              "perception_run_unchanged": true,
+              "video_run_unchanged": true,
+              "camera_generation_unchanged": true,
+              "source_startup_seconds": 1.7642957510006454
+            },
+            {
+              "overlay": "coco",
+              "changed": true,
+              "video_frames": 116,
+              "presentation_callbacks": 112,
+              "processed_delta": {
+                "cones": 228,
+                "coco": 228
+              },
+              "detector_generations_unchanged": true,
+              "perception_run_unchanged": true,
+              "video_run_unchanged": true,
+              "camera_generation_unchanged": true,
+              "source_startup_seconds": 2.8790778009997666
+            },
+            {
+              "overlay": "cones",
+              "changed": true,
+              "video_frames": 111,
+              "presentation_callbacks": 100,
+              "processed_delta": {
+                "cones": 204,
+                "coco": 203
+              },
+              "detector_generations_unchanged": true,
+              "perception_run_unchanged": true,
+              "video_run_unchanged": true,
+              "camera_generation_unchanged": true,
+              "source_startup_seconds": 1.9992282610000984
+            }
+          ]
+        }
+      ],
+      "parameter_restart": {
+        "passed": true,
+        "invalid_request_preserved_run": true,
+        "accepted_value": 0.6,
+        "request_edited_after_acceptance": 0.7,
+        "node_value": 0.6,
+        "mode_inherited": true
+      },
+      "camera_transitions": [],
+      "final_status": {
+        "fresh": true,
+        "conflicts": [],
+        "units": [
+          {
+            "unit_id": "perception",
+            "lifecycle": "exited",
+            "blocked": false,
+            "members": 0
+          },
+          {
+            "unit_id": "video",
+            "lifecycle": "exited",
+            "blocked": false,
+            "members": 0
+          }
+        ]
+      }
+    },
+    {
+      "passed": true,
+      "report_sha256": "5953f0582794d175c3793c203ec5e2e1138dfdcc049137ef9b1ca568023995c6",
+      "headless": true,
+      "unique_device_discovery": true,
+      "cleanup_errors": [],
+      "persistent_workloads_unchanged": true,
+      "cases": [
+        {
+          "mode": "d455-cones",
+          "passed": true,
+          "exact_samples": {
+            "cones": 25
+          },
+          "model_identities_match_release": true,
+          "inactive_model": "coco",
+          "switches": [
+            {
+              "overlay": "cones",
+              "changed": false,
+              "video_frames": 116,
+              "presentation_callbacks": 112,
+              "processed_delta": {
+                "cones": 191
+              },
+              "detector_generations_unchanged": true,
+              "perception_run_unchanged": true,
+              "video_run_unchanged": true,
+              "camera_generation_unchanged": true,
+              "source_startup_seconds": 1.5586627310003678
+            }
+          ]
+        },
+        {
+          "mode": "d455-coco",
+          "passed": true,
+          "exact_samples": {
+            "coco": 25
+          },
+          "model_identities_match_release": true,
+          "inactive_model": "cones",
+          "switches": [
+            {
+              "overlay": "coco",
+              "changed": false,
+              "video_frames": 117,
+              "presentation_callbacks": 114,
+              "processed_delta": {
+                "coco": 173
+              },
+              "detector_generations_unchanged": true,
+              "perception_run_unchanged": true,
+              "video_run_unchanged": true,
+              "camera_generation_unchanged": true,
+              "source_startup_seconds": 1.4358189469994613
+            }
+          ]
+        },
+        {
+          "mode": "d455-both",
+          "passed": true,
+          "exact_samples": {
+            "cones": 25,
+            "coco": 25,
+            "combined": 25
+          },
+          "model_identities_match_release": true,
+          "switches": [
+            {
+              "overlay": "cones",
+              "changed": true,
+              "video_frames": 107,
+              "presentation_callbacks": 101,
+              "processed_delta": {
+                "cones": 264,
+                "coco": 252
+              },
+              "detector_generations_unchanged": true,
+              "perception_run_unchanged": true,
+              "video_run_unchanged": true,
+              "camera_generation_unchanged": true,
+              "source_startup_seconds": 3.441118165000262
+            },
+            {
+              "overlay": "combined",
+              "changed": true,
+              "video_frames": 115,
+              "presentation_callbacks": 114,
+              "processed_delta": {
+                "cones": 186,
+                "coco": 185
+              },
+              "detector_generations_unchanged": true,
+              "perception_run_unchanged": true,
+              "video_run_unchanged": true,
+              "camera_generation_unchanged": true,
+              "source_startup_seconds": 1.8103737159999582
+            },
+            {
+              "overlay": "coco",
+              "changed": true,
+              "video_frames": 114,
+              "presentation_callbacks": 109,
+              "processed_delta": {
+                "cones": 234,
+                "coco": 234
+              },
+              "detector_generations_unchanged": true,
+              "perception_run_unchanged": true,
+              "video_run_unchanged": true,
+              "camera_generation_unchanged": true,
+              "source_startup_seconds": 3.2684368740001446
+            },
+            {
+              "overlay": "cones",
+              "changed": true,
+              "video_frames": 117,
+              "presentation_callbacks": 115,
+              "processed_delta": {
+                "cones": 203,
+                "coco": 198
+              },
+              "detector_generations_unchanged": true,
+              "perception_run_unchanged": true,
+              "video_run_unchanged": true,
+              "camera_generation_unchanged": true,
+              "source_startup_seconds": 2.0074215000004187
+            }
+          ]
+        }
+      ],
+      "parameter_restart": {
+        "passed": true,
+        "invalid_request_preserved_run": true,
+        "accepted_value": 0.6,
+        "request_edited_after_acceptance": 0.7,
+        "node_value": 0.6,
+        "mode_inherited": true
+      },
+      "camera_transitions": [],
+      "final_status": {
+        "fresh": true,
+        "conflicts": [],
+        "units": [
+          {
+            "unit_id": "perception",
+            "lifecycle": "exited",
+            "blocked": false,
+            "members": 0
+          },
+          {
+            "unit_id": "video",
+            "lifecycle": "exited",
+            "blocked": false,
+            "members": 0
+          }
+        ]
+      }
+    }
+  ],
+  "host_packages": {
+    "build-essential": "12.10ubuntu1",
+    "ca-certificates": "20260601~24.04.1",
+    "cmake": "3.28.3-1build7",
+    "cuda-cudart-dev-13-2": "13.2.86-1",
+    "cuda-nvcc-13-2": "13.2.86-1",
+    "gir1.2-gst-plugins-bad-1.0": "1.24.2-1ubuntu4",
+    "gir1.2-gst-plugins-base-1.0": "1.24.2-1ubuntu0.4",
+    "gir1.2-gstreamer-1.0": "1.24.2-1ubuntu0.1",
+    "git": "1:2.43.0-1ubuntu7.3",
+    "gstreamer1.0-nice": "0.1.21-2build3",
+    "gstreamer1.0-plugins-bad": "1.24.2-1ubuntu4",
+    "gstreamer1.0-plugins-base": "1.24.2-1ubuntu0.4",
+    "gstreamer1.0-plugins-good": "1.24.2-1ubuntu1.5",
+    "gstreamer1.0-tools": "1.24.2-1ubuntu0.1",
+    "libgstreamer-plugins-bad1.0-dev": "1.24.2-1ubuntu4",
+    "libgstreamer-plugins-base1.0-dev": "1.24.2-1ubuntu0.4",
+    "libgstreamer1.0-dev": "1.24.2-1ubuntu0.1",
+    "libnvinfer-dev": "10.16.2.10-1+cuda13.2",
+    "libnvinfer-headers-dev": "10.16.2.10-1+cuda13.2",
+    "libnvinfer10": "10.16.2.10-1+cuda13.2",
+    "libnvonnxparsers-dev": "10.16.2.10-1+cuda13.2",
+    "libnvonnxparsers10": "10.16.2.10-1+cuda13.2",
+    "libopencv-dev": "4.8.0-4-g18251aa",
+    "libssl-dev": "3.0.13-0ubuntu3.15",
+    "libusb-1.0-0-dev": "2:1.0.27-1",
+    "ninja-build": "1.11.1-2",
+    "nvidia-l4t-gstreamer": "39.2.1-20260806224157",
+    "pkg-config": "1.8.1-2build1",
+    "python3-colcon-common-extensions": "0.3.0-100",
+    "python3-dev": "3.12.3-0ubuntu2.1",
+    "python3-gi": "3.48.2-1",
+    "python3-gst-1.0": "1.24.1-1",
+    "python3-numpy": "1:1.26.4+ds-6ubuntu1",
+    "python3-pip": "24.0+dfsg-1ubuntu1.3",
+    "python3-venv": "3.12.3-0ubuntu2.1",
+    "ros-jazzy-ament-cmake": "2.5.6-2noble.20260305.203904",
+    "ros-jazzy-ament-index-cpp": "1.8.4-1noble.20260519.010814",
+    "ros-jazzy-geometry-msgs": "5.3.8-1noble.20260612.060310",
+    "ros-jazzy-launch": "3.4.11-1noble.20260603.145505",
+    "ros-jazzy-launch-ros": "0.26.12-1noble.20260612.133411",
+    "ros-jazzy-rcl-interfaces": "2.0.4-1noble.20260612.091447",
+    "ros-jazzy-rclcpp": "28.1.21-1noble.20260612.095833",
+    "ros-jazzy-rclcpp-components": "28.1.21-1noble.20260612.102635",
+    "ros-jazzy-rclpy": "7.1.11-1noble.20260612.095634",
+    "ros-jazzy-ros-base": "0.11.0-1noble.20261006.040749",
+    "ros-jazzy-rosidl-default-generators": "1.6.1-1noble.20260612.052930",
+    "ros-jazzy-rosidl-default-runtime": "1.6.1-1noble.20260612.052928",
+    "ros-jazzy-sensor-msgs": "5.3.8-1noble.20260612.082718",
+    "ros-jazzy-std-msgs": "5.3.8-1noble.20260612.053429",
+    "ros-jazzy-tf2-ros": "0.36.21-1noble.20260614.051508"
+  },
+  "cleanup": {
+    "passed": true,
+    "hardware_reports": 3,
+    "workloads_stopped": true,
+    "fresh_empty_ownership": true,
+    "persistent_workloads_unchanged": true,
+    "task_processes_remaining": 0,
+    "requests_restored": true,
+    "reservation_released": true
+  },
+  "coco_checkpoint_sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+  "native_build": {
+    "schema_version": 1,
+    "gstreamer": {
+      "gstreamer-1.0": "1.24.2",
+      "gstreamer-app-1.0": "1.24.2",
+      "gstreamer-video-1.0": "1.24.2",
+      "gstreamer-webrtc-1.0": "1.24.2",
+      "gstreamer-rtp-1.0": "1.24.2"
+    },
+    "rust": "rustc 1.90.0 (1159e78c4 2025-09-14)",
+    "rust_archive_sha256": "59f1883fcdd2d7243d2fd1ed19f22e05219251227abacfa3d656aebfbcc5e838",
+    "crates": {
+      "gst-plugin-webrtc": "81dcf7b73db298779b5216c02b1f862a010dcec9eac51799b10fbb89e447c0c9",
+      "gst-plugin-rtp": "ea0b5775d49e2f58b43e2fab9154273a8848a467cbf0d9573ec97c4dc2d51401"
+    },
+    "cargo_locks": {
+      "gst-plugin-webrtc": "75871403873aa63949ab74a42b2228ecfd701f32ff8fea974b47e428046f52be",
+      "gst-plugin-rtp": "f20baa0d6b6b6f388b8e884ce4da9fbd0bbecfcd8c23218a5941ccbc8c0cce14"
+    },
+    "factories": [
+      "webrtcsink",
+      "rtpgccbwe",
+      "nicesink"
+    ]
+  },
+  "wheel_sha256": {
+    "robot_deployment-0.1.0.dev1-py3-none-any.whl": "fd740b72a61f86671b401fa1d032ec0a2966e179f59999c156b4fd6568b63c41",
+    "robot_runtime-0.1.0.dev24-py3-none-any.whl": "1c15bb9d32939f5f36a78ba23a4da1384fb0acc00b675b8a2cecde05cb7a21e9"
+  },
+  "operator_wheel_sha256": {
+    "robot_deployment-0.1.0.dev1-py3-none-any.whl": "b3a382695b4c39fc60b7d79f060c528d8bc7e8cb3e011673c3d82f6c827c3a4f"
+  },
+  "harness_sha256": {
+    "integration_installed.py": "e6639bfaef841e61d1652e72cfc178bc880c47bb1d3e83c8795c980ff843203f",
+    "hardware_acceptance.py": "5d7cbd98dc164978298a28e65be5139a881aaf7796829ede41a7d4c02c3825d6"
+  },
+  "camera_modes_not_run": [],
+  "camera_acceptance_complete": true,
+  "observed_totals": {
+    "individual_exact_samples": 300,
+    "combined_exact_samples": 100,
+    "viewer_windows": 20
+  },
+  "limits": [
+    "Existing prepared NX host; not a clean-image or Nano qualification.",
+    "Headless Chromium does not establish observed laptop-display, vehicle, endurance or recording performance.",
+    "No physical MCU flashing, like-for-like camera replacement, ambiguity or unplug/replug acceptance in this campaign.",
+    "Native release was built at the recorded build commit; later CLI presentation changes were tested in a separate installed bootstrap.",
+    "Runtime web follow-up count overlaps the baseline suite; counts are not additive unique tests."
+  ]
+}

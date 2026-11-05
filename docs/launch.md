@@ -6,50 +6,41 @@ retains each atomic RGB-D frame through inference; a separate bounded presentati
 worker draws on a copy of that exact frame. The media process subscribes to the
 annotated ROS image and encodes it with the existing runtime WebRTC path.
 
-## Build and configure
+## Install and select a mode
 
-Use the revisions in `sources.json`, their repository build instructions, and
-`config/cameras.json`. Build camera support for both DepthAI and librealsense,
-then build the detector and interfaces in the same isolated ROS workspace.
-The detector's `docs/model-profiles.md` describes the pinned COCO export,
-reference comparison, engine builder and artifact manifests. Build both engines
-on the target Jetson. Model profile and engine hashes must agree; changing only
-an engine path cannot change the model contract.
+Follow [installation and maintenance](operations.md) to bootstrap the selected
+operator environment, prepare host prerequisites and install a complete release.
+Use the private YAML [site example](../config/site.example.yaml). Source pins,
+SDKs, ROS packages, native video dependencies and model artifacts are recorded
+by installation; individual engine and library paths are derived from the release.
+The default selects the site's camera at 30 Hz with both detectors. A camera ID
+is normally absent: the provider must find exactly one compatible device.
 
-Install `robot-runtime[web]` with its native hardware-video dependencies. Copy
-`config/deployment.example.json` to a private site file and fill in absolute paths,
-exact SDK device IDs, a dedicated ROS domain/namespace, work/state directories,
-media address/port and model files. Keep this file and credentials outside Git.
-The D455 SDK serial may differ from its USB descriptor serial; use
-`rgbd_camera` discovery to select the SDK device. USB write permission is required.
-
-The ROS install must contain `rgbd_camera`, `rgbd_object_detector`, both interface
-packages and `vision_msgs`. `with_ros.sh` sources Jazzy before the selected install;
-a relocated install can use its `local_setup.bash`. SDK libraries must be available
-through the site's declared library paths. No global shell environment is changed.
-
-From the selected runtime virtual environment:
+After explicitly starting management, these commands operate the installed site:
 
 ```bash
-python tools/render_profile.py --site /absolute/site.json \
-  --output /absolute/profile.json
-robot-runtime-manager --profile /absolute/profile.json --state /absolute/state
+lucid_conduct runtime catalog
+lucid_conduct runtime status --fresh
+lucid_conduct runtime start perception
+lucid_conduct runtime start video
+lucid_conduct runtime restart perception --mode d455-both
+lucid_conduct runtime log perception --follow
+lucid_conduct runtime stop video
+lucid_conduct runtime stop perception
 ```
 
-The renderer validates the runtime schema and refuses to overwrite a profile.
-The default is D455 30 Hz plus cones. It declares all six camera/model combinations
-as fixed launch arguments. Higher-rate trials use a new profile while stopped:
+The six modes are `oak-cones`, `oak-coco`, `oak-both`, `d455-cones`, `d455-coco`
+and `d455-both`. `log` and `logs` are identical. Restart validates and freezes
+permitted startup inputs before stopping the current run. It waits for confirmed
+empty ownership before starting the replacement. Invalid input leaves the old
+run intact; uncertain stop prevents replacement. Management startup alone never
+starts perception or video.
 
-```bash
-python tools/render_profile.py --site /absolute/site.json \
-  --output /absolute/profile-60-40.json --d455 d455-60 --oak oak-40
-```
-
-Use the runtime operator guide to configure authenticated HTTPS access. This
-repository deliberately contains no general installer or credential management.
-A persistent replacement requires stopped workloads and a rollback copy of the
-matching runtime, service definitions, profile and state. Management-service
-startup does not start camera or inference workloads.
+For student parameter changes, use the declared workspace's `config/requests.yaml`
+and restart explicitly; see [configuration ownership](configuration.md).
+Changing camera rate profiles or network/topology requires stopped maintenance.
+`config render --release /absolute/release --output /absolute/profile.json`
+can inspect a new profile without selecting it. It refuses to overwrite a file.
 
 ## Reference viewer
 
@@ -60,8 +51,8 @@ current run are displayed separately; provider observations report actual model
 and engine identity, processing counters, ages and overlay state.
 
 For a change, select the new combination and use **Restart with selection**.
-The browser validates the declared launch, disconnects video, stops the exact
-old run, waits for confirmed empty ownership, and starts the selected mode.
+The browser requests the declared restart; runtime prepares the candidate, stops
+the exact old run, waits for confirmed empty ownership, and starts the selected mode.
 A cancelled, uncertain or failed stop cannot trigger a new start. Refresh/reload
 does not resume the sequence. Connect video explicitly after the new source is
 ready; its admission is bound to that new source run.
@@ -85,7 +76,7 @@ it does not claim measured capture-to-display age in the normal UI.
 received atomic overlay against a fresh render of the matching original RGB and
 batch, then drop full-image subscriptions and record only bounded metadata.
 Build it against the installed component packages using CMake. Enable the private
-site's `measurement_marker` only for measurement: the image carries acquisition
+diagnostic profile's `measurement_marker` only for measurement: the image carries acquisition
 time and sequence protected by a CRC, allowing browser presentation callbacks to
 be correlated with native batches. It is not a browser-side detection join.
 
@@ -97,7 +88,7 @@ before interpreting the named camera profiles as performance guarantees.
 
 ## Dual detectors and overlay selection
 
-Runtime 0.1.0.dev21 or later is required. Both detector components receive the
+Use the runtime revision selected in `sources.json`. Both detector components receive the
 same immutable RGB-D capture in one process, using ROS intra-process sharing.
 Each retains its own bounded inference queue and TensorRT context. Camera
 acquisition and alignment happen once; model preprocessing and GPU transfers

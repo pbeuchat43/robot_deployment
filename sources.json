@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "purpose": "Component revisions used for the selectable RGB-D perception and viewer integration",
+  "purpose": "Exact selected deployment sources and model inputs; historical evidence fields do not qualify this installer",
   "components": {
     "rgbd_camera": {
       "url": "https://github.com/pbeuchat43/rgbd_camera.git",
@@ -12,16 +12,16 @@
       "commit": "61219c6c1a692d311383cede66f1fb45b20f36e0",
       "baseline_main": "b5a70986d1c210f4ef47cf3d3b2393b40de4dbd4",
       "baseline_commit": "b5a70986d1c210f4ef47cf3d3b2393b40de4dbd4",
-      "tested_implementation_commit": "db77e7ecd7824a31c9c176f0db2718cc49b5f31e",
+      "historical_tested_implementation_commit": "db77e7ecd7824a31c9c176f0db2718cc49b5f31e",
       "development_archive": "archive/2026-10-28-combined-overlay"
     },
     "robot_runtime": {
       "url": "https://github.com/pbeuchat43/robot_runtime.git",
-      "commit": "3ab1cd84330985d5b2aa0a6a06986d1a84c6f1a4",
+      "commit": "36249160ead1f4f9bf67ad7f6ccf8497f883b651",
       "baseline_main": "be1ed63d3ce870205513b0b37e97f2292d656bd6",
       "baseline_commit": "be1ed63d3ce870205513b0b37e97f2292d656bd6",
-      "tested_implementation_commit": "fba3eac4cb0d547bda2a3f03be4eff3b5a961b1c",
-      "development_archive": "archive/2026-10-28-viewer-renewal"
+      "historical_tested_implementation_commit": "753ba241034371bcc93b7157ad7e63d03753aaf4",
+      "development_archive": "archive/2026-11-06-deployment-runtime"
     }
   },
   "dependencies": {
@@ -35,12 +35,42 @@
       "backend": "RSUSB"
     },
     "vision_msgs": {
+      "url": "https://github.com/ros-perception/vision_msgs.git",
       "commit": "adbf56af9f77e3c8ab2552e25dc99e4a8a77fb27"
+    },
+    "pico_sdk": {
+      "url": "https://github.com/raspberrypi/pico-sdk.git",
+      "version": "2.3.1",
+      "commit": "079c6f39023649b154152db30f1d781e884879bc"
+    },
+    "picotool": {
+      "url": "https://github.com/raspberrypi/picotool.git",
+      "version": "2.3.1",
+      "commit": "2041936441b48a3cc53ae3da9e805229fe8f4e18"
     },
     "ros": "Jazzy",
     "tensorrt": "10.16.2.10",
     "cuda_runtime": "13.2",
     "opencv_native": "4.8",
     "platform": "Ubuntu 24.04 arm64, Jetson Orin"
+  },
+  "models": {
+    "cones": {
+      "source": {
+        "url": "https://gitlab.unimelb.edu.au/dream/oakd_gpu_cone_detector.git",
+        "commit": "5907560cb7a3c5f5df43a9a792243bdee1ce010f"
+      },
+      "path": "models/cones.onnx",
+      "onnx_sha256": "dcf4d911dee975944a3cca895d92803c3181d8dba670759276c4d71901c8040d",
+      "licensing": "Unresolved model licence attribution; see rgbd_object_detector/NOTICE.md"
+    },
+    "coco": {
+      "checkpoint_url": "https://github.com/ultralytics/assets/releases/download/v8.3.0/yolov8n.pt",
+      "checkpoint_sha256": "f59b3d833e2ff32e194b5bb8e08d211dc7c5bdf144b90d2c8412c47ccfc83b36",
+      "onnx_sha256": "3bd80055fc88933446e2d6d4a7ed346caf65f35bd881fd8b2452924d521bf71d",
+      "exporter": "rgbd_object_detector/tools/export_yolov8n.py",
+      "requirements": "rgbd_object_detector/tools/requirements-export.lock",
+      "licensing": "Ultralytics upstream licence applies; see rgbd_object_detector/NOTICE.md"
+    }
   }
 }

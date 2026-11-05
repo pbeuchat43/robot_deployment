@@ -1,6 +1,13 @@
 # Jah development deployment
 
-The selected persistent release is `rgbd-20261028-dev22` under
+This is the historical deployment record for 28 October 2026. It is retained
+with its original evidence and does not describe the new installer layout or
+establish the host's current state. The [everyday installation](everyday-jah.md)
+superseded these management services on 4 November; the independent RGB-D release
+was retained for recovery. Use [operations](operations.md) for maintenance and
+inspect live installation records before making changes.
+
+At that milestone, the selected persistent release was `rgbd-20261028-dev22` under
 `~/.local/share/robot-runtime-dev/releases/`; `current` points to it. It contains
 the tested runtime wheel/venv, native video support, ROS install, both SDKs,
 model descriptors/engines and this minimal composition. The private configuration

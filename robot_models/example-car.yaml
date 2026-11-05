@@ -1,0 +1,21 @@
+schema_version: 1
+id: example-car
+geometry:
+  provenance: Illustrative nominal geometry; not a measured vehicle calibration.
+  axes: x-forward-y-left-z-up
+  body_m: {length: 0.50, width: 0.30, height: 0.22}
+  wheelbase_m: 0.32
+  wheel_radius_m: 0.05
+  base_frame: base_link
+component_roles:
+  front_camera:
+    supported_variants: [oak_d_rvc2, realsense_d455]
+    selection: unique_available_device
+mounts:
+  front_camera:
+    parent_frame: base_link
+    child_frame: front_camera_mount
+    translation_m: [0.12, 0.0, 0.18]
+    rotation_rpy_rad: [0.0, 0.0, 0.0]
+    optical_frame: front_camera_optical
+    optical_rotation_rpy_rad: [-1.5707963267948966, 0.0, -1.5707963267948966]

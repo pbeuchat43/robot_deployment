@@ -1,0 +1,13 @@
+# Selected Python execution dependencies; system PyGObject/ROS are host-owned.
+aiohappyeyeballs==2.7.1
+aiohttp==3.14.4
+aiosignal==1.4.0
+attrs==23.2.0
+frozenlist==1.8.0
+idna==3.6
+multidict==6.9.1
+propcache==0.5.4
+PyYAML==6.0.2
+pyserial==3.5
+typing_extensions==4.10.0
+yarl==1.25.1

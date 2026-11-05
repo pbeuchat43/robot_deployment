@@ -1,0 +1,14 @@
+schema_version: 1
+id: orin-nano-jp721
+architecture: aarch64
+os: ubuntu
+os_version: '24.04'
+l4t: 39.2.1
+kernel_family: '6.8'
+python_family: '3.12'
+modules: [p3767-0003, p3767-0004, p3767-0005]
+carriers: [p3768-0000]
+cuda_family: '13.2'
+tensorrt_family: '10.16.2'
+encoder: software
+qualification: not-yet-tested

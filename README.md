@@ -1,6 +1,12 @@
-# robot_composition
+# robot_deployment
 
-Reproducible selections and integration for the research robot repositories.
+Reproducible composition, installation and integration for the research robot
+repositories. This repository continues the Git history of robot_composition.
+The [deployment design](docs/design/2026-11-01-robot-deployment-design.md) and
+[implementation plan](docs/plans/2026-11-03-robot-deployment.md) describe the
+authorized work. Installer/operator checks and all six D455/OAK-D modes pass on
+the existing Jah host. Fresh-host qualification remains separate. Historical
+perception evidence below does not qualify a fresh installation.
 The composition connects one selected D455 or OAK-D to the cone detector,
 COCO 80 detector, or both TensorRT detectors, renders overlays on exact retained RGB captures, and uses
 `robot_runtime`'s ROS-image/WebRTC reference viewer.
@@ -18,17 +24,20 @@ Acquisition, inference, presentation and media keep their component boundaries.
 - [Dual-mode viewer and uninterrupted overlay-switch checks](docs/evidence/2026-10-28-dual-viewer/README.md)
 - [Combined overlay and both-camera switching checks](docs/evidence/2026-10-28-combined-overlay/README.md)
 - [Viewer renewal recovery and OAK empty-scene follow-up](docs/evidence/2026-10-28-viewer-acceptance/README.md)
+- [Deployment implementation verification on Jah](docs/evidence/2026-11-03-deployment/README.md)
 - [Launch and configuration](docs/launch.md)
-- [Jah deployment and rollback](docs/deployment-jah.md)
+- [Installation, CLI and maintenance](docs/operations.md)
+- [Jah everyday installation and commands](docs/everyday-jah.md)
+- [Historical Jah deployment and rollback](docs/deployment-jah.md)
 - [Component and dependency pins](sources.json)
 - [Named camera configurations](config/cameras.json)
-- [Private deployment configuration example](config/deployment.example.json)
+- [Configuration and immutable launch preparation](docs/configuration.md)
+- [Private site configuration example](config/site.example.yaml)
 
 The default camera rate is 30 Hz and the default video ceiling is 30 fps.
 Higher camera rates are evaluated separately. Observed rates, exact-overlay
 checks, synthetic cases and unobserved physical checks are reported separately.
 
-This is a minimal local composition repository using feature branches and `dev`.
-No remote has been created; no installer framework or `main` promotion is part
-of this milestone. Device identities, authentication material and private imagery
-are excluded from source control.
+Development uses feature branches and `dev`. No remote has been created and
+`main` promotion is separate from implementation. Device identities,
+authentication material and private imagery are excluded from source control.

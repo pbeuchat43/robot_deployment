@@ -1,0 +1,30 @@
+# Private host choices. Replace example paths and address before installation.
+schema_version: 1
+composition: rgbd-demo
+platform: orin-nx-jp721
+robot_id: car-02
+runtime_account: robot
+storage:
+  installation_root: /opt/robot
+  data_root: /var/lib/robot
+network:
+  hostname: car-02
+  media_address: 192.0.2.22
+  media_udp_port: 8860
+  web_host: 0.0.0.0
+  web_port: 8443
+ros: {namespace: perception, domain_id: 30}
+runtime_namespace: robot
+hardware:
+  front_camera:
+    variant: oak_d_rvc2
+    # Usually absent: discover exactly one compatible camera at each Start.
+    # device_ids: {oak_d_rvc2: EXACT_SESSION_ID}
+camera_profiles: {oak: oak-30, d455: d455-30}
+workspaces: {student: /home/robot/student_ws}
+credentials:
+  web_secret_file: /etc/robot_deployment/secrets/web-secret
+  tls_certificate_file: /etc/robot_deployment/tls/certificate.pem
+  tls_private_key_file: /etc/robot_deployment/tls/private-key.pem
+management: {start: false}
+shell: {alias: false}
