@@ -59,7 +59,7 @@ def configure(graph, release, command):
     encoder = "nvv4l2h264enc" if graph["platform"]["encoder"] == "hardware" else "x264enc"
     command([release / "venv/bin/python", "-c",
         "from robot_runtime.av.gst_runtime import Gst; "
-        "names=['webrtcsink','rtpgccbwe','nicesink'," + repr(encoder) + "]; "
+        "names=['webrtcsink','rtpgccbwe','nicesink','appsrc','videoconvert','h264parse','splitmuxsink','mp4mux','filesink'," + repr(encoder) + "]; "
         "missing=[name for name in names if Gst.ElementFactory.find(name) is None]; "
         "assert not missing, missing; print(names)"], env=env)
     command([release / "venv/bin/python", "-m", "robot_runtime.cli", "catalog", "--profile", release / "runtime.json"])

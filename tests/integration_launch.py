@@ -33,7 +33,7 @@ class LaunchTests(unittest.TestCase):
             context = LaunchContext()
             text = lambda value: perform_substitutions(context, value)
             for camera in ("oak", "d455"):
-                for model in ("cones", "coco", "both"):
+                for model in ("camera", "cones", "coco", "both"):
                     mode = camera + "-" + model
                     with self.subTest(mode=mode):
                         snapshot = effective(graph, work / "release", mode, check_artifacts=False)
@@ -46,7 +46,7 @@ class LaunchTests(unittest.TestCase):
                             self.assertEqual(main(), 0)
                         service.return_value.include_launch_description.assert_called_once()
                         nodes = {text(node.node_name): node for node in container.call_args.kwargs["composable_node_descriptions"]}
-                        models = ("cones", "coco") if model == "both" else (model,)
+                        models = ("cones", "coco") if model == "both" else () if model == "camera" else (model,)
                         expected = {"camera", *("detector_" + name for name in models)}
                         if model == "both":
                             expected.add("combined_overlay")

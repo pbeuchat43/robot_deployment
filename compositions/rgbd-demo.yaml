@@ -17,8 +17,8 @@ units:
     parameter_files: [parameters/perception.yaml]
   video:
     launcher: runtime_ros_video
-    choices: [cones, coco, combined]
-    default_choice: combined
+    choices: [rgb, cones, coco, combined]
+    default_choice: rgb
     maximum_fps: 30
 workload_requests:
   student:

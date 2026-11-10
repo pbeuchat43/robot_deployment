@@ -1,7 +1,9 @@
 # Installation and operation
 
-Installer/operator checks and all six D455/OAK-D modes pass on the existing Jah Orin NX
-host; see the [verification record](evidence/2026-11-03-deployment/README.md).
+The earlier installer/operator checks and six D455/OAK-D modes passed on Jah Orin NX;
+see that [verification record](evidence/2026-11-03-deployment/README.md).
+The eight-mode recording candidate has its own
+[verification record](evidence/2026-11-07-recording/README.md) and exact build identities.
 Fresh Nano/NX installations, custom carriers, physical camera replacement and
 vehicle operation are not established by the software checks. Historical camera
 evidence remains linked from the [README](../README.md).
@@ -232,8 +234,9 @@ lucid_conduct build ros student
 lucid_conduct build ros student --clean
 ```
 
-System builds use the pinned sources into `<data_root>/build/system/<release-id>`; student
-builds use `<workspaces.student>/src` with outputs under its `.robot-deployment`.
+System builds use the pinned camera, detector and native recording sources into
+`<data_root>/build/system/<release-id>`; student builds use
+`<workspaces.student>/src` with outputs under its `.robot-deployment`.
 `--clean` removes only recorded build/install/log directories. These are explicit
 development outputs: they do not replace the immutable selected release, install
 dependencies or restart workloads. No `ai4r_policy` implementation is used.
@@ -266,6 +269,8 @@ records. `build ros ... --clean` only cleans the separate workspace's recorded
 build/install/log outputs before rebuilding; it does not prune releases or caches.
 
 ## Optional firmware
+
+The opt-in [RC Car workflow](rc-car.md) documents the RCPv1 Pico commands, selected firmware build and flash, the optional live ROS unit, and Traxxas ESC calibration.
 
 The default composition selects no MCU firmware. To enable one, declare a
 `firmware.bno08x` or `firmware.traxxas` recipe in trusted composition data with

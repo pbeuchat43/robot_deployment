@@ -83,15 +83,18 @@ def main(argv=None):
         assert cli("info", "installation")["selected"] == args.release_id
         assert cli("doctor")["installed_integrity"] == "passed"
         catalog = cli("runtime", "catalog")
-        assert {unit["unit_id"] for unit in catalog["units"]} == {"perception", "video"}
+        assert {unit["unit_id"] for unit in catalog["units"]} == {"perception", "video", "recording"}
         perception = next(unit for unit in catalog["units"] if unit["unit_id"] == "perception")
-        assert len(perception["launch_modes"]) == 6
+        assert {mode["id"] for mode in perception["launch_modes"]} == {
+            camera + "-" + model for camera in ("oak", "d455") for model in ("camera", "cones", "coco", "both")}
+        assert (release / "ros/install/lib/robot_runtime_recording/recording_node").is_file()
         explained = cli("runtime", "start", "perception", "--show-call")
         assert not explained["executed"] and explained["entry_point"] == "robot_runtime.cli:main"
         report["checks"].append("installed_context_catalog_doctor_and_call_explanation")
         system = cli("build", "ros", "system")
         assert Path(system["install"]).joinpath("share/rgbd_camera/package.xml").is_file()
         assert Path(system["install"]).joinpath("share/rgbd_object_detector/package.xml").is_file()
+        assert Path(system["install"]).joinpath("lib/robot_runtime_recording/recording_node").is_file()
         assert not system["runtime_restarted"] and not system["dependencies_installed"]
         report["checks"].append("system_build_uses_separate_pinned_outputs")
         fixture = source / "robot_deployment_build_fixture"

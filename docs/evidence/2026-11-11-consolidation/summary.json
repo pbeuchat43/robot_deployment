@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "checked_at_utc": "2026-11-10T13:03:23.115901+00:00",
+  "sources": {
+    "rc_car_firmware": {
+      "tree": "e9bcdbc92bd92f18100aad55e67089e5c43be51d",
+      "commit": "f25b331810f56f4ca61dfe201e129046b4ed557b"
+    },
+    "rc_car_interface": {
+      "tree": "e1cfeff2f35789140c3148e0cf7f4c009fcb8703",
+      "commit": "1903b9524a82255b2a230cdc26cb5bf255487210"
+    },
+    "rgbd_camera": {
+      "tree": "7c970d1eb285812643943a77051ecf36f31389a9",
+      "commit": "ad078edc1081118fe1677b0b47b349eb3b89bcf1"
+    },
+    "rgbd_object_detector": {
+      "tree": "bd9c643947a065c76398c8abb068c2b45478ba50",
+      "commit": "7175b4f61cc8bc6348d01a7a1b191ee7cb80bac7"
+    },
+    "robot_runtime": {
+      "tree": "262c3fe22f563149d46f55edf9f6b6471de80db4",
+      "commit": "d228ed03d43e2e505e732b0f618d1dad83e6b55c"
+    },
+    "robot_deployment": {
+      "tree": "bd07126e41516b798b2d86a68ccbecb4611d9f98",
+      "commit": "946aa7b0eb8db76ca3d368906f90054fbdf874bf"
+    }
+  },
+  "checks": {
+    "runtime-units": {
+      "passed": true,
+      "tests": 179
+    },
+    "deployment-units": {
+      "passed": true,
+      "tests": 51
+    },
+    "launch": {
+      "passed": true,
+      "tests": 1
+    },
+    "rc_car_interface-ctest": {
+      "passed": true,
+      "tests": 2
+    },
+    "robot_runtime_recording-ctest": {
+      "passed": true,
+      "tests": 2
+    },
+    "firmware-native-ctest": {
+      "passed": true,
+      "tests": 1
+    }
+  },
+  "physical_devices_opened": false,
+  "permanent_installation_changed": false,
+  "firmware_builds": {
+    "rp2040": {
+      "board": "waveshare_rp2040_zero",
+      "protocol": "RCPv1",
+      "build_id": "81bfd20e371a38fc",
+      "profile_id": "a6b661b9f16e61b3",
+      "uf2": "rc_car_firmware.uf2",
+      "sha256": "c924546b583360839e5979ca45110f3ef2512aa11d235e3cea85c01baa8d1736"
+    },
+    "rp2350": {
+      "board": "waveshare_rp2350_zero",
+      "protocol": "RCPv1",
+      "build_id": "f7aef159bbb4438a",
+      "profile_id": "a6b661b9f16e61b3",
+      "uf2": "rc_car_firmware.uf2",
+      "sha256": "81def770f6bf16d80759d40afdd210fb548ae847407209adce8e8fcf52402219"
+    }
+  },
+  "packages": {
+    "passed": true,
+    "source_identity": {
+      "deployment_commit": "946aa7b0eb8db76ca3d368906f90054fbdf874bf",
+      "runtime_commit": "d228ed03d43e2e505e732b0f618d1dad83e6b55c",
+      "schema_version": 1,
+      "sources_sha256": "29f76480cd1f2fbbf16b09462b0e9c87458cb9c0fc4faeb8382c48cfd769fe19"
+    },
+    "artifacts": {
+      "PyYAML-6.0.2-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl": "1f71ea527786de97d1a0cc0eacd1defc0985dcf6b3f17bb77dcfc8c34bec4dc5",
+      "aiohappyeyeballs-2.7.1-py3-none-any.whl": "9243213661e29250eb41368e5daa826fc017156c3b8a11440826b2e3ed376472",
+      "aiohttp-3.14.4-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl": "322e3d741b3133bcbb981a41d4f9b8ac3545c18de49c662c2b1f4e1c770b98ad",
+      "aiosignal-1.4.0-py3-none-any.whl": "053243f8b92b990551949e63930a839ff0cf0b0ebbe0597b0f3fb19e1a0fe82e",
+      "attrs-23.2.0-py3-none-any.whl": "99b87a485a5820b23b879f04c2305b44b951b502fd64be915879d77a7e8fc6f1",
+      "frozenlist-1.8.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl": "96f423a119f4777a4a056b66ce11527366a8bb92f54e541ade21f2374433f6d4",
+      "idna-3.6-py3-none-any.whl": "c05567e9c24a6b9faaa835c4821bad0590fbb9d5779e7caa6e1cc4978e7eb24f",
+      "multidict-6.9.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl": "35fc236507fb1b3138f0af5ecd5f94ed752d4d6d826248eae425f86204013eea",
+      "propcache-0.5.4-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl": "60a64cbccaa11b7760ce705a14ada17ba459e7ca9f23ba587eb013821032d7ef",
+      "pyserial-3.5-py2.py3-none-any.whl": "c4451db6ba391ca6ca299fb3ec7bae67a5c55dde170964c7a14ceefec02f2cf0",
+      "robot_deployment-0.1.0.dev5-py3-none-any.whl": "2191ff86529330ae6501dd97827ce8c55442361516894afd6f3108a4fe871184",
+      "robot_deployment-0.1.0.dev5.tar.gz": "69ff86d298501a70ad2ebd279f604139e1e0cf741542e428e2b0cf6db544f6fd",
+      "robot_runtime-0.1.0.dev27-py3-none-any.whl": "372c40ab632fe22fae54cbbeb1f7b9ad5770b4ae1499a94d4a145ab52a33847e",
+      "robot_runtime-0.1.0.dev27.tar.gz": "ed3f26869fc7032c9611c40fe4763dd8a5c6f7129485b99615e097093cd953ca",
+      "typing_extensions-4.10.0-py3-none-any.whl": "69b1a937c3a517342112fb4c6df7e72fc39a38e7891a5730ed4985b5214b5475",
+      "yarl-1.25.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl": "4d781294bb815ecb5ea57ff6bbf8038e0a31a95fdf3e1788f66e0dc100d64b58"
+    },
+    "package_files": {
+      "robot_runtime": 104,
+      "robot_deployment": 23
+    },
+    "definition_files": 11,
+    "native_sources_in_sdist": true,
+    "entrypoints": [
+      "robot_runtime",
+      "robot_runtime_manager",
+      "robot_runtime_web",
+      "robot_runtime_av",
+      "lucid_conduct"
+    ]
+  },
+  "native-build": {
+    "passed": true,
+    "sources": {
+      "rc_car_firmware": {
+        "tree": "e9bcdbc92bd92f18100aad55e67089e5c43be51d",
+        "commit": "f25b331810f56f4ca61dfe201e129046b4ed557b"
+      },
+      "rc_car_interface": {
+        "tree": "e1cfeff2f35789140c3148e0cf7f4c009fcb8703",
+        "commit": "1903b9524a82255b2a230cdc26cb5bf255487210"
+      },
+      "rgbd_camera": {
+        "tree": "7c970d1eb285812643943a77051ecf36f31389a9",
+        "commit": "ad078edc1081118fe1677b0b47b349eb3b89bcf1"
+      },
+      "rgbd_object_detector": {
+        "tree": "bd9c643947a065c76398c8abb068c2b45478ba50",
+        "commit": "7175b4f61cc8bc6348d01a7a1b191ee7cb80bac7"
+      },
+      "robot_runtime": {
+        "tree": "262c3fe22f563149d46f55edf9f6b6471de80db4",
+        "commit": "d228ed03d43e2e505e732b0f618d1dad83e6b55c"
+      },
+      "robot_deployment": {
+        "tree": "bd07126e41516b798b2d86a68ccbecb4611d9f98",
+        "commit": "946aa7b0eb8db76ca3d368906f90054fbdf874bf"
+      }
+    },
+    "sdk_reference": "/tmp/video-recording-20261107-01a1abe4/installer/installation/releases/r20261107-recording-final/sdk",
+    "hardware_opened": false
+  },
+  "profiles": {
+    "passed": true,
+    "hardware_opened": false,
+    "profiles": {
+      "default": {
+        "units": [
+          "perception",
+          "video",
+          "recording"
+        ],
+        "modes": 8,
+        "native_paths_validated": true
+      },
+      "vehicle": {
+        "units": [
+          "perception",
+          "video",
+          "recording",
+          "vehicle"
+        ],
+        "modes": 8,
+        "native_paths_validated": true
+      }
+    },
+    "generated_rosidl_fields": {
+      "stamp_ns": "int64",
+      "session": "string<16>",
+      "generation": "uint64",
+      "mode": "uint8",
+      "drive_choice": "uint8",
+      "steer_choice": "uint8"
+    }
+  },
+  "permanent_release": "r20261104-everyday",
+  "permanent_profile_sha256": "23bf7fae8938b97fb7168d407cbf812014903225028dd80cf8210170d132a442",
+  "permanent_service_pids_unchanged": true,
+  "permanent_workloads_empty_and_unblocked": true,
+  "evidence_limits": [
+    "Software and synthetic ROS verification; no new camera, receiver, actuator, or vehicle acceptance.",
+    "SDKs, model artifacts and media plugins were referenced read-only from the earlier private recording installation.",
+    "Bootstrap and combined production ROS builder were exercised; a complete fresh-host installer, model rebuild and live recording campaign were not repeated.",
+    "Existing video and RC hardware records retain their original tested source and artifact identities."
+  ],
+  "log_sha256": {
+    "bootstrap-dependencies.log": "9261363b733079a641c2e4cc9bc46ffa1d8336945a87f807b6cf68847dbc9b09",
+    "bootstrap.log": "607cafe13bd2ca46e8d24891c439a1e7ec34f7cc393357ad1c446919ca2c1158",
+    "combined-profile.log": "19213571247a06bbf347b5c5428143cb9812992c7f9762e778a2abb96873cb84",
+    "deployment-units.log": "b0cbbb743d99892a2ae114a758fc967bea15c3e6e4861f0e0629ec19a531988f",
+    "firmware-native-build.log": "db8f1d228f1a09cb0e028955a732bbf13c18e5c968b4ef7810de7cbe4817ef71",
+    "firmware-native-configure.log": "fcb18325ba516f8cee65d9f9ebd177f28f7d76c9bec1fe5fff1ceee30505ee55",
+    "firmware-native-ctest.log": "87a7509d920a409abae2ad299d8f3335332e5588b6cab64817586070c9fef963",
+    "firmware-rp2040-build.log": "f0bd3efd18a4ffa9d77a6421b124b4933377d0579b0980ee481a4f9b61e84043",
+    "firmware-rp2040-configure.log": "55e13fc5631fceaaa229991796b33a89852aacdfb769fda9572eeb6cc3b58b02",
+    "firmware-rp2350-build.log": "bdd7f41575b7c9b4d9957156393776bc1b904c465c4ba3026f834c5d80fdeda9",
+    "firmware-rp2350-configure.log": "eb3aa92945e194ef7a3258624406da9ada09eb1a9b904d97d98da2bd9060e935",
+    "launch.log": "52b5afeb168212bda1b8ad4e451e7912c3f6f6f7e74e978414ced3323694ebcd",
+    "lucid_conduct-help.log": "6e8002f51dcf8f201ab9812e6e34054f447a56bc8fdc7392963ac91bda9be8a5",
+    "native-build.log": "f827398a4ffe8afc0a7cc3e7f587bc23bfbee5c9d4122e90878988fef5c397b0",
+    "packages.log": "de0199451a2cc3108295aa8b3413cc52bf890743044c1f255eb3759237d18a12",
+    "prepare.log": "cfad820a65673bb6be9cacd38f8118685f345732d24db6d912067e1f46e9d324",
+    "rc_car_interface-ctest.log": "bcaa04a5b814e4b582721d6ad9bf3714ff6e2c0a05ec255b424303f5f8f579b0",
+    "rc_car_interface-test-build.log": "f94d8980c28396257059aafff2f8c99f2d894bab98cbec0c4813d1222d0736bd",
+    "rc_car_interface-test-configure.log": "ae018fd05989afe2afb57c4ec2a7cdc52b009f1190b901c97aac498f8ed5182a",
+    "reservation.log": "13da78cb2525f0139ca179bfdad94cc9e3e9567ab013079a22fa1cc766e66ce4",
+    "robot_runtime-help.log": "f0a5a64a79862fe02231ae029bac3fcb91ced168c8660c2308dfd37058d75da2",
+    "robot_runtime_av-help.log": "ac9becebbf179ebc0b3af7a420d1f99b8e5fde627ac57c7e33cea82580ab8c66",
+    "robot_runtime_manager-help.log": "614adb3c35eb7329b7ba15838f94526c1e476811401e4a659a10e70f09e65b47",
+    "robot_runtime_recording-ctest.log": "42999f44977997f452e2a228e3263527d16bc61772e70ebeadd790470e8ffdcd",
+    "robot_runtime_recording-test-build.log": "5359cffddc8f565a8427689c9eb5825630a1dbff828c8cfb3060db37086cd89a",
+    "robot_runtime_recording-test-configure.log": "b754c2209203c918ad3801e4b5cf0fce59944ec344318ce282159df5c291b839",
+    "robot_runtime_web-help.log": "dfd6fbce2d10e080213b4f3cb10ac1faf498e35d577586e5f652eab6af806433",
+    "runtime-units.log": "caf8ab00faf682f7b563e95bd6af1b06fbfd43a2fd0c62de6953d06f599ede6d",
+    "verification-install.log": "8dcff2695da66856038033d58ebdcca56d33bf296c0926d4e1b3328f1aafe600",
+    "verification-venv.log": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

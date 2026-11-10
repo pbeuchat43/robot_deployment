@@ -9,7 +9,7 @@ import unittest
 
 from robot_deployment.configuration import (ConfigurationError, Inputs, definition_root, encoded,
                                             digest, load, parameters, structure_identity, within)
-from robot_deployment.preparation import effective, prepare
+from robot_deployment.preparation import effective, prepare, recording_settings
 from robot_deployment.profile import build_profile
 from robot_runtime.prepared import execute, freeze, load as read_prepared
 from robot_runtime.profile import validate
@@ -98,19 +98,22 @@ class ConfigurationTests(unittest.TestCase):
         self.assertEqual(graph["site"]["robot_id"], "car-02")
         self.assertEqual(len(inputs.sources), len({item["path"] for item in inputs.sources}))
 
-    def test_six_modes_mount_and_default_discovery(self):
+    def test_eight_modes_mount_and_default_discovery(self):
         graph = self.graph()
         profile = build_profile(graph, self.path, self.work / "release", self.work / "runtime.json")
         checked, revision = validate(profile, check_paths=False)
         self.assertTrue(revision)
         unit = next(unit for unit in checked["units"] if unit["id"] == "perception")
         modes = unit["launch_modes"]
-        self.assertEqual(len(modes), 6)
+        self.assertEqual(len(modes), 8)
         for mode in modes:
             value = effective(self.graph(), self.work / "release", mode["id"], check_artifacts=False)
             self.assertEqual(value["nodes"]["camera"]["device_id"], "")
             self.assertEqual(value["nodes"]["camera"]["optical_frame"], "front_camera_optical")
             self.assertEqual(value["mount"]["parent_frame"], "base_link")
+            self.assertEqual((value["nodes"]["camera"]["width"],value["nodes"]["camera"]["height"]),(1280,720))
+            if mode["id"].endswith("camera"):
+                self.assertEqual(value["selected_models"],[])
         self.assertEqual(unit["default_launch_mode"], "oak-both")
 
     def test_explicit_identity_is_variant_scoped(self):
@@ -124,6 +127,8 @@ class ConfigurationTests(unittest.TestCase):
         self.assertEqual(d455["nodes"]["camera"]["device_id"], "")
 
     def test_grouped_final_parameters(self):
+        self.site["camera_profiles"]["d455"] = "d455-60"
+        self.save()
         path = self.root / "parameters/perception.yaml"
         document = Inputs().read(path)
         document["nodes"]["camera"].update(fps=60., pairing_tolerance_ms=10.)
@@ -152,6 +157,28 @@ class ConfigurationTests(unittest.TestCase):
         with self.assertRaisesRegex(ConfigurationError, "Structural"):
             prepare(self.path, self.work, "perception", "revision", "oak-both", root=self.root,
                     expected_structure=identity, check_artifacts=False)
+
+    def test_recording_uses_frozen_source_and_atomic_overlay_topics(self):
+        candidate = prepare(self.path, self.work, "perception", "revision", "oak-both", root=self.root, check_artifacts=False)
+        runtime = self.work / "runtime"
+        runtime.mkdir()
+        frozen = freeze(candidate, runtime, "perception", "revision", "oak-both")
+        self.site["camera_profiles"]["oak"] = "oak-30"
+        self.save()
+        for overlay, node in (("cones", "detector_cones"), ("coco", "detector_coco"), ("combined", "combined_overlay")):
+            value = recording_settings(self.graph(), dict(source_prepared=frozen, source_unit_id="perception",
+                source_run_id="source-run", source_mode="oak-both", options=dict(outputs=["annotated"], overlay=overlay)))
+            self.assertEqual((value["source"]["width"], value["source"]["height"]), (1280, 720))
+            self.assertEqual(value["source"]["overlay_topic"], "/perception/" + node + "/overlay/frame")
+        target = dict(unit_id="recording", config_revision="revision", mode=None,
+            working_directory=str(self.work), environment={"PATH": "/usr/bin:/bin"},
+            recording=dict(source_prepared=frozen, source_unit_id="perception", source_run_id="source-run",
+                source_mode="oak-both", options=dict(outputs=["rgb"])),
+            preparation=dict(timeout_seconds=5, argv=[sys.executable, "-m", "robot_deployment.preparation",
+                "--site", str(self.path), "--release", str(self.work), "--definitions", str(self.root)]))
+        result = execute(target)
+        self.assertIsNone(result["mode"])
+        self.assertEqual(result["unit_id"], "recording")
 
     def test_missing_artifact_fails_before_candidate(self):
         with self.assertRaisesRegex(ConfigurationError, "Missing installed"):

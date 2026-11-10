@@ -26,11 +26,12 @@ def build_profile(graph, site_path, release, output):
     environment = dict(PATH="/usr/bin:/bin", RGBD_SETUP=site["ros_setup"],
         ROS_DOMAIN_ID=str(site["ros_domain_id"]), ROS_AUTOMATIC_DISCOVERY_RANGE="LOCALHOST",
         RMW_IMPLEMENTATION="rmw_fastrtps_cpp", ROS_LOG_DIR=str(work / "ros-log"),
+        FASTRTPS_DEFAULT_PROFILES_FILE=str(release / "ros/install/share/rgbd_camera/fastdds_local_frames.xml"),
         LD_LIBRARY_PATH=":".join(site.get("sdk_library_paths", [])))
     modes = []
     for camera, label in (("d455", "D455"), ("oak", "OAK-D")):
         camera_profile = source["camera_profiles"][camera]
-        for model, model_label in (("cones", "Cones"), ("coco", "COCO 80"), ("both", "Cones + COCO 80")):
+        for model, model_label in (("camera", "Camera only"), ("cones", "Cones"), ("coco", "COCO 80"), ("both", "Cones + COCO 80")):
             modes.append(dict(id=camera + "-" + model, label=f"{label} / {model_label} / {camera_profile}",
                 selections=dict(camera=camera, model=model),
                 argv=["/bin/bash", wrapper, site["runtime_python"], "-m", "robot_deployment.launch"]))
@@ -39,7 +40,7 @@ def build_profile(graph, site_path, release, output):
     perception = dict(id="perception", label="RGB-D perception", argv=selected["argv"],
         launch_modes=modes, default_launch_mode=default_mode,
         launch_selections=[dict(id="camera", label="Camera", choices=[dict(id="d455", label="D455"), dict(id="oak", label="OAK-D")]),
-            dict(id="model", label="Models", choices=[dict(id="cones", label="Cones"), dict(id="coco", label="COCO 80"),
+            dict(id="model", label="Models", choices=[dict(id="camera", label="Camera only"), dict(id="cones", label="Cones"), dict(id="coco", label="COCO 80"),
                 dict(id="both", label="Cones + COCO 80")])],
         working_directory=str(work), environment=environment, stop=dict(signal="SIGINT", timeout_seconds=20), public_logs=True,
         preparation=dict(argv=[site["runtime_python"], "-m", "robot_deployment.preparation",
@@ -62,7 +63,7 @@ def build_profile(graph, site_path, release, output):
     status("camera", "Acquisition", "camera", "rgbd_camera_interfaces/msg/Status",
         ["state", "detail", "backend", "source_id", "generation", "frames", "rejected_pairs", "sequence_gaps",
          "last_acquisition_ns", "clock_domain", "observed_ns", "last_skew_ns", "pairing_tolerance_ns"])
-    overlay_choices = []
+    overlay_choices = [dict(id="rgb", label="Camera RGB", topic=namespace + "/camera/rgb/image_rect", active_modes=[mode["id"] for mode in modes])]
     for model, label in (("cones", "Cones"), ("coco", "COCO 80")):
         active_modes = [mode["id"] for mode in modes if mode["selections"]["model"] in (model, "both")]
         node = "detector_" + model
@@ -83,12 +84,48 @@ def build_profile(graph, site_path, release, output):
     profile = dict(schema_version=1, robot_id=site["robot_id"], namespace=site["runtime_namespace"], units=[perception, video],
         ros=dict(schema_version=1, python="/usr/bin/python3", setup_scripts=["/opt/ros/jazzy/setup.bash", site["ros_setup"]],
             domain_id=site["ros_domain_id"], discovery="LOCALHOST", topics=topics, services=[]),
-        av=dict(services=[dict(id="video", label="Exact-capture perception overlay", kind="media", unit_id="video",
+        av=dict(services=[dict(id="video", label="Camera and perception video", kind="media", unit_id="video",
             host=site["media_host"], udp_port=site["media_udp_port"], max_sessions=2, encoder=graph["platform"]["encoder"],
             source=dict(kind="ros", label="Selected camera and detector", owner_unit="perception",
                 choices=overlay_choices, default_choice=video_config["default_choice"], domain_id=site["ros_domain_id"]),
             profiles=dict(observer=video_settings, teleop=video_settings))]))
+    if graph["platform"]["encoder"] == "hardware":
+        recorder = dict(id="recording", label="Event recording", requires_running=["perception"], public_logs=True,
+            argv=["/bin/bash", wrapper, site["runtime_python"], "-m", "robot_runtime.recording", "--executable",
+                str(release / "ros/install/lib/robot_runtime_recording/recording_node")],
+            working_directory=str(work), environment=video_environment, stop=dict(signal="SIGINT", timeout_seconds=20),
+            preparation=perception["preparation"])
+        profile["units"].append(recorder)
+        profile["recording"] = dict(unit_id="recording", source_unit_id="perception", overlays_by_mode={
+            mode["id"]: (["cones","coco","combined"] if mode["selections"]["model"] == "both" else
+                         [] if mode["selections"]["model"] == "camera" else [mode["selections"]["model"]]) for mode in modes})
+    else:
+        profile["units"].append(dict(id="recording", label="Event recording", available=False,
+            unavailable_reason="Event recording currently requires the qualified hardware H.264 platform"))
+    if "vehicle" in graph["composition"]["units"]:
+        add_vehicle(profile, source["hardware"]["rc_car"], namespace, wrapper, work, environment)
     return profile
+
+
+def add_vehicle(profile, pins, namespace, wrapper, work, environment):
+    node = namespace + "/rc_car_interface"
+    profile["units"].append(dict(id="vehicle", label="RC car interface",
+        argv=["/bin/bash", wrapper, "/opt/ros/jazzy/bin/ros2", "launch", "rc_car_interface", "vehicle.launch.py",
+              "namespace:=" + namespace, *[key + ":=" + pins[key] for key in ("device_id", "profile_id", "build_id")]],
+        working_directory=str(work), environment=environment,
+        stop=dict(signal="SIGINT", timeout_seconds=10), public_logs=True))
+    profile["ros"]["topics"].append(dict(id="vehicle_status", label="RC car status", unit_id="vehicle",
+        node=node, name=node + "/status", type="rc_car_interface/msg/VehicleStatus",
+        qos=dict(reliability="best_effort", durability="volatile", depth=1),
+        max_rate_hz=10, stale_after_seconds=.25, max_serialized_bytes=4096, max_json_bytes=4096,
+        fields=["connected", "fresh", "connection", "session", "generation", "mode", "reason",
+                "cancel_generation", "cancel_reason", "rc_quality", "drive_source", "steer_source",
+                "drive_pwm_us", "steer_pwm_us", "pan_pwm_us", "status_age_ms"]))
+    profile["ros"]["services"].append(dict(id="vehicle_mode", label="RC car mode request", unit_id="vehicle",
+        node=node, name=node + "/set_runtime_mode", type="rc_car_interface/srv/SetRuntimeMode",
+        request_fields=["stamp_ns", "session", "generation", "mode", "drive_choice", "steer_choice"],
+        response_fields=["accepted", "result", "resulting_generation", "observed_fresh", "observed_mode",
+                         "observed_generation"], success_field="accepted", timeout_seconds=1))
 
 
 def render(site_path, release, output, *, root=None, check_paths=True):

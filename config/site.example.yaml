@@ -20,7 +20,15 @@ hardware:
     variant: oak_d_rvc2
     # Usually absent: discover exactly one compatible camera at each Start.
     # device_ids: {oak_d_rvc2: EXACT_SESSION_ID}
-camera_profiles: {oak: oak-30, d455: d455-30}
+camera_profiles: {oak: oak-720p30, d455: d455-720p30}
+recording:
+  budget_bytes: 10000000000
+  reserve_bytes: 1000000000
+  segment_seconds: 30
+  # Default directory is storage.data_root/recordings. Depth is a visualization.
+  min_depth_m: 0.25
+  max_depth_m: 15.0
+  bitrates: {rgb: 6000000, annotated: 6000000, depth: 4000000}
 workspaces: {student: /home/robot/student_ws}
 credentials:
   web_secret_file: /etc/robot_deployment/secrets/web-secret

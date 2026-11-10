@@ -4,8 +4,8 @@ Reproducible composition, installation and integration for the research robot
 repositories. This repository continues the Git history of robot_composition.
 The [deployment design](docs/design/2026-11-01-robot-deployment-design.md) and
 [implementation plan](docs/plans/2026-11-03-robot-deployment.md) describe the
-authorized work. Installer/operator checks and all six D455/OAK-D modes pass on
-the existing Jah host. Fresh-host qualification remains separate. Historical
+authorized work. The earlier installer/operator checks and six D455/OAK-D modes
+passed on the existing Jah host. Fresh-host qualification remains separate. Historical
 perception evidence below does not qualify a fresh installation.
 The current development pins use `CaptureDetections` and the renamed capture-result
 topics. Their [6 November software verification](docs/evidence/2026-11-06-capture-detections/README.md)
@@ -15,13 +15,23 @@ The composition connects one selected D455 or OAK-D to the cone detector,
 COCO 80 detector, or both TensorRT detectors, renders overlays on exact retained RGB captures, and uses
 `robot_runtime`'s ROS-image/WebRTC reference viewer.
 
-Camera and model choices are independent. Six fixed combinations are declared:
-cones, COCO 80, or both for each camera. Camera/model changes use a controlled
+Camera and model choices are independent. Eight fixed combinations are declared:
+camera only, cones, COCO 80, or both for each camera. Camera/model changes use a controlled
 stop/start. In dual mode, the displayed overlay can switch between models or show both while
 both detectors continue running. Changing the overlay requires video reconnection.
 Each model has separate inference and presentation status.
 Combined presentation is a separate ROS node with a bounded exact-capture join.
 Acquisition, inference, presentation and media keep their component boundaries.
+
+[Event recording](docs/recording.md) adds independent RGB, annotated and colourized
+depth H.264/MP4 outputs, explicit 720p30 profiles, shared CLI/browser controls and
+bounded managed history. Its [recording verification](docs/evidence/2026-11-07-recording/README.md)
+is separate from the historical six-mode checks and the preserved everyday release.
+
+The [recording and RC consolidation](docs/evidence/2026-11-11-consolidation/README.md)
+records the combined development sources, installed software checks and native
+builds. Optional [RC vehicle integration](docs/rc-car.md) retains recording support
+without enabling vehicle hardware in the default composition.
 
 - [Integration evidence and supported configurations](docs/evidence/2026-10-27-integration/README.md)
 - [Shared-camera dual-detector performance experiment](docs/evidence/2026-10-28-dual-detectors/README.md)
@@ -46,6 +56,6 @@ checks, synthetic cases and unobserved physical checks are reported separately.
 Development uses feature branches and `dev` in the canonical
 [GitHub repository](https://github.com/pbeuchat43/robot_deployment). The published
 default branch is `dev`; creating or promoting `main` is a separate milestone.
-The [consolidation record](docs/evidence/2026-11-06-capture-detections/consolidation.md)
+The [current consolidation record](docs/evidence/2026-11-11-consolidation/README.md)
 maps the selected commits to their tested sources. Device identities,
 authentication material and private imagery are excluded from source control.

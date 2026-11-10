@@ -12,15 +12,15 @@ from .configuration import (load, parameters, require, structure_identity, valid
 
 
 def effective(graph, release, mode, *, check_artifacts=True):
-    require(mode in {family + "-" + model for family in ("oak", "d455") for model in ("cones", "coco", "both")}, "Unknown perception mode")
+    require(mode in {family + "-" + model for family in ("oak", "d455") for model in ("camera", "cones", "coco", "both")}, "Unknown perception mode")
     family, model = mode.split("-", 1)
-    selected = ["cones", "coco"] if model == "both" else [model]
+    selected = ["cones", "coco"] if model == "both" else [] if model == "camera" else [model]
     nodes, admitted = parameters(graph)
     camera = dict(graph["cameras"]["defaults"], **graph["cameras"]["profiles"][graph["site"]["camera_profiles"][family]])
-    camera.pop("width")
-    camera.pop("height")
     camera.update(nodes["camera"])
+    camera["publish_images"] = True  # Camera-only live viewing; publication follows subscriber demand.
     validate_parameters(dict(nodes, camera={key: value for key, value in camera.items() if key != "backend"}))
+    require((camera["width"], camera["height"]) in ((1280,720),(640,640 if camera["backend"]=="oak" else 480)), "Camera dimensions do not match the selected backend")
     variant = next(key for key, value in VARIANTS.items() if value == family)
     camera["device_id"] = graph["site"]["hardware"]["front_camera"]["device_ids"].get(variant, "")
     mount = graph["robot_model"]["mounts"]["front_camera"]
@@ -47,17 +47,22 @@ def effective(graph, release, mode, *, check_artifacts=True):
 
 
 def prepare(site_path, release, unit, revision, mode, *, root=None, expected_structure=None, check_artifacts=True):
-    require(unit == "perception", "This preparer only admits the perception unit")
+    require(unit in ("perception", "recording"), "Unsupported prepared unit")
     graph = load(site_path, root)
     if expected_structure:
         require(structure_identity(graph) == expected_structure,
                 "Structural configuration changed; render/select a new profile during stopped maintenance")
-    snapshot = effective(graph, release, mode, check_artifacts=check_artifacts)
+    snapshot = (effective(graph, release, mode, check_artifacts=check_artifacts) if unit == "perception"
+                else recording_settings(graph, json.loads(os.environ["ROBOT_RUNTIME_PREPARE_RECORDING"])))
     destination = Path(graph["site"]["storage"]["data_root"]) / "deployment/prepared" / uuid.uuid4().hex
     destination.mkdir(parents=True, mode=0o700)
-    ros = {"/" + snapshot["namespace"] + "/" + node: {"ros__parameters": values} for node, values in snapshot["nodes"].items()}
+    if unit == "perception":
+        ros = {"/" + snapshot["namespace"] + "/" + node: {"ros__parameters": values} for node, values in snapshot["nodes"].items()}
+        values = (("effective", snapshot), ("ros-parameters", ros))
+    else:
+        values = (("recording", snapshot),)
     files = []
-    for name, value in (("effective", snapshot), ("ros-parameters", ros)):
+    for name, value in values:
         raw = encoded(value)
         path = destination / name
         with path.open("xb") as stream:
@@ -67,7 +72,29 @@ def prepare(site_path, release, unit, revision, mode, *, root=None, expected_str
         path.chmod(0o400)
         files.append(dict(name=name, path=str(path), sha256=digest(raw)))
     destination.chmod(0o500)
-    return dict(schema_version=1, unit_id=unit, config_revision=revision, mode=mode, inputs=files)
+    return dict(schema_version=1, unit_id=unit, config_revision=revision, mode=mode or None, inputs=files)
+
+
+def recording_settings(graph, admitted):
+    from robot_runtime.prepared import load as load_prepared
+    from robot_runtime.recording import options
+    selected = options(admitted["options"])
+    manifest, inputs = load_prepared(admitted["source_prepared"])
+    require(manifest["unit_id"] == admitted["source_unit_id"] and manifest["mode"] == admitted["source_mode"], "Source snapshot does not match admitted run")
+    source = json.loads(inputs["effective"])
+    camera = source["nodes"]["camera"]
+    models = source["selected_models"]
+    namespace = "/" + source["namespace"]
+    identity = camera["backend"] + ":" + camera["device_id"] if camera["device_id"] else ""
+    resolved = dict(unit_id=admitted["source_unit_id"], run_id=admitted["source_run_id"], mode=admitted["source_mode"],
+        backend=camera["backend"], source_id=identity, width=camera["width"], height=camera["height"], frame_topic=namespace + "/camera/frames")
+    if "overlay" in selected:
+        overlay = selected["overlay"]
+        require((set(models) == {"cones", "coco"}) if overlay == "combined" else overlay in models, "Selected overlay is not in the source snapshot")
+        node = "combined_overlay" if overlay == "combined" else "detector_" + overlay
+        resolved.update(overlay_topic=namespace + "/" + node + "/overlay/frame", overlay_kind="combined" if overlay == "combined" else "single")
+    return dict(schema_version=1, **graph["site"]["recording"], **selected, source=resolved,
+        source_prepared_identity=admitted["source_prepared"]["identity"])
 
 
 def main(argv=None):

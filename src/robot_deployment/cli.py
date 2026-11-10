@@ -40,7 +40,7 @@ def build_parser(prog=None):
     infos.add_parser("installation")
     infos.add_parser("host")
     mcu_info = infos.add_parser("mcu")
-    mcu_info.add_argument("target", choices=("bno08x", "traxxas"))
+    mcu_info.add_argument("target", choices=("bno08x", "traxxas", "rc-car"))
     families.add_parser("doctor", help="Check configuration, installed integrity and runtime ownership; never opens cameras")
     build = families.add_parser("build", help="Explicit foreground component/workspace build; no automatic restart")
     builds = build.add_subparsers(dest="build_kind", required=True)
@@ -48,14 +48,48 @@ def build_parser(prog=None):
     ros.add_argument("workspace", choices=("system", "student"))
     ros.add_argument("--clean", action="store_true", help="Clean only this build's owned generated outputs")
     mcu = builds.add_parser("mcu")
-    mcu.add_argument("target", choices=("bno08x", "traxxas"))
+    mcu.add_argument("target", choices=("bno08x", "traxxas", "rc-car"))
     flash = families.add_parser("flash", help="Explicit single-target firmware operation using component-owned checks")
     flashes = flash.add_subparsers(dest="flash_kind", required=True)
     mcu_flash = flashes.add_parser("mcu")
-    mcu_flash.add_argument("target", choices=("bno08x", "traxxas"))
+    mcu_flash.add_argument("target", choices=("bno08x", "traxxas", "rc-car"))
     mcu_flash.add_argument("--device-id", required=True)
     mcu_flash.add_argument("--manifest", required=True, type=Path)
     mcu_flash.add_argument("--report", type=Path)
+    mcu_flash.add_argument("--usb-port", help="Physical USB path from pico list (RC Car only)")
+    mcu_flash.add_argument("--actuators-isolated", action="store_true", help="Confirm actuator isolation before RC Car flash")
+    pico = families.add_parser("pico", help="List Picos and operate an unowned RC Car USB port")
+    picos = pico.add_subparsers(dest="pico_target", required=True)
+    picos.add_parser("list", help="Read kernel USB inventory without opening a serial port")
+    car = picos.add_parser("rc-car")
+    actions = car.add_subparsers(dest="pico_action", required=True)
+    for name, description in (
+        ("status", "Read one fresh firmware status"), ("watch", "Stream fresh firmware status"),
+        ("mode", "Request Manual or Hold"), ("doctor", "Diagnose selection, access and link issues"),
+    ):
+        command = actions.add_parser(name, help=description)
+        command.add_argument("--standalone", action="store_true", help="Use an independently built bench client")
+        command.add_argument("--client", type=Path, help="Absolute path to rc_car_ctl on a standalone bench")
+        command.add_argument("--device-id")
+        command.add_argument("--profile-id")
+        command.add_argument("--build-id")
+        if name == "mode":
+            command.add_argument("mode_choice", choices=("manual", "hold"))
+        if name == "watch":
+            command.add_argument("--duration", type=int, default=30, help="Seconds of output, from 1 to 600")
+    calibrate = families.add_parser("calibrate", help="Run a stopped, model-specific actuator calibration")
+    calibrations = calibrate.add_subparsers(dest="calibration_target", required=True)
+    traxxas = calibrations.add_parser("traxxas")
+    escs = traxxas.add_subparsers(dest="calibration_kind", required=True)
+    esc = escs.add_parser("esc", help="Program an ESC over an exclusive RCPv1 maintenance session")
+    esc.add_argument("--device-id", required=True)
+    esc.add_argument("--profile-id", required=True)
+    esc.add_argument("--build-id", required=True)
+    esc.add_argument("--maintenance-client", required=True, type=Path)
+    esc.add_argument("--esc", choices=("xl-5", "vxl-3s"), required=True)
+    esc.add_argument("--neutral-us", type=int, default=1500)
+    esc.add_argument("--forward-us", type=int, default=2000)
+    esc.add_argument("--reverse-us", type=int, default=1000)
     rollback = families.add_parser("rollback", help="Select a verified compatible prior release; does not undo apt, firmware or image changes")
     rollback.add_argument("--release-id")
     shell = families.add_parser("shell", help="Manage owned Bash command exposure, completion and optional alias")
@@ -109,6 +143,10 @@ def route(args, argv):
     if family == "runtime":
         from .commands import runtime_argv
         return "robot_runtime.cli:main", dict(argv=runtime_argv(strip_common(argv)[1:], common["site_path"]))
+    if family == "pico" and args.pico_target == "list":
+        return "robot_deployment.pico:listing", {}
+    if family == "pico" and args.standalone:
+        return "robot_deployment.pico:operate", pico_args(args, common)
     from .commands import resolve_site
     if not (family == "info" and args.info_action == "host") and not (family == "host" and args.host_action == "repositories"):
         common["site_path"] = resolve_site(common["site_path"], optional=True)
@@ -121,20 +159,43 @@ def route(args, argv):
     if family == "host":
         return "robot_deployment.commands:host", dict(common, action=args.host_action, output=args.output)
     if family == "info":
-        return "robot_deployment.commands:info", dict(common, action=args.info_action, target=getattr(args, "target", None))
+        target = getattr(args, "target", None)
+        return "robot_deployment.commands:info", dict(common, action=args.info_action,
+            target="rc_car" if target == "rc-car" else target)
     if family == "doctor":
         return "robot_deployment.commands:doctor", common
     if family == "build":
         return "robot_deployment.build:ros" if args.build_kind == "ros" else "robot_deployment.firmware:build", dict(common,
-            **(dict(workspace=args.workspace, clean=args.clean) if args.build_kind == "ros" else dict(target=args.target)))
+            **(dict(workspace=args.workspace, clean=args.clean) if args.build_kind == "ros" else
+               dict(target="rc_car" if args.target == "rc-car" else args.target)))
     if family == "flash":
+        if args.target == "rc-car":
+            return "robot_deployment.firmware:flash_rc_car", dict(common, device_id=args.device_id,
+                manifest=args.manifest, report=args.report, usb_port=args.usb_port,
+                actuators_isolated=args.actuators_isolated)
+        if args.usb_port or args.actuators_isolated:
+            raise ValueError("--usb-port and --actuators-isolated are RC Car flash options")
         return "robot_deployment.firmware:flash", dict(common, target=args.target, device_id=args.device_id,
             manifest=args.manifest, report=args.report)
+    if family == "pico":
+        return "robot_deployment.pico:operate", pico_args(args, common)
+    if family == "calibrate":
+        return "robot_deployment.calibration:calibrate", dict(common, device_id=args.device_id,
+            profile_id=args.profile_id, build_id=args.build_id, maintenance_client=args.maintenance_client, esc=args.esc,
+            neutral_us=args.neutral_us, forward_us=args.forward_us, reverse_us=args.reverse_us)
     if family == "rollback":
         return "robot_deployment.commands:rollback", dict(common, release_id=args.release_id)
     if family == "shell":
         return "robot_deployment.commands:shell", dict(common, action=args.shell_action, alias=getattr(args, "alias", False))
     raise ValueError("Unknown command route")
+
+
+def pico_args(args, common):
+    standalone = args.standalone or (args.pico_action == "doctor" and common["site_path"] is None and
+                                     common["definitions"] is None)
+    return dict(common, action=getattr(args, "mode_choice", args.pico_action), standalone=standalone,
+        client=args.client, device_id=args.device_id, profile_id=args.profile_id, build_id=args.build_id,
+        duration=getattr(args, "duration", 30), structured=getattr(args, "json", False))
 
 
 def complete(words):
@@ -223,7 +284,7 @@ def main(argv=None):
                 for option, key in (("--site", "site_path"), ("--definitions", "definitions")):
                     if arguments.get(key) is not None:
                         explanation["argv"] += [option, str(arguments[key])]
-                if "site_path" in arguments and arguments["site_path"] is None and not (
+                if "site_path" in arguments and arguments["site_path"] is None and not arguments.get("standalone") and not (
                     args.family == "info" and args.info_action == "host" or
                     args.family == "host" and args.host_action == "repositories"
                 ):

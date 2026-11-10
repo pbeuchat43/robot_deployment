@@ -62,8 +62,13 @@ DETAILS = {
         "Requires an installed selected firmware recipe, a matching manifest and the actual USB target. Component identity checks and confirmation prompts remain in force."),
     "flash mcu": ("Flash one explicitly identified MCU using its owning tool.",
         "flash mcu bno08x --device-id TARGET --manifest /absolute/bundle.manifest.json",
-        "This changes device firmware after component confirmation. BNO supports --report; Traxxas reports to stdout. "
+        "This changes device firmware. RC Car needs physical BOOTSEL and --actuators-isolated. BNO and RC Car support --report. Traxxas reports to stdout. "
         "An incompatible board/manifest is rejected: select or rebuild the correct bundle, never force it."),
+    "pico": ("Inspect Pico USB inventory or access an unowned RC Car Pico.",
+        "pico list --json", "The list command reads kernel metadata without opening a serial device."),
+    "pico rc-car": ("Read RCPv1 status or request Manual or Hold on an unowned Pico.",
+        "pico rc-car mode manual", "Direct access opens an exclusive session. When the interface is running, use the declared runtime ROS capabilities. "
+        "Managed mode changes require stopped maintenance. Use --standalone and --client for an independent bench."),
     "shell": ("Manage owned Bash command exposure, completion and optional alias.", "shell install --alias",
         "Requires a selected installation. Preserves unrelated startup content and refuses edited/unowned managed files."),
     "shell install": ("Install the full command and completion, optionally the lucid alias.", "shell install --alias",

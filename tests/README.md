@@ -33,7 +33,7 @@ component workspace, then run the installed deployment package's launch check:
 /absolute/venv/bin/python /absolute/robot_deployment/tests/integration_launch.py -v
 ```
 
-It evaluates actual composable-node descriptions for all six modes and resolves
+It evaluates actual composable-node descriptions for all eight modes and resolves
 the detector output and combined inputs in a non-default namespace. The launch
 service is intercepted before execution; no component, camera or GPU is started.
 The detector's native `combined_overlay` test separately exercises these remaps

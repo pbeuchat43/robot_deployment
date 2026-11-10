@@ -20,14 +20,20 @@ unknown keys, duplicate YAML keys, aliases and unsupported versions are rejected
   It contains account, paths, credential references, networking and allowed
   choices. It cannot override component revisions or individual engine paths.
 
-The initial composition retains six camera/model modes, both individual overlays
-and the combined overlay. The selected site camera determines the default mode;
+The composition provides eight camera/model modes, including camera-only modes,
+both individual overlays and the combined overlay. The selected site camera determines the default mode;
 both models are enabled by default. A missing camera device ID requests exactly
 one compatible device from the chosen provider. Ambiguity remains a provider
 error; enumeration order is never a selector. An explicit session identity can
 be declared under `hardware.front_camera.device_ids`, keyed by variant. An OAK
 identity does not constrain D455 mode. Serial observations never update this file.
 Camera replacement requires a new perception run; reconnect is not automatic.
+
+The site `recording` mapping owns output location, managed history budget,
+filesystem reserve, FPS ceiling, bitrates, segment duration and fixed depth
+visualization range. Defaults and lifecycle semantics are in [recording.md](recording.md).
+The sample site selects the explicit 720p30 camera profiles; existing profiles
+remain available. Recording never changes the shared acquisition configuration.
 
 An optional student workspace can provide `config/requests.yaml`. For the
 supplied composition the only allowed key is `cones_score_threshold`, numeric

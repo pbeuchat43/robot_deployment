@@ -1,12 +1,12 @@
 # Selectable RGB-D perception and video
 
-This composition runs one camera and one or both TensorRT models in a ROS component
+This composition runs one camera with optional TensorRT models in a ROS component
 container. Camera selection and model selection are independent. The detector
 retains each atomic RGB-D frame through inference; a separate bounded presentation
 worker draws on a copy of that exact frame. The media process subscribes to the
-annotated ROS image and encodes it with the existing runtime WebRTC path.
+selected unannotated or annotated ROS image and encodes it through runtime WebRTC.
 
-The current pins select detector/interface 0.2.0: `CaptureDetections` replaces
+The current pins select detector 0.2.1 with interface 0.2.0: `CaptureDetections` replaces
 `Batch`, `capture_detections` replaces `batches`, and both atomic overlay messages
 use a `capture_detections` field (a fixed two-element array for the combined
 overlay). Rebuild the interfaces, detector, presentation components and probes
@@ -40,8 +40,10 @@ lucid_conduct runtime stop video
 lucid_conduct runtime stop perception
 ```
 
-The six modes are `oak-cones`, `oak-coco`, `oak-both`, `d455-cones`, `d455-coco`
-and `d455-both`. `log` and `logs` are identical. Restart validates and freezes
+The eight modes are `oak-camera`, `oak-cones`, `oak-coco`, `oak-both`,
+`d455-camera`, `d455-cones`, `d455-coco` and `d455-both`.
+Camera-only modes disable inference. [Recording](recording.md) is a separate
+runtime unit with explicit output choices. `log` and `logs` are identical. Restart validates and freezes
 permitted startup inputs before stopping the current run. It waits for confirmed
 empty ownership before starting the replacement. Invalid input leaves the old
 run intact; uncertain stop prevents replacement. Management startup alone never
@@ -56,7 +58,7 @@ can inspect a new profile without selecting it. It refuses to overwrite a file.
 ## Reference viewer
 
 Open `/video` and unlock commands. Start the video service, choose Camera and
-Models independently (Cones, COCO 80, or Cones + COCO 80), then select **Start source**. Wait for streaming acquisition
+Models independently (Camera only, Cones, COCO 80, or Cones + COCO 80), then select **Start source**. Wait for streaming acquisition
 and processing observations, then **Connect video**. The requested selection and
 current run are displayed separately; provider observations report actual model
 and engine identity, processing counters, ages and overlay state.
@@ -71,7 +73,8 @@ ready; its admission is bound to that new source run.
 A stopped/lost camera is unavailable, not an empty detection result. Empty results
 still publish their matching image with no boxes. Invalid spatial estimates retain
 2D boxes and show `2D only`. The status/result contract exposes truncation explicitly.
-A disconnected viewer releases rendering demand; a slow viewer cannot hold the
+A disconnected viewer releases its rendering demand. An active annotated
+recording retains its independent demand. A slow viewer cannot hold the
 inference worker. The overlay queue retains at most one pending frame plus the
 frame being rendered.
 

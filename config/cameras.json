@@ -8,6 +8,12 @@
     "stall_timeout_s": 2.0
   },
   "profiles": {
+    "d455-720p30": {
+      "backend": "realsense", "fps": 30.0, "pairing_tolerance_ms": 16.6, "width": 1280, "height": 720
+    },
+    "oak-720p30": {
+      "backend": "oak", "fps": 30.0, "pairing_tolerance_ms": 5.0, "width": 1280, "height": 720
+    },
     "d455-30": {
       "backend": "realsense",
       "fps": 30.0,
@@ -45,7 +51,7 @@
     }
   },
   "limits": [
-    "These named configurations completed finite live integration checks on 27 October 2026; see integration evidence for rates, losses and unobserved physical checks.",
+    "Legacy 640-pixel configurations have finite October 2026 integration evidence; 720p profiles require the separate event-recording qualification. Consult dated evidence for rates, losses and unobserved physical checks.",
     "OAK 60 Hz fails RGB/depth pairing with the current DENSITY/subpixel profile and is not offered.",
     "D455 native 60 Hz delivery passed previous camera/detector checks; an additional recipe observed invalid spatial results.",
     "SDK clock mapping uncertainty is not measured; pairing tolerances are admission policy, not synchronization accuracy."

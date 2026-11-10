@@ -37,6 +37,9 @@ def sources(graph, cache, source_cache):
     lock = graph["sources"]
     require(set(lock["components"]) == {"rgbd_camera", "rgbd_object_detector", "robot_runtime"}, "Unsupported component selection")
     result = {name: acquire_git(name, selected, cache, source_cache=source_cache) for name, selected in lock["components"].items()}
+    vehicle = graph["composition"]["units"].get("vehicle")
+    if vehicle:
+        result["rc_car_interface"] = acquire_git("rc_car_interface", vehicle["source"], cache, source_cache=source_cache)
     result["vision_msgs"] = acquire_git("vision_msgs", lock["dependencies"]["vision_msgs"], cache, source_cache=source_cache)
     # The legacy detector is only an artifact source; it is never built or installed.
     result["cone_artifact"] = acquire_git("cone_artifact", lock["models"]["cones"]["source"], cache, source_cache=source_cache)
@@ -64,16 +67,23 @@ def with_ros(argv, *, setup=None):
     return ["/bin/bash", "-c", 'set -eo pipefail; source /opt/ros/jazzy/setup.bash; exec "$@"', "robot-build", *map(str, argv)]
 
 
+def ros_packages(selected):
+    return ("rgbd_camera", "rgbd_object_detector", "vision_msgs", "robot_runtime") + (("rc_car_interface",) if "rc_car_interface" in selected else ())
+
+
 def ros_build(selected, release, command):
     workspace = release / "ros"
     (workspace / "src").mkdir(parents=True)
-    for name in ("rgbd_camera", "rgbd_object_detector", "vision_msgs"):
+    for name in ros_packages(selected):
         # Colcon compiles from verified sources and writes separate build/install trees.
-        (workspace / "src" / name).symlink_to(selected[name], target_is_directory=True)
+        package = selected[name] / "ros/robot_runtime_recording" if name == "robot_runtime" else selected[name]
+        require(package.is_dir(), "Missing pinned ROS package: " + str(package))
+        (workspace / "src" / ("robot_runtime_recording" if name == "robot_runtime" else name)).symlink_to(package, target_is_directory=True)
     prefixes = ";".join(str(release / "sdk" / name) for name in ("depthai", "realsense"))
     argv = ["colcon", "build", "--merge-install", "--executor", "sequential", "--cmake-args",
             "-DCMAKE_BUILD_TYPE=Release", "-DBUILD_TESTING=OFF", "-DRGBD_CAMERA_ENABLE_REALSENSE=ON",
-            "-DCMAKE_PREFIX_PATH=" + prefixes, "-DCUDAToolkit_ROOT=/usr/local/cuda-13.2"]
+            "-DCMAKE_PREFIX_PATH=" + prefixes, "-DCUDAToolkit_ROOT=/usr/local/cuda-13.2",
+            "-DNLOHMANN_JSON_INCLUDE_DIR=" + str(release / "sdk/depthai/include")]
     command(with_ros(argv), cwd=workspace, env=ros_environment(release))
 
 

@@ -7,7 +7,7 @@ import subprocess
 
 from .artifacts import verify_source
 from .commands import graph_for
-from .components import ros_environment, with_ros
+from .components import ros_environment, ros_packages, with_ros
 from .configuration import file_digest, require
 from .maintenance import current
 from .records import claim, locked, write_json
@@ -42,16 +42,21 @@ def ros(site_path=None, definitions=None, *, workspace, clean=False):
         source = output / "src"
         source.mkdir(exist_ok=True)
         selections = dict(graph["sources"]["components"], vision_msgs=graph["sources"]["dependencies"]["vision_msgs"])
-        for name in ("rgbd_camera", "rgbd_object_detector", "vision_msgs"):
+        vehicle = graph["composition"]["units"].get("vehicle")
+        if vehicle:
+            selections["rc_car_interface"] = vehicle["source"]
+        for name in ros_packages(selections):
             revision = selections[name]["commit"]
             checkout = installation / "cache/git" / (name + "-" + revision)
             require(checkout.is_dir(), "Missing pinned system source; complete installation first: " + name)
             verify_source(checkout, revision)
-            link = source / name
+            package = checkout / "ros/robot_runtime_recording" if name == "robot_runtime" else checkout
+            require(package.is_dir(), "Missing pinned ROS package: " + str(package))
+            link = source / ("robot_runtime_recording" if name == "robot_runtime" else name)
             if link.exists() or link.is_symlink():
-                require(link.is_symlink() and link.resolve() == checkout.resolve(), "System source binding changed; use a new owned build directory")
+                require(link.is_symlink() and link.resolve() == package.resolve(), "System source binding changed; use a new owned build directory")
             else:
-                link.symlink_to(checkout, target_is_directory=True)
+                link.symlink_to(package, target_is_directory=True)
     with locked(output):
         record = output / "binding.json"
         identity = dict(schema_version=1, underlay=str(setup), underlay_sha256=file_digest(setup), workspace=workspace)
@@ -65,7 +70,8 @@ def ros(site_path=None, definitions=None, *, workspace, clean=False):
         if workspace == "system":
             argv += ["--cmake-args", "-DCMAKE_BUILD_TYPE=Release", "-DBUILD_TESTING=OFF", "-DRGBD_CAMERA_ENABLE_REALSENSE=ON",
                 "-DCMAKE_PREFIX_PATH=" + ";".join(str(release / "sdk" / name) for name in ("depthai", "realsense")),
-                "-DCUDAToolkit_ROOT=/usr/local/cuda-13.2"]
+                "-DCUDAToolkit_ROOT=/usr/local/cuda-13.2",
+                "-DNLOHMANN_JSON_INCLUDE_DIR=" + str(release / "sdk/depthai/include")]
         subprocess.run(with_ros(argv, setup=setup if workspace == "student" else None),
                        env=ros_environment(release), cwd=source.parent, check=True)
     return dict(workspace=workspace, install=str(output / "install"), runtime_restarted=False, dependencies_installed=False)

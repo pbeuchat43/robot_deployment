@@ -94,20 +94,26 @@ class Inputs:
         self.raw = {}
         self.sources = []
 
-    def read(self, path):
+    def read_bytes(self, path):
         path = Path(path).resolve()
-        if path not in self.values:
+        if path not in self.raw:
             with path.open("rb") as stream:
                 raw = stream.read(262145)
             require(len(raw) <= 262144, f"{path}: exceeds 256 KiB")
+            self.raw[path] = raw
+            self.sources.append(dict(path=str(path), sha256=digest(raw)))
+        return self.raw[path]
+
+    def read(self, path):
+        path = Path(path).resolve()
+        if path not in self.values:
+            raw = self.read_bytes(path)
             try:
                 value = yaml.load(raw.decode("utf-8"), Loader=StrictLoader)
             except (yaml.YAMLError, UnicodeError, RecursionError) as exc:
                 raise ConfigurationError(f"{path}: malformed YAML/JSON") from exc
             require(isinstance(value, dict), f"{path}: expected mapping")
             self.values[path] = value
-            self.raw[path] = raw
-            self.sources.append(dict(path=str(path), sha256=digest(raw)))
         return copy.deepcopy(self.values[path])
 
 
@@ -121,7 +127,7 @@ def load(site_path, root=None, *, inputs=None):
     root = Path(root or definition_root()).resolve()
     site = inputs.read(site_path)
     version(site, ("composition", "platform", "robot_id", "runtime_account", "storage", "network", "credentials"),
-            ("ros", "runtime_namespace", "hardware", "camera_profiles", "workspaces", "management", "shell"), context="site")
+            ("ros", "runtime_namespace", "hardware", "camera_profiles", "workspaces", "management", "shell", "recording"), context="site")
     for key in ("composition", "platform", "robot_id", "runtime_account"):
         identifier(site[key], "site." + key)
     site.setdefault("runtime_namespace", "robot")
@@ -130,6 +136,23 @@ def load(site_path, root=None, *, inputs=None):
     for key, value in site["storage"].items():
         absolute(value, key)
         require(value != "/", f"{key}: cannot be filesystem root")
+    site.setdefault("recording", {})
+    recording = site["recording"]
+    defaults = dict(root=str(Path(site["storage"]["data_root"]) / "recordings"), budget_bytes=10000000000,
+        reserve_bytes=1000000000, fps=30, segment_seconds=30, min_depth_m=.25, max_depth_m=15.,
+        bitrates=dict(rgb=6000000, annotated=6000000, depth=4000000))
+    keys(recording, (), defaults, context="recording")
+    for key, value in defaults.items(): recording.setdefault(key, value)
+    absolute(recording["root"], "recording.root")
+    require(recording["root"] != "/", "Recording root cannot be filesystem root")
+    for key, low, high in (("budget_bytes",1000000,1000000000000),("reserve_bytes",1000000,1000000000000),
+                           ("fps",1,30),("segment_seconds",2,60)):
+        number(recording[key],low,high,"recording."+key,integer=True)
+    number(recording["min_depth_m"],.001,65.,"recording.min_depth_m")
+    number(recording["max_depth_m"],recording["min_depth_m"],65.535,"recording.max_depth_m")
+    require(recording["max_depth_m"]>recording["min_depth_m"],"Depth display range must be nonempty")
+    keys(recording["bitrates"],("rgb","annotated","depth"),context="recording.bitrates")
+    for bitrate in recording["bitrates"].values(): number(bitrate,100000,20000000,"recording bitrate",integer=True)
     keys(site["credentials"], ("web_secret_file", "tls_certificate_file", "tls_private_key_file"), context="site.credentials")
     for key, value in site["credentials"].items():
         absolute(value, key)  # References only: never open credential contents here.
@@ -156,15 +179,20 @@ def load(site_path, root=None, *, inputs=None):
         require(type(site[section][flag]) is bool, f"{section}.{flag}: expected boolean")
     composition = inputs.read(within(root, "compositions/" + site["composition"] + ".yaml"))
     version(composition, ("id", "robot_model", "sources", "cameras", "supported_platforms", "hardware", "models", "units", "workload_requests"), ("firmware",), context="composition")
-    keys(composition.get("firmware", {}), (), ("bno08x", "traxxas"), context="firmware")
+    keys(composition.get("firmware", {}), (), ("bno08x", "traxxas", "rc_car"), context="firmware")
+    firmware_profiles = {}
     for target, recipe in composition.get("firmware", {}).items():
-        require(target in ("bno08x", "traxxas"), "Unsupported firmware integration")
-        keys(recipe, ("source", "path", "board"), context="firmware recipe")
+        keys(recipe, ("source", "path", "board", "profile") if target == "rc_car" else
+             ("source", "path", "board"), context="firmware recipe")
         keys(recipe["source"], ("url", "commit"), context="firmware source")
         require(isinstance(recipe["source"]["url"], str) and recipe["source"]["url"].startswith("https://"), "Firmware requires an explicit HTTPS source")
         require(recipe["board"] in ("waveshare_rp2040_zero", "waveshare_rp2350_zero"), "Unsupported firmware board")
         require(isinstance(recipe["source"]["commit"], str) and re.fullmatch(r"[0-9a-f]{40}", recipe["source"]["commit"]), "Firmware requires a full source commit")
         within(root, recipe["path"])
+        if target == "rc_car":
+            header = within(root, recipe["profile"])
+            require(header.suffix == ".hpp", "RC Car profile must be a deployment-owned .hpp header")
+            firmware_profiles[target] = dict(path=header, sha256=digest(inputs.read_bytes(header)))
     require(composition["id"] == site["composition"], "Composition identity mismatch")
     require(site["platform"] in composition["supported_platforms"], "Composition does not support selected platform")
     platform = inputs.read(within(root, "platforms/" + site["platform"] + ".yaml"))
@@ -179,7 +207,18 @@ def load(site_path, root=None, *, inputs=None):
     require(isinstance(variants, list) and set(variants) == set(VARIANTS), "This integration requires OAK-D and D455 variants")
     require(selection["default_variant"] in variants and set(variants) <= set(model["component_roles"]["front_camera"]["supported_variants"]), "Unsupported robot camera selection")
     site.setdefault("hardware", {"front_camera": {"variant": selection["default_variant"]}})
-    keys(site["hardware"], ("front_camera",), context="site.hardware")
+    keys(site["hardware"], ("front_camera",), ("rc_car",), context="site.hardware")
+    if "rc_car" in site["hardware"]:
+        pins = site["hardware"]["rc_car"]
+        keys(pins, ("device_id", "profile_id", "build_id"), context="site.hardware.rc_car")
+        require(isinstance(pins["device_id"], str) and re.fullmatch(r"[0-9A-F]{16}", pins["device_id"]),
+                "RC Car needs an exact application device ID")
+        for key in ("profile_id", "build_id"):
+            require(isinstance(pins[key], str) and re.fullmatch(r"[A-Za-z0-9_-]{1,24}", pins[key]),
+                    f"Invalid RC Car {key}")
+        if "rc_car" in firmware_profiles:
+            require(pins["profile_id"] == firmware_profiles["rc_car"]["sha256"][:16],
+                    "Private RC Car profile pin differs from the selected header")
     camera = site["hardware"]["front_camera"]
     keys(camera, ("variant",), ("device_ids",), context="front_camera")
     require(camera["variant"] in variants, "Unsupported camera variant")
@@ -193,12 +232,21 @@ def load(site_path, root=None, *, inputs=None):
     keys(site["camera_profiles"], ("oak", "d455"), context="camera_profiles")
     for family, name in site["camera_profiles"].items():
         require(name in cameras["profiles"] and cameras["profiles"][name]["backend"] == ("realsense" if family == "d455" else "oak"), "Camera profile/backend mismatch")
-    keys(composition["units"], ("perception", "video"), context="units")
+    keys(composition["units"], ("perception", "video"), ("vehicle",), context="units")
+    if "vehicle" in composition["units"]:
+        vehicle = composition["units"]["vehicle"]
+        keys(vehicle, ("launcher", "source"), context="vehicle")
+        keys(vehicle["source"], ("url", "commit"), context="vehicle source")
+        require(vehicle["launcher"] == "rc_car_interface" and "rc_car" in site["hardware"],
+                "Vehicle unit needs the RC Car launcher and private hardware pins")
+        require(isinstance(vehicle["source"]["url"], str) and vehicle["source"]["url"].startswith("https://") and
+                isinstance(vehicle["source"]["commit"], str) and re.fullmatch(r"[0-9a-f]{40}", vehicle["source"]["commit"]),
+                "Vehicle interface requires an exact HTTPS source commit")
     keys(composition["units"]["perception"], ("launcher", "parameter_files"), context="perception")
     keys(composition["units"]["video"], ("launcher", "choices", "default_choice", "maximum_fps"), context="video")
     video = composition["units"]["video"]
     require(composition["units"]["perception"]["launcher"] == "rgbd_perception" and video["launcher"] == "runtime_ros_video", "Unsupported installed launcher")
-    require(video["choices"] == ["cones", "coco", "combined"] and video["default_choice"] in video["choices"], "Invalid video choices")
+    require(video["choices"] == ["rgb", "cones", "coco", "combined"] and video["default_choice"] in video["choices"], "Invalid video choices")
     number(video["maximum_fps"], 1, 30, "video.maximum_fps", integer=True)
     keys(composition["models"], ("cones", "coco"), context="models")
     for descriptor in composition["models"].values():
@@ -208,7 +256,7 @@ def load(site_path, root=None, *, inputs=None):
     sources = inputs.read(within(root, composition["sources"]))
     require(type(sources.get("schema_version")) is int and sources["schema_version"] == 1, "Unsupported sources schema")
     return dict(site=site, composition=composition, robot_model=model, platform=platform, cameras=cameras,
-                sources=sources, root=root, inputs=inputs)
+                sources=sources, root=root, inputs=inputs, firmware_profiles=firmware_profiles)
 
 
 def validate_model(model):
@@ -241,11 +289,14 @@ def validate_model(model):
 def structure_identity(graph):
     site = copy.deepcopy(graph["site"])
     site["hardware"]["front_camera"].pop("device_ids")
-    return digest(encoded({**{key: graph[key] for key in ("composition", "robot_model", "platform", "cameras", "sources")}, "site": site}))
+    structure = {**{key: graph[key] for key in ("composition", "robot_model", "platform", "cameras", "sources")}, "site": site}
+    if graph.get("firmware_profiles"):
+        structure["firmware_profiles"] = {key: entry["sha256"] for key, entry in graph["firmware_profiles"].items()}
+    return digest(encoded(structure))
 
 
 CAMERA_BOUNDS = {"fps": (1, 60), "pairing_tolerance_ms": (.1, 50), "max_frame_age_ms": (10, 2000),
-                 "startup_timeout_s": (5, 120), "stall_timeout_s": (1, 30)}
+                 "startup_timeout_s": (5, 120), "stall_timeout_s": (1, 30), "width": (640,1280), "height": (480,720)}
 DETECTOR_BOUNDS = {"score_threshold": (0, 1), "iou_threshold": (0, 1), "max_detections": (1, 100),
                    "pre_nms_limit": (1, 8400)}
 
@@ -260,10 +311,13 @@ def validate_parameters(nodes):
             if name in flags:
                 require(type(value) is bool, f"{node}.{name}: expected boolean")
             else:
-                number(value, *bounds[name], f"{node}.{name}", integer=name in ("max_detections", "pre_nms_limit"))
+                number(value, *bounds[name], f"{node}.{name}", integer=name in ("max_detections", "pre_nms_limit", "width", "height"))
         if node.startswith("detector_") and "pre_nms_limit" in parameters and "max_detections" in parameters:
             require(parameters["max_detections"] <= parameters["pre_nms_limit"], f"{node}: max_detections exceeds pre_nms_limit")
     camera = nodes["camera"]
+    if "width" in camera or "height" in camera:
+        require((camera.get("width"),camera.get("height")) in ((640,480),(640,640),(1280,720)), "Unsupported camera dimensions")
+        require(camera["width"] != 1280 or camera.get("fps",30)<=30,"720p camera profile supports at most 30 Hz")
     if "fps" in camera and "pairing_tolerance_ms" in camera:
         require(camera["pairing_tolerance_ms"] < 500 / camera["fps"], "camera: pairing tolerance must be below half a frame period")
 
