@@ -1,0 +1,155 @@
+[
+  {
+    "repo": "rgbd_camera",
+    "branches": [
+      "maintenance/frame-delivery-rates"
+    ],
+    "old_commit": "cb167b4a256d221614836c5fee821de17f077ada",
+    "consolidated_commit": "0f4b82958f0d7798f0bf911641d0aa67084cc927",
+    "identical_tree": "37239dd3b6332f3b4145ce78272b8632cc1e36db",
+    "disposition": "delete_completed_history",
+    "counterpart_in_dev": true
+  },
+  {
+    "repo": "rgbd_object_detector",
+    "branches": [
+      "archive/2026-10-27-selectable-model-viewer",
+      "feature/selectable-model-viewer"
+    ],
+    "old_commit": "05ba9af87c42d000ad0ed91445ee55985bcd096e",
+    "consolidated_commit": "cca101ccdda7d70b945973f6cd9711316da63547",
+    "identical_tree": "a21eba00fd2d9add3313c84cd2db25c709407adb",
+    "disposition": "delete_completed_history",
+    "counterpart_in_dev": true
+  },
+  {
+    "repo": "rgbd_object_detector",
+    "branches": [
+      "archive/2026-10-28-combined-overlay",
+      "feature/combined-overlay"
+    ],
+    "old_commit": "ee86045a94f303ef8c9356b65ccbca4f1a93f49d",
+    "consolidated_commit": "61219c6c1a692d311383cede66f1fb45b20f36e0",
+    "identical_tree": "7462debb10216802aa8a235cf1f1d1bc9295bd42",
+    "disposition": "delete_completed_history",
+    "counterpart_in_dev": true
+  },
+  {
+    "repo": "robot_runtime",
+    "branches": [
+      "archive/2026-10-27-rgbd-perception-viewer",
+      "feature/rgbd-perception-viewer"
+    ],
+    "old_commit": "b647cbf5fc62b80b237a0dfcddef2b970dc74a1c",
+    "consolidated_commit": "9c5f6a98f67786fb7c57bb56542d31a381e0f275",
+    "identical_tree": "607c068330e7539e925baa6304428fc284f54ece",
+    "disposition": "delete_completed_history",
+    "counterpart_in_dev": true
+  },
+  {
+    "repo": "robot_runtime",
+    "branches": [
+      "archive/2026-10-28-dual-detector-viewer",
+      "feature/dual-detector-viewer"
+    ],
+    "old_commit": "651143c02341872ea4b0d6c1dac0a48786910079",
+    "consolidated_commit": "c2b2b6d16964b00caa543006d814c9b112520843",
+    "identical_tree": "11bd72295c34e2a0d0ba1f577a73cd38f707eec7",
+    "disposition": "delete_completed_history",
+    "counterpart_in_dev": true
+  },
+  {
+    "repo": "robot_runtime",
+    "branches": [
+      "archive/2026-10-28-viewer-renewal",
+      "maintenance/viewer-renewal"
+    ],
+    "old_commit": "d10b6d3da5d2e9337c40463733b69b2dc3a97811",
+    "consolidated_commit": "3ab1cd84330985d5b2aa0a6a06986d1a84c6f1a4",
+    "identical_tree": "6a484a9b67714ef7ff858a3dd954ebab0833276a",
+    "disposition": "delete_completed_history",
+    "counterpart_in_dev": true
+  },
+  {
+    "repo": "robot_runtime",
+    "branches": [
+      "archive/2026-11-06-deployment-runtime",
+      "feat/deployment-runtime"
+    ],
+    "old_commit": "7095e14620f053218b70dcbb66032cb1ed4ec9d0",
+    "consolidated_commit": "36249160ead1f4f9bf67ad7f6ccf8497f883b651",
+    "identical_tree": "422bdadf6e0a9785476ec8b448b511fe05c5eaa3",
+    "disposition": "delete_completed_history",
+    "counterpart_in_dev": true
+  },
+  {
+    "repo": "robot_deployment",
+    "branches": [
+      "feature/rgbd-integration"
+    ],
+    "old_commit": "85ae580fa560518b9971450f22f3702f9b60db11",
+    "consolidated_commit": "85ae580fa560518b9971450f22f3702f9b60db11",
+    "identical_tree": "1348fe118a9a9e3d931ee6798e51b111b4f90671",
+    "disposition": "delete_completed_history",
+    "counterpart_in_dev": true
+  },
+  {
+    "repo": "robot_deployment",
+    "branches": [
+      "archive/2026-10-28-dual-detector-viewer",
+      "feature/dual-detector-viewer"
+    ],
+    "old_commit": "ae520e1d74451fadcc48fbd6be9165433a6bcba1",
+    "consolidated_commit": "004a933412ae8e27c04da4bd344389687edfbac0",
+    "identical_tree": "8cf445539d62d81c79977bd1256764fdc18c2514",
+    "disposition": "delete_completed_history",
+    "counterpart_in_dev": true
+  },
+  {
+    "repo": "robot_deployment",
+    "branches": [
+      "archive/2026-10-28-combined-overlay",
+      "feature/combined-overlay"
+    ],
+    "old_commit": "eed34c4d9484836f26ebac06a595f8d830611381",
+    "consolidated_commit": "6d689516ab60c062c727b19ce5aaddac4984d6e3",
+    "identical_tree": "ec8bb28b1d1e5611bde07a088abe68b1decedc50",
+    "disposition": "delete_completed_history",
+    "counterpart_in_dev": true
+  },
+  {
+    "repo": "robot_deployment",
+    "branches": [
+      "archive/2026-10-28-viewer-acceptance",
+      "maintenance/viewer-acceptance"
+    ],
+    "old_commit": "0ba3d805db23449e3d6614928e28f80d33da73ce",
+    "consolidated_commit": "b7f48b0950cb903017d8234b1b9c14021b42b1e8",
+    "identical_tree": "ae2f79ebc9c8e8ef2f20ee93e08a34eb1cdae6d5",
+    "disposition": "delete_completed_history",
+    "counterpart_in_dev": true
+  },
+  {
+    "repo": "robot_deployment",
+    "branches": [
+      "docs/robot-deployment-design"
+    ],
+    "old_commit": "b7f48b0950cb903017d8234b1b9c14021b42b1e8",
+    "consolidated_commit": "b7f48b0950cb903017d8234b1b9c14021b42b1e8",
+    "identical_tree": "ae2f79ebc9c8e8ef2f20ee93e08a34eb1cdae6d5",
+    "disposition": "delete_completed_history",
+    "counterpart_in_dev": true
+  },
+  {
+    "repo": "robot_deployment",
+    "branches": [
+      "archive/2026-11-06-robot-deployment",
+      "feat/robot-deployment"
+    ],
+    "old_commit": "895c721b49a8c06af880d972e40703bbcb23e936",
+    "consolidated_commit": "b8d401990e103d2e911dea9df36ae7bcea160e40",
+    "identical_tree": "44708ee94f6d3290d243f549c27aa0d1a431e48b",
+    "disposition": "delete_completed_history",
+    "counterpart_in_dev": true
+  }
+]

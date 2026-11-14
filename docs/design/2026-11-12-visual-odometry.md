@@ -6,6 +6,9 @@ records final-component checks. The
 [15 November release qualification](../evidence/2026-11-15-vio-release-qualification/README.md)
 adds the standard Docker/installer rebuild and stationary full workloads with
 clock recovery. Physical calibration and moving-car acceptance remain open.
+The later [consolidation checks](../evidence/2026-11-15-vio-consolidation/README.md)
+also retain an open intermittent OAK upstream-tracking finding seen on both the
+consolidated and earlier artifacts; a passing repeat does not erase failed gates.
 The benchmark history below informed the design; its implementation and
 qualification recommendations describe the work needed at that time.
 

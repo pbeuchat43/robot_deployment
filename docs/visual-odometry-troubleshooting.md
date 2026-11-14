@@ -53,6 +53,16 @@ pose output resumed after a 4.75-second gap, and recording resumed in new
 generation-specific files after about 2.25 seconds. The uninstrumented baseline
 runs reported no clock discontinuity; this does not establish a natural fault rate.
 
+The later [consolidation checks](evidence/2026-11-15-vio-consolidation/README.md#stationary-smoke-measurements-and-open-oak-finding)
+found intermittent OAK tracking failures on both the consolidated and previously
+qualified artifacts. Failed 60-second windows delivered 27.15–27.73 Hz poses and
+71.44–77.33% bracket coverage; an unchanged consolidated repeat passed. The old
+release trace recorded upstream tracking failures with contiguous estimate
+sequence numbers at the probe. Scene/lighting were not independently verified,
+and the cause remains open. Preserve all windows and investigate under controlled
+conditions; do not relax the 50 ms association boundary or treat a repeat as
+uniform qualification. D455 passed its consolidated smoke check.
+
 Keep acquisition-event time distinct from explicit exposure midpoint. Preserve
 independent RGB/depth timing and pair admission. Estimator output uses the later
 stereo midpoint with the camera's fixed ROS-clock offset; the adapter must match

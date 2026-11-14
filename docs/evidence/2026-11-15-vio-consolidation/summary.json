@@ -1,0 +1,477 @@
+{
+  "schema_version": 1,
+  "consolidation_source_checks_passed": true,
+  "all_hardware_performance_gates_passed": false,
+  "scope": "Consolidated source and artifact verification, plus stationary Docker VIO smoke measurements.",
+  "checks": {
+    "passed": false,
+    "deployment_commit": "2f0fb6a8398ae09a05f9e74fdba4ff8cefceacd6",
+    "stages": [
+      {
+        "phase": "candidate-configure-resume",
+        "started_at": 1794679036.3318114,
+        "returncode": 0,
+        "elapsed_seconds": 5.0813820362091064
+      },
+      {
+        "phase": "installed-identity",
+        "started_at": 1794679041.4712887,
+        "returncode": 0,
+        "elapsed_seconds": 2.873664140701294
+      },
+      {
+        "phase": "cli-help",
+        "started_at": 1794679044.4049578,
+        "returncode": 0,
+        "elapsed_seconds": 0.16524553298950195
+      },
+      {
+        "phase": "deployment-unit",
+        "started_at": 1794679044.6268246,
+        "returncode": 0,
+        "elapsed_seconds": 5.936293125152588
+      },
+      {
+        "phase": "runtime-unit",
+        "started_at": 1794679050.6239913,
+        "returncode": 0,
+        "elapsed_seconds": 13.525237798690796
+      },
+      {
+        "phase": "launch",
+        "started_at": 1794679064.2082942,
+        "returncode": 0,
+        "elapsed_seconds": 1.775564432144165
+      },
+      {
+        "phase": "oak-vio",
+        "started_at": 1794679066.081648,
+        "returncode": 0,
+        "elapsed_seconds": 84.91175317764282
+      }
+    ],
+    "elapsed_seconds": 114.71849155426025,
+    "error": "AssertionError('oak-vio')",
+    "selected_live_deployment": false
+  },
+  "installed": {
+    "passed": true,
+    "source_identity": {
+      "deployment_commit": "2f0fb6a8398ae09a05f9e74fdba4ff8cefceacd6",
+      "runtime_commit": "aee4e9c0624d395de6bc02d27819d79c935024b8",
+      "schema_version": 1,
+      "sources_sha256": "cfca7b1822a85e98adecce51ebbed3919e3ae1d6dbb0f776611b045670b37072"
+    },
+    "bootstrap_artifacts": 16,
+    "installed_files_checked": {
+      "robot_deployment": 24,
+      "robot_runtime": 105
+    },
+    "actual_artifact_mode_checks": 24,
+    "old_manifest_rejected": true,
+    "image": "sha256:0e5adb392e57dd3e08d7ea68a9dfe2a63ced87710d145dac1a63882b576b79f1",
+    "manifest_sha256": "ed47dc035bd1503e15e71fa8aaf182159b3195288e2e839a95d0b2bfce7422ac",
+    "newly_built_ros_interfaces_imported": true,
+    "selected_live_deployment": false
+  },
+  "candidate": {
+    "passed": true,
+    "standard_installer_run": false,
+    "selected_live_deployment": false,
+    "sources": {
+      "rgbd_camera": "d56b6aa21d15e1862902e9992f8f298dcf84b982",
+      "rgbd_object_detector": "1a8583e0192263b278b645add57cb0dfed53025b",
+      "robot_runtime": "aee4e9c0624d395de6bc02d27819d79c935024b8",
+      "visual_odometry": "19aefec49e7e848ff4162ec0b73c2da6d73e5677",
+      "vision_msgs": "adbf56af9f77e3c8ab2552e25dc99e4a8a77fb27",
+      "cone_artifact": "5907560cb7a3c5f5df43a9a792243bdee1ce010f"
+    },
+    "docker_image": "sha256:0e5adb392e57dd3e08d7ea68a9dfe2a63ced87710d145dac1a63882b576b79f1",
+    "prior_docker_image": "sha256:5f69ad614687502dff1cec6e4b9a7c3fe79ee7665a8dc24bcc0842270f17bbcf",
+    "estimator_source_files_unchanged": true,
+    "reused_artifacts": [
+      "av-native",
+      "models",
+      "sdk"
+    ],
+    "new_manifest_sha256": "ed47dc035bd1503e15e71fa8aaf182159b3195288e2e839a95d0b2bfce7422ac",
+    "harness_correction": "Load parameter definitions before copying, as the standard installer does."
+  },
+  "bootstrap_artifacts": {
+    "PyYAML-6.0.2-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl": "1f71ea527786de97d1a0cc0eacd1defc0985dcf6b3f17bb77dcfc8c34bec4dc5",
+    "aiohappyeyeballs-2.7.1-py3-none-any.whl": "9243213661e29250eb41368e5daa826fc017156c3b8a11440826b2e3ed376472",
+    "aiohttp-3.14.4-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl": "322e3d741b3133bcbb981a41d4f9b8ac3545c18de49c662c2b1f4e1c770b98ad",
+    "aiosignal-1.4.0-py3-none-any.whl": "053243f8b92b990551949e63930a839ff0cf0b0ebbe0597b0f3fb19e1a0fe82e",
+    "attrs-23.2.0-py3-none-any.whl": "99b87a485a5820b23b879f04c2305b44b951b502fd64be915879d77a7e8fc6f1",
+    "frozenlist-1.8.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl": "96f423a119f4777a4a056b66ce11527366a8bb92f54e541ade21f2374433f6d4",
+    "idna-3.6-py3-none-any.whl": "c05567e9c24a6b9faaa835c4821bad0590fbb9d5779e7caa6e1cc4978e7eb24f",
+    "multidict-6.9.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl": "35fc236507fb1b3138f0af5ecd5f94ed752d4d6d826248eae425f86204013eea",
+    "propcache-0.5.4-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl": "60a64cbccaa11b7760ce705a14ada17ba459e7ca9f23ba587eb013821032d7ef",
+    "pyserial-3.5-py2.py3-none-any.whl": "c4451db6ba391ca6ca299fb3ec7bae67a5c55dde170964c7a14ceefec02f2cf0",
+    "robot_deployment-0.1.0.dev8-py3-none-any.whl": "56653e78b74b7f234e0db2d38c0a0c09784c37b2ca07c3887a25dd6b70253cd2",
+    "robot_deployment-0.1.0.dev8.tar.gz": "8428e42bd2f813d39cc6fd43b62b0afb5359345b960b45420ed9b82fbb33323d",
+    "robot_runtime-0.1.0.dev29-py3-none-any.whl": "bc30ca5297cfe44bc05b0386947b0a961b3b4f2e8e57d8015b756b96008bf28b",
+    "robot_runtime-0.1.0.dev29.tar.gz": "b71593d9bbf6687a0e0fb512960eefe9e8fd931e3946d3d25c1e2d02179194c2",
+    "typing_extensions-4.10.0-py3-none-any.whl": "69b1a937c3a517342112fb4c6df7e72fc39a38e7891a5730ed4985b5214b5475",
+    "yarl-1.25.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl": "4d781294bb815ecb5ea57ff6bbf8038e0a31a95fdf3e1788f66e0dc100d64b58"
+  },
+  "software_checks": {
+    "deployment_unit_tests": 58,
+    "runtime_unit_tests": 190,
+    "launch_combinations": 48
+  },
+  "workloads": {
+    "oak-vio": {
+      "passed": true,
+      "mode": "oak-cones-vio",
+      "seconds": 60.0,
+      "warmup_seconds": 10.0,
+      "backend": "docker",
+      "cones": {
+        "count": 1800,
+        "hz": 30.0,
+        "maximum_ms": 92.288557,
+        "minutes": [
+          {
+            "count": 1797,
+            "maximum_ms": 92.288557,
+            "minute": 0,
+            "p95_ms": 82.029537
+          }
+        ],
+        "over_100ms": 0,
+        "over_200ms": 0,
+        "p95_ms": 81.975205
+      },
+      "poses": {
+        "count": 1629,
+        "hz": 27.15,
+        "maximum_ms": 57.630935,
+        "minutes": [
+          {
+            "count": 1627,
+            "maximum_ms": 57.630935,
+            "minute": 0,
+            "p95_ms": 48.227778
+          }
+        ],
+        "over_100ms": 0,
+        "over_200ms": 0,
+        "p95_ms": 48.227778
+      },
+      "joints": {
+        "count": 1286,
+        "hz": 21.433333333333334,
+        "maximum_ms": 92.288557,
+        "minutes": [
+          {
+            "count": 1284,
+            "maximum_ms": 92.288557,
+            "minute": 0,
+            "p95_ms": 82.403842
+          }
+        ],
+        "over_100ms": 0,
+        "over_200ms": 0,
+        "p95_ms": 82.403842
+      },
+      "joint_fraction": 0.7144444444444444,
+      "cleanup_errors": [],
+      "performance_passed": false,
+      "artifact_selection": "consolidated"
+    },
+    "oak-trace-new": {
+      "passed": true,
+      "mode": "oak-cones-vio",
+      "seconds": 60.0,
+      "warmup_seconds": 10.0,
+      "backend": "docker",
+      "cones": {
+        "count": 1801,
+        "hz": 30.016666666666666,
+        "maximum_ms": 92.134605,
+        "minutes": [
+          {
+            "count": 1798,
+            "maximum_ms": 92.134605,
+            "minute": 0,
+            "p95_ms": 81.386001
+          }
+        ],
+        "over_100ms": 0,
+        "over_200ms": 0,
+        "p95_ms": 81.374882
+      },
+      "poses": {
+        "count": 1799,
+        "hz": 29.983333333333334,
+        "maximum_ms": 57.648102,
+        "minutes": [
+          {
+            "count": 1797,
+            "maximum_ms": 57.648102,
+            "minute": 0,
+            "p95_ms": 48.582705
+          }
+        ],
+        "over_100ms": 0,
+        "over_200ms": 0,
+        "p95_ms": 48.582705
+      },
+      "joints": {
+        "count": 1797,
+        "hz": 29.95,
+        "maximum_ms": 92.134605,
+        "minutes": [
+          {
+            "count": 1795,
+            "maximum_ms": 92.134605,
+            "minute": 0,
+            "p95_ms": 81.386001
+          }
+        ],
+        "over_100ms": 0,
+        "over_200ms": 0,
+        "p95_ms": 81.386001
+      },
+      "joint_fraction": 0.9977790116601888,
+      "cleanup_errors": [],
+      "performance_passed": true,
+      "artifact_selection": "consolidated"
+    },
+    "oak-trace-qualified": {
+      "passed": true,
+      "mode": "oak-cones-vio",
+      "seconds": 60.0,
+      "warmup_seconds": 10.0,
+      "backend": "docker",
+      "cones": {
+        "count": 1800,
+        "hz": 30.0,
+        "maximum_ms": 94.05002,
+        "minutes": [
+          {
+            "count": 1797,
+            "maximum_ms": 94.05002,
+            "minute": 0,
+            "p95_ms": 82.38644
+          }
+        ],
+        "over_100ms": 0,
+        "over_200ms": 0,
+        "p95_ms": 82.38644
+      },
+      "poses": {
+        "count": 1664,
+        "hz": 27.733333333333334,
+        "maximum_ms": 59.420951,
+        "minutes": [
+          {
+            "count": 1662,
+            "maximum_ms": 59.420951,
+            "minute": 0,
+            "p95_ms": 49.142926
+          }
+        ],
+        "over_100ms": 0,
+        "over_200ms": 0,
+        "p95_ms": 49.237286
+      },
+      "joints": {
+        "count": 1392,
+        "hz": 23.2,
+        "maximum_ms": 94.05002,
+        "minutes": [
+          {
+            "count": 1390,
+            "maximum_ms": 94.05002,
+            "minute": 0,
+            "p95_ms": 82.629724
+          }
+        ],
+        "over_100ms": 0,
+        "over_200ms": 0,
+        "p95_ms": 82.64597
+      },
+      "joint_fraction": 0.7733333333333333,
+      "cleanup_errors": [],
+      "performance_passed": false,
+      "artifact_selection": "previously_qualified"
+    },
+    "d455-vio": {
+      "passed": true,
+      "mode": "d455-cones-vio",
+      "seconds": 60.0,
+      "warmup_seconds": 10.0,
+      "backend": "docker",
+      "cones": {
+        "count": 1799,
+        "hz": 29.983333333333334,
+        "maximum_ms": 48.907471,
+        "minutes": [
+          {
+            "count": 1797,
+            "maximum_ms": 48.907471,
+            "minute": 0,
+            "p95_ms": 46.048551
+          }
+        ],
+        "over_100ms": 0,
+        "over_200ms": 0,
+        "p95_ms": 46.048551
+      },
+      "poses": {
+        "count": 1798,
+        "hz": 29.966666666666665,
+        "maximum_ms": 53.239839,
+        "minutes": [
+          {
+            "count": 1797,
+            "maximum_ms": 53.239839,
+            "minute": 0,
+            "p95_ms": 49.222765
+          }
+        ],
+        "over_100ms": 0,
+        "over_200ms": 0,
+        "p95_ms": 49.222765
+      },
+      "joints": {
+        "count": 1797,
+        "hz": 29.95,
+        "maximum_ms": 70.669903,
+        "minutes": [
+          {
+            "count": 1796,
+            "maximum_ms": 70.669903,
+            "minute": 0,
+            "p95_ms": 66.651293
+          }
+        ],
+        "over_100ms": 0,
+        "over_200ms": 0,
+        "p95_ms": 66.651293
+      },
+      "joint_fraction": 0.9988882712618121,
+      "cleanup_errors": [],
+      "performance_passed": true,
+      "artifact_selection": "consolidated"
+    }
+  },
+  "final_audit": {
+    "passed": true,
+    "host_packages_and_power_unchanged": true,
+    "runtime_runs": 4,
+    "managers_released": true,
+    "owned_units_inactive": true,
+    "containers_empty": true,
+    "camera_libraries_unmapped": true,
+    "selected_live_deployment": false,
+    "old_live_services_still_disabled": true,
+    "baseline_identity_files_unchanged": {
+      "sources.json": "7ff644735a605f7e284cf5718ed8a610bfe8e743f0b9e9985aa52512d368f954",
+      "host.json": "6acf5cfb312f93bd8c1a0cb0398405f91d506d1957136997bac69eaad64608f4",
+      "site.snapshot.json": "3e1220fe248adb3826355b9fd387451ff6323cdb67b891316181aedc99f64aaf",
+      "profile.identity.json": "b2f4954391dcbb867847f3c593f1060924ec0c5cc60c4af6ecc205ac4fbf2f26",
+      "visual-odometry/manifest.json": "b7070aad592617a6fc8f0c5be6c0bd381a72f96626331d6e5910b2420e75c418",
+      "visual-odometry/packages.txt": "9d0037997d2da76d29a2cec5a2a5f70873038b4968d4b9049ac406bead766c60"
+    },
+    "disk_free_bytes": 36946743296
+  },
+  "image_equivalence": {
+    "new_image": "sha256:0e5adb392e57dd3e08d7ea68a9dfe2a63ced87710d145dac1a63882b576b79f1",
+    "qualified_image": "sha256:5f69ad614687502dff1cec6e4b9a7c3fe79ee7665a8dc24bcc0842270f17bbcf",
+    "rootfs_identical": true,
+    "packages_identical": true,
+    "source_files_identical": true
+  },
+  "diagnostic_comparison": {
+    "oak-trace-new": {
+      "trace_message_counts": {
+        "camera": 384,
+        "stereo": 2161,
+        "internal_status": 355,
+        "upstream_pose": 2095
+      },
+      "status_reasons": {
+        "waiting_for_matched_estimate": 3,
+        "fresh_upstream_success_unqualified": 352
+      },
+      "last_status": {
+        "state": "tracking",
+        "reason": "fresh_upstream_success_unqualified",
+        "estimates": 2113,
+        "unmatched": 15,
+        "rejected": 0,
+        "association_epoch": 2
+      },
+      "observed_estimate_sequence_gaps": 0,
+      "pose_acquisition_gaps_above50ms": 1,
+      "stereo_without_observed_upstream": 66,
+      "upstream_without_observed_stereo": 0
+    },
+    "oak-trace-qualified": {
+      "trace_message_counts": {
+        "camera": 384,
+        "stereo": 2158,
+        "internal_status": 355,
+        "upstream_pose": 1954
+      },
+      "status_reasons": {
+        "waiting_for_matched_estimate": 3,
+        "fresh_upstream_success_unqualified": 330,
+        "upstream_tracking_failed": 22
+      },
+      "last_status": {
+        "state": "tracking",
+        "reason": "fresh_upstream_success_unqualified",
+        "estimates": 1971,
+        "unmatched": 154,
+        "rejected": 0,
+        "association_epoch": 140
+      },
+      "observed_estimate_sequence_gaps": 0,
+      "pose_acquisition_gaps_above50ms": 136,
+      "stereo_without_observed_upstream": 204,
+      "upstream_without_observed_stereo": 0
+    }
+  },
+  "failed_private_harness_attempt": {
+    "result": {
+      "passed": false,
+      "deployment_commit": "2f0fb6a8398ae09a05f9e74fdba4ff8cefceacd6",
+      "stages": [
+        {
+          "phase": "bootstrap",
+          "started_at": 1794678547.2659879,
+          "returncode": 0,
+          "elapsed_seconds": 23.848774671554565
+        },
+        {
+          "phase": "site",
+          "started_at": 1794678571.1749115,
+          "returncode": 0,
+          "elapsed_seconds": 0.6676552295684814
+        },
+        {
+          "phase": "candidate-build",
+          "started_at": 1794678571.9011679,
+          "returncode": 1,
+          "elapsed_seconds": 331.84419536590576
+        }
+      ],
+      "elapsed_seconds": 356.5345141887665,
+      "error": "AssertionError(('candidate-build', 1))",
+      "selected_live_deployment": false
+    },
+    "cause": "Private builder omitted parameters(graph) before copy_definitions; standard installer already performs it.",
+    "correction": "Loaded parameter definitions, regenerated the private definition snapshot, then resumed configuration and remaining checks."
+  },
+  "selected_live_deployment": false,
+  "limits": [
+    "Intermittent OAK upstream tracking failures were observed on the previously qualified release; one consolidated trial also missed rate/coverage gates. Root cause remains open; a passing repeat does not erase either failure.",
+    "SDKs, models and native video reused from the earlier qualified release.",
+    "Docker standard builder reused cached layers; no new complete installer/rerun or full workload claim.",
+    "Fresh-host installation, physical calibration and moving-car performance remain unqualified."
+  ]
+}

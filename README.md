@@ -42,6 +42,11 @@ The [15 November release qualification](docs/evidence/2026-11-15-vio-release-qua
 passed the standard fresh application/Docker build, installer rerun, and both-camera
 full workloads with VIO, both detectors, video and recording, including controlled
 clock recovery. Physical calibration and moving-car acceptance remain separate.
+The [development consolidation](docs/evidence/2026-11-15-vio-consolidation/README.md)
+records the squash commits, new-pin software checks and branch disposition.
+Its short OAK comparisons exposed intermittent upstream tracking failures on both
+the consolidated and previously qualified selection; that performance finding
+remains open despite a passing repeat. D455 passed the new smoke gates.
 
 [Event recording](docs/recording.md) adds independent RGB, annotated and colourized
 depth H.264/MP4 outputs, explicit 720p30 profiles, shared CLI/browser controls and

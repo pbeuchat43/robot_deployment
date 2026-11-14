@@ -1,0 +1,94 @@
+[
+  {
+    "repository": "rgbd_camera",
+    "qualified_commit": "48de2e5dd436524b3a12a56a8e9417181a365a60",
+    "consolidated_commit": "d56b6aa21d15e1862902e9992f8f298dcf84b982",
+    "identical_implementation_entries": 51,
+    "excluded_paths": [
+      "*.md",
+      "docs/"
+    ],
+    "changed_paths": [
+      "README.md",
+      "docs/adapter-qualification.md",
+      "docs/evidence/2026-10-24-oak-camera/README.md",
+      "docs/evidence/2026-10-25-d455/README.md",
+      "docs/evidence/2026-10-25-frame-delivery-rates/README.md",
+      "docs/evidence/2026-10-26-all-output-rates/README.md",
+      "docs/evidence/2026-10-26-oak-hardening/README.md",
+      "docs/verification.md"
+    ]
+  },
+  {
+    "repository": "rgbd_object_detector",
+    "qualified_commit": "a617f240af9203fd6b20e4ddd482c2d224aa53c0",
+    "consolidated_commit": "1a8583e0192263b278b645add57cb0dfed53025b",
+    "identical_implementation_entries": 42,
+    "excluded_paths": [
+      "*.md",
+      "docs/"
+    ],
+    "changed_paths": [
+      "README.md",
+      "docs/evidence/2026-10-24-oak-tensorrt/README.md",
+      "docs/evidence/2026-10-27-models/README.md"
+    ]
+  },
+  {
+    "repository": "robot_runtime",
+    "qualified_commit": "33854e97c0b248e731ac86c57bef17c43a42257a",
+    "consolidated_commit": "aee4e9c0624d395de6bc02d27819d79c935024b8",
+    "identical_implementation_entries": 193,
+    "excluded_paths": [
+      "*.md",
+      "docs/"
+    ],
+    "changed_paths": [
+      "docs/evidence/2026-10-27-rgbd-viewer/README.md",
+      "docs/verification.md"
+    ]
+  },
+  {
+    "repository": "visual_odometry",
+    "qualified_commit": "766ec225e85c306796ecab56623536f6feaab4b3",
+    "consolidated_commit": "19aefec49e7e848ff4162ec0b73c2da6d73e5677",
+    "identical_implementation_entries": 19,
+    "excluded_paths": [
+      "*.md",
+      "docs/"
+    ],
+    "changed_paths": [
+      "README.md"
+    ]
+  },
+  {
+    "repository": "robot_deployment",
+    "qualified_commit": "f7cc08868e5e78105de9a76b0745104e2c30b96e",
+    "consolidated_commit": "2f0fb6a8398ae09a05f9e74fdba4ff8cefceacd6",
+    "identical_implementation_entries": 58,
+    "excluded_paths": [
+      "*.md",
+      "docs/",
+      "sources.json"
+    ],
+    "changed_paths": [
+      "README.md",
+      "docs/design/2026-11-01-robot-deployment-design.md",
+      "docs/design/2026-11-12-visual-odometry.md",
+      "docs/everyday-jah.md",
+      "docs/evidence/2026-10-27-integration/README.md",
+      "docs/evidence/2026-11-06-capture-detections/README.md",
+      "docs/evidence/2026-11-14-oak-sdk312/README.md",
+      "docs/evidence/2026-11-15-vio-release-qualification/README.md",
+      "docs/evidence/2026-11-15-vio-release-qualification/acceptance-result.json",
+      "docs/evidence/2026-11-15-vio-release-qualification/private-archive-receipt.json",
+      "docs/evidence/2026-11-15-vio-release-qualification/release-result.json",
+      "docs/evidence/2026-11-15-vio-release-qualification/summary.json",
+      "docs/operations.md",
+      "docs/plans/2026-11-12-visual-odometry.md",
+      "docs/visual-odometry-troubleshooting.md",
+      "sources.json",
+      "tests/README.md"
+    ]
+  }
+]
