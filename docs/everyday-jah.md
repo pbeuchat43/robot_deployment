@@ -1,12 +1,19 @@
-# Everyday installation on Jah
+# Retired everyday installation on Jah
 
-The permanent installation uses the `poi` account and the `lucid_conduct` CLI.
+On 15 November 2026, the operator-authorized cleanup removed this application
+and disabled its management services. The
+[VO/VIO release qualification](evidence/2026-11-15-vio-release-qualification/README.md)
+passed in a separate private installation; it has not been activated for daily
+use. The commands, service states and paths below describe the retired
+4 November installation and are not current operating instructions.
+
+That permanent installation used the `poi` account and the `lucid_conduct` CLI.
 Its source identity is `7a682acafc52fc93d2b8cc02018c35842c4fdc4f`, with the
 component selections in that commit's `sources.json`. Subsequent documentation
 commits do not change the installed package identity.
 
 Selected and verified on 4 November 2026 as release `r20261104-everyday`.
-Both management units are enabled and active; existing account lingering is
+Both management units were enabled and active; existing account lingering was
 enabled. Perception and video were stopped after verification and stayed stopped
 through a management restart. No physical reboot was performed. See the
 [verification and cleanup record](evidence/2026-11-04-everyday/README.md).

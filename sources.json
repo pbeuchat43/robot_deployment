@@ -4,30 +4,32 @@
   "components": {
     "rgbd_camera": {
       "url": "https://github.com/pbeuchat43/rgbd_camera.git",
-      "commit": "ad078edc1081118fe1677b0b47b349eb3b89bcf1",
+      "commit": "d56b6aa21d15e1862902e9992f8f298dcf84b982",
       "baseline_main": "0f26452e4e30e7fe68a0bbb1a0488c4eda33450d"
     },
     "rgbd_object_detector": {
       "url": "https://github.com/pbeuchat43/rgbd_object_detector.git",
-      "commit": "7175b4f61cc8bc6348d01a7a1b191ee7cb80bac7",
+      "commit": "1a8583e0192263b278b645add57cb0dfed53025b",
       "baseline_main": "b5a70986d1c210f4ef47cf3d3b2393b40de4dbd4",
       "baseline_commit": "b5a70986d1c210f4ef47cf3d3b2393b40de4dbd4",
-      "historical_tested_implementation_commit": "db77e7ecd7824a31c9c176f0db2718cc49b5f31e",
-      "development_archive": "archive/2026-10-28-combined-overlay"
+      "historical_tested_implementation_commit": "db77e7ecd7824a31c9c176f0db2718cc49b5f31e"
     },
     "robot_runtime": {
       "url": "https://github.com/pbeuchat43/robot_runtime.git",
-      "commit": "d228ed03d43e2e505e732b0f618d1dad83e6b55c",
+      "commit": "aee4e9c0624d395de6bc02d27819d79c935024b8",
       "baseline_main": "be1ed63d3ce870205513b0b37e97f2292d656bd6",
       "baseline_commit": "be1ed63d3ce870205513b0b37e97f2292d656bd6",
-      "historical_tested_implementation_commit": "753ba241034371bcc93b7157ad7e63d03753aaf4",
-      "development_archive": "archive/2026-11-06-deployment-runtime"
+      "historical_tested_implementation_commit": "753ba241034371bcc93b7157ad7e63d03753aaf4"
+    },
+    "visual_odometry": {
+      "url": "https://github.com/pbeuchat43/visual_odometry.git",
+      "commit": "19aefec49e7e848ff4162ec0b73c2da6d73e5677"
     }
   },
   "dependencies": {
     "depthai": {
-      "version": "3.9.0",
-      "commit": "ac928141ef7750bf3082b5e1c319a115618660e7"
+      "version": "3.12.1",
+      "commit": "da14320483864f7cdabada9e70d4d6a2115eff9a"
     },
     "librealsense": {
       "version": "2.56.5",

@@ -1,0 +1,850 @@
+{
+  "schema_version": 1,
+  "hardware": {
+    "backend": "depthai-3.9.0",
+    "usb_speed": "SUPER",
+    "imu_sensor": "BMI270"
+  },
+  "camera_source_revision": "837959f700554bf548daac484ed03f6fe1b675e4",
+  "camera_implementation_revision": "f1f64eb4862dab4b96c9b4a6c45edb238747576d",
+  "depthai_revision": "ac928141ef7750bf3082b5e1c319a115618660e7",
+  "production_timestamp_policy_changed": false,
+  "tracing": {
+    "imu_packet_capacity_per_stage": 262144,
+    "image_capacity": 65536,
+    "receive_path_file_io": false,
+    "stages": [
+      "SDK callback before enqueue",
+      "provider dequeue before MotionGate"
+    ],
+    "fields": [
+      "sensor sequence",
+      "host-mapped timestamp",
+      "raw device timestamp",
+      "host arrival/dequeue time",
+      "batch and packet position",
+      "queue occupancy",
+      "poll snapshot",
+      "message correlation"
+    ],
+    "image_fields": [
+      "stream",
+      "sequence",
+      "host-mapped timestamp",
+      "raw device timestamp",
+      "host receipt time"
+    ]
+  },
+  "runs": [
+    {
+      "passed": true,
+      "elapsed_after_ready_seconds": 515.009645452,
+      "cleanup_errors": [],
+      "name": "native-360-load-r1",
+      "camera": {
+        "combined_imu_overflows": 0,
+        "combined_imu_rejected": 2,
+        "combined_imu_samples": 102049,
+        "detail": "",
+        "frames": 15471,
+        "rejected_pairs": 7,
+        "state": "streaming",
+        "stereo_pairs": 15482,
+        "stereo_rejected": 0
+      },
+      "odometry": {
+        "association_epoch": 1,
+        "estimates": 15458,
+        "reason": "fresh_upstream_success_unqualified",
+        "rejected": 12,
+        "state": "tracking",
+        "unmatched": 25
+      },
+      "traces": [
+        {
+          "span_seconds": 516.46483529,
+          "rows": {
+            "arrival": 102128,
+            "dequeue": 102128
+          },
+          "overflow": {
+            "arrival-overflow": 0,
+            "dequeue-overflow": 0,
+            "images-overflow": 0
+          },
+          "dequeue_not_arrival_ordered_subsequence": 0,
+          "images": {
+            "0": {
+              "rows": 15489,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 936744
+            },
+            "1": {
+              "rows": 15489,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 936744
+            },
+            "2": {
+              "rows": 15494,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 936744
+            },
+            "3": {
+              "rows": 15494,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 936744
+            }
+          },
+          "arrival": {
+            "a": {
+              "counts": {
+                "reports": 102128,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 67
+              },
+              "minimum_positive_host_delta_ns": 4120105,
+              "maximum_absolute_offset_step_ns": 936744,
+              "minimum_offset_step_ns": -936744,
+              "maximum_offset_step_ns": 0,
+              "minimum_device_delta_ns": 4723475
+            },
+            "g": {
+              "counts": {
+                "reports": 102128,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 67
+              },
+              "minimum_positive_host_delta_ns": 4120105,
+              "maximum_absolute_offset_step_ns": 936744,
+              "minimum_offset_step_ns": -936744,
+              "maximum_offset_step_ns": 0,
+              "minimum_device_delta_ns": 4723475
+            }
+          },
+          "dequeue": {
+            "a": {
+              "counts": {
+                "reports": 102128,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 67
+              },
+              "minimum_positive_host_delta_ns": 4120105,
+              "maximum_absolute_offset_step_ns": 936744,
+              "minimum_offset_step_ns": -936744,
+              "maximum_offset_step_ns": 0,
+              "minimum_device_delta_ns": 4723475
+            },
+            "g": {
+              "counts": {
+                "reports": 102128,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 67
+              },
+              "minimum_positive_host_delta_ns": 4120105,
+              "maximum_absolute_offset_step_ns": 936744,
+              "minimum_offset_step_ns": -936744,
+              "maximum_offset_step_ns": 0,
+              "minimum_device_delta_ns": 4723475
+            }
+          },
+          "sha256": {
+            "arrival.csv": "9356b298bd34aed1799e6dd9c231ae0165dfb6e7ecd07baea02d4058eac3f77d",
+            "dequeue.csv": "6e896ad7c6faf146df23d46b62a31fef27185d1a88e4f64882f3f28f95f299c8",
+            "images.csv": "85e71e88a4f6aa388cb7ecc071e6dfb1e961f7c29473502020dae9bcaeb6d19a",
+            "analysis.json": "a5d6bc50f36d72f8b8ee32c88987ff14ad0b774255819ed3e431ac19b05f7b69"
+          }
+        }
+      ]
+    },
+    {
+      "passed": true,
+      "elapsed_after_ready_seconds": 195.005751315,
+      "cleanup_errors": [],
+      "name": "native-360-r2",
+      "camera": {
+        "combined_imu_overflows": 0,
+        "combined_imu_rejected": 0,
+        "combined_imu_samples": 38701,
+        "detail": "",
+        "frames": 5857,
+        "rejected_pairs": 7,
+        "state": "streaming",
+        "stereo_pairs": 5868,
+        "stereo_rejected": 0
+      },
+      "odometry": {
+        "association_epoch": 1,
+        "estimates": 5861,
+        "reason": "fresh_upstream_success_unqualified",
+        "rejected": 19,
+        "state": "tracking",
+        "unmatched": 5
+      },
+      "traces": [
+        {
+          "span_seconds": 195.883437084,
+          "rows": {
+            "arrival": 38751,
+            "dequeue": 38751
+          },
+          "overflow": {
+            "arrival-overflow": 0,
+            "dequeue-overflow": 0,
+            "images-overflow": 0
+          },
+          "dequeue_not_arrival_ordered_subsequence": 0,
+          "images": {
+            "0": {
+              "rows": 5871,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 1410738
+            },
+            "1": {
+              "rows": 5871,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 1410738
+            },
+            "2": {
+              "rows": 5876,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 1410738
+            },
+            "3": {
+              "rows": 5876,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 1410738
+            }
+          },
+          "arrival": {
+            "a": {
+              "counts": {
+                "reports": 38751,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 26
+              },
+              "minimum_positive_host_delta_ns": 4535073,
+              "maximum_absolute_offset_step_ns": 1410738,
+              "minimum_offset_step_ns": -355369,
+              "maximum_offset_step_ns": 1410738,
+              "minimum_device_delta_ns": 4535073
+            },
+            "g": {
+              "counts": {
+                "reports": 38751,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 26
+              },
+              "minimum_positive_host_delta_ns": 4535073,
+              "maximum_absolute_offset_step_ns": 1410738,
+              "minimum_offset_step_ns": -355369,
+              "maximum_offset_step_ns": 1410738,
+              "minimum_device_delta_ns": 4535073
+            }
+          },
+          "dequeue": {
+            "a": {
+              "counts": {
+                "reports": 38751,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 26
+              },
+              "minimum_positive_host_delta_ns": 4535073,
+              "maximum_absolute_offset_step_ns": 1410738,
+              "minimum_offset_step_ns": -355369,
+              "maximum_offset_step_ns": 1410738,
+              "minimum_device_delta_ns": 4535073
+            },
+            "g": {
+              "counts": {
+                "reports": 38751,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 26
+              },
+              "minimum_positive_host_delta_ns": 4535073,
+              "maximum_absolute_offset_step_ns": 1410738,
+              "minimum_offset_step_ns": -355369,
+              "maximum_offset_step_ns": 1410738,
+              "minimum_device_delta_ns": 4535073
+            }
+          },
+          "sha256": {
+            "arrival.csv": "b1d3b75d4722b53f568321181d996d3d705bcf92c84a712878650a6dc40c6549",
+            "dequeue.csv": "189003ed44e7493e3e4995ac00b5bf3532c7c3bd60fa096b44c6f7ed641b9852",
+            "images.csv": "972b4c09d0fa8f81ea5e6b921354e10dfc8ba6c2df0a992b6434c349d393406a",
+            "analysis.json": "714b585b3ac1f031dd141c36d0c196f1f913d922f415bf4cdb70c868e89ae0c9"
+          }
+        }
+      ]
+    },
+    {
+      "passed": true,
+      "elapsed_after_ready_seconds": 315.003122884,
+      "cleanup_errors": [],
+      "name": "native-360-r3",
+      "camera": {
+        "combined_imu_overflows": 0,
+        "combined_imu_rejected": 0,
+        "combined_imu_samples": 62402,
+        "detail": "",
+        "frames": 9453,
+        "rejected_pairs": 7,
+        "state": "streaming",
+        "stereo_pairs": 9464,
+        "stereo_rejected": 0
+      },
+      "odometry": {
+        "association_epoch": 1,
+        "estimates": 9462,
+        "reason": "fresh_upstream_success_unqualified",
+        "rejected": 16,
+        "state": "tracking",
+        "unmatched": 0
+      },
+      "traces": [
+        {
+          "span_seconds": 315.709345314,
+          "rows": {
+            "arrival": 62446,
+            "dequeue": 62446
+          },
+          "overflow": {
+            "arrival-overflow": 0,
+            "dequeue-overflow": 0,
+            "images-overflow": 0
+          },
+          "dequeue_not_arrival_ordered_subsequence": 0,
+          "images": {
+            "0": {
+              "rows": 9466,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 1017094
+            },
+            "1": {
+              "rows": 9466,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 1017094
+            },
+            "2": {
+              "rows": 9471,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 1017094
+            },
+            "3": {
+              "rows": 9471,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 1017094
+            }
+          },
+          "arrival": {
+            "a": {
+              "counts": {
+                "reports": 62446,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 41
+              },
+              "minimum_positive_host_delta_ns": 4044737,
+              "maximum_absolute_offset_step_ns": 1017094,
+              "minimum_offset_step_ns": -1017094,
+              "maximum_offset_step_ns": 0,
+              "minimum_device_delta_ns": 4651297
+            },
+            "g": {
+              "counts": {
+                "reports": 62446,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 41
+              },
+              "minimum_positive_host_delta_ns": 4044737,
+              "maximum_absolute_offset_step_ns": 1017094,
+              "minimum_offset_step_ns": -1017094,
+              "maximum_offset_step_ns": 0,
+              "minimum_device_delta_ns": 4651297
+            }
+          },
+          "dequeue": {
+            "a": {
+              "counts": {
+                "reports": 62446,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 41
+              },
+              "minimum_positive_host_delta_ns": 4044737,
+              "maximum_absolute_offset_step_ns": 1017094,
+              "minimum_offset_step_ns": -1017094,
+              "maximum_offset_step_ns": 0,
+              "minimum_device_delta_ns": 4651297
+            },
+            "g": {
+              "counts": {
+                "reports": 62446,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 41
+              },
+              "minimum_positive_host_delta_ns": 4044737,
+              "maximum_absolute_offset_step_ns": 1017094,
+              "minimum_offset_step_ns": -1017094,
+              "maximum_offset_step_ns": 0,
+              "minimum_device_delta_ns": 4651297
+            }
+          },
+          "sha256": {
+            "arrival.csv": "2cfb87c4bbb2b3219dbbf1b236b9446aee07248c25c79cb94e4a59acff09f4b3",
+            "dequeue.csv": "d5c6cc62f80798c7c60843a9a70fa51597dcb27694b82e36b54d0a057fdb59c6",
+            "images.csv": "267d5f631b0e4e36487ec3435bffe19bf5ede9573eb80e29ff00454a683a9c14",
+            "analysis.json": "4bf820216f1c9eb1814e39fc28b8bf798b92cc251cf7ec842c82eb1ca03e9d76"
+          }
+        }
+      ]
+    },
+    {
+      "passed": true,
+      "elapsed_after_ready_seconds": 315.000049532,
+      "cleanup_errors": [],
+      "name": "native-360-r4",
+      "camera": {
+        "combined_imu_overflows": 0,
+        "combined_imu_rejected": 0,
+        "combined_imu_samples": 62387,
+        "detail": "",
+        "frames": 9452,
+        "rejected_pairs": 7,
+        "state": "streaming",
+        "stereo_pairs": 9463,
+        "stereo_rejected": 0
+      },
+      "odometry": {
+        "association_epoch": 1,
+        "estimates": 9452,
+        "reason": "fresh_upstream_success_unqualified",
+        "rejected": 10,
+        "state": "tracking",
+        "unmatched": 5
+      },
+      "traces": [
+        {
+          "span_seconds": 315.664716115,
+          "rows": {
+            "arrival": 62429,
+            "dequeue": 62429
+          },
+          "overflow": {
+            "arrival-overflow": 0,
+            "dequeue-overflow": 0,
+            "images-overflow": 0
+          },
+          "dequeue_not_arrival_ordered_subsequence": 0,
+          "images": {
+            "0": {
+              "rows": 9465,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 765675
+            },
+            "1": {
+              "rows": 9465,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 765675
+            },
+            "2": {
+              "rows": 9469,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 765675
+            },
+            "3": {
+              "rows": 9469,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 765675
+            }
+          },
+          "arrival": {
+            "a": {
+              "counts": {
+                "reports": 62429,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 41
+              },
+              "minimum_positive_host_delta_ns": 4280112,
+              "maximum_absolute_offset_step_ns": 765675,
+              "minimum_offset_step_ns": -765675,
+              "maximum_offset_step_ns": 0,
+              "minimum_device_delta_ns": 4732720
+            },
+            "g": {
+              "counts": {
+                "reports": 62429,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 41
+              },
+              "minimum_positive_host_delta_ns": 4280112,
+              "maximum_absolute_offset_step_ns": 765675,
+              "minimum_offset_step_ns": -765675,
+              "maximum_offset_step_ns": 0,
+              "minimum_device_delta_ns": 4732720
+            }
+          },
+          "dequeue": {
+            "a": {
+              "counts": {
+                "reports": 62429,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 41
+              },
+              "minimum_positive_host_delta_ns": 4280112,
+              "maximum_absolute_offset_step_ns": 765675,
+              "minimum_offset_step_ns": -765675,
+              "maximum_offset_step_ns": 0,
+              "minimum_device_delta_ns": 4732720
+            },
+            "g": {
+              "counts": {
+                "reports": 62429,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 41
+              },
+              "minimum_positive_host_delta_ns": 4280112,
+              "maximum_absolute_offset_step_ns": 765675,
+              "minimum_offset_step_ns": -765675,
+              "maximum_offset_step_ns": 0,
+              "minimum_device_delta_ns": 4732720
+            }
+          },
+          "sha256": {
+            "arrival.csv": "b927e82314fa5c126a62d7b2dcf5d319317333da89ae820d4a96bc1a5bde8eb4",
+            "dequeue.csv": "07f82b499786aee75b2e7a5c17309a7f30ab3c7b7166d5afc57a39bf653d2353",
+            "images.csv": "1868cf5dd85255b83bd6066ebbde0a85daca6bbe72843749868b9d2466d81cf7",
+            "analysis.json": "ba259b6cb788c83cd9a7ca7901d1c24a2116f110253dd44d09bf97a58a56951b"
+          }
+        }
+      ]
+    },
+    {
+      "passed": true,
+      "elapsed_after_ready_seconds": 315.00061614,
+      "cleanup_errors": [],
+      "name": "native-360-r5",
+      "camera": {
+        "combined_imu_overflows": 0,
+        "combined_imu_rejected": 0,
+        "combined_imu_samples": 62350,
+        "detail": "",
+        "frames": 9447,
+        "rejected_pairs": 7,
+        "state": "streaming",
+        "stereo_pairs": 9458,
+        "stereo_rejected": 0
+      },
+      "odometry": {
+        "association_epoch": 1,
+        "estimates": 9458,
+        "reason": "fresh_upstream_success_unqualified",
+        "rejected": 16,
+        "state": "tracking",
+        "unmatched": 0
+      },
+      "traces": [
+        {
+          "span_seconds": 315.694086506,
+          "rows": {
+            "arrival": 62432,
+            "dequeue": 62432
+          },
+          "overflow": {
+            "arrival-overflow": 0,
+            "dequeue-overflow": 0,
+            "images-overflow": 0
+          },
+          "dequeue_not_arrival_ordered_subsequence": 0,
+          "images": {
+            "0": {
+              "rows": 9466,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 887074
+            },
+            "1": {
+              "rows": 9466,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 887074
+            },
+            "2": {
+              "rows": 9471,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 887074
+            },
+            "3": {
+              "rows": 9471,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 887074
+            }
+          },
+          "arrival": {
+            "a": {
+              "counts": {
+                "reports": 62432,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 41
+              },
+              "minimum_positive_host_delta_ns": 4167200,
+              "maximum_absolute_offset_step_ns": 887074,
+              "minimum_offset_step_ns": -887074,
+              "maximum_offset_step_ns": 0,
+              "minimum_device_delta_ns": 4603164
+            },
+            "g": {
+              "counts": {
+                "reports": 62432,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 41
+              },
+              "minimum_positive_host_delta_ns": 4167200,
+              "maximum_absolute_offset_step_ns": 887074,
+              "minimum_offset_step_ns": -887074,
+              "maximum_offset_step_ns": 0,
+              "minimum_device_delta_ns": 4603164
+            }
+          },
+          "dequeue": {
+            "a": {
+              "counts": {
+                "reports": 62432,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 41
+              },
+              "minimum_positive_host_delta_ns": 4167200,
+              "maximum_absolute_offset_step_ns": 887074,
+              "minimum_offset_step_ns": -887074,
+              "maximum_offset_step_ns": 0,
+              "minimum_device_delta_ns": 4603164
+            },
+            "g": {
+              "counts": {
+                "reports": 62432,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 41
+              },
+              "minimum_positive_host_delta_ns": 4167200,
+              "maximum_absolute_offset_step_ns": 887074,
+              "minimum_offset_step_ns": -887074,
+              "maximum_offset_step_ns": 0,
+              "minimum_device_delta_ns": 4603164
+            }
+          },
+          "sha256": {
+            "arrival.csv": "e352423d19758d89a5423143e8266b69f34bc590c70b0ff4c07e4d7dd96c4b5d",
+            "dequeue.csv": "f863aea1c0df4a7b159a9ad8aa75cd532d6d25663dabafa6e68e683074ec91df",
+            "images.csv": "1c06f6008de859906f03a74ce9c77cbb8bde5c5b00430de109736490ea90ff9d",
+            "analysis.json": "b07df63dcd9c7460b8f834e8e0d5a64765b4dee2176e59a8bab9f115126a63ac"
+          }
+        }
+      ]
+    }
+  ],
+  "source_sha256": {
+    "camera-source.tar": "1e40f6947c1b8473dc5315cb5a310d839fea293b4f2e6dc62faa1f73b152a06e",
+    "clock_probe.hpp": "f3f56f1c9da9977c0818abe2abe67aaa8b71e968e47e082662f005fbc2abb812",
+    "instrument.py": "9c3a74d8648a0956d51c5bf7bc41f58f5cdbdc57cccf302987ffdd3a8f68466e",
+    "build.sh": "7c00fa1eb8f538405d653c6befdf3f1deef70b51b90bdf547a85a46bf61b406e",
+    "stage.py": "ccac3ffe946caee1bc5cbdac3f9c37ea82d81b9ba59b9a4d96edb09febf41b53",
+    "integration_trace.py": "a425be5797f16a6f12dc72e2b12dbe8b70e2e248ce763fe00ab90d7f9afe43d3",
+    "run.py": "fc9bfa711e8dd5c45a26e6f40559c019d25a46c6b7ad3b2129e1bdae7629c4bd",
+    "run.sh": "020c4c3624931ed9b6c8e2e660a36fd62726a0adab11552d2f0ab04b782013eb",
+    "analyze.py": "b5d2fe82b49e13601629a256b9a78b3a958fc1960ade6caa4e718ecc607aff06",
+    "observe.py": "85f849135d0b9f7b900573609357a14426d12867636ed924963ba8cb831f3d1a",
+    "run_stress.py": "06f6645226983d82f4896e4d261d78c1063460c91560981e5c556da0c78f1f45",
+    "cpu_load.py": "0233d79ccc6c42ee55314a7a0e3ebb58294156fe05ecaa8d08d8aa3a4e430214"
+  },
+  "binary_sha256": {
+    "librgbd_camera_oak.so": "37e90bd328d9114b91e57da593d62f29bd23b988281aafbbfddab96bb6129e78",
+    "librgbd_camera_core.so": "6625478bf27f28f246b5716cfade3a58ca40cade46e5826482d8a3f83ee104ff"
+  },
+  "load_phases": [
+    {
+      "kind": "fixture_started",
+      "relative_seconds": 0.0
+    },
+    {
+      "kind": "ready",
+      "relative_seconds": 10.508860568
+    },
+    {
+      "kind": "load_started",
+      "relative_seconds": 160.561160975,
+      "duration_seconds": 150
+    },
+    {
+      "kind": "load_finished",
+      "relative_seconds": 310.624982017,
+      "exit_codes": [
+        0,
+        0,
+        0,
+        0,
+        0
+      ]
+    },
+    {
+      "kind": "fixture_finished",
+      "relative_seconds": 529.207445556,
+      "exit_code": 0
+    },
+    {
+      "kind": "helpers_reaped",
+      "relative_seconds": 529.209711093
+    }
+  ],
+  "cpu_workers": [
+    {
+      "cpu_seconds": 149.83263948799998
+    },
+    {
+      "cpu_seconds": 147.439025568
+    },
+    {
+      "cpu_seconds": 149.845245984
+    },
+    {
+      "cpu_seconds": 149.7592704
+    },
+    {
+      "cpu_seconds": 149.848134848
+    }
+  ]
+}

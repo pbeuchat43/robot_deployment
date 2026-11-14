@@ -5,6 +5,13 @@ environment, private directories, ROS domain, ports and runtime namespace.
 Inspect existing workloads before any hardware operation. Do not run these
 against an active persistent deployment.
 
+When integrating a new camera, use the component-owned
+[camera-adapter qualification checklist](https://github.com/pbeuchat43/rgbd_camera/blob/dev/docs/adapter-qualification.md)
+alongside these installed checks. It covers profile capabilities, geometry,
+clock/VO/VIO recovery, full workloads and physical acceptance. Extend the current
+OAK/D455 fixture selections for each admitted adapter; existing hardware evidence
+does not qualify the planned ZED 2i or Orbbec integration.
+
 From outside the source checkout, with the selected wheel installed:
 
 ```bash
@@ -33,11 +40,27 @@ component workspace, then run the installed deployment package's launch check:
 /absolute/venv/bin/python /absolute/robot_deployment/tests/integration_launch.py -v
 ```
 
-It evaluates actual composable-node descriptions for all eight modes and resolves
+It evaluates actual composable-node descriptions for all 24 admitted modes on
+both installed backends and resolves
 the detector output and combined inputs in a non-default namespace. The launch
 service is intercepted before execution; no component, camera or GPU is started.
 The detector's native `combined_overlay` test separately exercises these remaps
 through actual ROS callbacks with synthetic captures.
+
+`integration_odometry.py --site PRIVATE_SITE --release PRIVATE_CANDIDATE --output
+NEW_PRIVATE_OUTPUT --mode oak-cones-vio --warmup 15 --seconds 60` runs a finite
+stationary camera/estimator fixture through the installed runtime. It retains
+capture/pose latency samples, same-epoch previous/current RGB pose coverage,
+with an actual pose-bracket width of at most 50 ms, per-minute peaks and explicit
+cleanup. Camera errors, expired health observations and premature run exit fail
+the fixture even if it produced samples earlier. `passed` denotes fixture completion;
+compare the recorded metrics separately with the fixed feasibility gates.
+The private report retains camera/session/calibration identities; redact them
+before publishing a summary.
+`--record` adds RGB/depth/annotated recording; `--wait-video` waits for an external
+finite viewer to confirm decoded frames via `OUTPUT/video-ready` before timing.
+The viewer must use the fixture's runtime state and stop when
+`OUTPUT/measurement-complete` appears. Never use a personal browser profile.
 
 Bootstrap must also be run from the selected clean Git commit on Jah. Check its
 receipt, wheel/source distributions, installed source/assets, dependency consistency

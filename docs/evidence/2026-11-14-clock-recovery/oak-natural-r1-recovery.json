@@ -1,0 +1,11 @@
+{
+  "fixture_passed": true,
+  "cleanup_errors": [],
+  "camera_process_count": 1,
+  "camera_clock_discontinuities": 0,
+  "imu_clock_rejected": 0,
+  "image_clock_rejected": 0,
+  "generation_transitions": [],
+  "pose_count": 27000,
+  "final_camera": "streaming"
+}

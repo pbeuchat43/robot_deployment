@@ -99,7 +99,9 @@ conversion. Standard image/status topics and model/engine artifacts are unchange
 
 The private raw logs and scripts were retained in the task's isolated Jah
 directory and local task archive; their hashes are in the summary. Native checks
-used ROS domain 231, localhost discovery and at most two build jobs.
+used ROS domain 231, localhost discovery and at most two build jobs. The local
+task archive was later intentionally discarded; the status of the Jah copies
+has not been checked.
 
 ## Cleanup and limits
 

@@ -7,8 +7,11 @@ The eight-mode recording candidate has its own
 Fresh Nano/NX installations, custom carriers, physical camera replacement and
 vehicle operation are not established by the software checks. Historical camera
 evidence remains linked from the [README](../README.md).
-For the permanent Jah installation selected on 4 November, use the
-[everyday operator guide](everyday-jah.md) and its recorded paths.
+The [15 November VO/VIO qualification](evidence/2026-11-15-vio-release-qualification/README.md)
+passed the standard application/Docker rebuild, installer rerun and full workloads
+on the existing host. The old 4 November installation was removed with operator
+authorization; its [everyday guide](everyday-jah.md) now records retired paths.
+The new qualified candidate remains private and has not been activated for daily use.
 
 ## Bootstrap on the selected target
 
@@ -18,11 +21,10 @@ Use an existing intended runtime account with a working user systemd manager.
 The minimal bootstrap prerequisites are Git, CA certificates and Python 3.12
 with `venv`/ensurepip (`git ca-certificates python3-venv` on the target).
 
-Obtain a clean deployment Git checkout at the selected full commit. There is
-currently no published deployment remote. Transfer the checkout through a Git
-bundle or clone from an explicitly supplied local repository; do not invent a
-release URL. Unpublished component commits can be supplied as Git repositories
-or `NAME.bundle` files in a private source-cache directory. The recognized names
+Obtain a clean deployment Git checkout at the selected full commit from the
+[canonical repository](https://github.com/pbeuchat43/robot_deployment), or transfer
+that checkout through a Git bundle. Unpublished component commits can be supplied
+as Git repositories or `NAME.bundle` files in a private source-cache directory. The recognized names
 are `robot_runtime`, `rgbd_camera`, `rgbd_object_detector`, `vision_msgs` and
 `cone_artifact`; optional firmware uses `pico-sdk`, `picotool`,
 `firmware-bno08x` and `firmware-traxxas`.

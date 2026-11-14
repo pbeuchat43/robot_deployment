@@ -3,6 +3,7 @@
 # Copyright (c) 2026 Paul N. Beuchat. MIT License.
 import json
 import os
+import sys
 
 
 def main():
@@ -15,6 +16,9 @@ def main():
     selected = snapshot["selected_models"]
     # No mutable site, composition or student file is read here.
     from launch import LaunchDescription, LaunchService
+    from launch.actions import ExecuteProcess, RegisterEventHandler, EmitEvent
+    from launch.event_handlers import OnProcessExit
+    from launch.events import Shutdown
     from launch_ros.actions import ComposableNodeContainer, Node
     from launch_ros.descriptions import ComposableNode
     namespace = snapshot["namespace"]
@@ -49,8 +53,30 @@ def main():
     print(json.dumps(dict(event="prepared_launch", run_id=os.environ.get("ROBOT_RUNTIME_RUN"),
         mode=manifest["mode"], source_hashes=snapshot["provenance"]["sources"])), flush=True)
     service = LaunchService()
-    service.include_launch_description(LaunchDescription([*transforms, container]))
-    return service.run()
+    actions = [*transforms, container]
+    required = [container]
+    estimator = snapshot.get("odometry")
+    if estimator:
+        configuration = next(item["path"] for item in manifest["inputs"] if item["name"] == "odometry")
+        health = ExecuteProcess(cmd=[sys.executable, "-m", "robot_deployment.odometry_health", "--config", configuration], output="screen")
+        required.append(health)
+        actions.append(health)
+        if estimator["backend"] == "native":
+            native = ExecuteProcess(cmd=[*estimator["argv"], configuration], output="screen")
+            required.append(native)
+            actions.append(native)
+        # Docker creation/start/stop belongs to runtime. This process does not
+        # hold a Docker client, socket, or an independent ownership lifecycle.
+    failure = []
+    def exited(event, context):
+        if not context.is_shutdown:
+            failure.append(event.returncode)
+            return [EmitEvent(event=Shutdown(reason="required perception process exited"))]
+        return []
+    handlers = [RegisterEventHandler(OnProcessExit(target_action=process, on_exit=exited)) for process in required]
+    service.include_launch_description(LaunchDescription([*handlers, *actions]))
+    result = service.run()
+    return 1 if failure else result
 
 
 if __name__ == "__main__":

@@ -7,7 +7,7 @@ import subprocess
 
 from .artifacts import verify_source
 from .commands import graph_for
-from .components import ros_environment, ros_packages, with_ros
+from .components import ros_environment, ros_packages, ros_source, with_ros
 from .configuration import file_digest, require
 from .maintenance import current
 from .records import claim, locked, write_json
@@ -50,9 +50,10 @@ def ros(site_path=None, definitions=None, *, workspace, clean=False):
             checkout = installation / "cache/git" / (name + "-" + revision)
             require(checkout.is_dir(), "Missing pinned system source; complete installation first: " + name)
             verify_source(checkout, revision)
-            package = checkout / "ros/robot_runtime_recording" if name == "robot_runtime" else checkout
+            package = ros_source(name, checkout)
             require(package.is_dir(), "Missing pinned ROS package: " + str(package))
-            link = source / ("robot_runtime_recording" if name == "robot_runtime" else name)
+            link_name = {"robot_runtime": "robot_runtime_recording", "visual_odometry": "visual_odometry_interfaces"}.get(name, name)
+            link = source / link_name
             if link.exists() or link.is_symlink():
                 require(link.is_symlink() and link.resolve() == package.resolve(), "System source binding changed; use a new owned build directory")
             else:

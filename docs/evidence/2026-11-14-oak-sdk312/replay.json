@@ -1,0 +1,1218 @@
+{
+  "schema": 1,
+  "prototype": true,
+  "production_guard_changed": false,
+  "observation_source": "provider_dequeue",
+  "stream_order": [
+    "accel",
+    "gyro",
+    "rgb_event",
+    "depth_event",
+    "left_event",
+    "right_event"
+  ],
+  "parameters": {
+    "startup_ns": 1000000000,
+    "receipt_margin_ns": 5000000,
+    "bin_ns": 250000000,
+    "bins": 8,
+    "history_segments": 64,
+    "max_slew_ppm": 5000
+  },
+  "checks": {
+    "self_test_passed": true,
+    "mapper_bytes": 1720
+  },
+  "traces": {
+    "sdk39-future": {
+      "inputs": {
+        "arrival": {
+          "rows": 130507,
+          "sha256": "28ab407d087a15434b55cd4a5e0ab5e4b944a573fc6f8ec1c4838c5aa2dbb415"
+        },
+        "dequeue": {
+          "rows": 130507,
+          "sha256": "7aed049d233adc20f509e16266293b15bf7660212a534855e2fb525cdb9b607e"
+        },
+        "images": {
+          "rows": 79178,
+          "sha256": "e624bfda6c4393fa74751a9e64352936de3ad000fb6b5c63bfceb70750d9458e"
+        }
+      },
+      "modes": [
+        {
+          "clock": "sdk",
+          "fault_policy": "stop",
+          "stopped": true,
+          "clock_faults": 1,
+          "raw_epoch_faults": 0,
+          "first_fault_relative_ns": 660220131583,
+          "processed_span_ns": 660220131583,
+          "combined": 130502,
+          "combined_rejected": 4,
+          "combined_overflows": 0,
+          "combined_max_gap_ns": 127273286,
+          "min_rate_ppb": 1000000000,
+          "max_rate_ppb": 1000000000,
+          "image_pair_counts": [
+            19792,
+            19796
+          ],
+          "max_image_pair_skew_ns": [
+            26605228,
+            27479
+          ],
+          "max_image_pair_skew_change_from_sdk_ns": [
+            0,
+            0
+          ],
+          "streams": [
+            {
+              "seen": 130507,
+              "accepted": 130506,
+              "unavailable": 0,
+              "invalid": 1,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 1,
+              "min_delta_ns": 46555,
+              "max_delta_ns": 124683994,
+              "min_age_ns": -5063184,
+              "max_age_ns": 146571235,
+              "max_accepted_receipt_gap_ns": 16006695,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 130506,
+              "accepted": 130506,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 46555,
+              "max_delta_ns": 124683994,
+              "min_age_ns": -4969956,
+              "max_age_ns": 146571235,
+              "max_accepted_receipt_gap_ns": 16006695,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 19792,
+              "accepted": 19792,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 28312895,
+              "max_delta_ns": 152971959,
+              "min_age_ns": 21953809,
+              "max_age_ns": 169345615,
+              "max_accepted_receipt_gap_ns": 53681131,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 19792,
+              "accepted": 19792,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 28324235,
+              "max_delta_ns": 152960374,
+              "min_age_ns": 21888794,
+              "max_age_ns": 169270337,
+              "max_accepted_receipt_gap_ns": 53681131,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 19796,
+              "accepted": 19796,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 28324717,
+              "max_delta_ns": 152959626,
+              "min_age_ns": 5689751,
+              "max_age_ns": 151475065,
+              "max_accepted_receipt_gap_ns": 38855154,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 19796,
+              "accepted": 19796,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 28324235,
+              "max_delta_ns": 152960374,
+              "min_age_ns": 5677971,
+              "max_age_ns": 151463594,
+              "max_accepted_receipt_gap_ns": 38855154,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            }
+          ]
+        },
+        {
+          "clock": "sdk",
+          "fault_policy": "drop",
+          "stopped": false,
+          "clock_faults": 2,
+          "raw_epoch_faults": 0,
+          "first_fault_relative_ns": 660220131583,
+          "processed_span_ns": 660220137491,
+          "combined": 130502,
+          "combined_rejected": 4,
+          "combined_overflows": 0,
+          "combined_max_gap_ns": 127273286,
+          "min_rate_ppb": 1000000000,
+          "max_rate_ppb": 1000000000,
+          "image_pair_counts": [
+            19792,
+            19797
+          ],
+          "max_image_pair_skew_ns": [
+            26605228,
+            27479
+          ],
+          "max_image_pair_skew_change_from_sdk_ns": [
+            0,
+            0
+          ],
+          "streams": [
+            {
+              "seen": 130507,
+              "accepted": 130506,
+              "unavailable": 0,
+              "invalid": 1,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 1,
+              "min_delta_ns": 46555,
+              "max_delta_ns": 124683994,
+              "min_age_ns": -5063184,
+              "max_age_ns": 146571235,
+              "max_accepted_receipt_gap_ns": 16006695,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 130507,
+              "accepted": 130506,
+              "unavailable": 0,
+              "invalid": 1,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 1,
+              "min_delta_ns": 46555,
+              "max_delta_ns": 124683994,
+              "min_age_ns": -5063184,
+              "max_age_ns": 146571235,
+              "max_accepted_receipt_gap_ns": 16006695,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 19792,
+              "accepted": 19792,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 28312895,
+              "max_delta_ns": 152971959,
+              "min_age_ns": 21953809,
+              "max_age_ns": 169345615,
+              "max_accepted_receipt_gap_ns": 53681131,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 19792,
+              "accepted": 19792,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 28324235,
+              "max_delta_ns": 152960374,
+              "min_age_ns": 21888794,
+              "max_age_ns": 169270337,
+              "max_accepted_receipt_gap_ns": 53681131,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 19797,
+              "accepted": 19797,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 28324717,
+              "max_delta_ns": 152959626,
+              "min_age_ns": 5689751,
+              "max_age_ns": 151475065,
+              "max_accepted_receipt_gap_ns": 38855154,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 19797,
+              "accepted": 19797,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 28324235,
+              "max_delta_ns": 152960374,
+              "min_age_ns": 5677971,
+              "max_age_ns": 151463594,
+              "max_accepted_receipt_gap_ns": 38855154,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            }
+          ]
+        },
+        {
+          "clock": "local",
+          "fault_policy": "stop",
+          "stopped": false,
+          "clock_faults": 0,
+          "raw_epoch_faults": 0,
+          "first_fault_relative_ns": 0,
+          "processed_span_ns": 660220137491,
+          "combined": 130309,
+          "combined_rejected": 0,
+          "combined_overflows": 0,
+          "combined_max_gap_ns": 5497771,
+          "min_rate_ppb": 997392403,
+          "max_rate_ppb": 1005000000,
+          "image_pair_counts": [
+            19767,
+            19768
+          ],
+          "max_image_pair_skew_ns": [
+            94780,
+            27479
+          ],
+          "max_image_pair_skew_change_from_sdk_ns": [
+            808367,
+            73
+          ],
+          "streams": [
+            {
+              "seen": 130507,
+              "accepted": 130309,
+              "unavailable": 198,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 4604341,
+              "max_delta_ns": 5497771,
+              "min_age_ns": 2279822,
+              "max_age_ns": 221929184,
+              "max_accepted_receipt_gap_ns": 14539642,
+              "min_difference_from_sdk_ns": -203177153,
+              "max_difference_from_sdk_ns": 10977732
+            },
+            {
+              "seen": 130507,
+              "accepted": 130309,
+              "unavailable": 198,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 4604341,
+              "max_delta_ns": 5497771,
+              "min_age_ns": 2279822,
+              "max_age_ns": 221929184,
+              "max_accepted_receipt_gap_ns": 14539642,
+              "min_difference_from_sdk_ns": -203177153,
+              "max_difference_from_sdk_ns": 10977732
+            },
+            {
+              "seen": 19792,
+              "accepted": 19767,
+              "unavailable": 25,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 33234442,
+              "max_delta_ns": 33514358,
+              "min_age_ns": 29509473,
+              "max_age_ns": 245712425,
+              "max_accepted_receipt_gap_ns": 40304582,
+              "min_difference_from_sdk_ns": -203110786,
+              "max_difference_from_sdk_ns": 10884760
+            },
+            {
+              "seen": 19792,
+              "accepted": 19767,
+              "unavailable": 25,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 33244783,
+              "max_delta_ns": 33503524,
+              "min_age_ns": 29431834,
+              "max_age_ns": 245633227,
+              "max_accepted_receipt_gap_ns": 40304582,
+              "min_difference_from_sdk_ns": -203110377,
+              "max_difference_from_sdk_ns": 10885136
+            },
+            {
+              "seen": 19797,
+              "accepted": 19768,
+              "unavailable": 29,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 33245272,
+              "max_delta_ns": 33502046,
+              "min_age_ns": 13065508,
+              "max_age_ns": 225647233,
+              "max_accepted_receipt_gap_ns": 36854126,
+              "min_difference_from_sdk_ns": -203110440,
+              "max_difference_from_sdk_ns": 10885079
+            },
+            {
+              "seen": 19797,
+              "accepted": 19768,
+              "unavailable": 29,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 33244783,
+              "max_delta_ns": 33503524,
+              "min_age_ns": 13052832,
+              "max_age_ns": 225634060,
+              "max_accepted_receipt_gap_ns": 36854126,
+              "min_difference_from_sdk_ns": -203110377,
+              "max_difference_from_sdk_ns": 10885136
+            }
+          ]
+        }
+      ]
+    },
+    "sdk39-backwards": {
+      "inputs": {
+        "arrival": {
+          "rows": 51061,
+          "sha256": "53a5f25b4746517d50a9faa11aa943a02db6242750a384ff7f97ff47a5512731"
+        },
+        "dequeue": {
+          "rows": 51061,
+          "sha256": "92d921c712eabc73c3fc4620fad330e3f736dafb6f7e9a8ae8adca36f8641d1f"
+        },
+        "images": {
+          "rows": 30968,
+          "sha256": "4350b0727dfa6347671f844dad858ac7c0b6e3fb1f9d0132c3d8867e74d9213e"
+        }
+      },
+      "modes": [
+        {
+          "clock": "sdk",
+          "fault_policy": "stop",
+          "stopped": true,
+          "clock_faults": 1,
+          "raw_epoch_faults": 0,
+          "first_fault_relative_ns": 258188135322,
+          "processed_span_ns": 258188135322,
+          "combined": 51060,
+          "combined_rejected": 0,
+          "combined_overflows": 0,
+          "combined_max_gap_ns": 5624536,
+          "min_rate_ppb": 1000000000,
+          "max_rate_ppb": 1000000000,
+          "image_pair_counts": [
+            7740,
+            7744
+          ],
+          "max_image_pair_skew_ns": [
+            26699123,
+            19670
+          ],
+          "max_image_pair_skew_change_from_sdk_ns": [
+            0,
+            0
+          ],
+          "streams": [
+            {
+              "seen": 51061,
+              "accepted": 51060,
+              "unavailable": 0,
+              "invalid": 1,
+              "stale_or_duplicate": 0,
+              "backwards": 1,
+              "future": 0,
+              "min_delta_ns": -980243,
+              "max_delta_ns": 5624536,
+              "min_age_ns": -2474411,
+              "max_age_ns": 17155719,
+              "max_accepted_receipt_gap_ns": 17055639,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 51060,
+              "accepted": 51060,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 4701140,
+              "max_delta_ns": 5624536,
+              "min_age_ns": -2474411,
+              "max_age_ns": 17155719,
+              "max_accepted_receipt_gap_ns": 17055639,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 7740,
+              "accepted": 7740,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 32329813,
+              "max_delta_ns": 66644363,
+              "min_age_ns": 24777726,
+              "max_age_ns": 112584540,
+              "max_accepted_receipt_gap_ns": 53531372,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 7740,
+              "accepted": 7740,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 33327039,
+              "max_delta_ns": 66668437,
+              "min_age_ns": 24708173,
+              "max_age_ns": 88945773,
+              "max_accepted_receipt_gap_ns": 53531372,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 7744,
+              "accepted": 7744,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 33325708,
+              "max_delta_ns": 33900587,
+              "min_age_ns": 8444901,
+              "max_age_ns": 32662782,
+              "max_accepted_receipt_gap_ns": 38727794,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 7744,
+              "accepted": 7744,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 33327039,
+              "max_delta_ns": 33901136,
+              "min_age_ns": 8431684,
+              "max_age_ns": 32647928,
+              "max_accepted_receipt_gap_ns": 38727794,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            }
+          ]
+        },
+        {
+          "clock": "sdk",
+          "fault_policy": "drop",
+          "stopped": false,
+          "clock_faults": 2,
+          "raw_epoch_faults": 0,
+          "first_fault_relative_ns": 258188135322,
+          "processed_span_ns": 258188135322,
+          "combined": 51060,
+          "combined_rejected": 0,
+          "combined_overflows": 0,
+          "combined_max_gap_ns": 5624536,
+          "min_rate_ppb": 1000000000,
+          "max_rate_ppb": 1000000000,
+          "image_pair_counts": [
+            7740,
+            7744
+          ],
+          "max_image_pair_skew_ns": [
+            26699123,
+            19670
+          ],
+          "max_image_pair_skew_change_from_sdk_ns": [
+            0,
+            0
+          ],
+          "streams": [
+            {
+              "seen": 51061,
+              "accepted": 51060,
+              "unavailable": 0,
+              "invalid": 1,
+              "stale_or_duplicate": 0,
+              "backwards": 1,
+              "future": 0,
+              "min_delta_ns": -980243,
+              "max_delta_ns": 5624536,
+              "min_age_ns": -2474411,
+              "max_age_ns": 17155719,
+              "max_accepted_receipt_gap_ns": 17055639,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 51061,
+              "accepted": 51060,
+              "unavailable": 0,
+              "invalid": 1,
+              "stale_or_duplicate": 0,
+              "backwards": 1,
+              "future": 0,
+              "min_delta_ns": -980243,
+              "max_delta_ns": 5624536,
+              "min_age_ns": -2474411,
+              "max_age_ns": 17155719,
+              "max_accepted_receipt_gap_ns": 17055639,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 7740,
+              "accepted": 7740,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 32329813,
+              "max_delta_ns": 66644363,
+              "min_age_ns": 24777726,
+              "max_age_ns": 112584540,
+              "max_accepted_receipt_gap_ns": 53531372,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 7740,
+              "accepted": 7740,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 33327039,
+              "max_delta_ns": 66668437,
+              "min_age_ns": 24708173,
+              "max_age_ns": 88945773,
+              "max_accepted_receipt_gap_ns": 53531372,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 7744,
+              "accepted": 7744,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 33325708,
+              "max_delta_ns": 33900587,
+              "min_age_ns": 8444901,
+              "max_age_ns": 32662782,
+              "max_accepted_receipt_gap_ns": 38727794,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 7744,
+              "accepted": 7744,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 33327039,
+              "max_delta_ns": 33901136,
+              "min_age_ns": 8431684,
+              "max_age_ns": 32647928,
+              "max_accepted_receipt_gap_ns": 38727794,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            }
+          ]
+        },
+        {
+          "clock": "local",
+          "fault_policy": "stop",
+          "stopped": false,
+          "clock_faults": 0,
+          "raw_epoch_faults": 0,
+          "first_fault_relative_ns": 0,
+          "processed_span_ns": 258188135322,
+          "combined": 50862,
+          "combined_rejected": 0,
+          "combined_overflows": 0,
+          "combined_max_gap_ns": 5415687,
+          "min_rate_ppb": 998836088,
+          "max_rate_ppb": 1000409126,
+          "image_pair_counts": [
+            7715,
+            7715
+          ],
+          "max_image_pair_skew_ns": [
+            100287,
+            17025
+          ],
+          "max_image_pair_skew_change_from_sdk_ns": [
+            107,
+            15
+          ],
+          "streams": [
+            {
+              "seen": 51061,
+              "accepted": 50862,
+              "unavailable": 199,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 4701248,
+              "max_delta_ns": 5415687,
+              "min_age_ns": 3830160,
+              "max_age_ns": 16109259,
+              "max_accepted_receipt_gap_ns": 14488059,
+              "min_difference_from_sdk_ns": -6702108,
+              "max_difference_from_sdk_ns": -103075
+            },
+            {
+              "seen": 51061,
+              "accepted": 50862,
+              "unavailable": 199,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 4701248,
+              "max_delta_ns": 5415687,
+              "min_age_ns": 3830160,
+              "max_age_ns": 16109259,
+              "max_accepted_receipt_gap_ns": 14488059,
+              "min_difference_from_sdk_ns": -6702108,
+              "max_difference_from_sdk_ns": -103075
+            },
+            {
+              "seen": 7740,
+              "accepted": 7715,
+              "unavailable": 25,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 33282844,
+              "max_delta_ns": 33419020,
+              "min_age_ns": 30909451,
+              "max_age_ns": 39804116,
+              "max_accepted_receipt_gap_ns": 38160374,
+              "min_difference_from_sdk_ns": -6686996,
+              "max_difference_from_sdk_ns": -103670
+            },
+            {
+              "seen": 7740,
+              "accepted": 7715,
+              "unavailable": 25,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 33292129,
+              "max_delta_ns": 33348894,
+              "min_age_ns": 30839941,
+              "max_age_ns": 39729353,
+              "max_accepted_receipt_gap_ns": 38160374,
+              "min_difference_from_sdk_ns": -6687031,
+              "max_difference_from_sdk_ns": -103667
+            },
+            {
+              "seen": 7744,
+              "accepted": 7715,
+              "unavailable": 29,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 33293559,
+              "max_delta_ns": 33348131,
+              "min_age_ns": 14481105,
+              "max_age_ns": 19459365,
+              "max_accepted_receipt_gap_ns": 35796421,
+              "min_difference_from_sdk_ns": -6687024,
+              "max_difference_from_sdk_ns": -103667
+            },
+            {
+              "seen": 7744,
+              "accepted": 7715,
+              "unavailable": 29,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 33292129,
+              "max_delta_ns": 33348894,
+              "min_age_ns": 14468236,
+              "max_age_ns": 19447367,
+              "max_accepted_receipt_gap_ns": 35796421,
+              "min_difference_from_sdk_ns": -6687031,
+              "max_difference_from_sdk_ns": -103667
+            }
+          ]
+        }
+      ]
+    },
+    "sdk312-future": {
+      "inputs": {
+        "arrival": {
+          "rows": 67266,
+          "sha256": "b03c1df1a7b54501a310948aecf92c1736700039fc4f6f658fd932dbbc372a02"
+        },
+        "dequeue": {
+          "rows": 67266,
+          "sha256": "803171b5989797d24b39ec074d6bad5c3dd3b566461b2b384e0474cd6e39883e"
+        },
+        "images": {
+          "rows": 40798,
+          "sha256": "133402bff17c73198da61ebde4ff758bd8bdac01a04cc351bb4bc65e04a904b2"
+        }
+      },
+      "modes": [
+        {
+          "clock": "sdk",
+          "fault_policy": "stop",
+          "stopped": true,
+          "clock_faults": 1,
+          "raw_epoch_faults": 0,
+          "first_fault_relative_ns": 340347294361,
+          "processed_span_ns": 340347294361,
+          "combined": 67256,
+          "combined_rejected": 9,
+          "combined_overflows": 0,
+          "combined_max_gap_ns": 192133126,
+          "min_rate_ppb": 1000000000,
+          "max_rate_ppb": 1000000000,
+          "image_pair_counts": [
+            10197,
+            10202
+          ],
+          "max_image_pair_skew_ns": [
+            26621047,
+            25436
+          ],
+          "max_image_pair_skew_change_from_sdk_ns": [
+            0,
+            0
+          ],
+          "streams": [
+            {
+              "seen": 67266,
+              "accepted": 67265,
+              "unavailable": 0,
+              "invalid": 1,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 1,
+              "min_delta_ns": 1174499,
+              "max_delta_ns": 187073171,
+              "min_age_ns": -5164938,
+              "max_age_ns": 205849854,
+              "max_accepted_receipt_gap_ns": 16044436,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 67265,
+              "accepted": 67265,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 1174499,
+              "max_delta_ns": 187073171,
+              "min_age_ns": -4937378,
+              "max_age_ns": 205849854,
+              "max_accepted_receipt_gap_ns": 16044436,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 10197,
+              "accepted": 10197,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 29440435,
+              "max_delta_ns": 215343545,
+              "min_age_ns": 23597670,
+              "max_age_ns": 228587542,
+              "max_accepted_receipt_gap_ns": 52954062,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 10197,
+              "accepted": 10197,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 29451593,
+              "max_delta_ns": 215355507,
+              "min_age_ns": 23516454,
+              "max_age_ns": 228518651,
+              "max_accepted_receipt_gap_ns": 52954062,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 10202,
+              "accepted": 10202,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 29451774,
+              "max_delta_ns": 215355450,
+              "min_age_ns": 5848794,
+              "max_age_ns": 210000525,
+              "max_accepted_receipt_gap_ns": 37898326,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 10202,
+              "accepted": 10202,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 29451593,
+              "max_delta_ns": 215355507,
+              "min_age_ns": 5835698,
+              "max_age_ns": 209987219,
+              "max_accepted_receipt_gap_ns": 37898326,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            }
+          ]
+        },
+        {
+          "clock": "sdk",
+          "fault_policy": "drop",
+          "stopped": false,
+          "clock_faults": 2,
+          "raw_epoch_faults": 0,
+          "first_fault_relative_ns": 340347294361,
+          "processed_span_ns": 340347294361,
+          "combined": 67256,
+          "combined_rejected": 9,
+          "combined_overflows": 0,
+          "combined_max_gap_ns": 192133126,
+          "min_rate_ppb": 1000000000,
+          "max_rate_ppb": 1000000000,
+          "image_pair_counts": [
+            10197,
+            10202
+          ],
+          "max_image_pair_skew_ns": [
+            26621047,
+            25436
+          ],
+          "max_image_pair_skew_change_from_sdk_ns": [
+            0,
+            0
+          ],
+          "streams": [
+            {
+              "seen": 67266,
+              "accepted": 67265,
+              "unavailable": 0,
+              "invalid": 1,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 1,
+              "min_delta_ns": 1174499,
+              "max_delta_ns": 187073171,
+              "min_age_ns": -5164938,
+              "max_age_ns": 205849854,
+              "max_accepted_receipt_gap_ns": 16044436,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 67266,
+              "accepted": 67265,
+              "unavailable": 0,
+              "invalid": 1,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 1,
+              "min_delta_ns": 1174499,
+              "max_delta_ns": 187073171,
+              "min_age_ns": -5164938,
+              "max_age_ns": 205849854,
+              "max_accepted_receipt_gap_ns": 16044436,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 10197,
+              "accepted": 10197,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 29440435,
+              "max_delta_ns": 215343545,
+              "min_age_ns": 23597670,
+              "max_age_ns": 228587542,
+              "max_accepted_receipt_gap_ns": 52954062,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 10197,
+              "accepted": 10197,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 29451593,
+              "max_delta_ns": 215355507,
+              "min_age_ns": 23516454,
+              "max_age_ns": 228518651,
+              "max_accepted_receipt_gap_ns": 52954062,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 10202,
+              "accepted": 10202,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 29451774,
+              "max_delta_ns": 215355450,
+              "min_age_ns": 5848794,
+              "max_age_ns": 210000525,
+              "max_accepted_receipt_gap_ns": 37898326,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            },
+            {
+              "seen": 10202,
+              "accepted": 10202,
+              "unavailable": 0,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 29451593,
+              "max_delta_ns": 215355507,
+              "min_age_ns": 5835698,
+              "max_age_ns": 209987219,
+              "max_accepted_receipt_gap_ns": 37898326,
+              "min_difference_from_sdk_ns": 0,
+              "max_difference_from_sdk_ns": 0
+            }
+          ]
+        },
+        {
+          "clock": "local",
+          "fault_policy": "stop",
+          "stopped": false,
+          "clock_faults": 0,
+          "raw_epoch_faults": 0,
+          "first_fault_relative_ns": 0,
+          "processed_span_ns": 340347294361,
+          "combined": 67067,
+          "combined_rejected": 0,
+          "combined_overflows": 0,
+          "combined_max_gap_ns": 5427801,
+          "min_rate_ppb": 995261230,
+          "max_rate_ppb": 1005000000,
+          "image_pair_counts": [
+            10172,
+            10173
+          ],
+          "max_image_pair_skew_ns": [
+            94110,
+            25436
+          ],
+          "max_image_pair_skew_change_from_sdk_ns": [
+            466,
+            75
+          ],
+          "streams": [
+            {
+              "seen": 67266,
+              "accepted": 67067,
+              "unavailable": 199,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 4691621,
+              "max_delta_ns": 5427801,
+              "min_age_ns": 176861,
+              "max_age_ns": 210124601,
+              "max_accepted_receipt_gap_ns": 15000666,
+              "min_difference_from_sdk_ns": -189976740,
+              "max_difference_from_sdk_ns": 15779101
+            },
+            {
+              "seen": 67266,
+              "accepted": 67067,
+              "unavailable": 199,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 4691621,
+              "max_delta_ns": 5427801,
+              "min_age_ns": 176861,
+              "max_age_ns": 210124601,
+              "max_accepted_receipt_gap_ns": 15000666,
+              "min_difference_from_sdk_ns": -189976740,
+              "max_difference_from_sdk_ns": 15779101
+            },
+            {
+              "seen": 10197,
+              "accepted": 10172,
+              "unavailable": 25,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 33163780,
+              "max_delta_ns": 33514127,
+              "min_age_ns": 27727895,
+              "max_age_ns": 232227315,
+              "max_accepted_receipt_gap_ns": 38265103,
+              "min_difference_from_sdk_ns": -189853314,
+              "max_difference_from_sdk_ns": 15712987
+            },
+            {
+              "seen": 10197,
+              "accepted": 10172,
+              "unavailable": 25,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 33174188,
+              "max_delta_ns": 33503861,
+              "min_age_ns": 27653106,
+              "max_age_ns": 232153795,
+              "max_accepted_receipt_gap_ns": 38265103,
+              "min_difference_from_sdk_ns": -189853012,
+              "max_difference_from_sdk_ns": 15713331
+            },
+            {
+              "seen": 10202,
+              "accepted": 10173,
+              "unavailable": 29,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 33174403,
+              "max_delta_ns": 33502199,
+              "min_age_ns": 10886208,
+              "max_age_ns": 212697950,
+              "max_accepted_receipt_gap_ns": 37898326,
+              "min_difference_from_sdk_ns": -189853073,
+              "max_difference_from_sdk_ns": 15713266
+            },
+            {
+              "seen": 10202,
+              "accepted": 10173,
+              "unavailable": 29,
+              "invalid": 0,
+              "stale_or_duplicate": 0,
+              "backwards": 0,
+              "future": 0,
+              "min_delta_ns": 33174188,
+              "max_delta_ns": 33503861,
+              "min_age_ns": 10873181,
+              "max_age_ns": 212686445,
+              "max_accepted_receipt_gap_ns": 37898326,
+              "min_difference_from_sdk_ns": -189853012,
+              "max_difference_from_sdk_ns": 15713331
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "benchmark": {
+    "iterations": 100000,
+    "work_per_iteration": "observe_plus_two_conversions",
+    "mapper_bytes": 1720,
+    "p50_ns": 96,
+    "p95_ns": 128,
+    "p99_ns": 160,
+    "max_ns": 19010,
+    "total_ns": 16222182,
+    "checksum": 11818816
+  }
+}

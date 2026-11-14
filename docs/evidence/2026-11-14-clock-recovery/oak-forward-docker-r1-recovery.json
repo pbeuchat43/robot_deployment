@@ -1,0 +1,24 @@
+{
+  "fixture_passed": true,
+  "cleanup_errors": [],
+  "camera_process_count": 1,
+  "camera_clock_discontinuities": 1,
+  "imu_clock_rejected": 806,
+  "image_clock_rejected": 244,
+  "generation_transitions": [
+    {
+      "observed_ns": 17649693115172,
+      "clock_step_ns": 182000000,
+      "camera_frames_before": 1648,
+      "camera_generation_changed": true,
+      "clock_hold_seconds": 2.199647681,
+      "poses_before": 1291,
+      "poses_after": 1573,
+      "estimator_generation_changed": true,
+      "pose_outage_seconds": 4.630031877,
+      "first_new_pose_after_boundary_seconds": 4.629054335
+    }
+  ],
+  "pose_count": 2864,
+  "final_camera": "streaming"
+}

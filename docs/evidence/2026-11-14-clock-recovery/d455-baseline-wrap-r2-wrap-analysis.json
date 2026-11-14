@@ -1,0 +1,141 @@
+{
+  "fixture_passed": true,
+  "cleanup_errors": [
+    "perception: AssertionError('runtime condition timed out')"
+  ],
+  "observed_video_wrap_slots": [
+    0,
+    1,
+    4,
+    5
+  ],
+  "streaming_clock_stats": {
+    "3": {
+      "records": 597791,
+      "raw_clock_records": 0,
+      "future_over_budget": 0,
+      "sdk_regressions": 0,
+      "raw_regressions": 0,
+      "offset_steps_over_5ms": 0,
+      "max_abs_offset_step_ns": 0
+    },
+    "2": {
+      "records": 300925,
+      "raw_clock_records": 0,
+      "future_over_budget": 0,
+      "sdk_regressions": 0,
+      "raw_regressions": 0,
+      "offset_steps_over_5ms": 0,
+      "max_abs_offset_step_ns": 0
+    },
+    "4": {
+      "records": 89507,
+      "raw_clock_records": 89507,
+      "future_over_budget": 0,
+      "sdk_regressions": 0,
+      "raw_regressions": 0,
+      "offset_steps_over_5ms": 0,
+      "max_abs_offset_step_ns": 90112
+    },
+    "5": {
+      "records": 89507,
+      "raw_clock_records": 89507,
+      "future_over_budget": 0,
+      "sdk_regressions": 0,
+      "raw_regressions": 0,
+      "offset_steps_over_5ms": 0,
+      "max_abs_offset_step_ns": 90112
+    },
+    "1": {
+      "records": 89507,
+      "raw_clock_records": 89507,
+      "future_over_budget": 0,
+      "sdk_regressions": 0,
+      "raw_regressions": 0,
+      "offset_steps_over_5ms": 0,
+      "max_abs_offset_step_ns": 90112
+    },
+    "0": {
+      "records": 89507,
+      "raw_clock_records": 89507,
+      "future_over_budget": 0,
+      "sdk_regressions": 0,
+      "raw_regressions": 0,
+      "offset_steps_over_5ms": 0,
+      "max_abs_offset_step_ns": 90368
+    }
+  },
+  "wraps": [
+    {
+      "slot": 4,
+      "raw32_before": 4294948073,
+      "raw32_after": 14153,
+      "seconds_after_streaming": 2855.663392493,
+      "following_pose_seconds": 123.143203977,
+      "pose_gap_seconds": 0.034147302,
+      "same_camera_generation": true,
+      "same_estimator_generation": true,
+      "nearby_camera_states": [
+        "streaming"
+      ],
+      "nearby_odometry_states": [
+        "tracking"
+      ]
+    },
+    {
+      "slot": 5,
+      "raw32_before": 4294948073,
+      "raw32_after": 14153,
+      "seconds_after_streaming": 2855.663417326,
+      "following_pose_seconds": 123.143179144,
+      "pose_gap_seconds": 0.034147302,
+      "same_camera_generation": true,
+      "same_estimator_generation": true,
+      "nearby_camera_states": [
+        "streaming"
+      ],
+      "nearby_odometry_states": [
+        "tracking"
+      ]
+    },
+    {
+      "slot": 1,
+      "raw32_before": 4294948073,
+      "raw32_after": 14153,
+      "seconds_after_streaming": 2855.663756179,
+      "following_pose_seconds": 123.142840291,
+      "pose_gap_seconds": 0.034147302,
+      "same_camera_generation": true,
+      "same_estimator_generation": true,
+      "nearby_camera_states": [
+        "streaming"
+      ],
+      "nearby_odometry_states": [
+        "tracking"
+      ]
+    },
+    {
+      "slot": 0,
+      "raw32_before": 4294948106,
+      "raw32_after": 14186,
+      "seconds_after_streaming": 2855.669752526,
+      "following_pose_seconds": 123.136843944,
+      "pose_gap_seconds": 0.034147302,
+      "same_camera_generation": true,
+      "same_estimator_generation": true,
+      "nearby_camera_states": [
+        "streaming"
+      ],
+      "nearby_odometry_states": [
+        "tracking"
+      ]
+    }
+  ],
+  "pose_count": 88883,
+  "max_pose_gap_seconds": 0.060224043,
+  "camera_discontinuities": 0,
+  "imu_clock_rejected": 0,
+  "image_clock_rejected": 0,
+  "combined_imu_overflows": 0,
+  "wrap_qualification_passed": false
+}

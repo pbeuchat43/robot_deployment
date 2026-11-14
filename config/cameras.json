@@ -1,6 +1,7 @@
 {
   "schema_version": 1,
   "defaults": {
+    "timestamp_policy": "recover",
     "enable_imu": false,
     "publish_images": false,
     "max_frame_age_ms": 500.0,
@@ -8,6 +9,12 @@
     "stall_timeout_s": 2.0
   },
   "profiles": {
+    "d455-360p30": {
+      "backend": "realsense", "fps": 30.0, "pairing_tolerance_ms": 16.6, "width": 640, "height": 360
+    },
+    "oak-360p30": {
+      "backend": "oak", "fps": 30.0, "pairing_tolerance_ms": 5.0, "width": 640, "height": 360
+    },
     "d455-720p30": {
       "backend": "realsense", "fps": 30.0, "pairing_tolerance_ms": 16.6, "width": 1280, "height": 720
     },
@@ -50,7 +57,9 @@
       "height": 640
     }
   },
+  "stereo_profiles": ["oak-360p30", "oak-720p30", "d455-360p30", "d455-720p30"],
   "limits": [
+    "Stereo profiles are integration candidates. Their fixed mono exposure and depth/IR modes need final workload qualification; stationary results do not establish driving accuracy.",
     "Legacy 640-pixel configurations have finite October 2026 integration evidence; 720p profiles require the separate event-recording qualification. Consult dated evidence for rates, losses and unobserved physical checks.",
     "OAK 60 Hz fails RGB/depth pairing with the current DENSITY/subpixel profile and is not offered.",
     "D455 native 60 Hz delivery passed previous camera/detector checks; an additional recipe observed invalid spatial results.",

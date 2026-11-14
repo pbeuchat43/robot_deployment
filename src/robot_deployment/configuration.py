@@ -127,7 +127,10 @@ def load(site_path, root=None, *, inputs=None):
     root = Path(root or definition_root()).resolve()
     site = inputs.read(site_path)
     version(site, ("composition", "platform", "robot_id", "runtime_account", "storage", "network", "credentials"),
-            ("ros", "runtime_namespace", "hardware", "camera_profiles", "workspaces", "management", "shell", "recording"), context="site")
+            ("ros", "runtime_namespace", "hardware", "camera_profiles", "workspaces", "management", "shell", "recording", "visual_odometry"), context="site")
+    site.setdefault("visual_odometry", dict(enabled=False, backend="docker"))
+    keys(site["visual_odometry"], ("enabled", "backend"), context="visual_odometry")
+    require(type(site["visual_odometry"]["enabled"]) is bool and site["visual_odometry"]["backend"] in ("docker", "native"), "Select an explicit installed odometry backend")
     for key in ("composition", "platform", "robot_id", "runtime_account"):
         identifier(site[key], "site." + key)
     site.setdefault("runtime_namespace", "robot")
@@ -227,7 +230,9 @@ def load(site_path, root=None, *, inputs=None):
     for identity in camera["device_ids"].values():
         require(isinstance(identity, str) and re.fullmatch(r"[A-Za-z0-9._:-]{1,128}", identity), "Invalid explicit camera session identity")
     cameras = inputs.read(within(root, composition["cameras"]))
-    version(cameras, ("defaults", "profiles", "limits"), context="cameras")
+    version(cameras, ("defaults", "profiles", "limits"), ("stereo_profiles",), context="cameras")
+    require(isinstance(cameras.get("stereo_profiles", []), list) and
+            all(name in cameras["profiles"] for name in cameras.get("stereo_profiles", [])), "Unknown stereo camera profile")
     site.setdefault("camera_profiles", dict(oak="oak-30", d455="d455-30"))
     keys(site["camera_profiles"], ("oak", "d455"), context="camera_profiles")
     for family, name in site["camera_profiles"].items():
@@ -296,7 +301,7 @@ def structure_identity(graph):
 
 
 CAMERA_BOUNDS = {"fps": (1, 60), "pairing_tolerance_ms": (.1, 50), "max_frame_age_ms": (10, 2000),
-                 "startup_timeout_s": (5, 120), "stall_timeout_s": (1, 30), "width": (640,1280), "height": (480,720)}
+                 "startup_timeout_s": (5, 120), "stall_timeout_s": (1, 30), "width": (640,1280), "height": (360,720)}
 DETECTOR_BOUNDS = {"score_threshold": (0, 1), "iou_threshold": (0, 1), "max_detections": (1, 100),
                    "pre_nms_limit": (1, 8400)}
 
@@ -306,18 +311,22 @@ def validate_parameters(nodes):
     for node, parameters in nodes.items():
         bounds = CAMERA_BOUNDS if node == "camera" else DETECTOR_BOUNDS if node.startswith("detector_") else {}
         flags = ("enable_imu", "publish_images") if node == "camera" else ()
-        keys(parameters, (), (*bounds, *flags), context=node)
+        choices = {"timestamp_policy": ("recover", "strict")} if node == "camera" else {}
+        keys(parameters, (), (*bounds, *flags, *choices), context=node)
         for name, value in parameters.items():
             if name in flags:
                 require(type(value) is bool, f"{node}.{name}: expected boolean")
+            elif name in choices:
+                require(isinstance(value, str) and value in choices[name],
+                        f"{node}.{name}: expected recover or strict")
             else:
                 number(value, *bounds[name], f"{node}.{name}", integer=name in ("max_detections", "pre_nms_limit", "width", "height"))
         if node.startswith("detector_") and "pre_nms_limit" in parameters and "max_detections" in parameters:
             require(parameters["max_detections"] <= parameters["pre_nms_limit"], f"{node}: max_detections exceeds pre_nms_limit")
     camera = nodes["camera"]
     if "width" in camera or "height" in camera:
-        require((camera.get("width"),camera.get("height")) in ((640,480),(640,640),(1280,720)), "Unsupported camera dimensions")
-        require(camera["width"] != 1280 or camera.get("fps",30)<=30,"720p camera profile supports at most 30 Hz")
+        require((camera.get("width"),camera.get("height")) in ((640,360),(640,480),(640,640),(1280,720)), "Unsupported camera dimensions")
+        require(camera['height'] not in (360,720) or camera.get('fps',30)<=30, 'Wide camera profiles support at most 30 Hz')
     if "fps" in camera and "pairing_tolerance_ms" in camera:
         require(camera["pairing_tolerance_ms"] < 500 / camera["fps"], "camera: pairing tolerance must be below half a frame period")
 

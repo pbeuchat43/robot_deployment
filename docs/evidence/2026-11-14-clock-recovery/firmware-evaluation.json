@@ -1,0 +1,27 @@
+{
+  "upgrade": {
+    "action": "upgrade",
+    "firmware": "5.17.3.10",
+    "identity_matches": true,
+    "calibration_matches_original": true,
+    "downgrade_counter": 0,
+    "image_sha256": "4c347e3a18eac97b41a97947ef3b225bc1eaf77c68ffd87598736e3cebf3e4d2",
+    "updater_reported_success": true,
+    "updater_exit_signal": "SIGSEGV",
+    "independent_readback_verified": true
+  },
+  "restore": {
+    "action": "restore",
+    "firmware": "5.17.0.10",
+    "identity_matches": true,
+    "calibration_matches_original": true,
+    "downgrade_counter": 1,
+    "image_sha256": "a7e10cf7b011929df2bfc6347d87471372621cc937c96cb529c3846f26b60f1c",
+    "updater_exit_code": 0,
+    "updater_succeeded": true,
+    "updater_sdk": "2.56.5",
+    "independent_readback_verified": true
+  },
+  "candidate_sdk_library_verified": "2.59.1",
+  "restored_sdk_library_verified": "2.56.5"
+}

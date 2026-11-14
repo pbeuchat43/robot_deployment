@@ -1,0 +1,139 @@
+{
+  "fixture_passed": true,
+  "cleanup_errors": [],
+  "observed_video_wrap_slots": [
+    0,
+    1,
+    4,
+    5
+  ],
+  "streaming_clock_stats": {
+    "2": {
+      "records": 444516,
+      "raw_clock_records": 0,
+      "future_over_budget": 0,
+      "sdk_regressions": 0,
+      "raw_regressions": 0,
+      "offset_steps_over_5ms": 0,
+      "max_abs_offset_step_ns": 0
+    },
+    "3": {
+      "records": 882789,
+      "raw_clock_records": 0,
+      "future_over_budget": 0,
+      "sdk_regressions": 0,
+      "raw_regressions": 0,
+      "offset_steps_over_5ms": 0,
+      "max_abs_offset_step_ns": 0
+    },
+    "4": {
+      "records": 132174,
+      "raw_clock_records": 132174,
+      "future_over_budget": 0,
+      "sdk_regressions": 0,
+      "raw_regressions": 0,
+      "offset_steps_over_5ms": 0,
+      "max_abs_offset_step_ns": 42752
+    },
+    "5": {
+      "records": 132174,
+      "raw_clock_records": 132174,
+      "future_over_budget": 0,
+      "sdk_regressions": 0,
+      "raw_regressions": 0,
+      "offset_steps_over_5ms": 0,
+      "max_abs_offset_step_ns": 42752
+    },
+    "1": {
+      "records": 132174,
+      "raw_clock_records": 132174,
+      "future_over_budget": 0,
+      "sdk_regressions": 0,
+      "raw_regressions": 0,
+      "offset_steps_over_5ms": 0,
+      "max_abs_offset_step_ns": 42752
+    },
+    "0": {
+      "records": 132174,
+      "raw_clock_records": 132174,
+      "future_over_budget": 0,
+      "sdk_regressions": 0,
+      "raw_regressions": 0,
+      "offset_steps_over_5ms": 0,
+      "max_abs_offset_step_ns": 42752
+    }
+  },
+  "wraps": [
+    {
+      "slot": 4,
+      "raw32_before": 4294961890,
+      "raw32_after": 27970,
+      "seconds_after_streaming": 4275.661852237,
+      "following_pose_seconds": 122.551772391,
+      "pose_gap_seconds": 0.034485932,
+      "same_camera_generation": true,
+      "same_estimator_generation": true,
+      "nearby_camera_states": [
+        "streaming"
+      ],
+      "nearby_odometry_states": [
+        "tracking"
+      ]
+    },
+    {
+      "slot": 5,
+      "raw32_before": 4294961890,
+      "raw32_after": 27970,
+      "seconds_after_streaming": 4275.661875073,
+      "following_pose_seconds": 122.551749555,
+      "pose_gap_seconds": 0.034485932,
+      "same_camera_generation": true,
+      "same_estimator_generation": true,
+      "nearby_camera_states": [
+        "streaming"
+      ],
+      "nearby_odometry_states": [
+        "tracking"
+      ]
+    },
+    {
+      "slot": 1,
+      "raw32_before": 4294961890,
+      "raw32_after": 27970,
+      "seconds_after_streaming": 4275.661944445,
+      "following_pose_seconds": 122.551680183,
+      "pose_gap_seconds": 0.034485932,
+      "same_camera_generation": true,
+      "same_estimator_generation": true,
+      "nearby_camera_states": [
+        "streaming"
+      ],
+      "nearby_odometry_states": [
+        "tracking"
+      ]
+    },
+    {
+      "slot": 0,
+      "raw32_before": 4294961923,
+      "raw32_after": 28003,
+      "seconds_after_streaming": 4275.668392546,
+      "following_pose_seconds": 122.545232082,
+      "pose_gap_seconds": 0.034485932,
+      "same_camera_generation": true,
+      "same_estimator_generation": true,
+      "nearby_camera_states": [
+        "streaming"
+      ],
+      "nearby_odometry_states": [
+        "tracking"
+      ]
+    }
+  ],
+  "pose_count": 131390,
+  "max_pose_gap_seconds": 0.089927772,
+  "camera_discontinuities": 0,
+  "imu_clock_rejected": 0,
+  "image_clock_rejected": 0,
+  "combined_imu_overflows": 0,
+  "wrap_qualification_passed": true
+}

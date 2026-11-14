@@ -136,6 +136,26 @@ class ConfigurationTests(unittest.TestCase):
         with self.assertRaisesRegex(ConfigurationError, "half a frame"):
             effective(self.graph(), self.work, "d455-both", check_artifacts=False)
 
+    def test_camera_timestamp_policy_reaches_frozen_parameters(self):
+        path = self.root / "parameters/perception.yaml"
+        document = Inputs().read(path)
+        for policy in ("recover", "strict"):
+            document["nodes"]["camera"]["timestamp_policy"] = policy
+            path.write_bytes(encoded(document))
+            candidate = prepare(self.path, self.work, "perception", "revision", "oak-both",
+                                root=self.root, check_artifacts=False)
+            runtime = self.work / policy
+            runtime.mkdir()
+            frozen = freeze(candidate, runtime, "perception", "revision", "oak-both")
+            _, files = read_prepared(frozen)
+            ros = json.loads(files["ros-parameters"])
+            self.assertEqual(ros["/perception/camera"]["ros__parameters"]["timestamp_policy"], policy)
+        for invalid in (True, 1, "retime", [], None):
+            with self.subTest(policy=invalid), self.assertRaisesRegex(ConfigurationError, "timestamp_policy"):
+                document["nodes"]["camera"]["timestamp_policy"] = invalid
+                path.write_bytes(encoded(document))
+                parameters(self.graph())
+
     def test_runtime_snapshot_survives_source_edits(self):
         self.request("cones_score_threshold: 0.6")
         candidate = prepare(self.path, self.work, "perception", "revision", "oak-both", root=self.root, check_artifacts=False)

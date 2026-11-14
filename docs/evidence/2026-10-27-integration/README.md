@@ -129,7 +129,9 @@ identical between those two revisions. The source manifests in the component
 repositories bind the actual tested bytes and packaged artifacts.
 
 Private imagery, raw tensors, full native CSVs, browser capture markers, resource
-samples and failed fixture attempts are retained in the task archive, outside Git.
+samples and failed fixture attempts were retained in the task archive, outside Git.
+The local historical copies were later intentionally discarded. Availability of
+any copies on Jah has not been checked.
 The public summary includes their numerical outcomes without device serials or
 authentication material. No `main` branch was promoted.
 

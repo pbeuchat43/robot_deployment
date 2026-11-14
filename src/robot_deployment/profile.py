@@ -5,6 +5,7 @@ import json
 from pathlib import Path
 
 from .configuration import load, structure_identity, VARIANTS
+from .odometry import modes as admitted_modes, docker_recipe
 
 
 def build_profile(graph, site_path, release, output):
@@ -29,12 +30,18 @@ def build_profile(graph, site_path, release, output):
         FASTRTPS_DEFAULT_PROFILES_FILE=str(release / "ros/install/share/rgbd_camera/fastdds_local_frames.xml"),
         LD_LIBRARY_PATH=":".join(site.get("sdk_library_paths", [])))
     modes = []
-    for camera, label in (("d455", "D455"), ("oak", "OAK-D")):
+    for identity, (camera, model, odometry) in admitted_modes(graph).items():
         camera_profile = source["camera_profiles"][camera]
-        for model, model_label in (("camera", "Camera only"), ("cones", "Cones"), ("coco", "COCO 80"), ("both", "Cones + COCO 80")):
-            modes.append(dict(id=camera + "-" + model, label=f"{label} / {model_label} / {camera_profile}",
-                selections=dict(camera=camera, model=model),
-                argv=["/bin/bash", wrapper, site["runtime_python"], "-m", "robot_deployment.launch"]))
+        label = {"d455": "D455", "oak": "OAK-D"}[camera]
+        model_label = {"camera": "Camera only", "cones": "Cones", "coco": "COCO 80", "both": "Cones + COCO 80"}[model]
+        selections = dict(camera=camera, model=model)
+        if source["visual_odometry"]["enabled"]:
+            selections["odometry"] = odometry
+        entry = dict(id=identity, label=f"{label} / {model_label} / {camera_profile}" + (" / " + odometry.upper() if odometry != "off" else ""),
+                     selections=selections, argv=["/bin/bash", wrapper, site["runtime_python"], "-m", "robot_deployment.launch"])
+        if odometry != "off" and source["visual_odometry"]["backend"] == "docker":
+            entry["docker"] = docker_recipe(graph, release, environment)
+        modes.append(entry)
     default_mode = VARIANTS[source["hardware"]["front_camera"]["variant"]] + "-both"
     selected = next(mode for mode in modes if mode["id"] == default_mode)
     perception = dict(id="perception", label="RGB-D perception", argv=selected["argv"],
@@ -53,6 +60,9 @@ def build_profile(graph, site_path, release, output):
         working_directory=str(work), environment=video_environment,
         stop=dict(signal="SIGINT", timeout_seconds=15), public_logs=True)
     topics = []
+    if source["visual_odometry"]["enabled"]:
+        perception["launch_selections"].append(dict(id="odometry", label="Odometry", choices=[
+            dict(id="off", label="Off"), dict(id="vo", label="VO"), dict(id="vio", label="VIO")]))
     def status(identity, label, node, interface, fields, active_modes=None):
         topics.append(dict(id=identity, label=label, unit_id="perception", node=namespace + "/" + node,
             name=namespace + "/" + node + "/status", type=interface,
@@ -63,6 +73,12 @@ def build_profile(graph, site_path, release, output):
     status("camera", "Acquisition", "camera", "rgbd_camera_interfaces/msg/Status",
         ["state", "detail", "backend", "source_id", "generation", "frames", "rejected_pairs", "sequence_gaps",
          "last_acquisition_ns", "clock_domain", "observed_ns", "last_skew_ns", "pairing_tolerance_ns"])
+    odometry_modes = [mode["id"] for mode in modes if mode["selections"].get("odometry", "off") != "off"]
+    if odometry_modes:
+        status("odometry", "Odometry health", "odometry", "visual_odometry_interfaces/msg/Status",
+               ["state", "reason", "mode", "source_id", "camera_generation", "estimator_generation", "association_epoch",
+                "calibration_id", "configuration_id", "clock_domain", "observed_ns", "expires_after_ns",
+                "last_output_ns", "visual_support_known", "covariance_known", "estimates"], odometry_modes)
     overlay_choices = [dict(id="rgb", label="Camera RGB", topic=namespace + "/camera/rgb/image_rect", active_modes=[mode["id"] for mode in modes])]
     for model, label in (("cones", "Cones"), ("coco", "COCO 80")):
         active_modes = [mode["id"] for mode in modes if mode["selections"]["model"] in (model, "both")]

@@ -1,0 +1,14 @@
+{
+  "host_packages_unchanged": true,
+  "power_mode_unchanged": true,
+  "containers_unchanged": true,
+  "selected_release_unchanged": true,
+  "retained_runtime_states": 2,
+  "retained_runs": 2,
+  "all_runs_unblocked": true,
+  "owned_cgroups_empty": true,
+  "viewer_units_stopped": true,
+  "fixture_process_stopped": true,
+  "resource_monitor_stopped": true,
+  "passed": true
+}

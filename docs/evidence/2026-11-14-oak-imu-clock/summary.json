@@ -1,0 +1,716 @@
+{
+  "schema_version": 1,
+  "camera_source_revision": "837959f700554bf548daac484ed03f6fe1b675e4",
+  "camera_implementation_revision": "f1f64eb4862dab4b96c9b4a6c45edb238747576d",
+  "depthai_revision": "ac928141ef7750bf3082b5e1c319a115618660e7",
+  "production_timestamp_policy_changed": false,
+  "requested_measurement_seconds": 3600,
+  "warmup_seconds": 15,
+  "tracing": {
+    "format": "oak-clock-raw-v1",
+    "byte_order": "little",
+    "imu_struct": "7q7Q",
+    "image_struct": "5q",
+    "imu_packet_capacity_per_stage": 1048576,
+    "image_capacity": 524288,
+    "receive_path_file_io": false
+  },
+  "runs": [
+    {
+      "passed": false,
+      "error": "AssertionError('camera: invalid IMU clock mapping: sensor=accel sequence=130511 acquisition_ns=4387458457061 received_ns=4387453393877 now_ns=4387454329046 future_tolerance_ns=5000000 previous_acquisition_ns=4387453397167')",
+      "elapsed_after_ready_seconds": 659.799916716,
+      "camera": {
+        "accel_samples": 130506,
+        "combined_imu_overflows": 0,
+        "combined_imu_rejected": 4,
+        "combined_imu_samples": 130502,
+        "detail": "invalid IMU clock mapping: sensor=accel sequence=130511 acquisition_ns=4387458457061 received_ns=4387453393877 now_ns=4387454329046 future_tolerance_ns=5000000 previous_acquisition_ns=4387453397167",
+        "frames": 19785,
+        "gyro_samples": 130506,
+        "imu_sensor": "BMI270",
+        "imu_sequence_gaps": 0,
+        "rejected_pairs": 7,
+        "state": "error",
+        "stereo_pairs": 19797,
+        "stereo_rejected": 0
+      },
+      "odometry": {
+        "association_epoch": 9,
+        "estimates": 19792,
+        "reason": "fresh_upstream_success_unqualified",
+        "rejected": 15,
+        "state": "tracking",
+        "unmatched": 4
+      },
+      "cleanup_errors": [],
+      "exit_code": 1,
+      "name": "native-360-hour-r1",
+      "traces": [
+        {
+          "span_seconds": 660.219936484,
+          "rows": {
+            "arrival": 130507,
+            "dequeue": 130507
+          },
+          "windows": {
+            "images": {
+              "row_bytes": 40,
+              "rows": 79178,
+              "capacity": 524288,
+              "overflow": 0
+            },
+            "dequeue": {
+              "row_bytes": 112,
+              "rows": 130507,
+              "capacity": 1048576,
+              "overflow": 0
+            },
+            "arrival": {
+              "row_bytes": 112,
+              "rows": 130507,
+              "capacity": 1048576,
+              "overflow": 0
+            }
+          },
+          "overflow": {
+            "images": 0,
+            "dequeue": 0,
+            "arrival": 0
+          },
+          "dequeue_not_arrival_ordered_subsequence": 0,
+          "images": {
+            "0": {
+              "rows": 19792,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 119625698
+            },
+            "1": {
+              "rows": 19792,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 119625698
+            },
+            "2": {
+              "rows": 19797,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 119625698
+            },
+            "3": {
+              "rows": 19797,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 119625698
+            }
+          },
+          "arrival": {
+            "a": {
+              "counts": {
+                "reports": 130507,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 86
+              },
+              "minimum_positive_host_delta_ns": 46555,
+              "maximum_absolute_offset_step_ns": 119625698,
+              "minimum_offset_step_ns": -5008701,
+              "maximum_offset_step_ns": 119625698,
+              "minimum_device_delta_ns": 4605127
+            },
+            "g": {
+              "counts": {
+                "reports": 130507,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 86
+              },
+              "minimum_positive_host_delta_ns": 46555,
+              "maximum_absolute_offset_step_ns": 119625698,
+              "minimum_offset_step_ns": -5008701,
+              "maximum_offset_step_ns": 119625698,
+              "minimum_device_delta_ns": 4605127
+            }
+          },
+          "dequeue": {
+            "a": {
+              "counts": {
+                "reports": 130507,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 86
+              },
+              "minimum_positive_host_delta_ns": 46555,
+              "maximum_absolute_offset_step_ns": 119625698,
+              "minimum_offset_step_ns": -5008701,
+              "maximum_offset_step_ns": 119625698,
+              "minimum_device_delta_ns": 4605127
+            },
+            "g": {
+              "counts": {
+                "reports": 130507,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 0,
+                "device_regressions": 0,
+                "offset_changes": 86
+              },
+              "minimum_positive_host_delta_ns": 46555,
+              "maximum_absolute_offset_step_ns": 119625698,
+              "minimum_offset_step_ns": -5008701,
+              "maximum_offset_step_ns": 119625698,
+              "minimum_device_delta_ns": 4605127
+            }
+          },
+          "mapped_reversal_events": {
+            "arrival": {
+              "a": [],
+              "g": []
+            },
+            "dequeue": {
+              "a": [],
+              "g": []
+            }
+          },
+          "clock_detail": {
+            "arrival_max_lead_ns": 5371800,
+            "dequeue_max_lead_ns": 5063184,
+            "arrival_leads_over_5ms": 4,
+            "dequeue_leads_over_5ms": 1,
+            "positive_steps": [
+              {
+                "relative_seconds": 441.36340732,
+                "sequence": 87250,
+                "offset_step_ns": 119625698,
+                "host_delta_ns": 124683994,
+                "device_delta_ns": 5058296
+              },
+              {
+                "relative_seconds": 433.702947757,
+                "sequence": 85758,
+                "offset_step_ns": 117156059,
+                "host_delta_ns": 122220026,
+                "device_delta_ns": 5063967
+              },
+              {
+                "relative_seconds": 449.22333683,
+                "sequence": 88796,
+                "offset_step_ns": 54213683,
+                "host_delta_ns": 59266934,
+                "device_delta_ns": 5053251
+              },
+              {
+                "relative_seconds": 456.367380901,
+                "sequence": 90206,
+                "offset_step_ns": 18908602,
+                "host_delta_ns": 23962242,
+                "device_delta_ns": 5053640
+              },
+              {
+                "relative_seconds": 464.332388188,
+                "sequence": 91778,
+                "offset_step_ns": 9049291,
+                "host_delta_ns": 14103483,
+                "device_delta_ns": 5054192
+              },
+              {
+                "relative_seconds": 526.543488798,
+                "sequence": 104075,
+                "offset_step_ns": 3862680,
+                "host_delta_ns": 8913530,
+                "device_delta_ns": 5050850
+              }
+            ],
+            "negative_steps": [
+              {
+                "relative_seconds": 542.326855513,
+                "sequence": 107199,
+                "offset_step_ns": -5008701,
+                "host_delta_ns": 46555,
+                "device_delta_ns": 5055256
+              },
+              {
+                "relative_seconds": 534.230482736,
+                "sequence": 105597,
+                "offset_step_ns": -4804613,
+                "host_delta_ns": 248395,
+                "device_delta_ns": 5053008
+              },
+              {
+                "relative_seconds": 549.594804274,
+                "sequence": 108636,
+                "offset_step_ns": -2869794,
+                "host_delta_ns": 2184446,
+                "device_delta_ns": 5054240
+              },
+              {
+                "relative_seconds": 557.12703213,
+                "sequence": 110126,
+                "offset_step_ns": -1843611,
+                "host_delta_ns": 3210092,
+                "device_delta_ns": 5053703
+              },
+              {
+                "relative_seconds": 564.698497776,
+                "sequence": 111623,
+                "offset_step_ns": -921300,
+                "host_delta_ns": 4146371,
+                "device_delta_ns": 5067671
+              },
+              {
+                "relative_seconds": 409.230237596,
+                "sequence": 80945,
+                "offset_step_ns": -837246,
+                "host_delta_ns": 4216509,
+                "device_delta_ns": 5053755
+              }
+            ],
+            "offender": {
+              "sensor": "a",
+              "sequence": 130511,
+              "arrival_lead_ns": 5258283,
+              "dequeue_lead_ns": 5063184,
+              "arrival_to_dequeue_ns": 195099
+            }
+          },
+          "sha256": {
+            "arrival.bin": "28ab407d087a15434b55cd4a5e0ab5e4b944a573fc6f8ec1c4838c5aa2dbb415",
+            "dequeue.bin": "7aed049d233adc20f509e16266293b15bf7660212a534855e2fb525cdb9b607e",
+            "images.bin": "e624bfda6c4393fa74751a9e64352936de3ad000fb6b5c63bfceb70750d9458e",
+            "arrival-window.json": "169bee41601f19c329687ea32957759e4179e89676685d644a968c6673f75bac",
+            "dequeue-window.json": "169bee41601f19c329687ea32957759e4179e89676685d644a968c6673f75bac",
+            "images-window.json": "154504a0192b7fcff49b19d6adfd4da572d9d4130e095b60461d4af8bfe89662",
+            "complete.json": "9952281b42136d113d7e1001898b11b5b157582db6609dea9db867f1ad986433",
+            "analysis.json": "f5561749b6727474f9327ec9da47ff4c918ab03ca5080864af1145d1e3bdcf6c",
+            "clock-detail.json": "224d163b6bde2c253b5208981dec8ef12285adef992e7d215f980b7b238ab1d8"
+          }
+        }
+      ]
+    },
+    {
+      "passed": false,
+      "error": "AssertionError('camera: IMU acquisition clock regressed: sensor=accel sequence=51065 acquisition_ns=5288944076810 received_ns=5288949893878 now_ns=5288949904686 previous_sequence=51064 previous_acquisition_ns=5288945057053 delta_ns=-980243')",
+      "elapsed_after_ready_seconds": 257.779310754,
+      "camera": {
+        "accel_samples": 51060,
+        "combined_imu_overflows": 0,
+        "combined_imu_rejected": 0,
+        "combined_imu_samples": 51060,
+        "detail": "IMU acquisition clock regressed: sensor=accel sequence=51065 acquisition_ns=5288944076810 received_ns=5288949893878 now_ns=5288949904686 previous_sequence=51064 previous_acquisition_ns=5288945057053 delta_ns=-980243",
+        "frames": 7733,
+        "gyro_samples": 51060,
+        "imu_sensor": "BMI270",
+        "imu_sequence_gaps": 0,
+        "rejected_pairs": 7,
+        "state": "error",
+        "stereo_pairs": 7744,
+        "stereo_rejected": 0
+      },
+      "odometry": {
+        "association_epoch": 1,
+        "estimates": 7738,
+        "reason": "fresh_upstream_success_unqualified",
+        "rejected": 6,
+        "state": "tracking",
+        "unmatched": 6
+      },
+      "cleanup_errors": [],
+      "exit_code": 1,
+      "name": "native-360-hour-r2",
+      "traces": [
+        {
+          "span_seconds": 258.187205699,
+          "rows": {
+            "arrival": 51061,
+            "dequeue": 51061
+          },
+          "windows": {
+            "images": {
+              "row_bytes": 40,
+              "rows": 30968,
+              "capacity": 524288,
+              "overflow": 0
+            },
+            "dequeue": {
+              "row_bytes": 112,
+              "rows": 51061,
+              "capacity": 1048576,
+              "overflow": 0
+            },
+            "arrival": {
+              "row_bytes": 112,
+              "rows": 51061,
+              "capacity": 1048576,
+              "overflow": 0
+            }
+          },
+          "overflow": {
+            "images": 0,
+            "dequeue": 0,
+            "arrival": 0
+          },
+          "dequeue_not_arrival_ordered_subsequence": 0,
+          "images": {
+            "0": {
+              "rows": 7740,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 566182
+            },
+            "1": {
+              "rows": 7740,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 566182
+            },
+            "2": {
+              "rows": 7744,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 566182
+            },
+            "3": {
+              "rows": 7744,
+              "host_regressions": 0,
+              "maximum_absolute_offset_step_ns": 566182
+            }
+          },
+          "arrival": {
+            "a": {
+              "counts": {
+                "reports": 51061,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 1,
+                "device_regressions": 0,
+                "offset_changes": 34
+              },
+              "minimum_positive_host_delta_ns": 4701140,
+              "maximum_absolute_offset_step_ns": 6032729,
+              "minimum_offset_step_ns": -6032729,
+              "maximum_offset_step_ns": 566182,
+              "minimum_device_delta_ns": 4701140
+            },
+            "g": {
+              "counts": {
+                "reports": 51061,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 1,
+                "device_regressions": 0,
+                "offset_changes": 34
+              },
+              "minimum_positive_host_delta_ns": 4701140,
+              "maximum_absolute_offset_step_ns": 6032729,
+              "minimum_offset_step_ns": -6032729,
+              "maximum_offset_step_ns": 566182,
+              "minimum_device_delta_ns": 4701140
+            }
+          },
+          "dequeue": {
+            "a": {
+              "counts": {
+                "reports": 51061,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 1,
+                "device_regressions": 0,
+                "offset_changes": 34
+              },
+              "minimum_positive_host_delta_ns": 4701140,
+              "maximum_absolute_offset_step_ns": 6032729,
+              "minimum_offset_step_ns": -6032729,
+              "maximum_offset_step_ns": 566182,
+              "minimum_device_delta_ns": 4701140
+            },
+            "g": {
+              "counts": {
+                "reports": 51061,
+                "initial_empty": 0,
+                "same_sequence": 0,
+                "backwards_sequence": 0,
+                "missing_sequences": 0,
+                "identical_repeated_timestamp": 0,
+                "same_device_report_changed_host_stamp": 0,
+                "host_regressions": 1,
+                "device_regressions": 0,
+                "offset_changes": 34
+              },
+              "minimum_positive_host_delta_ns": 4701140,
+              "maximum_absolute_offset_step_ns": 6032729,
+              "minimum_offset_step_ns": -6032729,
+              "maximum_offset_step_ns": 566182,
+              "minimum_device_delta_ns": 4701140
+            }
+          },
+          "mapped_reversal_events": {
+            "arrival": {
+              "a": [
+                {
+                  "index": 51060,
+                  "previous_index": 51059,
+                  "delta_host_ns": -980243,
+                  "delta_device_ns": 5052486,
+                  "sequence_delta": 1,
+                  "offset_step_ns": -6032729,
+                  "previous": {
+                    "observed_ns": 5288944342780,
+                    "batch": 51060,
+                    "poll": 0,
+                    "snapshot": 0,
+                    "packet": 0,
+                    "packets": 1,
+                    "queued": 0,
+                    "sequence": 51064,
+                    "host_ns": 5288945057053,
+                    "device_ns": 260668220532
+                  },
+                  "current": {
+                    "observed_ns": 5288948964255,
+                    "batch": 51061,
+                    "poll": 0,
+                    "snapshot": 0,
+                    "packet": 0,
+                    "packets": 1,
+                    "queued": 0,
+                    "sequence": 51065,
+                    "host_ns": 5288944076810,
+                    "device_ns": 260673273018
+                  }
+                }
+              ],
+              "g": [
+                {
+                  "index": 51060,
+                  "previous_index": 51059,
+                  "delta_host_ns": -980243,
+                  "delta_device_ns": 5052486,
+                  "sequence_delta": 1,
+                  "offset_step_ns": -6032729,
+                  "previous": {
+                    "observed_ns": 5288944342780,
+                    "batch": 51060,
+                    "poll": 0,
+                    "snapshot": 0,
+                    "packet": 0,
+                    "packets": 1,
+                    "queued": 0,
+                    "sequence": 51059,
+                    "host_ns": 5288945057053,
+                    "device_ns": 260668220532
+                  },
+                  "current": {
+                    "observed_ns": 5288948964255,
+                    "batch": 51061,
+                    "poll": 0,
+                    "snapshot": 0,
+                    "packet": 0,
+                    "packets": 1,
+                    "queued": 0,
+                    "sequence": 51060,
+                    "host_ns": 5288944076810,
+                    "device_ns": 260673273018
+                  }
+                }
+              ]
+            },
+            "dequeue": {
+              "a": [
+                {
+                  "index": 51060,
+                  "previous_index": 51059,
+                  "delta_host_ns": -980243,
+                  "delta_device_ns": 5052486,
+                  "sequence_delta": 1,
+                  "offset_step_ns": -6032729,
+                  "previous": {
+                    "observed_ns": 5288944998130,
+                    "batch": 51060,
+                    "poll": 222713,
+                    "snapshot": 1,
+                    "packet": 0,
+                    "packets": 1,
+                    "queued": 0,
+                    "sequence": 51064,
+                    "host_ns": 5288945057053,
+                    "device_ns": 260668220532
+                  },
+                  "current": {
+                    "observed_ns": 5288949893878,
+                    "batch": 51061,
+                    "poll": 222717,
+                    "snapshot": 1,
+                    "packet": 0,
+                    "packets": 1,
+                    "queued": 0,
+                    "sequence": 51065,
+                    "host_ns": 5288944076810,
+                    "device_ns": 260673273018
+                  }
+                }
+              ],
+              "g": [
+                {
+                  "index": 51060,
+                  "previous_index": 51059,
+                  "delta_host_ns": -980243,
+                  "delta_device_ns": 5052486,
+                  "sequence_delta": 1,
+                  "offset_step_ns": -6032729,
+                  "previous": {
+                    "observed_ns": 5288944998130,
+                    "batch": 51060,
+                    "poll": 222713,
+                    "snapshot": 1,
+                    "packet": 0,
+                    "packets": 1,
+                    "queued": 0,
+                    "sequence": 51059,
+                    "host_ns": 5288945057053,
+                    "device_ns": 260668220532
+                  },
+                  "current": {
+                    "observed_ns": 5288949893878,
+                    "batch": 51061,
+                    "poll": 222717,
+                    "snapshot": 1,
+                    "packet": 0,
+                    "packets": 1,
+                    "queued": 0,
+                    "sequence": 51060,
+                    "host_ns": 5288944076810,
+                    "device_ns": 260673273018
+                  }
+                }
+              ]
+            }
+          },
+          "clock_detail": {
+            "arrival_max_lead_ns": 2743023,
+            "dequeue_max_lead_ns": 2474411,
+            "arrival_leads_over_5ms": 0,
+            "dequeue_leads_over_5ms": 0,
+            "positive_steps": [
+              {
+                "relative_seconds": 158.130450131,
+                "sequence": 31277,
+                "offset_step_ns": 566182,
+                "host_delta_ns": 5624536,
+                "device_delta_ns": 5058354
+              },
+              {
+                "relative_seconds": 118.909567296,
+                "sequence": 23522,
+                "offset_step_ns": 541370,
+                "host_delta_ns": 5598684,
+                "device_delta_ns": 5057314
+              },
+              {
+                "relative_seconds": 64.47884257,
+                "sequence": 12758,
+                "offset_step_ns": 518489,
+                "host_delta_ns": 5573758,
+                "device_delta_ns": 5055269
+              },
+              {
+                "relative_seconds": 227.450022925,
+                "sequence": 44985,
+                "offset_step_ns": 518066,
+                "host_delta_ns": 5572137,
+                "device_delta_ns": 5054071
+              },
+              {
+                "relative_seconds": 182.28066306,
+                "sequence": 36053,
+                "offset_step_ns": 497964,
+                "host_delta_ns": 5552681,
+                "device_delta_ns": 5054717
+              },
+              {
+                "relative_seconds": 79.358865063,
+                "sequence": 15700,
+                "offset_step_ns": 493911,
+                "host_delta_ns": 5551248,
+                "device_delta_ns": 5057337
+              }
+            ],
+            "negative_steps": [
+              {
+                "relative_seconds": 258.187205699,
+                "sequence": 51065,
+                "offset_step_ns": -6032729,
+                "host_delta_ns": -980243,
+                "device_delta_ns": 5052486
+              }
+            ],
+            "offender": {
+              "sensor": "a",
+              "sequence": 51065,
+              "arrival_lead_ns": -4887445,
+              "dequeue_lead_ns": -5817068,
+              "arrival_to_dequeue_ns": 929623
+            }
+          },
+          "sha256": {
+            "arrival.bin": "53a5f25b4746517d50a9faa11aa943a02db6242750a384ff7f97ff47a5512731",
+            "dequeue.bin": "92d921c712eabc73c3fc4620fad330e3f736dafb6f7e9a8ae8adca36f8641d1f",
+            "images.bin": "4350b0727dfa6347671f844dad858ac7c0b6e3fb1f9d0132c3d8867e74d9213e",
+            "arrival-window.json": "f715f7094ed950a88f65231c0a63be87299fa855ef0900907cf7d6853fc5c3ff",
+            "dequeue-window.json": "f715f7094ed950a88f65231c0a63be87299fa855ef0900907cf7d6853fc5c3ff",
+            "images-window.json": "a0dc1eff151869cf666c2221e55cbdce5d8355c10f7e03424ac9a3244d7c6acd",
+            "complete.json": "9952281b42136d113d7e1001898b11b5b157582db6609dea9db867f1ad986433",
+            "analysis.json": "81683095f061f050c0e56597a51a2406c8baa5490b57e9b9225f87efd27e6230",
+            "clock-detail.json": "ed17170f0897b1b921e1d207168cc69f62da41e53efa280b83adce832484a28d"
+          }
+        }
+      ]
+    }
+  ],
+  "source_sha256": {
+    "camera-source.tar": "1e40f6947c1b8473dc5315cb5a310d839fea293b4f2e6dc62faa1f73b152a06e",
+    "clock_probe.hpp": "b6b592db4d9e50b92c7b1cce5659b941cff05dfcd1a5203193c15dd0956bd25b",
+    "instrument.py": "708987962393832cae1acd297f00ed09c10cf5fa7b4db3e86beea9012bb001df",
+    "build.sh": "d48310ca7674b9a69665f13cb34ba50f3c3cb8b0c254f7804d1b9c40b896a8bd",
+    "stage.py": "cceb065e23ba6f8b10a6e151d08b3d177c40ccb64e27dd8bea14af647e5cea8d",
+    "integration_trace.py": "8509e59ae359e90047e0eb1247100af477977b556f65a5917244de7ae881fe9b",
+    "run.py": "02d41acd172b8c1a686ede1877e14f3a4bb6bc4396cb828d58b5ef0fbe379a92",
+    "run.sh": "4f4fe31b02973944aa170b88ad057aa1cb2a36a6eea04bf70e28bfaf4d8a35e8",
+    "analyze.py": "54e7eb40d37f5588f26d511668d949bc16566be1ff2417c14d4a38fa99992b4e",
+    "examine_clock.py": "020110598fcc219b9d963a7015ab417a3ac4bce18218733d6b176dcfabe96578",
+    "summarize.py": "210c9742de8761ab10b5010af832c92f3c859ccdbcefd3b73cb1bcebf21f1337",
+    "probe_check.cpp": "40c90e2ad6499a60807a3597a68661ce6dcb7deee149cc172476b338b50378c9",
+    "probe_check.py": "40c92df5218c71accd168d26fb90c0934935bd4a6fe05a66a0b79dbaf2b42f13"
+  },
+  "binary_sha256": {
+    "librgbd_camera_oak.so": "079c9d5fbe3f6add3126c27fa235f981e6a218d104aff2862df12b693dece2f0",
+    "librgbd_camera_core.so": "6625478bf27f28f246b5716cfade3a58ca40cade46e5826482d8a3f83ee104ff"
+  }
+}

@@ -7,6 +7,7 @@ from pathlib import Path
 import platform as host_platform
 import re
 import shlex
+import shutil
 import subprocess
 import sys
 
@@ -19,7 +20,7 @@ libopencv-dev python3-dev python3-venv python3-pip python3-colcon-common-extensi
 ros-jazzy-ros-base ros-jazzy-ament-cmake ros-jazzy-ament-index-cpp ros-jazzy-rclcpp
 ros-jazzy-rclcpp-components ros-jazzy-rcl-interfaces ros-jazzy-rclpy
 ros-jazzy-rosidl-default-generators ros-jazzy-rosidl-default-runtime
-ros-jazzy-sensor-msgs ros-jazzy-std-msgs ros-jazzy-geometry-msgs
+ros-jazzy-sensor-msgs ros-jazzy-std-msgs ros-jazzy-geometry-msgs ros-jazzy-nav-msgs
 ros-jazzy-launch ros-jazzy-launch-ros ros-jazzy-tf2-ros
 cuda-nvcc-13-2 cuda-cudart-dev-13-2 libnvinfer-dev libnvinfer-headers-dev
 libnvinfer10 libnvonnxparsers-dev libnvonnxparsers10
@@ -67,6 +68,14 @@ def admit(declared, observed):
 def package_plan(graph):
     observed = admit(graph["platform"], inspect())
     packages = list(PACKAGES)
+    if graph["site"]["visual_odometry"]["enabled"]:
+        if graph["site"]["visual_odometry"]["backend"] == "docker":
+            # JetPack supplies the NVIDIA runtime. Validate daemon/GPU setup in
+            # the backend build/qualification; never change Docker during launch.
+            require(shutil.which("docker") is not None, "Install Docker and NVIDIA Container Toolkit during host maintenance")
+        else:
+            packages.extend(("libnvvpi4", "ros-jazzy-cv-bridge", "ros-jazzy-visualization-msgs",
+                "ros-jazzy-diagnostic-msgs", "ros-jazzy-tf2-geometry-msgs", "ros-jazzy-message-filters"))
     if graph["composition"].get("firmware"):
         packages.extend(("gcc-arm-none-eabi", "libnewlib-arm-none-eabi", "libstdc++-arm-none-eabi-newlib"))
     if graph["platform"]["encoder"] == "hardware":

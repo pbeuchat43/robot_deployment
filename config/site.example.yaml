@@ -21,6 +21,9 @@ hardware:
     # Usually absent: discover exactly one compatible camera at each Start.
     # device_ids: {oak_d_rvc2: EXACT_SESSION_ID}
 camera_profiles: {oak: oak-720p30, d455: d455-720p30}
+# Install VO/VIO capabilities during maintenance; every runtime default stays Off.
+# Select docker (default) or native here, then stage a new release.
+visual_odometry: {enabled: false, backend: docker}
 recording:
   budget_bytes: 10000000000
   reserve_bytes: 1000000000

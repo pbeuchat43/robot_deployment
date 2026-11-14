@@ -1,0 +1,6 @@
+{
+  "reservation_released": true,
+  "reservation_process_stopped": true,
+  "released_at": "2026-11-14T01:07:20.011764+00:00",
+  "reason": "release_marker"
+}

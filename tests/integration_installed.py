@@ -28,7 +28,8 @@ def main(argv=None):
                         help="Optional separately installed CLI to check against the same completed release")
     args = parser.parse_args(argv)
     output = args.output.resolve()
-    site = load(args.site)["site"]
+    graph = load(args.site)
+    site = graph["site"]
     installation = Path(site["storage"]["installation_root"]).resolve()
     data = Path(site["storage"]["data_root"]).resolve()
     student = Path(site["workspaces"]["student"]).resolve()
@@ -85,8 +86,15 @@ def main(argv=None):
         catalog = cli("runtime", "catalog")
         assert {unit["unit_id"] for unit in catalog["units"]} == {"perception", "video", "recording"}
         perception = next(unit for unit in catalog["units"] if unit["unit_id"] == "perception")
-        assert {mode["id"] for mode in perception["launch_modes"]} == {
-            camera + "-" + model for camera in ("oak", "d455") for model in ("camera", "cones", "coco", "both")}
+        expected_modes = set()
+        for camera in ("oak", "d455"):
+            stereo = site["camera_profiles"][camera] in graph["cameras"]["stereo_profiles"]
+            suffixes = ("", "-vo", "-vio") if site["visual_odometry"]["enabled"] and stereo else ("",)
+            expected_modes.update(camera + "-" + model + suffix
+                for model in ("camera", "cones", "coco", "both") for suffix in suffixes)
+        assert {mode["id"] for mode in perception["launch_modes"]} == expected_modes
+        assert len(perception["launch_modes"]) == len(expected_modes)
+        report["catalog_modes"] = len(expected_modes)
         assert (release / "ros/install/lib/robot_runtime_recording/recording_node").is_file()
         explained = cli("runtime", "start", "perception", "--show-call")
         assert not explained["executed"] and explained["entry_point"] == "robot_runtime.cli:main"

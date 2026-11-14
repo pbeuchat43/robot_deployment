@@ -1,0 +1,313 @@
+{
+  "schema": 1,
+  "checked_date": "2026-11-14",
+  "production_guard_changed": false,
+  "upstream": {
+    "checked_date": "2026-11-14",
+    "candidate_version": "3.12.1",
+    "candidate_revision": "da14320483864f7cdabada9e70d4d6a2115eff9a",
+    "previous_version": "3.9.0",
+    "previous_revision": "ac928141ef7750bf3082b5e1c319a115618660e7",
+    "release_notes_reviewed": [
+      "3.10.0",
+      "3.11.0",
+      "3.12.0",
+      "3.12.1"
+    ],
+    "applicable_clock_fix_documented": false,
+    "host_timesync_exchange_and_rpc_changed": false,
+    "firmware_timesync_implementation_verified": false,
+    "interpretation": "Candidate hardware testing is required; matching host code and absent release-note entries do not establish unchanged embedded firmware behavior.",
+    "historical_issue": "https://github.com/luxonis/depthai-core/issues/742",
+    "historical_issue_limit": "Timesync offset jumps acknowledged in 2023; later reversal reported after experimental timesync_alt_impl. This is not proof of the precise 3.9.0 firmware defect or a verified current fix.",
+    "release": "https://github.com/luxonis/depthai-core/releases/tag/v3.12.1",
+    "host_source": "https://github.com/luxonis/depthai-core/blob/da14320483864f7cdabada9e70d4d6a2115eff9a/src/device/DeviceBase.cpp"
+  },
+  "software": {
+    "camera_implementation_commit": "66262c074c0997e97e3081b9a14a14bb9a782024",
+    "runtime_implementation_commit": "33854e97c0b248e731ac86c57bef17c43a42257a",
+    "deployment_implementation_commit": "1003695db1f2aad97c8c098a6f53b732f18c43ab",
+    "capture_packages": {
+      "robot_runtime": {
+        "version": "0.1.0.dev28",
+        "manifest_sha256": "e63516381a0047213ff2aa82957c3dfb197c34850b1875dabc37ec0a83455205",
+        "file_count": 105
+      },
+      "robot_deployment": {
+        "version": "0.1.0.dev6",
+        "manifest_sha256": "2d25fd9a75763a90c0ef7d477f3cda4b88db723e7116b145dfb8045c68158ad1",
+        "file_count": 24
+      }
+    },
+    "sdk_binary_sha256": "930f5d83d2abfb0c29691ed2d27acb7afa16cb31c1b1366690d3ab5a5b1a29f3",
+    "capture_loaded_private_sdk": true,
+    "bootstrap_source_identity": {
+      "deployment_commit": "1003695db1f2aad97c8c098a6f53b732f18c43ab",
+      "runtime_commit": "33854e97c0b248e731ac86c57bef17c43a42257a",
+      "schema_version": 1,
+      "sources_sha256": "5034f9734e5f6ec7552eb52e3a13d03d59737a9f520b79cef801a5a2bafe9821"
+    },
+    "bootstrap_artifacts": {
+      "PyYAML-6.0.2-cp312-cp312-manylinux_2_17_aarch64.manylinux2014_aarch64.whl": "1f71ea527786de97d1a0cc0eacd1defc0985dcf6b3f17bb77dcfc8c34bec4dc5",
+      "aiohappyeyeballs-2.7.1-py3-none-any.whl": "9243213661e29250eb41368e5daa826fc017156c3b8a11440826b2e3ed376472",
+      "aiohttp-3.14.4-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl": "322e3d741b3133bcbb981a41d4f9b8ac3545c18de49c662c2b1f4e1c770b98ad",
+      "aiosignal-1.4.0-py3-none-any.whl": "053243f8b92b990551949e63930a839ff0cf0b0ebbe0597b0f3fb19e1a0fe82e",
+      "attrs-23.2.0-py3-none-any.whl": "99b87a485a5820b23b879f04c2305b44b951b502fd64be915879d77a7e8fc6f1",
+      "frozenlist-1.8.0-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl": "96f423a119f4777a4a056b66ce11527366a8bb92f54e541ade21f2374433f6d4",
+      "idna-3.6-py3-none-any.whl": "c05567e9c24a6b9faaa835c4821bad0590fbb9d5779e7caa6e1cc4978e7eb24f",
+      "multidict-6.9.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl": "35fc236507fb1b3138f0af5ecd5f94ed752d4d6d826248eae425f86204013eea",
+      "propcache-0.5.4-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl": "60a64cbccaa11b7760ce705a14ada17ba459e7ca9f23ba587eb013821032d7ef",
+      "pyserial-3.5-py2.py3-none-any.whl": "c4451db6ba391ca6ca299fb3ec7bae67a5c55dde170964c7a14ceefec02f2cf0",
+      "robot_deployment-0.1.0.dev7-py3-none-any.whl": "15a3a54e6ec2bfd5df4a37169570999ac646357c87c4b04a44e3a8a643390781",
+      "robot_deployment-0.1.0.dev7.tar.gz": "de1958e424336291bd8fba8d94e5bcbe804ee962c923da891a9c8cb3d7d671bf",
+      "robot_runtime-0.1.0.dev29-py3-none-any.whl": "806dbdf577af5ba27424660c91a693da33916396f4d5970da47f38ab1a8f7d9c",
+      "robot_runtime-0.1.0.dev29.tar.gz": "8765229deeb6909d26510904983c249009100bf3afccec34ff84a9fd54120606",
+      "typing_extensions-4.10.0-py3-none-any.whl": "69b1a937c3a517342112fb4c6df7e72fc39a38e7891a5730ed4985b5214b5475",
+      "yarl-1.25.1-cp312-cp312-manylinux2014_aarch64.manylinux_2_17_aarch64.manylinux_2_28_aarch64.whl": "4d781294bb815ecb5ea57ff6bbf8038e0a31a95fdf3e1788f66e0dc100d64b58"
+    }
+  },
+  "capture": {
+    "mode": "OAK 360p30, cones, native VIO",
+    "target_measured_seconds": 3600,
+    "warmup_seconds": 15,
+    "started_at": "2026-11-14T01:23:46+11:00",
+    "sdk_arrival_span_seconds": 340.346823425,
+    "elapsed_after_ready_seconds": 339.936918579,
+    "passed": false,
+    "error": "AssertionError('camera: invalid IMU clock mapping: sensor=accel sequence=67270 acquisition_ns=10366608897584 received_ns=10366603732646 now_ns=10366603741946 future_tolerance_ns=5000000 previous_acquisition_ns=10366603850761')",
+    "camera": {
+      "accel_samples": 67265,
+      "combined_imu_overflows": 0,
+      "combined_imu_rejected": 9,
+      "combined_imu_samples": 67256,
+      "detail": "invalid IMU clock mapping: sensor=accel sequence=67270 acquisition_ns=10366608897584 received_ns=10366603732646 now_ns=10366603741946 future_tolerance_ns=5000000 previous_acquisition_ns=10366603850761",
+      "frames": 10190,
+      "gyro_samples": 67265,
+      "imu_sensor": "BMI270",
+      "imu_sequence_gaps": 0,
+      "rejected_pairs": 7,
+      "state": "error",
+      "stereo_pairs": 10202,
+      "stereo_rejected": 0
+    },
+    "odometry": {
+      "association_epoch": 10,
+      "estimates": 10196,
+      "reason": "fresh_upstream_success_unqualified",
+      "rejected": 5,
+      "state": "tracking",
+      "unmatched": 10
+    },
+    "cleanup_errors": [],
+    "paired_packets": {
+      "arrival": 67266,
+      "dequeue": 67266
+    },
+    "overflow": {
+      "images": 0,
+      "dequeue": 0,
+      "arrival": 0
+    },
+    "ordered_stage_mismatches": 0,
+    "counters": {
+      "arrival": {
+        "a": {
+          "reports": 67266,
+          "initial_empty": 0,
+          "same_sequence": 0,
+          "backwards_sequence": 0,
+          "missing_sequences": 0,
+          "identical_repeated_timestamp": 0,
+          "same_device_report_changed_host_stamp": 0,
+          "host_regressions": 0,
+          "device_regressions": 0,
+          "offset_changes": 44
+        },
+        "g": {
+          "reports": 67266,
+          "initial_empty": 0,
+          "same_sequence": 0,
+          "backwards_sequence": 0,
+          "missing_sequences": 0,
+          "identical_repeated_timestamp": 0,
+          "same_device_report_changed_host_stamp": 0,
+          "host_regressions": 0,
+          "device_regressions": 0,
+          "offset_changes": 44
+        }
+      },
+      "dequeue": {
+        "a": {
+          "reports": 67266,
+          "initial_empty": 0,
+          "same_sequence": 0,
+          "backwards_sequence": 0,
+          "missing_sequences": 0,
+          "identical_repeated_timestamp": 0,
+          "same_device_report_changed_host_stamp": 0,
+          "host_regressions": 0,
+          "device_regressions": 0,
+          "offset_changes": 44
+        },
+        "g": {
+          "reports": 67266,
+          "initial_empty": 0,
+          "same_sequence": 0,
+          "backwards_sequence": 0,
+          "missing_sequences": 0,
+          "identical_repeated_timestamp": 0,
+          "same_device_report_changed_host_stamp": 0,
+          "host_regressions": 0,
+          "device_regressions": 0,
+          "offset_changes": 44
+        }
+      }
+    },
+    "images": {
+      "0": {
+        "rows": 10197,
+        "host_regressions": 0,
+        "maximum_absolute_offset_step_ns": 182022001
+      },
+      "1": {
+        "rows": 10197,
+        "host_regressions": 0,
+        "maximum_absolute_offset_step_ns": 182022001
+      },
+      "2": {
+        "rows": 10202,
+        "host_regressions": 0,
+        "maximum_absolute_offset_step_ns": 182022001
+      },
+      "3": {
+        "rows": 10202,
+        "host_regressions": 0,
+        "maximum_absolute_offset_step_ns": 182022001
+      }
+    },
+    "future_event": {
+      "accel_sequence": 67270,
+      "arrival_lead_ns": 5635874,
+      "dequeue_lead_ns": 5164938,
+      "arrival_to_dequeue_ns": 470936,
+      "raw_device_delta_ns": 5046823,
+      "sdk_host_delta_ns": 5046823
+    },
+    "largest_positive_steps": [
+      {
+        "relative_seconds": 235.101766421,
+        "sequence": 46479,
+        "offset_step_ns": 182022001,
+        "host_delta_ns": 187073171,
+        "device_delta_ns": 5051170
+      },
+      {
+        "relative_seconds": 242.510646311,
+        "sequence": 47934,
+        "offset_step_ns": 60544301,
+        "host_delta_ns": 65608004,
+        "device_delta_ns": 5063703
+      },
+      {
+        "relative_seconds": 250.981055749,
+        "sequence": 49604,
+        "offset_step_ns": 26859907,
+        "host_delta_ns": 31911623,
+        "device_delta_ns": 5051716
+      },
+      {
+        "relative_seconds": 227.343258323,
+        "sequence": 44974,
+        "offset_step_ns": 20169890,
+        "host_delta_ns": 25233382,
+        "device_delta_ns": 5063492
+      },
+      {
+        "relative_seconds": 258.342645288,
+        "sequence": 51058,
+        "offset_step_ns": 11312460,
+        "host_delta_ns": 16374573,
+        "device_delta_ns": 5062113
+      },
+      {
+        "relative_seconds": 266.481016138,
+        "sequence": 52666,
+        "offset_step_ns": 6006632,
+        "host_delta_ns": 11062245,
+        "device_delta_ns": 5055613
+      }
+    ],
+    "largest_negative_steps": [
+      {
+        "relative_seconds": 9.433212346,
+        "sequence": 1872,
+        "offset_step_ns": -3881509,
+        "host_delta_ns": 1174499,
+        "device_delta_ns": 5056008
+      },
+      {
+        "relative_seconds": 17.4338003,
+        "sequence": 3456,
+        "offset_step_ns": -3719097,
+        "host_delta_ns": 1339070,
+        "device_delta_ns": 5058167
+      },
+      {
+        "relative_seconds": 33.239709803,
+        "sequence": 6583,
+        "offset_step_ns": -3460865,
+        "host_delta_ns": 1592050,
+        "device_delta_ns": 5052915
+      },
+      {
+        "relative_seconds": 40.84415478,
+        "sequence": 8089,
+        "offset_step_ns": -3441068,
+        "host_delta_ns": 1607164,
+        "device_delta_ns": 5048232
+      },
+      {
+        "relative_seconds": 25.125642808,
+        "sequence": 4978,
+        "offset_step_ns": -3401764,
+        "host_delta_ns": 1654090,
+        "device_delta_ns": 5055854
+      },
+      {
+        "relative_seconds": 56.879038724,
+        "sequence": 11261,
+        "offset_step_ns": -3234563,
+        "host_delta_ns": 1816529,
+        "device_delta_ns": 5051092
+      }
+    ],
+    "vio_frame_gap_warnings": {
+      "count": 5,
+      "max_ms": 215.355507
+    }
+  },
+  "verification": {
+    "camera_tests": 5,
+    "runtime_focused_tests": 25,
+    "runtime_package_files": 105,
+    "synthetic_ros_video_frames": 3,
+    "synthetic_ros_child_exited": true,
+    "deployment_tests": 57,
+    "deployment_package_files": 24,
+    "launch_modes_checked": 48,
+    "bootstrap": "succeeded"
+  },
+  "source_hashes": {
+    "camera-source.tar": "1e40f6947c1b8473dc5315cb5a310d839fea293b4f2e6dc62faa1f73b152a06e",
+    "instrument.py": "9a7e77eb04dc778e2325d8ca0e443b1da555f381cb10efc598cab41a83a99312",
+    "clock_probe.hpp": "f55bddd446e88dfb876742ee2780b4a005a3a4a07d3535c05e8d46155462f57b",
+    "run.py": "6fa9aeb9a41aa2438a5f9443aa15d39bbf64ceff240e167709b65c5a2d1bd59e",
+    "integration_trace.py": "8509e59ae359e90047e0eb1247100af477977b556f65a5917244de7ae881fe9b",
+    "check-runtime.sh": "307231458592e13eb2edca0d25c604bc035528aa201ddbca765c86790e3874df",
+    "check-deployment.sh": "1194cf2dd793483be638a9ed64b826d1c6b44bfd3c769f3315665f03fa07ae40",
+    "check-ros-video.py": "a36bbd982c039d150d07ae602ed3d47c3b99c4c73294cb271478a06b6336d471",
+    "oak-clock-mapper/mapper.hpp": "772b84069e35fa96dfd053f2abb168a3bd6b3c331d85a8a05347b25c5e54a02e",
+    "oak-clock-mapper/replay.cpp": "0c120b9aa06a567fd95c77682ab1f962578d6e7f16f64029a072b1d8fb304354",
+    "oak-clock-mapper/run_replay.py": "9e5205c724f57c4e487b7962998fe56587d955bab346c4fe55aa5686f293281a"
+  }
+}

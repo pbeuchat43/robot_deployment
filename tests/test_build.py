@@ -1,6 +1,7 @@
 """Workspace builds preserve sources and require a clean output after underlay changes."""
 # Copyright (c) 2026 Paul N. Beuchat. MIT License.
 from pathlib import Path
+from itertools import product
 import tempfile
 import unittest
 from unittest.mock import Mock, patch
@@ -12,8 +13,8 @@ from robot_deployment.configuration import ConfigurationError
 
 class BuildTests(unittest.TestCase):
     def test_system_rebuild_includes_native_recorder_from_verified_runtime(self):
-        for vehicle in (False, True):
-            with self.subTest(vehicle=vehicle), tempfile.TemporaryDirectory() as directory:
+        for vehicle, odometry in product((False, True), repeat=2):
+            with self.subTest(vehicle=vehicle, odometry=odometry), tempfile.TemporaryDirectory() as directory:
                 root = Path(directory)
                 installation = root / "installation"
                 release = installation / "releases/fixture"
@@ -23,16 +24,20 @@ class BuildTests(unittest.TestCase):
                 names = ("rgbd_camera", "rgbd_object_detector", "vision_msgs", "robot_runtime")
                 if vehicle:
                     names += ("rc_car_interface",)
+                if odometry:
+                    names += ('visual_odometry',)
                 selections = {name: dict(commit=name + "-revision") for name in names}
                 for name, selection in selections.items():
                     checkout = installation / "cache/git" / (name + "-" + selection["commit"])
                     checkout.mkdir(parents=True)
                     if name == "robot_runtime":
                         (checkout / "ros/robot_runtime_recording").mkdir(parents=True)
+                    if name == 'visual_odometry':
+                        (checkout / 'visual_odometry_interfaces').mkdir()
                 units = dict(vehicle=dict(source=selections["rc_car_interface"])) if vehicle else {}
                 graph = dict(site=dict(storage=dict(installation_root=str(installation), data_root=str(root / "data"))),
                              composition=dict(units=units),
-                             sources=dict(components={name: selections[name] for name in ("rgbd_camera", "rgbd_object_detector", "robot_runtime")},
+                             sources=dict(components={name: selections[name] for name in names if name not in ('vision_msgs', 'rc_car_interface')},
                                           dependencies=dict(vision_msgs=selections["vision_msgs"])))
                 with patch("robot_deployment.build.graph_for", return_value=graph), \
                         patch("robot_deployment.build.current", return_value="fixture"), \
@@ -41,8 +46,12 @@ class BuildTests(unittest.TestCase):
                     result = ros(workspace="system")
                 self.assertEqual(verify.call_count, len(names))
                 source = root / "data/build/system/fixture/src"
-                self.assertEqual({p.name for p in source.iterdir()},
-                                 (set(names) - {"robot_runtime"}) | {"robot_runtime_recording"})
+                expected = (set(names) - {"robot_runtime", 'visual_odometry'}) | {"robot_runtime_recording"}
+                if odometry:
+                    expected.add('visual_odometry_interfaces')
+                    self.assertEqual((source / 'visual_odometry_interfaces').resolve(),
+                        installation / 'cache/git/visual_odometry-visual_odometry-revision/visual_odometry_interfaces')
+                self.assertEqual({p.name for p in source.iterdir()}, expected)
                 self.assertEqual((source / "robot_runtime_recording").resolve(),
                                  installation / "cache/git/robot_runtime-robot_runtime-revision/ros/robot_runtime_recording")
                 if vehicle:
@@ -52,23 +61,31 @@ class BuildTests(unittest.TestCase):
                 self.assertFalse(result["runtime_restarted"])
 
     def test_installer_build_keeps_recorder_with_optional_vehicle(self):
-        for vehicle in (False, True):
-            with self.subTest(vehicle=vehicle), tempfile.TemporaryDirectory() as directory:
+        for vehicle, odometry in product((False, True), repeat=2):
+            with self.subTest(vehicle=vehicle, odometry=odometry), tempfile.TemporaryDirectory() as directory:
                 root = Path(directory)
                 names = ("rgbd_camera", "rgbd_object_detector", "vision_msgs", "robot_runtime")
                 if vehicle:
                     names += ("rc_car_interface",)
+                if odometry:
+                    names += ('visual_odometry',)
                 selected = {name: root / "sources" / name for name in names}
                 for path in selected.values():
                     path.mkdir(parents=True)
                 recorder = selected["robot_runtime"] / "ros/robot_runtime_recording"
                 recorder.mkdir(parents=True)
+                if odometry:
+                    (selected['visual_odometry'] / 'visual_odometry_interfaces').mkdir()
                 release = root / "release"
                 command = Mock()
                 ros_build(selected, release, command)
                 source = release / "ros/src"
-                self.assertEqual({p.name for p in source.iterdir()},
-                                 (set(names) - {"robot_runtime"}) | {"robot_runtime_recording"})
+                expected = (set(names) - {"robot_runtime", 'visual_odometry'}) | {"robot_runtime_recording"}
+                if odometry:
+                    expected.add('visual_odometry_interfaces')
+                    self.assertEqual((source / 'visual_odometry_interfaces').resolve(),
+                        selected['visual_odometry'] / 'visual_odometry_interfaces')
+                self.assertEqual({p.name for p in source.iterdir()}, expected)
                 self.assertEqual((source / "robot_runtime_recording").resolve(), recorder)
                 if vehicle:
                     self.assertEqual((source / "rc_car_interface").resolve(), selected["rc_car_interface"])

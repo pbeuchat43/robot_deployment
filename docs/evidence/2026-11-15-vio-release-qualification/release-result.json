@@ -1,0 +1,8 @@
+{
+  "passed": true,
+  "reservation_released": true,
+  "lock_available": true,
+  "local_archive_hash_verified": true,
+  "released_at": "2026-11-14T16:36:31.766990+00:00",
+  "reason": "release_marker"
+}

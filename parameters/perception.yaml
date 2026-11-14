@@ -1,6 +1,7 @@
 schema_version: 1
 nodes:
   camera:
+    timestamp_policy: recover
     enable_imu: false
     publish_images: false
     max_frame_age_ms: 500.0

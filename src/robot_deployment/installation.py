@@ -155,6 +155,8 @@ def install(site_path, *, definitions=None, deployment_wheel=None, source_cache=
             attempt.stage("model-inputs", ["model-inputs"], lambda: components.model_inputs(graph, selected, release, root / "cache/downloads", command))
             attempt.stage("engines", ["models"], lambda: components.engines(release, command))
             attempt.stage("native-video", ["av-native"], lambda: components.native(selected, release, root / "cache/downloads", command))
+            if graph["site"]["visual_odometry"]["enabled"]:
+                attempt.stage("visual-odometry", ["visual-odometry"], lambda: components.odometry(graph, selected, release, root / "cache/downloads", command))
             attempt.stage("configuration", ["runtime.json", "profile.identity.json", "services"],
                           lambda: configure(graph, release, command))
             attempt.verify()

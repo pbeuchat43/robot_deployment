@@ -6,7 +6,12 @@ retains each atomic RGB-D frame through inference; a separate bounded presentati
 worker draws on a copy of that exact frame. The media process subscribes to the
 selected unannotated or annotated ROS image and encodes it through runtime WebRTC.
 
-The current pins select detector 0.2.1 with interface 0.2.0: `CaptureDetections` replaces
+The current coordinated interfaces add exposure midpoint/duration to
+`CaptureReference` schema 2, `Frame` and `CaptureDetections` schema 2, including
+recorded frame-index metadata. Rebuild camera, detector, recorder and odometry
+bindings together. Legacy acquisition-event timestamps retain their meanings.
+
+The preceding detector 0.2.1 with interface 0.2.0 transition made these changes: `CaptureDetections` replaces
 `Batch`, `capture_detections` replaces `batches`, and both atomic overlay messages
 use a `capture_detections` field (a fixed two-element array for the combined
 overlay). Rebuild the interfaces, detector, presentation components and probes
@@ -66,8 +71,9 @@ and engine identity, processing counters, ages and overlay state.
 For a change, select the new combination and use **Restart with selection**.
 The browser requests the declared restart; runtime prepares the candidate, stops
 the exact old run, waits for confirmed empty ownership, and starts the selected mode.
-A cancelled, uncertain or failed stop cannot trigger a new start. Refresh/reload
-does not resume the sequence. Connect video explicitly after the new source is
+A failed or uncertain stop cannot trigger a new start. An accepted Restart is a
+durable manager operation; browser disconnection does not cancel it. Refresh/reload
+does not submit another command. Connect video explicitly after the new source is
 ready; its admission is bound to that new source run.
 
 A stopped/lost camera is unavailable, not an empty detection result. Empty results
@@ -85,6 +91,33 @@ frame-rate ceiling. Observer freshness monitors arrival and camera availability;
 it does not claim measured capture-to-display age in the normal UI.
 
 ## Measurement and limits
+
+To install odometry capability, set `visual_odometry: {enabled: true, backend:
+docker}` in the private site and stage a new release during maintenance. Select
+`native` there for the private-prefix alternative. This is an installation choice;
+there is no automatic fallback or launch-time download. Old site files retain
+their eight Off modes. Enabled installations add an Off/VO/VIO selector and
+`-vo`/`-vio` suffixes, such as `d455-both-vio`, for explicitly admitted 30 Hz stereo
+profiles. The default remains Off. Unsupported combinations are absent.
+
+The candidate profiles are OAK and D455 `360p30`/`720p30`. D455 VO/VIO uses native
+640×480 depth/IR aligned to the chosen RGB grid and a single-threaded rectified
+estimator. OAK uses raw 640×400 stereo, fixed 20 ms/ISO 800 mono exposure and a
+200 Hz IMU request in VIO. See [settings and reasons](visual-odometry-troubleshooting.md).
+
+The host camera owns acquisition in every mode. Docker owns only the estimator
+and small output adapter. Initial readiness requires a fresh matched estimate
+within 90 seconds; startup failure cleans up the whole run. Later tracking loss
+is a health observation. Camera-body poses and explicit unknown visual support/
+covariance prevent the health display from implying driving qualification.
+
+`visual-odometry/manifest.json` records the source and interface revisions,
+dependency lock, resolved package closure and immutable image or native-prefix
+identity. Preparation checks the installed backend before stopping an old run.
+The native installer rejects incompatible host libraries; it does not replace
+OpenCV or CUDA. Software integration and stationary checks do not establish
+physical mounting, timing calibration, IMU axes, moving-scene accuracy or cone
+association performance.
 
 `tools/integration_probe` is a finite diagnostic subscriber: it can compare a
 received atomic overlay against a fresh render of the matching original RGB and

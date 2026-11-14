@@ -1,0 +1,58 @@
+{
+  "host_packages_unchanged": true,
+  "power_mode_unchanged": true,
+  "containers_unchanged": true,
+  "selected_release_unchanged": true,
+  "retained_runtime_states": 2,
+  "retained_runs": 2,
+  "retained_runs_unblocked": true,
+  "historical_runtime_databases_lost_after_operator_reboot": 8,
+  "historical_cleanup_records": [
+    {
+      "capture": "oak-forward-docker-r2",
+      "cleanup_resolved_before_reboot": true
+    },
+    {
+      "capture": "d455-baseline-wrap-r1",
+      "cleanup_resolved_before_reboot": true
+    },
+    {
+      "capture": "oak-forward-docker-r1",
+      "cleanup_resolved_before_reboot": true
+    },
+    {
+      "capture": "oak-forward-native-r2",
+      "cleanup_resolved_before_reboot": true
+    },
+    {
+      "capture": "oak-forward-native-r1",
+      "cleanup_resolved_before_reboot": true
+    },
+    {
+      "capture": "d455-baseline-wrap-r2",
+      "cleanup_resolved_before_reboot": true
+    },
+    {
+      "capture": "oak-natural-r1",
+      "cleanup_resolved_before_reboot": true
+    },
+    {
+      "capture": "d455-cleanup-native-r1",
+      "cleanup_resolved_before_reboot": true
+    }
+  ],
+  "historical_cleanup_resolved_before_reboot": true,
+  "owned_cgroups_empty": true,
+  "viewer_units_stopped": true,
+  "fixture_process_stopped": true,
+  "resource_monitor_stopped": true,
+  "firmware_restored": true,
+  "device_identity_preserved": true,
+  "calibration_preserved": true,
+  "firmware_downgrade_counter": 1,
+  "restored_baseline_capture_passed": true,
+  "restored_sdk_library_verified": true,
+  "temporary_usb_access_helper_stopped": true,
+  "temporary_usb_access_cleanup_completed": true,
+  "passed": true
+}

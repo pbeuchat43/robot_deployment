@@ -52,6 +52,9 @@ def verify_release(site, release_id):
     recorded_host = json.loads((release / "host.json").read_text())
     mismatches = [name for name, version in recorded_host["packages"].items() if package_version(name) != version]
     require(not mismatches, "Release host packages changed; application rollback cannot undo apt: " + ", ".join(mismatches))
+    if graph["site"]["visual_odometry"]["enabled"]:
+        from .odometry import artifact
+        artifact(graph, release, check_available=True)
     return release, graph
 
 

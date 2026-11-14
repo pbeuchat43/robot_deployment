@@ -12,19 +12,24 @@ from .configuration import (load, parameters, require, structure_identity, valid
 
 
 def effective(graph, release, mode, *, check_artifacts=True):
-    require(mode in {family + "-" + model for family in ("oak", "d455") for model in ("camera", "cones", "coco", "both")}, "Unknown perception mode")
-    family, model = mode.split("-", 1)
+    from .odometry import modes, configure
+    admitted_modes = modes(graph)
+    require(mode in admitted_modes, "Unknown or unsupported perception mode")
+    family, model, odometry = admitted_modes[mode]
     selected = ["cones", "coco"] if model == "both" else [] if model == "camera" else [model]
     nodes, admitted = parameters(graph)
     camera = dict(graph["cameras"]["defaults"], **graph["cameras"]["profiles"][graph["site"]["camera_profiles"][family]])
     camera.update(nodes["camera"])
     camera["publish_images"] = True  # Camera-only live viewing; publication follows subscriber demand.
     validate_parameters(dict(nodes, camera={key: value for key, value in camera.items() if key != "backend"}))
-    require((camera["width"], camera["height"]) in ((1280,720),(640,640 if camera["backend"]=="oak" else 480)), "Camera dimensions do not match the selected backend")
+    require((camera["width"], camera["height"]) in ((1280,720),(640,360),(640,640 if camera["backend"]=="oak" else 480)), "Camera dimensions do not match the selected backend")
+    if camera['backend'] == 'realsense' and camera['height'] == 360:
+        camera.update(depth_width=640, depth_height=480)
     variant = next(key for key, value in VARIANTS.items() if value == family)
     camera["device_id"] = graph["site"]["hardware"]["front_camera"]["device_ids"].get(variant, "")
     mount = graph["robot_model"]["mounts"]["front_camera"]
     camera["optical_frame"] = mount["optical_frame"]
+    estimator = configure(graph, release, camera, odometry, mount, check_available=check_artifacts) if odometry != "off" else None
     nodes["camera"] = camera
     for selected_model in selected:
         paths = dict(engine_path=str(Path(release) / "models" / selected_model / "model.engine"),
@@ -41,7 +46,7 @@ def effective(graph, release, mode, *, check_artifacts=True):
         nodes["detector_" + selected_model].update(paths, publish_overlay=True, overlay_spatial=True)
     nodes["combined_overlay"].update(overlay_spatial=True)
     return dict(schema_version=1, namespace=graph["site"]["ros"]["namespace"], mode=mode, selected_models=selected,
-                nodes=nodes, mount=mount, geometry=graph["robot_model"]["geometry"],
+                nodes=nodes, mount=mount, geometry=graph["robot_model"]["geometry"], odometry=estimator,
                 provenance=dict(sources=list(graph["inputs"].sources), requests=admitted,
                                 structure_sha256=structure_identity(graph)))
 
@@ -59,6 +64,8 @@ def prepare(site_path, release, unit, revision, mode, *, root=None, expected_str
     if unit == "perception":
         ros = {"/" + snapshot["namespace"] + "/" + node: {"ros__parameters": values} for node, values in snapshot["nodes"].items()}
         values = (("effective", snapshot), ("ros-parameters", ros))
+        if snapshot["odometry"]:
+            values += (("odometry", snapshot["odometry"]["config"]),)
     else:
         values = (("recording", snapshot),)
     files = []

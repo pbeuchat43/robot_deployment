@@ -29,6 +29,14 @@ be declared under `hardware.front_camera.device_ids`, keyed by variant. An OAK
 identity does not constrain D455 mode. Serial observations never update this file.
 Camera replacement requires a new perception run; reconnect is not automatic.
 
+The startup-only camera `timestamp_policy` defaults to `recover`: inadmissible
+SDK clock estimates are dropped and counted, while mapping discontinuities hold
+publication until the clock is stable and start a new camera/VIO generation.
+Capture remains open during this recovery. `strict` makes timestamp faults
+terminal for diagnosis. Neither policy changes acquisition timestamps. Clock
+recovery requires the coordinated camera 0.5 / interfaces 0.3 and VIO 0.2 builds;
+rebuild every ROS consumer when updating the pinned camera interfaces.
+
 The site `recording` mapping owns output location, managed history budget,
 filesystem reserve, FPS ceiling, bitrates, segment duration and fixed depth
 visualization range. Defaults and lifecycle semantics are in [recording.md](recording.md).

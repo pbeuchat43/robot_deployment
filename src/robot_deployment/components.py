@@ -35,7 +35,7 @@ class Commands:
 
 def sources(graph, cache, source_cache):
     lock = graph["sources"]
-    require(set(lock["components"]) == {"rgbd_camera", "rgbd_object_detector", "robot_runtime"}, "Unsupported component selection")
+    require(set(lock["components"]) == {"rgbd_camera", "rgbd_object_detector", "robot_runtime", "visual_odometry"}, "Unsupported component selection")
     result = {name: acquire_git(name, selected, cache, source_cache=source_cache) for name, selected in lock["components"].items()}
     vehicle = graph["composition"]["units"].get("vehicle")
     if vehicle:
@@ -68,7 +68,11 @@ def with_ros(argv, *, setup=None):
 
 
 def ros_packages(selected):
-    return ("rgbd_camera", "rgbd_object_detector", "vision_msgs", "robot_runtime") + (("rc_car_interface",) if "rc_car_interface" in selected else ())
+    return ("rgbd_camera", "rgbd_object_detector", "vision_msgs", "robot_runtime") + tuple(name for name in ("visual_odometry", "rc_car_interface") if name in selected)
+
+
+def ros_source(name, checkout):
+    return checkout / {"robot_runtime": "ros/robot_runtime_recording", "visual_odometry": "visual_odometry_interfaces"}.get(name, "")
 
 
 def ros_build(selected, release, command):
@@ -76,9 +80,10 @@ def ros_build(selected, release, command):
     (workspace / "src").mkdir(parents=True)
     for name in ros_packages(selected):
         # Colcon compiles from verified sources and writes separate build/install trees.
-        package = selected[name] / "ros/robot_runtime_recording" if name == "robot_runtime" else selected[name]
+        package = ros_source(name, selected[name])
         require(package.is_dir(), "Missing pinned ROS package: " + str(package))
-        (workspace / "src" / ("robot_runtime_recording" if name == "robot_runtime" else name)).symlink_to(package, target_is_directory=True)
+        link_name = {"robot_runtime": "robot_runtime_recording", "visual_odometry": "visual_odometry_interfaces"}.get(name, name)
+        (workspace / "src" / link_name).symlink_to(package, target_is_directory=True)
     prefixes = ";".join(str(release / "sdk" / name) for name in ("depthai", "realsense"))
     argv = ["colcon", "build", "--merge-install", "--executor", "sequential", "--cmake-args",
             "-DCMAKE_BUILD_TYPE=Release", "-DBUILD_TESTING=OFF", "-DRGBD_CAMERA_ENABLE_REALSENSE=ON",
@@ -161,3 +166,11 @@ def engines(release, command):
 def native(selected, release, cache, command):
     command(["/usr/bin/python3", selected["robot_runtime"] / "deployment/build-av-native.py",
              "--work", release / "build/av-native", "--cache", cache, "--destination", release / "av-native"])
+
+
+def odometry(graph, selected, release, cache, command):
+    command(["/usr/bin/python3", selected["visual_odometry"] / "deployment/install.py",
+        "--backend", graph["site"]["visual_odometry"]["backend"], "--camera-source", selected["rgbd_camera"],
+        "--destination", release / "visual-odometry", "--work", release / "build/visual-odometry", "--cache", cache,
+        "--source-id", graph["sources"]["components"]["visual_odometry"]["commit"],
+        "--camera-source-id", graph["sources"]["components"]["rgbd_camera"]["commit"]])

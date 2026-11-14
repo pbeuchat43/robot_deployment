@@ -1,0 +1,22 @@
+{
+  "passed": true,
+  "standard_build_passed": true,
+  "original_qualification_attempt": "qualification-result.json",
+  "original_successful_stages": [
+    "identity",
+    "installed-rerun",
+    "deployment-unit",
+    "launch",
+    "recovery-build",
+    "oak-vo",
+    "d455-vo",
+    "oak-full",
+    "d455-full"
+  ],
+  "recovery_retry": "oak-recovery-r2",
+  "failed_fixture_attempt_retained": "oak-recovery-r1",
+  "failed_fixture_reason": "Private camera-only overlay omitted the recorder executable path; cleanup interruption required owned runtime reconciliation.",
+  "correction": "Linked the unchanged standard recorder executable into the private candidate and allowed in-progress fixture cleanup to finish.",
+  "standard_release_modified": false,
+  "production_fix_required": false
+}
