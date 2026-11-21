@@ -3,6 +3,7 @@
 from pathlib import Path
 from itertools import product
 import tempfile
+import sys
 import unittest
 from unittest.mock import Mock, patch
 
@@ -59,6 +60,7 @@ class BuildTests(unittest.TestCase):
                                      installation / "cache/git/rc_car_interface-rc_car_interface-revision")
                 self.assertIn("-DNLOHMANN_JSON_INCLUDE_DIR=" + str(release / "sdk/depthai/include"), command.call_args.args[0])
                 self.assertFalse(result["runtime_restarted"])
+                self.assertIs(command.call_args.kwargs["stdout"], sys.stderr)
 
     def test_installer_build_keeps_recorder_with_optional_vehicle(self):
         for vehicle, odometry in product((False, True), repeat=2):

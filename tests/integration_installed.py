@@ -51,12 +51,12 @@ def main(argv=None):
         nonlocal sequence
         sequence += 1
         log = output / f"{sequence:02d}.log"
-        with log.open("w") as stream:
-            subprocess.run(list(map(str, argv)),
-                           check=True, cwd=output, env=env, stdout=stream, stderr=subprocess.STDOUT)
-        text = log.read_text()
-        start = text.rfind("\n{")
-        return json.loads(text[start + 1:] if start >= 0 else text)
+        with log.with_suffix(".stderr.log").open("w") as stream:
+            result = subprocess.run(list(map(str, argv)),
+                                    cwd=output, env=env, stdout=subprocess.PIPE, stderr=stream, text=True)
+        log.write_text(result.stdout)
+        result.check_returncode()
+        return json.loads(result.stdout)
 
     def cli(*arguments):
         return invoke([args.operator_python or sys.executable, "-m", "robot_deployment.cli", *arguments, "--json"])

@@ -93,7 +93,7 @@ def main(argv=None):
         return request(state, "status", fresh=True)
 
     def cli(*arguments):
-        result = subprocess.run([sys.executable, "-m", "robot_deployment.cli", "runtime", "--state", state, *arguments],
+        result = subprocess.run([sys.executable, "-m", "robot_deployment.cli", "--json", "runtime", "--state", state, *arguments],
                                 check=True, text=True, capture_output=True, timeout=20)
         return json.loads(result.stdout)
 

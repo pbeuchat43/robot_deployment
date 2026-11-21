@@ -5,6 +5,7 @@ from pathlib import Path
 import re
 import shutil
 import subprocess
+import sys
 import urllib.request
 import uuid
 
@@ -13,7 +14,7 @@ from .configuration import require, file_digest
 
 def run(argv, *, cwd=None, env=None, capture=False):
     result = subprocess.run(list(map(str, argv)), cwd=cwd, env=env, check=True, text=True,
-                            stdout=subprocess.PIPE if capture else None, stderr=subprocess.PIPE if capture else None)
+                            stdout=subprocess.PIPE if capture else sys.stderr, stderr=subprocess.PIPE if capture else None)
     return result.stdout.strip() if capture else None
 
 

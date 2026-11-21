@@ -11,7 +11,11 @@ The [15 November VO/VIO qualification](evidence/2026-11-15-vio-release-qualifica
 passed the standard application/Docker rebuild, installer rerun and full workloads
 on the existing host. The old 4 November installation was removed with operator
 authorization; its [everyday guide](everyday-jah.md) now records retired paths.
-The new qualified candidate remains private and has not been activated for daily use.
+Jah now selects `r20261116-cli-output-v2`, with management running and application
+workloads stopped for operator testing. The
+[16 November CLI and deployment verification](evidence/2026-11-16-cli-output/README.md)
+records the standard build, activation and live checks; `r20261115-dev` remains
+the rollback predecessor. Fresh camera and vehicle acceptance remain separate.
 
 ## Bootstrap on the selected target
 
@@ -197,8 +201,52 @@ the explicit `<installation_root>/current/venv/bin/python -m robot_deployment.cl
 interface available. Shared runtime commands and exit codes remain owned by
 `robot_runtime`; [launch](launch.md) shows perception/video use.
 
-Deployment commands display readable fields by default; add `--json` for
-structured output in scripts. Runtime retains its standalone JSON output.
+All `lucid_conduct` families, including `runtime`, display readable summaries,
+tables and nested sections by default. Add `--json` before or after the subcommand
+for machine output. One-shot stdout is one JSON document; watch/follow stdout is
+JSON Lines, one unchanged payload per update/page. No terminal detection changes
+the format when piping output. For example:
+
+```bash
+lucid_conduct runtime status --fresh
+lucid_conduct --json runtime status --fresh | jq '.units'
+lucid_conduct runtime resources --watch --json
+lucid_conduct pico list
+```
+
+`info installation` summarizes the recorded build result, source identities and
+stage/artifact counts. Its full provenance and per-file inventory remain available
+with `--json`. A recorded successful build is not a current integrity check; use
+`doctor` for that. Runtime status summarizes current observations; use `runtime
+catalog` for all mode definitions or `runtime status --json` for the full payload.
+
+Progress, interactive prompts and foreground tool diagnostics use stderr, leaving
+stdout for the result. Errors are readable by default and retain their existing
+`{"error": {"code": ..., "message": ...}}` envelope with `--json`; argument-parser
+errors use code `invalid_arguments`. A mutation still prints its lookup request ID
+to stderr **before submission**, including in JSON mode. Stderr may therefore
+contain diagnostics before a JSON error: parse stdout as the result stream and
+retain stderr separately. `--json` does not bypass interactive confirmations.
+The legacy Traxxas result still identifies its report source as `component stdout`;
+that component stream is forwarded to the deployment command's stderr.
+
+Exit codes are unchanged: success 0; deployment/argument errors 2; runtime faults
+1; foreground tool exit/signal status propagated. Ctrl-C during runtime watches
+retains standalone exit 0; other interrupted deployment operations exit 130.
+Human log follow stays bound to its original run, suppresses empty polls and
+shows gaps/truncation. JSON follow retains every page, including empty pages.
+
+Standalone `robot_runtime` and its `robot-runtime` compatibility alias retain
+their JSON default. They now accept explicit `--json` and opt-in `--human` at
+every command level. Deployment selects that same runtime formatter explicitly;
+the runtime has no deployment dependency. Existing standalone scripts continue
+to work; scripts parsing `lucid_conduct runtime` must add `--json`. This requires
+runtime `0.1.0.dev30` with deployment `0.1.0.dev9`: rebuild/install the paired Python
+packages from the selected pins. There are no ROS interface, profile, state or
+wire-schema changes and no component-native rebuild is required by this output
+change. Existing persistent releases are not modified by installing a separate
+operator environment.
+
 Call explanations include the selected interpreter and equivalent invocation;
 missing local context is identified without obtaining it through side effects.
 Detailed subcommand help includes examples, prerequisites, side effects and

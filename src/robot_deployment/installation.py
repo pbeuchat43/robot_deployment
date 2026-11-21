@@ -17,6 +17,7 @@ from .platform import package_plan
 from .preparation import effective
 from .profile import build_profile
 from .records import Attempt, claim, locked, write_json
+from .output import progress
 
 
 def copy_definitions(graph, destination):
@@ -144,7 +145,7 @@ def install(site_path, *, definitions=None, deployment_wheel=None, source_cache=
             attempt.stage("sources", ["sources.json", "host.json", "site.snapshot.json", "definitions", "bootstrap"], freeze_selection)
             graph = load(release / "site.snapshot.json", release / "definitions")
             for name in ("depthai", "realsense"):
-                print(json.dumps(dict(event="stage", stage="sdk-" + name)), flush=True)
+                progress(dict(event="stage", stage="sdk-" + name))
                 attempt.stage("sdk-" + name, ["sdk/" + name],
                     lambda name=name: components.sdk(name, selected["rgbd_camera"], release, command))
             attempt.stage("ros", ["ros/install"], lambda: components.ros_build(selected, release, command))

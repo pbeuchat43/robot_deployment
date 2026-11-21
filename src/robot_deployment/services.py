@@ -4,6 +4,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import sys
 
 from .configuration import digest, require
 from .records import write_json
@@ -111,7 +112,7 @@ def verify_owned(site, directory):
 
 
 def control(action, site):
-    subprocess.run(["systemctl", "--user", action, *names(site)], check=True)
+    subprocess.run(["systemctl", "--user", action, *names(site)], check=True, stdout=sys.stderr)
 
 
 def active(site):

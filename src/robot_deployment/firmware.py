@@ -6,6 +6,7 @@ from pathlib import Path
 import re
 import shutil
 import subprocess
+import sys
 import tempfile
 import time
 import uuid
@@ -147,8 +148,8 @@ def build(site_path=None, definitions=None, *, target):
             extra.append("-DRC_CAR_PROFILE=" + str(header))
         subprocess.run(["cmake", "-S", source, "-B", str(output / "build"), "-G", "Ninja", "-DCMAKE_BUILD_TYPE=Release",
             "-DPICO_BOARD=" + recipe["board"], "-DPICO_PLATFORM=" + PLATFORMS[recipe["board"]],
-            "-DPICO_SDK_PATH=" + sdk, "-Dpicotool_DIR=" + picotool, "-DFETCHCONTENT_FULLY_DISCONNECTED=ON", *extra], check=True)
-        subprocess.run(["cmake", "--build", str(output / "build"), "--target", target + "_firmware_bundle", "--parallel", "2"], check=True)
+            "-DPICO_SDK_PATH=" + sdk, "-Dpicotool_DIR=" + picotool, "-DFETCHCONTENT_FULLY_DISCONNECTED=ON", *extra], check=True, stdout=sys.stderr)
+        subprocess.run(["cmake", "--build", str(output / "build"), "--target", target + "_firmware_bundle", "--parallel", "2"], check=True, stdout=sys.stderr)
         manifest = output / "build" / (RC_MANIFEST if target == "rc_car" else target + "_pico_firmware.manifest.json")
         if target == "rc_car":
             value = rc_manifest(manifest, expected)
@@ -179,8 +180,9 @@ def flash(site_path=None, definitions=None, *, target, manifest, device_id, repo
         reports.mkdir(exist_ok=True)
         report = reports / (uuid.uuid4().hex + ".json")
     argv, env = flash_call(target, tools, release / "venv/bin/python", manifest, device_id, report)
-    # Inherit the terminal: the component's explicit target confirmation remains.
-    subprocess.run(argv, env=env, check=True)
+    # Keep interactive stdin and the component's target confirmation; reserve
+    # stdout for the deployment result, even when the component prints a report.
+    subprocess.run(argv, env=env, check=True, stdout=sys.stderr)
     return dict(target=target, result="component_completed", report=str(report) if report else "component stdout")
 
 
@@ -281,15 +283,15 @@ def flash_rc_car(site_path=None, definitions=None, *, manifest, device_id, repor
                 backup_dir = Path(tempfile.mkdtemp(prefix="backup-", dir=reports))
                 backup = backup_dir / "previous.uf2"
                 confirm_boot(tool, target, device_id)
-                subprocess.run([tool, "save", "-a", "-v", backup, *scope(target)], check=True, timeout=90)
+                subprocess.run([tool, "save", "-a", "-v", backup, *scope(target)], check=True, timeout=90, stdout=sys.stderr)
                 record["backup"] = str(backup)
                 record["backup_sha256"] = file_digest(backup)
                 confirm_boot(tool, target, device_id)
-                subprocess.run([tool, "load", "-v", staged, *scope(target)], check=True, timeout=90)
+                subprocess.run([tool, "load", "-v", staged, *scope(target)], check=True, timeout=90, stdout=sys.stderr)
                 record["flashed_verified"] = True
                 confirm_boot(tool, target, device_id)
                 cpu = ["--cpu", "arm"] if chip == "RP2350" else []
-                subprocess.run([tool, "reboot", *cpu, *scope(target)], check=True, timeout=10)
+                subprocess.run([tool, "reboot", *cpu, *scope(target)], check=True, timeout=10, stdout=sys.stderr)
                 record["status"] = postflight(client, target, device_id, value)
                 record["application_verified"] = True
         except BaseException as error:

@@ -2,6 +2,9 @@
 
 Reproducible composition, installation and integration for the research robot
 repositories. This repository continues the Git history of robot_composition.
+The `lucid_conduct` CLI uses readable summaries and tables across all families,
+including runtime operations, errors and watches. Use `--json` for scripts;
+see [output and compatibility](docs/operations.md#management-and-commands).
 The [deployment design](docs/design/2026-11-01-robot-deployment-design.md) and
 [implementation plan](docs/plans/2026-11-03-robot-deployment.md) describe the
 authorized work. The earlier installer/operator checks and six D455/OAK-D modes
@@ -11,8 +14,9 @@ The current development pins use `CaptureDetections` and the renamed capture-res
 topics. Their [6 November software verification](docs/evidence/2026-11-06-capture-detections/README.md)
 is separate from the earlier hardware/installation records, which retain their
 original interfaces and revisions. The old everyday release was retired during
-the authorized 15 November cleanup; the new candidate is privately qualified
-and has not been activated as the live deployment.
+the authorized 15 November cleanup. Jah now selects `r20261116-cli-output-v2`,
+with management running and application workloads stopped for operator testing;
+see the [16 November CLI and deployment verification](docs/evidence/2026-11-16-cli-output/README.md).
 The composition connects one selected D455 or OAK-D to the cone detector,
 COCO 80 detector, or both TensorRT detectors, renders overlays on exact retained RGB captures, and uses
 `robot_runtime`'s ROS-image/WebRTC reference viewer.

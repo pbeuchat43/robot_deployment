@@ -11,6 +11,7 @@ import time
 from .artifacts import acquire_git, download
 from .configuration import encoded, file_digest, require, within
 from .records import write_json
+from .output import progress
 
 
 class Commands:
@@ -24,7 +25,7 @@ class Commands:
         output = record.with_suffix(".log")
         value = dict(argv=list(map(str, argv)), cwd=str(cwd) if cwd else None, started_at=time.time())
         write_json(record, value)
-        print(json.dumps(dict(event="build_command", argv=value["argv"], log=str(output))), flush=True)
+        progress(dict(event="build_command", argv=value["argv"], log=str(output)))
         with output.open("w") as stream:
             result = subprocess.run(value["argv"], cwd=cwd, env=env, stdout=stream, stderr=subprocess.STDOUT)
         value.update(returncode=result.returncode, completed_at=time.time())

@@ -16,7 +16,7 @@
     },
     "robot_runtime": {
       "url": "https://github.com/pbeuchat43/robot_runtime.git",
-      "commit": "aee4e9c0624d395de6bc02d27819d79c935024b8",
+      "commit": "efeb755cd6687ade4092e06d770763babdc44ffe",
       "baseline_main": "be1ed63d3ce870205513b0b37e97f2292d656bd6",
       "baseline_commit": "be1ed63d3ce870205513b0b37e97f2292d656bd6",
       "historical_tested_implementation_commit": "753ba241034371bcc93b7157ad7e63d03753aaf4"

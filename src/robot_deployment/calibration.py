@@ -74,7 +74,7 @@ class MaintenanceClient:
 
 def prompt_with_pulse(client, prompt, pulse, steering, until, *, terminal):
     """Renew one pulse while waiting for the operator to observe the ESC cue."""
-    print(prompt, flush=True)
+    print(prompt, file=sys.stderr, flush=True)
     while time.monotonic() < until:
         before = time.monotonic()
         client.command(f"PULSE {pulse}", "MAINTENANCE", pulse, steering)
@@ -138,8 +138,8 @@ def calibrate(site_path=None, definitions=None, *, device_id, profile_id, build_
         require(not services.active(site), "Stop runtime management and all owned vehicle workloads first")
         maintenance.audited_stopped(site, management_active=False)
         with stopped(state):
-            print(f"Selected ESC instructions: {RECIPES[esc]}", flush=True)
-            require(input("Follow the model manual to isolate propulsion. Type ISOLATED to continue: ") == "ISOLATED",
+            print(f"Selected ESC instructions: {RECIPES[esc]}", file=sys.stderr, flush=True)
+            require(confirm("Follow the model manual to isolate propulsion. Type ISOLATED to continue: ") == "ISOLATED",
                     "Propulsion isolation was not confirmed")
             link = MaintenanceClient(maintenance_client, device_id, profile_id, build_id)
             try:
@@ -147,7 +147,7 @@ def calibrate(site_path=None, definitions=None, *, device_id, profile_id, build_
                 program(link, neutral_us, forward_us, reverse_us, terminal=sys.stdin)
             finally:
                 link.close()
-            require(input("Confirm the ESC accepted the endpoints while propulsion remains isolated [y/N]: ").lower() == "y",
+            require(confirm("Confirm the ESC accepted the endpoints while propulsion remains isolated [y/N]: ").lower() == "y",
                     "ESC acceptance was not confirmed. Pico remains in Hold.")
             folder = Path(storage["data_root"]) / "deployment/calibrations"
             folder.mkdir(parents=True, exist_ok=True, mode=0o700)
@@ -157,3 +157,8 @@ def calibrate(site_path=None, definitions=None, *, device_id, profile_id, build_
                           operator_observed_esc_acceptance=True, pico_mode="HOLD", completed_at=time.time())
             write_json(record, result)
             return dict(result, record=str(record))
+
+
+def confirm(prompt):
+    print(prompt, end="", file=sys.stderr, flush=True)
+    return input()

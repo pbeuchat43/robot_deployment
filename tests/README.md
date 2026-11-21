@@ -5,6 +5,32 @@ environment, private directories, ROS domain, ports and runtime namespace.
 Inspect existing workloads before any hardware operation. Do not run these
 against an active persistent deployment.
 
+## CLI output checks
+
+`test_output.py` and `test_cli_shell.py` cover all deployment families, nested
+human output, `--json` at each command level, runtime forwarding, replayable
+`--show-call`, progress separation, errors/exit codes, Pico watch and uncertain
+mode results. `test_output.py` also exercises a real harmless child process to
+check stdout/stderr separation. Runtime's `test_output.py` covers all standalone
+command families, legacy JSON defaults, explicit modes, all five streaming
+paths, log gaps/empty polls, parser errors and pre-submit recovery IDs.
+
+Run both installed unit suites on Jah after building the paired wheels. Use
+runtime `integration_runtime.py` for real IPC/status/watch/error/lifecycle checks
+and deployment `integration_maintenance.py` for the `--json` consumer and stopped
+selection/rollback checks. Preserve their cleanup reports. These are synthetic
+software checks; no camera, Pico, ESC or persistent deployment is operated.
+`integration_cli_output.py /tmp/robot-cli-output-native-UNIQUE` adds actual
+human/JSON subprocess reads, finite status/resource/log streams, SIGINT exit
+codes, runtime/parser faults and recovery IDs against its own manager and idle
+workload. Require `passed: true`, empty `cleanup_errors`, zero
+`resource_consumers`, and an unblocked final status with no member processes.
+`integration_installed.py` now captures stderr separately and parses the entire
+stdout document, so mixed progress fails instead of being skipped. It still
+requires a separately admitted completed release and real build prerequisites.
+
+## Other deployment checks
+
 When integrating a new camera, use the component-owned
 [camera-adapter qualification checklist](https://github.com/pbeuchat43/rgbd_camera/blob/dev/docs/adapter-qualification.md)
 alongside these installed checks. It covers profile capabilities, geometry,

@@ -4,6 +4,7 @@ import json
 from pathlib import Path
 import shutil
 import subprocess
+import sys
 
 from .artifacts import verify_source
 from .commands import graph_for
@@ -74,5 +75,5 @@ def ros(site_path=None, definitions=None, *, workspace, clean=False):
                 "-DCUDAToolkit_ROOT=/usr/local/cuda-13.2",
                 "-DNLOHMANN_JSON_INCLUDE_DIR=" + str(release / "sdk/depthai/include")]
         subprocess.run(with_ros(argv, setup=setup if workspace == "student" else None),
-                       env=ros_environment(release), cwd=source.parent, check=True)
+                       env=ros_environment(release), cwd=source.parent, check=True, stdout=sys.stderr)
     return dict(workspace=workspace, install=str(output / "install"), runtime_restarted=False, dependencies_installed=False)

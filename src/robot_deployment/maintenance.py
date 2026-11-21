@@ -4,6 +4,7 @@ import json
 import os
 from pathlib import Path
 import subprocess
+import sys
 import time
 import uuid
 
@@ -91,7 +92,7 @@ def start_management(site, revision):
     manager, web = services.names(site)
     for path in site["credentials"].values():
         require(Path(path).is_file(), "Management startup requires configured credential/TLS files: " + path)
-    subprocess.run(["systemctl", "--user", "start", manager], check=True)
+    subprocess.run(["systemctl", "--user", "start", manager], check=True, stdout=sys.stderr)
     deadline = time.monotonic() + 15
     state = Path(site["storage"]["data_root"]) / "runtime"
     while time.monotonic() < deadline:
@@ -106,7 +107,7 @@ def start_management(site, revision):
         time.sleep(.2)
     else:
         raise ValueError("Management service did not confirm the selected profile")
-    subprocess.run(["systemctl", "--user", "start", web], check=True)
+    subprocess.run(["systemctl", "--user", "start", web], check=True, stdout=sys.stderr)
     # User services start asynchronously; an immediate systemctl acceptance is recorded
     # as management startup, not browser readiness or observed application performance.
 
@@ -160,7 +161,7 @@ def activate(site, release_id, *, service_directory=None):
                 switched = True
                 select_pointer(root, release_id)
                 write_json(selection_path, dict(schema_version=1, current=release_id, previous=previous_id))
-            subprocess.run(["systemctl", "--user", "daemon-reload"], check=True)
+            subprocess.run(["systemctl", "--user", "daemon-reload"], check=True, stdout=sys.stderr)
             if start_after:
                 revision = json.loads((release / "profile.identity.json").read_text())["config_revision"]
                 start_management(candidate_site, revision)
@@ -191,7 +192,7 @@ def activate(site, release_id, *, service_directory=None):
                             write_json(selection_path, json.loads(previous_selection))
                         else:
                             selection_path.unlink(missing_ok=True)
-                    subprocess.run(["systemctl", "--user", "daemon-reload"], check=True)
+                    subprocess.run(["systemctl", "--user", "daemon-reload"], check=True, stdout=sys.stderr)
                 if running and previous_site:
                     old_revision = json.loads((root / "releases" / previous_id / "profile.identity.json").read_text())["config_revision"]
                     start_management(previous_site, old_revision)

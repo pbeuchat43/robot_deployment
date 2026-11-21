@@ -1,0 +1,307 @@
+{
+  "scope": "CLI output, paired packages, native synthetic workloads and standard deployment upgrade",
+  "packages": {
+    "passed": true,
+    "python": "3.12.3",
+    "architecture": "aarch64",
+    "source_identity": {
+      "deployment_commit": "570e63e0f88e901a25328f50f4ad1036094ea7ee",
+      "runtime_commit": "ea91a1d904eae688f5098fc5052b962aa5545ef5",
+      "schema_version": 1,
+      "sources_sha256": "a9edac80b22c99136a8be4c15cda494effdc5dd79246f89f82b9b06e0dc91836"
+    },
+    "artifacts": {
+      "robot_runtime-0.1.0.dev30-py3-none-any.whl": "78e6b4d544bf439b4f2287dc39e748e5bf1771e0db9b0bcf720fdc90c7f17154",
+      "robot_runtime-0.1.0.dev30.tar.gz": "a27dffdd2eeb28ea705c31a1b064a4f7f339eaf3e481122ed86c2a1d70e8afca",
+      "robot_deployment-0.1.0.dev9-py3-none-any.whl": "08145278c7fbca301b9e912a4389b7dbd2135914dba155e61594adc4b643f128",
+      "robot_deployment-0.1.0.dev9.tar.gz": "cabd64ce6bc803cd1d6d39ac2c030aac7627e292a0c418050685751a386bae18"
+    },
+    "installed_files": {
+      "robot_runtime": 106,
+      "robot_deployment": 26
+    },
+    "entrypoints": [
+      "robot_runtime",
+      "robot_runtime_manager",
+      "robot_runtime_web",
+      "robot_runtime_av",
+      "robot-runtime",
+      "robot-runtime-manager",
+      "robot-runtime-web",
+      "robot-runtime-av",
+      "lucid_conduct"
+    ],
+    "robot_runtime_version": "0.1.0.dev30",
+    "robot_deployment_version": "0.1.0.dev9",
+    "standalone_alias_compatibility": true
+  },
+  "unit_tests": {
+    "runtime": {
+      "passed": true,
+      "tests": 202,
+      "seconds": 12.584
+    },
+    "deployment": {
+      "passed": true,
+      "tests": 68,
+      "seconds": 7.268
+    }
+  },
+  "native": {
+    "runtime": {
+      "passed": true,
+      "checks": [
+        {
+          "check": "startup_does_not_launch",
+          "passed": true
+        },
+        {
+          "check": "cli_start_and_explicit_environment",
+          "passed": true,
+          "run_id": "9e85f3f17f784a5cbd5d30ddf5ba68bd"
+        },
+        {
+          "check": "abrupt_manager_restart_preserves_workload",
+          "passed": true,
+          "pid": 12557
+        },
+        {
+          "check": "stale_stop_rejected_and_graceful_stop_completes",
+          "passed": true
+        },
+        {
+          "check": "bounded_journal_logs",
+          "passed": true,
+          "count": 3
+        },
+        {
+          "check": "success_without_restart",
+          "passed": true
+        },
+        {
+          "check": "failure_without_restart",
+          "passed": true
+        },
+        {
+          "check": "setsid_descendant_survives_parent_and_stops",
+          "passed": true
+        },
+        {
+          "check": "timeout_survives_then_self_exits_with_one_signal",
+          "passed": true
+        },
+        {
+          "check": "concurrent_conflicting_starts_allow_one_survive_manager_restart_and_release_after_stop",
+          "passed": true,
+          "winner": "idle"
+        }
+      ],
+      "cleanup_errors": [],
+      "final_fresh": true,
+      "all_units_unblocked": true,
+      "retained_member_processes": 0
+    },
+    "maintenance": {
+      "passed": true,
+      "checks": [
+        "selection_starts_management_without_workloads",
+        "live_workload_blocks_selection_without_stopping_it",
+        "stopped_upgrade_rollback_preserves_history_without_replay",
+        "idempotent_reselection_and_incompatible_state_rejection"
+      ],
+      "cleanup_errors": [],
+      "final_fresh": true,
+      "all_units_unblocked": true,
+      "retained_member_processes": 0
+    },
+    "cli": {
+      "passed": true,
+      "checks": [
+        "status human and JSON",
+        "operation human and JSON",
+        "inspect human and JSON",
+        "catalog human and JSON",
+        "logs human and JSON",
+        "resources human and JSON",
+        "watch human",
+        "watch JSON Lines",
+        "resources --watch human",
+        "resources --watch JSON Lines",
+        "log fixture --follow human",
+        "log fixture --follow JSON Lines",
+        "runtime and parser errors preserve stderr and exit codes",
+        "human stop retains lookup ID and exact owned run"
+      ],
+      "cleanup_errors": [],
+      "final_fresh": true,
+      "all_units_unblocked": true,
+      "retained_member_processes": 0,
+      "resource_consumers": 0
+    },
+    "ros": {
+      "passed": true,
+      "checks": [
+        {
+          "check": "manager_loads_ros_interfaces_without_launch_or_subscription",
+          "passed": true
+        },
+        {
+          "check": "runtime_only_view_does_not_subscribe",
+          "passed": true
+        },
+        {
+          "check": "five_watchers_share_one_subscription_and_int64_is_lossless",
+          "passed": true,
+          "sample": {
+            "acquisition_age_at_receipt": null,
+            "acquisition_age_seconds": null,
+            "acquisition_timestamp": null,
+            "age_seconds": 0.043312489999834725,
+            "data": {
+              "data": "9007199254741010"
+            },
+            "fields": {
+              "data": "int64"
+            },
+            "fresh": true,
+            "id": "counter",
+            "label": "64-bit counter",
+            "max_rate_hz": 5,
+            "name": "/dr_test_865b361213/counter",
+            "node": "/dr_test_865b361213/provider",
+            "oversize_count": 0,
+            "progress_age_seconds": null,
+            "progress_counter": null,
+            "progress_monotonic": null,
+            "projection": null,
+            "receipt_clock": "host_monotonic",
+            "received_count": 2,
+            "received_monotonic": 1972.769263971,
+            "run_id": "43fe15c51bfc438f98faed77ec761578",
+            "sample_age_at_receipt": null,
+            "sample_age_seconds": null,
+            "sequence": 2,
+            "source_clock": "rmw_source_timestamp",
+            "source_timestamp_ns": "1794748762580526779",
+            "stale_after_seconds": 0.6,
+            "status": "current",
+            "stream_generation": "1e7e80e21c2846f2801701d92b7e6384",
+            "type": "std_msgs/msg/Int64",
+            "unit_id": "idle"
+          }
+        },
+        {
+          "check": "sample_delivery_coalesces_20hz_source_to_5hz",
+          "passed": true,
+          "distinct_samples": 11
+        },
+        {
+          "check": "staleness_is_not_refreshed_and_last_consumer_releases_subscription",
+          "passed": true
+        },
+        {
+          "check": "raw_and_json_limits_invalidate_old_data_and_fresh_empty_replaces_it",
+          "passed": true
+        },
+        {
+          "check": "service_success_refusal_cli_and_durable_deduplication",
+          "passed": true
+        },
+        {
+          "check": "stale_run_generation_and_wrong_typed_arguments_are_rejected",
+          "passed": true
+        },
+        {
+          "check": "duplicate_graph_provider_blocks_observation_and_service_dispatch",
+          "passed": true
+        },
+        {
+          "check": "timeout_does_not_replay_or_cancel_remote_execution_and_requires_acknowledgement",
+          "passed": true
+        },
+        {
+          "check": "ros_worker_restart_changes_generation_and_preserves_runtime",
+          "passed": true
+        },
+        {
+          "check": "manager_crash_preserves_provider_and_never_replays_uncertain_service",
+          "passed": true
+        }
+      ],
+      "cleanup_errors": [],
+      "final_fresh": true,
+      "all_units_unblocked": true,
+      "retained_member_processes": 0,
+      "remaining_subscriptions": 0,
+      "domain_id": 221,
+      "discovery": "LOCALHOST"
+    }
+  },
+  "rollback_baseline": {
+    "release": "r20261115-dev",
+    "installed_integrity": "passed",
+    "workloads_unblocked": true
+  },
+  "compileall": "passed",
+  "deployment": {
+    "passed": true,
+    "release": "r20261116-cli-output-v2",
+    "version": "0.1.0.dev9",
+    "rollback": "r20261115-dev",
+    "checks": [
+      "public command version and installation",
+      "human status table without repeated catalog",
+      "JSON status and 24-mode catalog",
+      "release integrity and unblocked stopped workloads",
+      "public runtime error format and exit 1",
+      "real foreground build failure retains tool exit 1 and JSON error",
+      "real isolated colcon build emits a single JSON stdout result",
+      "HTTPS page and status API ready with configured certificate",
+      "manager and web active with useful rollback predecessor"
+    ],
+    "manager_active": true,
+    "web_active": true,
+    "workloads_started": false,
+    "camera_acceptance": "not_run",
+    "config_revision": "a4cab58aa53f34438486b4b70827489ec42bf14b72d89610fa05d5cdbf8e278a",
+    "human_status_lines": 63,
+    "human_installation_lines": 27,
+    "https_ready": true,
+    "standard_build": true,
+    "verified_stage_reuse": true,
+    "source_identity": {
+      "deployment_commit": "570e63e0f88e901a25328f50f4ad1036094ea7ee",
+      "runtime_commit": "ea91a1d904eae688f5098fc5052b962aa5545ef5",
+      "schema_version": 1,
+      "sources_sha256": "a9edac80b22c99136a8be4c15cda494effdc5dd79246f89f82b9b06e0dc91836"
+    },
+    "packages": {
+      "robot_runtime": {
+        "version": "0.1.0.dev30",
+        "source_files_matched": 106
+      },
+      "robot_deployment": {
+        "version": "0.1.0.dev9",
+        "source_files_matched": 26
+      }
+    },
+    "deployed_wheel_sha256": {
+      "robot_runtime-0.1.0.dev30-py3-none-any.whl": "44da42c965a2a346eeb58638b7a56b4e29dc072e4a792b70b4c1caa73f84f5e9",
+      "robot_deployment-0.1.0.dev9-py3-none-any.whl": "08145278c7fbca301b9e912a4389b7dbd2135914dba155e61594adc4b643f128"
+    },
+    "stage_names": [
+      "sources",
+      "sdk-depthai",
+      "sdk-realsense",
+      "ros",
+      "python",
+      "model-inputs",
+      "engines",
+      "native-video",
+      "visual-odometry",
+      "configuration"
+    ],
+    "all_stage_records_unchanged_on_reuse": true,
+    "native_launch_descriptions": "48 mode/backend cases passed; no workloads started"
+  }
+}

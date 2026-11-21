@@ -2,15 +2,16 @@
 # Copyright (c) 2026 Paul N. Beuchat. MIT License.
 import argparse
 import importlib
-import json
 from pathlib import Path
 import sys
 
 from . import __version__
+from robot_runtime.output import ArgumentParser
+from .output import emit, output_mode
 
 
 def build_parser(prog=None):
-    parser = argparse.ArgumentParser(prog=prog, description="Install, configure and operate a selected robot deployment")
+    parser = ArgumentParser(prog=prog, description="Install, configure and operate a selected robot deployment")
     parser.add_argument("--version", action="version", version=__version__)
     families = parser.add_subparsers(dest="family", required=True)
     for name in ("install", "upgrade"):
@@ -99,7 +100,7 @@ def build_parser(prog=None):
     shells.add_parser("remove")
     runtime = families.add_parser("runtime", help="Use robot_runtime's shared standalone grammar and policy")
     from robot_runtime.cli import configure_parser
-    configure_parser(runtime)
+    configure_parser(runtime, output_options=False)
     add_common(parser)
     return parser
 
@@ -116,7 +117,7 @@ def add_common(parser):
     parser.add_argument("--show-call", action="store_true", default=argparse.SUPPRESS,
                         help="Explain this actual route without executing, probing or contacting runtime")
     parser.add_argument("--json", action="store_true", default=argparse.SUPPRESS,
-                        help="Emit structured JSON; standalone runtime output is always preserved")
+                        help="Emit JSON results and errors; watch/follow modes use JSON Lines")
     from .help import describe
     describe(parser)
     for child in child_parsers(parser):
@@ -142,7 +143,8 @@ def route(args, argv):
     family = args.family
     if family == "runtime":
         from .commands import runtime_argv
-        return "robot_runtime.cli:main", dict(argv=runtime_argv(strip_common(argv)[1:], common["site_path"]))
+        forwarded = runtime_argv(strip_common(argv)[1:], common["site_path"])
+        return "robot_runtime.cli:main", dict(argv=["--json" if getattr(args, "json", False) else "--human", *forwarded])
     if family == "pico" and args.pico_target == "list":
         return "robot_deployment.pico:listing", {}
     if family == "pico" and args.standalone:
@@ -280,7 +282,7 @@ def main(argv=None):
                 # The CLI argv reproduces the immediate dispatch, not every later
                 # build tool or asynchronous supervisor action.
                 explanation["argv"] = [sys.executable, "-m", "robot_deployment.cli",
-                    *strip_common(argv)]
+                    *(["--json"] if getattr(args, "json", False) else []), *strip_common(argv)]
                 for option, key in (("--site", "site_path"), ("--definitions", "definitions")):
                     if arguments.get(key) is not None:
                         explanation["argv"] += [option, str(arguments[key])]
@@ -292,7 +294,8 @@ def main(argv=None):
             emit(explanation, structured=getattr(args, "json", False))
             return 0
         module, function = target.split(":", 1)
-        result = getattr(importlib.import_module(module), function)(**arguments)
+        with output_mode(structured=getattr(args, "json", False)):
+            result = getattr(importlib.import_module(module), function)(**arguments)
         if isinstance(result, int):
             return result
         if result is not None:
@@ -307,26 +310,10 @@ def main(argv=None):
             error = exc.as_dict()
         else:
             error = dict(code="deployment_error", message=str(exc))
-        print(json.dumps(dict(error=error)), file=sys.stderr)
+        emit(dict(error=error), structured="--json" in argv, error=True, file=sys.stderr)
         if isinstance(exc, subprocess.CalledProcessError):
             return exc.returncode if exc.returncode > 0 else 128 - exc.returncode
         return 2
-
-
-def emit(value, *, structured):
-    if structured:
-        print(json.dumps(value, default=str, indent=2))
-        return
-    if not isinstance(value, dict):
-        print(value)
-        return
-    for key, item in value.items():
-        label = key.replace("_", " ").capitalize()
-        if isinstance(item, (dict, list)):
-            print(label + ":\n" + json.dumps(item, default=str, indent=2))
-        else:
-            text = "yes" if item is True else "no" if item is False else "none" if item is None else str(item)
-            print(label + ": " + text)
 
 
 if __name__ == "__main__":

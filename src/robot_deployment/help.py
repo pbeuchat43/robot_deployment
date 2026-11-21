@@ -62,7 +62,7 @@ DETAILS = {
         "Requires an installed selected firmware recipe, a matching manifest and the actual USB target. Component identity checks and confirmation prompts remain in force."),
     "flash mcu": ("Flash one explicitly identified MCU using its owning tool.",
         "flash mcu bno08x --device-id TARGET --manifest /absolute/bundle.manifest.json",
-        "This changes device firmware. RC Car needs physical BOOTSEL and --actuators-isolated. BNO and RC Car support --report. Traxxas reports to stdout. "
+        "This changes device firmware. RC Car needs physical BOOTSEL and --actuators-isolated. BNO and RC Car support --report. The Traxxas component report is forwarded to stderr. "
         "An incompatible board/manifest is rejected: select or rebuild the correct bundle, never force it."),
     "pico": ("Inspect Pico USB inventory or access an unowned RC Car Pico.",
         "pico list --json", "The list command reads kernel metadata without opening a serial device."),
@@ -97,9 +97,10 @@ def describe(parser):
             "Example: lucid_conduct runtime catalog\nExample: lucid_conduct runtime start perception --mode d455-both")
     else:
         parser.epilog = "Example: lucid_conduct install --site /absolute/site.yaml --stage-only\nExample: lucid_conduct runtime catalog"
-    parser.epilog += ("\n\nDeployment output uses readable fields; --json selects structured output. Runtime preserves its "
-        "standalone JSON. Success exits 0; validation errors exit 2 with a JSON error on stderr; "
-        "foreground tool failure/signal status is propagated. --show-call explains immediate dispatch without execution. "
+    parser.epilog += ("\n\nAll command families use readable summaries and tables; --json selects JSON results and errors. "
+        "Watch/follow emits JSON Lines with --json. Progress, prompts and tool diagnostics use stderr. "
+        "Success exits 0; deployment/argument errors exit 2; runtime faults exit 1. "
+        "Foreground tool failure/signal status is propagated. --show-call explains immediate dispatch without execution. "
         "Without --site, use ROBOT_DEPLOYMENT_SITE or recorded local installation context. "
         "See docs/operations.md for installation and recovery procedures.")
     parser.formatter_class = argparse.RawDescriptionHelpFormatter
