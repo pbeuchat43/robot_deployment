@@ -21,6 +21,10 @@ of the final packages, moving scenes, calibration or vehicle operation.
 | Repeated visual tracking loss in an otherwise timely stream | Keep scene and lighting conditions recorded and stable during comparisons | An integrated OAK comparison lost tracking while room lights were accidentally off. Retain those windows separately from the restored-lighting repeat; low output latency alone does not establish tracking. |
 | OAK reports a regressed or future SDK timestamp | Keep inadmissible samples out of publication; inspect clock rejection counters and generation changes | A [captured recurrence](evidence/2026-11-14-oak-imu-clock/README.md) has forward device time and sequence but a −6.032729 ms host-mapping offset step, causing a −0.980243 ms acquisition interval. The reversal exists before SDK queue insertion. Its upstream correction trigger remains unknown. `timestamp_policy=recover` drops/counts inadmissible estimates and holds publication at mapping discontinuities; `strict` preserves terminal diagnostic behavior. Neither policy sorts, clamps or corrects timestamps. |
 
+For recurring latency spikes, use the same capture timestamp to trace camera
+publication, the estimator's DDS write, and receipt by the observer. Compare
+per-minute p95 and maximum latency with the pooled p95 to spot short bursts.
+
 The measured OAK VIO preset requested 200 Hz accel and gyro, used raw 640×400
 stereo at 30 Hz, and fixed mono exposure at 20 ms / ISO 800. Those values make the
 fixture reproducible; moving-car exposure and vibration performance still need
@@ -58,10 +62,14 @@ found intermittent OAK tracking failures on both the consolidated and previously
 qualified artifacts. Failed 60-second windows delivered 27.15–27.73 Hz poses and
 71.44–77.33% bracket coverage; an unchanged consolidated repeat passed. The old
 release trace recorded upstream tracking failures with contiguous estimate
-sequence numbers at the probe. Scene/lighting were not independently verified,
-and the cause remains open. Preserve all windows and investigate under controlled
-conditions; do not relax the 50 ms association boundary or treat a repeat as
-uniform qualification. D455 passed its consolidated smoke check.
+sequence numbers at the probe. Scene and lighting were not independently
+verified. D455 passed its consolidated smoke check.
+
+A further 72 minutes of OAK trials did not reproduce the loss. Its cause remains
+open. Keep the 50 ms association boundary and compare all measurement windows
+under controlled conditions. If tracking fails again, retain stereo, status and
+pose observations with their exact timestamps, plus estimator warnings around
+the first loss. See the [OAK follow-up](evidence/2026-11-15-everyday-vio-oak/README.md).
 
 Keep acquisition-event time distinct from explicit exposure midpoint. Preserve
 independent RGB/depth timing and pair admission. Estimator output uses the later
