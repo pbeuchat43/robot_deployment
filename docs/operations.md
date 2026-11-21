@@ -9,13 +9,12 @@ vehicle operation are not established by the software checks. Historical camera
 evidence remains linked from the [README](../README.md).
 The [15 November VO/VIO qualification](evidence/2026-11-15-vio-release-qualification/README.md)
 passed the standard application/Docker rebuild, installer rerun and full workloads
-on the existing host. The old 4 November installation was removed with operator
-authorization; its [everyday guide](everyday-jah.md) now records retired paths.
-Jah now selects `r20261116-cli-output-v2`, with management running and application
-workloads stopped for operator testing. The
-[16 November CLI and deployment verification](evidence/2026-11-16-cli-output/README.md)
-records the standard build, activation and live checks; `r20261115-dev` remains
-the rollback predecessor. Fresh camera and vehicle acceptance remain separate.
+on the existing host. After the 4 November installation was retired, the
+[15 November activation and OAK investigation](evidence/2026-11-15-everyday-vio-oak/README.md)
+established `r20261115-dev` for everyday use. The
+[16 November CLI release](evidence/2026-11-16-cli-output/README.md) superseded it.
+Jah selects `r20261116-cli-output-v2` and records `r20261115-dev` as its rollback
+predecessor. See the [everyday guide](everyday-jah.md) for current commands and paths.
 
 ## Bootstrap on the selected target
 

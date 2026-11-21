@@ -1,0 +1,1244 @@
+{
+  "schema_version": 1,
+  "selected_release": "r20261115-dev",
+  "deployment_commit": "19dd8bc79f3e418221f4a521d52ab9c92242d4c4",
+  "scene_and_lighting_confirmed": false,
+  "estimator_settings_changed": false,
+  "historical_oak_cause_resolved": false,
+  "trials": [
+    {
+      "name": "oak-vio-r1",
+      "mode": "oak-cones-vio",
+      "seconds": 180.0,
+      "warmup_seconds": 10.0,
+      "fixture_passed": true,
+      "fixture_error": null,
+      "rate_and_coverage_gates_passed": true,
+      "joint_fraction": 0.9998148148148148,
+      "metrics": {
+        "cones": {
+          "count": 5400,
+          "hz": 30.0,
+          "p95_ms": 83.872307,
+          "maximum_ms": 92.857846,
+          "over_100ms": 0,
+          "over_200ms": 0
+        },
+        "poses": {
+          "count": 5401,
+          "hz": 30.005555555555556,
+          "p95_ms": 47.684297,
+          "maximum_ms": 58.460939,
+          "over_100ms": 0,
+          "over_200ms": 0
+        },
+        "joints": {
+          "count": 5399,
+          "hz": 29.994444444444444,
+          "p95_ms": 83.878474,
+          "maximum_ms": 92.857846,
+          "over_100ms": 0,
+          "over_200ms": 0
+        }
+      },
+      "upstream_states": {
+        "1": 5400
+      },
+      "upstream_states_before_measurement": {
+        "1": 311
+      },
+      "joins": {
+        "stereo_without_observed_status": 0,
+        "observed_success_without_raw_pose": 0,
+        "observed_raw_pose_without_accepted_estimate": 0,
+        "accepted_without_observed_success": 0,
+        "estimate_stamp_mismatches": 0
+      },
+      "worst_minute": {
+        "pose_hz": 30.0,
+        "joint_fraction": 1.0
+      },
+      "upstream_execution_times_seconds": {
+        "node_callback_execution_time": {
+          "count": 5400,
+          "minimum": 0.001713926,
+          "p50": 0.005658666,
+          "p95": 0.010244431,
+          "maximum": 0.016118221
+        },
+        "track_execution_time": {
+          "count": 5400,
+          "minimum": 0.001387653,
+          "p50": 0.005186584,
+          "p95": 0.00971576,
+          "maximum": 0.015455468
+        },
+        "track_execution_time_max": {
+          "count": 5400,
+          "minimum": 0.010647538,
+          "p50": 0.012333189,
+          "p95": 0.013657491,
+          "maximum": 0.015455468
+        },
+        "track_execution_time_mean": {
+          "count": 5400,
+          "minimum": 0.004554423659999998,
+          "p50": 0.005356282839999999,
+          "p95": 0.00566077674,
+          "maximum": 0.009304300330000003
+        }
+      },
+      "stereo_skew_ms": {
+        "count": 5400,
+        "minimum": 0.01088,
+        "p50": 0.01246,
+        "p95": 0.013332,
+        "maximum": 0.015163
+      },
+      "exposure_ms": {
+        "left": {
+          "count": 5400,
+          "minimum": 20.0,
+          "p50": 20.0,
+          "p95": 20.0,
+          "maximum": 20.0
+        },
+        "right": {
+          "count": 5400,
+          "minimum": 20.0,
+          "p50": 20.0,
+          "p95": 20.0,
+          "maximum": 20.0
+        }
+      },
+      "host_resources": {
+        "peak_ram_mb": 3379,
+        "maximum_reported_temperature_c": 58.562,
+        "gpu_utilization_percent": {
+          "count": 202,
+          "minimum": 0,
+          "p50": 16,
+          "p95": 36,
+          "maximum": 55
+        }
+      },
+      "camera_counter_deltas": {
+        "sequence_gaps": 0,
+        "rejected_pairs": 0,
+        "imu_sequence_gaps": 0,
+        "stereo_rejected": 0,
+        "stereo_sequence_gaps": 0,
+        "combined_imu_rejected": 0,
+        "combined_imu_overflows": 0,
+        "clock_discontinuities": 0,
+        "imu_clock_rejected": 0,
+        "image_clock_rejected": 0
+      },
+      "cleanup_errors": [],
+      "workload_ownership_empty": true,
+      "raw_source_sha256": {
+        "result.json": "dc20eae12da791ebbad52608ab007b31fdb52b71df21731e4d463a26985964a0",
+        "samples.json": "e21638985ed48b5c943b6d8f432a899c5569b28152ebce89a0308423072fcbf5",
+        "numeric.jsonl": "7a7b348aa9e4f668de72cc78cae7510f9ae08cbbf60e2d8a1cf280a125f71e49"
+      },
+      "analysis_script_sha256": "e37aab735b41017d4667a76930941f2e976b58af0fa8f9a28293c22a645d0e6b",
+      "harness_sha256": null
+    },
+    {
+      "name": "oak-vio-r2",
+      "mode": "oak-cones-vio",
+      "seconds": 180.0,
+      "warmup_seconds": 10.0,
+      "fixture_passed": true,
+      "fixture_error": null,
+      "rate_and_coverage_gates_passed": true,
+      "joint_fraction": 0.9998148491020181,
+      "metrics": {
+        "cones": {
+          "count": 5401,
+          "hz": 30.005555555555556,
+          "p95_ms": 85.988377,
+          "maximum_ms": 95.061447,
+          "over_100ms": 0,
+          "over_200ms": 0
+        },
+        "poses": {
+          "count": 5400,
+          "hz": 30.0,
+          "p95_ms": 51.491259,
+          "maximum_ms": 69.795842,
+          "over_100ms": 0,
+          "over_200ms": 0
+        },
+        "joints": {
+          "count": 5400,
+          "hz": 30.0,
+          "p95_ms": 85.988377,
+          "maximum_ms": 95.061447,
+          "over_100ms": 0,
+          "over_200ms": 0
+        }
+      },
+      "upstream_states": {
+        "1": 5400
+      },
+      "upstream_states_before_measurement": {
+        "1": 317
+      },
+      "joins": {
+        "stereo_without_observed_status": 0,
+        "observed_success_without_raw_pose": 0,
+        "observed_raw_pose_without_accepted_estimate": 0,
+        "accepted_without_observed_success": 0,
+        "estimate_stamp_mismatches": 0
+      },
+      "worst_minute": {
+        "pose_hz": 29.983333333333334,
+        "joint_fraction": 1.0
+      },
+      "upstream_execution_times_seconds": {
+        "node_callback_execution_time": {
+          "count": 5400,
+          "minimum": 0.001631212,
+          "p50": 0.007563174,
+          "p95": 0.012419148,
+          "maximum": 0.024008953
+        },
+        "track_execution_time": {
+          "count": 5400,
+          "minimum": 0.001312745,
+          "p50": 0.00708979,
+          "p95": 0.011941814,
+          "maximum": 0.023548118
+        },
+        "track_execution_time_max": {
+          "count": 5400,
+          "minimum": 0.008543121,
+          "p50": 0.012542865,
+          "p95": 0.020949479,
+          "maximum": 0.023548118
+        },
+        "track_execution_time_mean": {
+          "count": 5400,
+          "minimum": 0.00507877042,
+          "p50": 0.0073612064299999995,
+          "p95": 0.010201922810000002,
+          "maximum": 0.011860733799999997
+        }
+      },
+      "stereo_skew_ms": {
+        "count": 5400,
+        "minimum": 0.010896,
+        "p50": 0.012696,
+        "p95": 0.013507,
+        "maximum": 0.014994
+      },
+      "exposure_ms": {
+        "left": {
+          "count": 5400,
+          "minimum": 20.0,
+          "p50": 20.0,
+          "p95": 20.0,
+          "maximum": 20.0
+        },
+        "right": {
+          "count": 5400,
+          "minimum": 20.0,
+          "p50": 20.0,
+          "p95": 20.0,
+          "maximum": 20.0
+        }
+      },
+      "host_resources": {
+        "peak_ram_mb": 3490,
+        "maximum_reported_temperature_c": 59.125,
+        "gpu_utilization_percent": {
+          "count": 201,
+          "minimum": 0,
+          "p50": 16,
+          "p95": 36,
+          "maximum": 43
+        }
+      },
+      "camera_counter_deltas": {
+        "sequence_gaps": 0,
+        "rejected_pairs": 0,
+        "imu_sequence_gaps": 0,
+        "stereo_rejected": 0,
+        "stereo_sequence_gaps": 0,
+        "combined_imu_rejected": 0,
+        "combined_imu_overflows": 0,
+        "clock_discontinuities": 0,
+        "imu_clock_rejected": 0,
+        "image_clock_rejected": 0
+      },
+      "cleanup_errors": [],
+      "workload_ownership_empty": true,
+      "raw_source_sha256": {
+        "result.json": "de3ebfae6e4c7acb9be1774d95b7f4e69648c635c1c815099f5894fbd5b8e173",
+        "samples.json": "4f85407e859418b107c0e5c08850f0cbc1656e99cdf3be398226cae94ffe43a3",
+        "numeric.jsonl": "23e00c5f4682e98a5b1cc4d8b3484486991f05e3ab053d763b8e3e79c5417a3c"
+      },
+      "analysis_script_sha256": "e37aab735b41017d4667a76930941f2e976b58af0fa8f9a28293c22a645d0e6b",
+      "harness_sha256": null
+    },
+    {
+      "name": "oak-vo-r1",
+      "mode": "oak-cones-vo",
+      "seconds": 180.0,
+      "warmup_seconds": 10.0,
+      "fixture_passed": true,
+      "fixture_error": null,
+      "rate_and_coverage_gates_passed": true,
+      "joint_fraction": 0.9998148148148148,
+      "metrics": {
+        "cones": {
+          "count": 5400,
+          "hz": 30.0,
+          "p95_ms": 83.388594,
+          "maximum_ms": 92.746872,
+          "over_100ms": 0,
+          "over_200ms": 0
+        },
+        "coco": {
+          "count": 0,
+          "hz": 0.0,
+          "p95_ms": null,
+          "maximum_ms": null,
+          "over_100ms": 0,
+          "over_200ms": 0
+        },
+        "poses": {
+          "count": 5401,
+          "hz": 30.005555555555556,
+          "p95_ms": 43.769846,
+          "maximum_ms": 51.774088,
+          "over_100ms": 0,
+          "over_200ms": 0
+        },
+        "joints": {
+          "count": 5399,
+          "hz": 29.994444444444444,
+          "p95_ms": 83.390145,
+          "maximum_ms": 92.746872,
+          "over_100ms": 0,
+          "over_200ms": 0
+        }
+      },
+      "upstream_states": {
+        "1": 5400
+      },
+      "upstream_states_before_measurement": {
+        "1": 314
+      },
+      "joins": {
+        "stereo_without_observed_status": 0,
+        "observed_success_without_raw_pose": 0,
+        "observed_raw_pose_without_accepted_estimate": 0,
+        "accepted_without_observed_success": 0,
+        "estimate_stamp_mismatches": 0
+      },
+      "worst_minute": {
+        "pose_hz": 30.0,
+        "joint_fraction": 1.0
+      },
+      "upstream_execution_times_seconds": {
+        "node_callback_execution_time": {
+          "count": 5400,
+          "minimum": 0.001314095,
+          "p50": 0.004795129,
+          "p95": 0.007101591,
+          "maximum": 0.011792459
+        },
+        "track_execution_time": {
+          "count": 5400,
+          "minimum": 0.001062668,
+          "p50": 0.004465204,
+          "p95": 0.00649105,
+          "maximum": 0.011456198
+        },
+        "track_execution_time_max": {
+          "count": 5400,
+          "minimum": 0.006364008,
+          "p50": 0.006697552,
+          "p95": 0.010955193,
+          "maximum": 0.011456198
+        },
+        "track_execution_time_mean": {
+          "count": 5400,
+          "minimum": 0.004040521680000001,
+          "p50": 0.00461738628,
+          "p95": 0.004924559359999998,
+          "maximum": 0.005105497279999999
+        }
+      },
+      "stereo_skew_ms": {
+        "count": 5400,
+        "minimum": 0.011145,
+        "p50": 0.013313,
+        "p95": 0.01423,
+        "maximum": 0.015851
+      },
+      "exposure_ms": {
+        "left": {
+          "count": 5400,
+          "minimum": 20.0,
+          "p50": 20.0,
+          "p95": 20.0,
+          "maximum": 20.0
+        },
+        "right": {
+          "count": 5400,
+          "minimum": 20.0,
+          "p50": 20.0,
+          "p95": 20.0,
+          "maximum": 20.0
+        }
+      },
+      "host_resources": {
+        "peak_ram_mb": 3484,
+        "maximum_reported_temperature_c": 58.531,
+        "gpu_utilization_percent": {
+          "count": 200,
+          "minimum": 0,
+          "p50": 17,
+          "p95": 36,
+          "maximum": 38
+        }
+      },
+      "camera_counter_deltas": {
+        "sequence_gaps": 0,
+        "rejected_pairs": 0,
+        "imu_sequence_gaps": 0,
+        "stereo_rejected": 0,
+        "stereo_sequence_gaps": 0,
+        "combined_imu_rejected": 0,
+        "combined_imu_overflows": 0,
+        "clock_discontinuities": 0,
+        "imu_clock_rejected": 0,
+        "image_clock_rejected": 0
+      },
+      "cleanup_errors": [],
+      "workload_ownership_empty": true,
+      "raw_source_sha256": {
+        "result.json": "48ee3c7c549c72ba02c8b9607d2cf0ec259cbdc969c45d20c16d3c7ba36a0185",
+        "samples.json": "855c0d5dc733ab4f8c2727109ffed648c69ce56254002ffb29c70c9660f20297",
+        "numeric.jsonl": "8160a154c0f471e9fccc369c3fea9f98de4a0c700968d21df3086567bf770ef6"
+      },
+      "analysis_script_sha256": "e37aab735b41017d4667a76930941f2e976b58af0fa8f9a28293c22a645d0e6b",
+      "harness_sha256": {
+        "run_trial.py": "1d9689f8fd007d0c98a17db134749f2a44a705c80ac9946a3df1dffbb383025f",
+        "diagnostic_fixture.py": "6fb0cbea364f0f89d020d9c9497ad1683a048f2f1e245ca65f49b0fb55cb390c",
+        "diagnostic_observer.py": "4b73720e220b6582fe705f18902f3a8ce2a4dc1f6ceffda05970a8d6609ea267",
+        "video-probe.py": "130324a87f336167eec72fe2bcaffe82269e93bd9264670a6524e03d031fe03d"
+      }
+    },
+    {
+      "name": "oak-full-r1",
+      "mode": "oak-both-vio",
+      "seconds": 180.0,
+      "warmup_seconds": 10.0,
+      "fixture_passed": true,
+      "fixture_error": null,
+      "rate_and_coverage_gates_passed": true,
+      "joint_fraction": 0.9998148148148148,
+      "metrics": {
+        "cones": {
+          "count": 5400,
+          "hz": 30.0,
+          "p95_ms": 106.433122,
+          "maximum_ms": 143.071456,
+          "over_100ms": 1130,
+          "over_200ms": 0
+        },
+        "coco": {
+          "count": 5400,
+          "hz": 30.0,
+          "p95_ms": 105.625127,
+          "maximum_ms": 131.993476,
+          "over_100ms": 946,
+          "over_200ms": 0
+        },
+        "poses": {
+          "count": 5400,
+          "hz": 30.0,
+          "p95_ms": 66.201252,
+          "maximum_ms": 91.868803,
+          "over_100ms": 0,
+          "over_200ms": 0
+        },
+        "joints": {
+          "count": 5399,
+          "hz": 29.994444444444444,
+          "p95_ms": 106.436928,
+          "maximum_ms": 143.071456,
+          "over_100ms": 1129,
+          "over_200ms": 0
+        }
+      },
+      "upstream_states": {
+        "1": 5400
+      },
+      "upstream_states_before_measurement": {
+        "1": 501
+      },
+      "joins": {
+        "stereo_without_observed_status": 0,
+        "observed_success_without_raw_pose": 0,
+        "observed_raw_pose_without_accepted_estimate": 0,
+        "accepted_without_observed_success": 0,
+        "estimate_stamp_mismatches": 0
+      },
+      "worst_minute": {
+        "pose_hz": 29.983333333333334,
+        "joint_fraction": 1.0
+      },
+      "upstream_execution_times_seconds": {
+        "node_callback_execution_time": {
+          "count": 5400,
+          "minimum": 0.001457043,
+          "p50": 0.004537918,
+          "p95": 0.008411246,
+          "maximum": 0.018592464
+        },
+        "track_execution_time": {
+          "count": 5400,
+          "minimum": 0.001205616,
+          "p50": 0.004103703,
+          "p95": 0.007501125,
+          "maximum": 0.016981352
+        },
+        "track_execution_time_max": {
+          "count": 5400,
+          "minimum": 0.008134958,
+          "p50": 0.013462573,
+          "p95": 0.016625666,
+          "maximum": 0.016981352
+        },
+        "track_execution_time_mean": {
+          "count": 5400,
+          "minimum": 0.00361449494,
+          "p50": 0.00406326804,
+          "p95": 0.004416450109999999,
+          "maximum": 0.00475385901
+        }
+      },
+      "stereo_skew_ms": {
+        "count": 5400,
+        "minimum": 0.010659,
+        "p50": 0.012579,
+        "p95": 0.013505,
+        "maximum": 0.015445
+      },
+      "exposure_ms": {
+        "left": {
+          "count": 5400,
+          "minimum": 20.0,
+          "p50": 20.0,
+          "p95": 20.0,
+          "maximum": 20.0
+        },
+        "right": {
+          "count": 5400,
+          "minimum": 20.0,
+          "p50": 20.0,
+          "p95": 20.0,
+          "maximum": 20.0
+        }
+      },
+      "host_resources": {
+        "peak_ram_mb": 4280,
+        "maximum_reported_temperature_c": 66.468,
+        "gpu_utilization_percent": {
+          "count": 209,
+          "minimum": 0,
+          "p50": 31,
+          "p95": 64,
+          "maximum": 70
+        }
+      },
+      "camera_counter_deltas": {
+        "sequence_gaps": 0,
+        "rejected_pairs": 0,
+        "imu_sequence_gaps": 0,
+        "stereo_rejected": 0,
+        "stereo_sequence_gaps": 0,
+        "combined_imu_rejected": 0,
+        "combined_imu_overflows": 0,
+        "clock_discontinuities": 0,
+        "imu_clock_rejected": 0,
+        "image_clock_rejected": 0
+      },
+      "cleanup_errors": [],
+      "workload_ownership_empty": true,
+      "raw_source_sha256": {
+        "result.json": "22518da99e8303b78062a3d009a49468d4640b2721829cef454d5c5cd704ca28",
+        "samples.json": "4c720f1dddf8ee3f34cc1fce37ca84d6b049af13fec86fc7613e4a3f52533891",
+        "numeric.jsonl": "577b9d578fffceb640a4e852b7756b27c006e2232267532fe66643bbd80c5e6f"
+      },
+      "analysis_script_sha256": "e37aab735b41017d4667a76930941f2e976b58af0fa8f9a28293c22a645d0e6b",
+      "harness_sha256": {
+        "run_trial.py": "c225e6379af1ef89e27561bb64ca5a5b970243666f12a6c33eded4116cee989f",
+        "diagnostic_fixture.py": "9e115eba97500f610624f1af883077e16005fa607573158e32d3434edabf74ed",
+        "diagnostic_observer.py": "4b73720e220b6582fe705f18902f3a8ce2a4dc1f6ceffda05970a8d6609ea267",
+        "video-probe.py": "130324a87f336167eec72fe2bcaffe82269e93bd9264670a6524e03d031fe03d"
+      },
+      "video": {
+        "passed": true,
+        "cleanup_errors": [],
+        "javascript_exceptions": [],
+        "decoded_frame_growth": 5641,
+        "samples": 190,
+        "observed_dimensions": [
+          [
+            640,
+            480
+          ]
+        ]
+      },
+      "recording": {
+        "passed": true,
+        "tracks": {
+          "rgb": {
+            "frames": 5777,
+            "segments": 7,
+            "generations": 1,
+            "bytes": 144459205,
+            "counters": {
+              "admitted": 5778,
+              "discarded_on_gap": 0,
+              "encoded": 5777,
+              "finalized": 5777,
+              "gaps": 0,
+              "overload_dropped": 2,
+              "rate_dropped": 3,
+              "received": 5782,
+              "rejected": 0
+            }
+          },
+          "depth": {
+            "frames": 5777,
+            "segments": 7,
+            "generations": 1,
+            "bytes": 184654652,
+            "counters": {
+              "admitted": 5777,
+              "discarded_on_gap": 0,
+              "encoded": 5777,
+              "finalized": 5777,
+              "gaps": 0,
+              "overload_dropped": 1,
+              "rate_dropped": 4,
+              "received": 5782,
+              "rejected": 0
+            }
+          },
+          "annotated": {
+            "frames": 5776,
+            "segments": 7,
+            "generations": 1,
+            "bytes": 144415677,
+            "counters": {
+              "admitted": 5777,
+              "discarded_on_gap": 0,
+              "encoded": 5776,
+              "finalized": 5776,
+              "gaps": 0,
+              "overload_dropped": 2,
+              "rate_dropped": 3,
+              "received": 5782,
+              "rejected": 1
+            }
+          }
+        },
+        "decoded_segment_count": 6
+      }
+    },
+    {
+      "name": "d455-vio-r1",
+      "mode": "d455-cones-vio",
+      "seconds": 60.0,
+      "warmup_seconds": 10.0,
+      "fixture_passed": true,
+      "fixture_error": null,
+      "rate_and_coverage_gates_passed": true,
+      "joint_fraction": 0.9988882712618121,
+      "metrics": {
+        "cones": {
+          "count": 1799,
+          "hz": 29.983333333333334,
+          "p95_ms": 44.591822,
+          "maximum_ms": 49.177024,
+          "over_100ms": 0,
+          "over_200ms": 0
+        },
+        "coco": {
+          "count": 0,
+          "hz": 0.0,
+          "p95_ms": null,
+          "maximum_ms": null,
+          "over_100ms": 0,
+          "over_200ms": 0
+        },
+        "poses": {
+          "count": 1798,
+          "hz": 29.966666666666665,
+          "p95_ms": 48.709954,
+          "maximum_ms": 52.406672,
+          "over_100ms": 0,
+          "over_200ms": 0
+        },
+        "joints": {
+          "count": 1797,
+          "hz": 29.95,
+          "p95_ms": 66.137202,
+          "maximum_ms": 69.837504,
+          "over_100ms": 0,
+          "over_200ms": 0
+        }
+      },
+      "upstream_states": {
+        "1": 1798
+      },
+      "upstream_states_before_measurement": {
+        "1": 332
+      },
+      "joins": {
+        "stereo_without_observed_status": 0,
+        "observed_success_without_raw_pose": 0,
+        "observed_raw_pose_without_accepted_estimate": 0,
+        "accepted_without_observed_success": 0,
+        "estimate_stamp_mismatches": 0
+      },
+      "worst_minute": {
+        "pose_hz": 29.95,
+        "joint_fraction": 0.9994438264738599
+      },
+      "upstream_execution_times_seconds": {
+        "node_callback_execution_time": {
+          "count": 1798,
+          "minimum": 0.002006845,
+          "p50": 0.011947374,
+          "p95": 0.019537885,
+          "maximum": 0.023497944
+        },
+        "track_execution_time": {
+          "count": 1798,
+          "minimum": 0.00165676,
+          "p50": 0.011469351,
+          "p95": 0.019074615,
+          "maximum": 0.022951024
+        },
+        "track_execution_time_max": {
+          "count": 1798,
+          "minimum": 0.007360555,
+          "p50": 0.018968885,
+          "p95": 0.022951024,
+          "maximum": 0.022951024
+        },
+        "track_execution_time_mean": {
+          "count": 1798,
+          "minimum": 0.0028647888499999997,
+          "p50": 0.011680411879999998,
+          "p95": 0.017103578189999993,
+          "maximum": 0.0175654863
+        }
+      },
+      "stereo_skew_ms": {
+        "count": 1798,
+        "minimum": 0.0,
+        "p50": 0.0,
+        "p95": 0.0,
+        "maximum": 0.0
+      },
+      "exposure_ms": {
+        "left": {
+          "count": 1798,
+          "minimum": 31.979,
+          "p50": 31.979,
+          "p95": 31.979,
+          "maximum": 31.979
+        },
+        "right": {
+          "count": 1798,
+          "minimum": 31.979,
+          "p50": 31.979,
+          "p95": 31.979,
+          "maximum": 31.979
+        }
+      },
+      "host_resources": {
+        "peak_ram_mb": 3437,
+        "maximum_reported_temperature_c": 59.062,
+        "gpu_utilization_percent": {
+          "count": 87,
+          "minimum": 0,
+          "p50": 6,
+          "p95": 34,
+          "maximum": 34
+        }
+      },
+      "camera_counter_deltas": {
+        "sequence_gaps": 0,
+        "rejected_pairs": 0,
+        "imu_sequence_gaps": 0,
+        "stereo_rejected": 0,
+        "stereo_sequence_gaps": 0,
+        "combined_imu_rejected": 0,
+        "combined_imu_overflows": 0,
+        "clock_discontinuities": 0,
+        "imu_clock_rejected": 0,
+        "image_clock_rejected": 0
+      },
+      "cleanup_errors": [],
+      "workload_ownership_empty": true,
+      "raw_source_sha256": {
+        "result.json": "b83a2e6330e0d232bb1f6622cd5a023bd8a32ab8132a3fe263b2d8e86b1c0367",
+        "samples.json": "0f43b8369331b194ddd778ac0a0a11829f0d4481c2bed3aa0c6389ff6e05a946",
+        "numeric.jsonl": "5dab0bbbf64c1876a405e7e5808a04cbcc2b4a0e8c1b0beafeeeea35f6f283a2"
+      },
+      "analysis_script_sha256": "e37aab735b41017d4667a76930941f2e976b58af0fa8f9a28293c22a645d0e6b",
+      "harness_sha256": {
+        "run_trial.py": "c225e6379af1ef89e27561bb64ca5a5b970243666f12a6c33eded4116cee989f",
+        "diagnostic_fixture.py": "9e115eba97500f610624f1af883077e16005fa607573158e32d3434edabf74ed",
+        "diagnostic_observer.py": "4b73720e220b6582fe705f18902f3a8ce2a4dc1f6ceffda05970a8d6609ea267",
+        "video-probe.py": "130324a87f336167eec72fe2bcaffe82269e93bd9264670a6524e03d031fe03d"
+      }
+    },
+    {
+      "name": "oak-vio-long",
+      "mode": "oak-cones-vio",
+      "seconds": 1800.0,
+      "warmup_seconds": 10.0,
+      "fixture_passed": false,
+      "fixture_error": "AssertionError('Camera status expired during measurement')",
+      "rate_and_coverage_gates_passed": true,
+      "joint_fraction": 0.9999814814814815,
+      "metrics": {
+        "cones": {
+          "count": 54000,
+          "hz": 30.0,
+          "p95_ms": 85.86018,
+          "maximum_ms": 96.159122,
+          "over_100ms": 0,
+          "over_200ms": 0
+        },
+        "coco": {
+          "count": 0,
+          "hz": 0.0,
+          "p95_ms": null,
+          "maximum_ms": null,
+          "over_100ms": 0,
+          "over_200ms": 0
+        },
+        "poses": {
+          "count": 54000,
+          "hz": 30.0,
+          "p95_ms": 51.648475,
+          "maximum_ms": 83.456193,
+          "over_100ms": 0,
+          "over_200ms": 0
+        },
+        "joints": {
+          "count": 53999,
+          "hz": 29.999444444444446,
+          "p95_ms": 85.862036,
+          "maximum_ms": 96.159122,
+          "over_100ms": 0,
+          "over_200ms": 0
+        }
+      },
+      "upstream_states": {
+        "1": 54000
+      },
+      "upstream_states_before_measurement": {
+        "1": 316
+      },
+      "joins": {
+        "stereo_without_observed_status": 0,
+        "observed_success_without_raw_pose": 0,
+        "observed_raw_pose_without_accepted_estimate": 0,
+        "accepted_without_observed_success": 0,
+        "estimate_stamp_mismatches": 0
+      },
+      "worst_minute": {
+        "pose_hz": 29.983333333333334,
+        "joint_fraction": 1.0
+      },
+      "upstream_execution_times_seconds": {
+        "node_callback_execution_time": {
+          "count": 54000,
+          "minimum": 0.001676941,
+          "p50": 0.00823136,
+          "p95": 0.012464838,
+          "maximum": 0.021768167
+        },
+        "track_execution_time": {
+          "count": 54000,
+          "minimum": 0.001322773,
+          "p50": 0.007788518,
+          "p95": 0.011996251,
+          "maximum": 0.021308508
+        },
+        "track_execution_time_max": {
+          "count": 54000,
+          "minimum": 0.008053398,
+          "p50": 0.013293196,
+          "p95": 0.018944949,
+          "maximum": 0.021308508
+        },
+        "track_execution_time_mean": {
+          "count": 54000,
+          "minimum": 0.005043435050000002,
+          "p50": 0.008073783840000003,
+          "p95": 0.01035504455,
+          "maximum": 0.01215064696
+        }
+      },
+      "stereo_skew_ms": {
+        "count": 54000,
+        "minimum": 0.010237,
+        "p50": 0.012524,
+        "p95": 0.013733,
+        "maximum": 0.015759
+      },
+      "exposure_ms": {
+        "left": {
+          "count": 54000,
+          "minimum": 20.0,
+          "p50": 20.0,
+          "p95": 20.0,
+          "maximum": 20.0
+        },
+        "right": {
+          "count": 54000,
+          "minimum": 20.0,
+          "p50": 20.0,
+          "p95": 20.0,
+          "maximum": 20.0
+        }
+      },
+      "host_resources": {
+        "peak_ram_mb": 3640,
+        "maximum_reported_temperature_c": 60.062,
+        "gpu_utilization_percent": {
+          "count": 1812,
+          "minimum": 0,
+          "p50": 18,
+          "p95": 36,
+          "maximum": 57
+        }
+      },
+      "camera_counter_deltas": {
+        "sequence_gaps": 0,
+        "rejected_pairs": 0,
+        "imu_sequence_gaps": 0,
+        "stereo_rejected": 0,
+        "stereo_sequence_gaps": 0,
+        "combined_imu_rejected": 0,
+        "combined_imu_overflows": 0,
+        "clock_discontinuities": 0,
+        "imu_clock_rejected": 0,
+        "image_clock_rejected": 0
+      },
+      "cleanup_errors": [],
+      "workload_ownership_empty": true,
+      "raw_source_sha256": {
+        "result.json": "d59359112128bcec5614322416e278c89825ba7cd7c700ba231d609ef4d05cef",
+        "samples.json": "b4b225549a1a74565c234b1910a594a592c396de9031ca10adcc1901759ae441",
+        "numeric.jsonl": "78d11590c7b5d5cc2ecbd173ac4b9b6fb3e25cc2540572af33cb3514e45c2fac"
+      },
+      "analysis_script_sha256": "e37aab735b41017d4667a76930941f2e976b58af0fa8f9a28293c22a645d0e6b",
+      "harness_sha256": {
+        "run_trial.py": "c225e6379af1ef89e27561bb64ca5a5b970243666f12a6c33eded4116cee989f",
+        "diagnostic_fixture.py": "9e115eba97500f610624f1af883077e16005fa607573158e32d3434edabf74ed",
+        "diagnostic_observer.py": "4b73720e220b6582fe705f18902f3a8ce2a4dc1f6ceffda05970a8d6609ea267",
+        "video-probe.py": "130324a87f336167eec72fe2bcaffe82269e93bd9264670a6524e03d031fe03d"
+      }
+    },
+    {
+      "name": "oak-full-long",
+      "mode": "oak-both-vio",
+      "seconds": 1800.0,
+      "warmup_seconds": 10.0,
+      "fixture_passed": true,
+      "fixture_error": null,
+      "rate_and_coverage_gates_passed": true,
+      "joint_fraction": 0.9999814811385396,
+      "metrics": {
+        "cones": {
+          "count": 53999,
+          "hz": 29.999444444444446,
+          "p95_ms": 104.002446,
+          "maximum_ms": 141.115598,
+          "over_100ms": 7562,
+          "over_200ms": 0
+        },
+        "coco": {
+          "count": 54000,
+          "hz": 30.0,
+          "p95_ms": 105.602128,
+          "maximum_ms": 139.714366,
+          "over_100ms": 10323,
+          "over_200ms": 0
+        },
+        "poses": {
+          "count": 53999,
+          "hz": 29.999444444444446,
+          "p95_ms": 65.79761,
+          "maximum_ms": 105.878843,
+          "over_100ms": 2,
+          "over_200ms": 0
+        },
+        "joints": {
+          "count": 53998,
+          "hz": 29.99888888888889,
+          "p95_ms": 104.002446,
+          "maximum_ms": 141.115598,
+          "over_100ms": 7562,
+          "over_200ms": 0
+        }
+      },
+      "upstream_states": {
+        "1": 53999
+      },
+      "upstream_states_before_measurement": {
+        "1": 568
+      },
+      "joins": {
+        "stereo_without_observed_status": 0,
+        "observed_success_without_raw_pose": 0,
+        "observed_raw_pose_without_accepted_estimate": 0,
+        "accepted_without_observed_success": 0,
+        "estimate_stamp_mismatches": 0
+      },
+      "worst_minute": {
+        "pose_hz": 29.966666666666665,
+        "joint_fraction": 1.0
+      },
+      "upstream_execution_times_seconds": {
+        "node_callback_execution_time": {
+          "count": 53999,
+          "minimum": 0.00141813,
+          "p50": 0.004829122,
+          "p95": 0.0083388,
+          "maximum": 0.023016112
+        },
+        "track_execution_time": {
+          "count": 53999,
+          "minimum": 0.001160873,
+          "p50": 0.004400889,
+          "p95": 0.007311927,
+          "maximum": 0.022484221
+        },
+        "track_execution_time_max": {
+          "count": 53999,
+          "minimum": 0.006600747,
+          "p50": 0.012953588,
+          "p95": 0.016431041,
+          "maximum": 0.022484221
+        },
+        "track_execution_time_mean": {
+          "count": 53999,
+          "minimum": 0.0035061587099999986,
+          "p50": 0.004257785199999998,
+          "p95": 0.004612033539999999,
+          "maximum": 0.005028608719999998
+        }
+      },
+      "stereo_skew_ms": {
+        "count": 53999,
+        "minimum": 0.010191,
+        "p50": 0.012513,
+        "p95": 0.013687,
+        "maximum": 0.015327
+      },
+      "exposure_ms": {
+        "left": {
+          "count": 53999,
+          "minimum": 20.0,
+          "p50": 20.0,
+          "p95": 20.0,
+          "maximum": 20.0
+        },
+        "right": {
+          "count": 53999,
+          "minimum": 20.0,
+          "p50": 20.0,
+          "p95": 20.0,
+          "maximum": 20.0
+        }
+      },
+      "host_resources": {
+        "peak_ram_mb": 4324,
+        "maximum_reported_temperature_c": 69.031,
+        "gpu_utilization_percent": {
+          "count": 1822,
+          "minimum": 0,
+          "p50": 33,
+          "p95": 65,
+          "maximum": 86
+        }
+      },
+      "camera_counter_deltas": {
+        "sequence_gaps": 0,
+        "rejected_pairs": 0,
+        "imu_sequence_gaps": 0,
+        "stereo_rejected": 0,
+        "stereo_sequence_gaps": 0,
+        "combined_imu_rejected": 0,
+        "combined_imu_overflows": 0,
+        "clock_discontinuities": 0,
+        "imu_clock_rejected": 0,
+        "image_clock_rejected": 0
+      },
+      "cleanup_errors": [],
+      "workload_ownership_empty": true,
+      "raw_source_sha256": {
+        "result.json": "62699fc50dafa54dd150fb5c51584111a24edef04672a65a9841fd002f329c27",
+        "samples.json": "52603f13913cc790dd610bf005078c1d4bba774808f0eea2e4cbe7b8cab3abe6",
+        "numeric.jsonl": "846ca53326cc00fb912c91ca0e534b69bc5b3a51b8ac9076c89039f86a7ccab4"
+      },
+      "analysis_script_sha256": "e37aab735b41017d4667a76930941f2e976b58af0fa8f9a28293c22a645d0e6b",
+      "harness_sha256": {
+        "run_trial.py": "c225e6379af1ef89e27561bb64ca5a5b970243666f12a6c33eded4116cee989f",
+        "diagnostic_fixture.py": "d8b9fd4cd87c9953f4efade26d9910bf443d059ade12555b204040f421345dc1",
+        "diagnostic_observer.py": "4b73720e220b6582fe705f18902f3a8ce2a4dc1f6ceffda05970a8d6609ea267",
+        "video-probe.py": "130324a87f336167eec72fe2bcaffe82269e93bd9264670a6524e03d031fe03d"
+      },
+      "status_age_at_measurement_end_ms": {
+        "camera": 193.824839,
+        "odometry": 128.256133
+      },
+      "video": {
+        "passed": true,
+        "cleanup_errors": [],
+        "javascript_exceptions": [],
+        "decoded_frame_growth": 54219,
+        "samples": 1806,
+        "observed_dimensions": [
+          [
+            640,
+            480
+          ]
+        ]
+      },
+      "recording": {
+        "passed": true,
+        "tracks": {
+          "rgb": {
+            "frames": 54516,
+            "segments": 63,
+            "generations": 1,
+            "bytes": 1362845637,
+            "counters": {
+              "admitted": 54517,
+              "discarded_on_gap": 0,
+              "encoded": 54516,
+              "finalized": 54516,
+              "gaps": 0,
+              "overload_dropped": 5,
+              "rate_dropped": 43,
+              "received": 54564,
+              "rejected": 0
+            }
+          },
+          "depth": {
+            "frames": 54547,
+            "segments": 63,
+            "generations": 1,
+            "bytes": 1693200984,
+            "counters": {
+              "admitted": 54547,
+              "discarded_on_gap": 0,
+              "encoded": 54547,
+              "finalized": 54547,
+              "gaps": 0,
+              "overload_dropped": 9,
+              "rate_dropped": 8,
+              "received": 54564,
+              "rejected": 0
+            }
+          },
+          "annotated": {
+            "frames": 54504,
+            "segments": 63,
+            "generations": 1,
+            "bytes": 1362536340,
+            "counters": {
+              "admitted": 54505,
+              "discarded_on_gap": 0,
+              "encoded": 54504,
+              "finalized": 54504,
+              "gaps": 0,
+              "overload_dropped": 12,
+              "rate_dropped": 43,
+              "received": 54560,
+              "rejected": 1
+            }
+          }
+        },
+        "decoded_segment_count": 6
+      }
+    }
+  ],
+  "baseline_reconciliation": {
+    "original_fixture_passed": false,
+    "measurement_rates_and_coverage_passed": true,
+    "independent_status_freshness_passed": true,
+    "classification": "post_measurement_fixture_freshness_error",
+    "raw_result_preserved": true,
+    "diagnosis_sha256": "470dd40bc92f1d98d9884e1a4052c824ed19812b88af5f208354dcd83de60420"
+  },
+  "activation": {
+    "passed": true,
+    "modes": 24,
+    "python_dependencies": {
+      "application_lock_versions_passed": true,
+      "global_pip_check_passed": false,
+      "inherited_debian_metadata_finding": "pynacl 1.5.0 requires cffi, which is not installed.",
+      "host_packages_changed": false
+    }
+  },
+  "final_audit": {
+    "passed": true,
+    "management_enabled_active": true,
+    "stopped_after_management_restart": true,
+    "host_packages_unchanged": true,
+    "power_mode_unchanged": true,
+    "credentials_unchanged": true,
+    "no_containers": true,
+    "private_references_retained": true,
+    "normal_cli_smoke": {
+      "counts": {
+        "schema": 1,
+        "camera": 175,
+        "health": 174,
+        "observer": 34,
+        "imu": 6081,
+        "stereo": 919,
+        "adapter": 145,
+        "upstream_pose": 819,
+        "upstream_status": 819,
+        "estimate": 819,
+        "finished": 1
+      },
+      "camera_state": "streaming",
+      "odometry_state": "tracking"
+    }
+  },
+  "final_web_check": {
+    "passed": true,
+    "certificate_verified": true,
+    "page_ready": true,
+    "status_fresh": true,
+    "workloads_stopped": true
+  },
+  "closing_check": {
+    "passed": true,
+    "no_trial_or_browser_processes": true,
+    "no_camera_sdk_mappings": true,
+    "no_containers": true,
+    "reservation_released": true
+  }
+}

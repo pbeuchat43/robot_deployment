@@ -1,0 +1,85 @@
+{
+  "schema_version": 1,
+  "passed": true,
+  "operator_confirmed_board": "waveshare_rp2040_zero",
+  "operator_confirmed_usb_only": true,
+  "firmware_source": "f25b331810f56f4ca61dfe201e129046b4ed557b",
+  "interface_source": "1903b9524a82255b2a230cdc26cb5bf255487210",
+  "pico_sdk_source": "079c6f39023649b154152db30f1d781e884879bc",
+  "picotool_source": "2041936441b48a3cc53ae3da9e805229fe8f4e18",
+  "rebuilt_manifest": {
+    "board": "waveshare_rp2040_zero",
+    "protocol": "RCPv1",
+    "build_id": "81bfd20e371a38fc",
+    "profile_id": "a6b661b9f16e61b3",
+    "uf2": "rc_car_firmware.uf2",
+    "sha256": "794905f12811ffb8a37012ee7564e31a55c1be9f2bcb18774decc068a25c864c"
+  },
+  "firmware_flashed": false,
+  "existing_flash_comparison": {
+    "compared_bytes": 70656,
+    "different_bytes": 2,
+    "difference": "Embedded build date: Nov  8 2026 versus Nov 15 2026",
+    "literal_picotool_verify_passed": false
+  },
+  "backup": {
+    "verified": true,
+    "uf2_bytes": 4194304,
+    "sha256": "06676e6004fbe5619c32c921679ab01ee84dae33cdbcd6a27e3b70e204671314"
+  },
+  "application_identity_matched": true,
+  "modes": [
+    {
+      "requested": "HOLD",
+      "result": "OK",
+      "confirmed": true,
+      "observed_mode": "HOLD",
+      "reason": "REQUESTED",
+      "drive_pwm_us": 1500,
+      "steer_pwm_us": 1500
+    },
+    {
+      "requested": "MANUAL",
+      "result": "OK",
+      "confirmed": true,
+      "observed_mode": "NEUTRAL",
+      "reason": "RC_BAD",
+      "drive_pwm_us": 1500,
+      "steer_pwm_us": 1500
+    },
+    {
+      "requested": "HOLD",
+      "result": "OK",
+      "confirmed": true,
+      "observed_mode": "HOLD",
+      "reason": "REQUESTED",
+      "drive_pwm_us": 1500,
+      "steer_pwm_us": 1500
+    }
+  ],
+  "fresh_sessions": 6,
+  "same_boot_across_sessions": true,
+  "watch": {
+    "samples": 126,
+    "span_ms": 5000,
+    "maximum_tick_gap_ms": 40,
+    "invalid_frames": 0
+  },
+  "final_pico_mode": "HOLD",
+  "hold_lifetime": "current_boot",
+  "host_packages_unchanged": true,
+  "everyday_release_unchanged": true,
+  "everyday_management_enabled_active": true,
+  "everyday_workloads_stopped": true,
+  "physical_pwm_measured": false,
+  "receiver_or_actuators_tested": false,
+  "raw_record_sha256": {
+    "build-result.json": "6db4b513ecef85c30c5b20ffdf3026fd33d39605b9124845bd5adc443ab65aa2",
+    "pico-identity.json": "93f2d1675cb35fbb310e800f99beaf6fab7fcd91cdb0c62e55fc221f53da18f4",
+    "existing-artifact-comparison.json": "a87c8cfb552cbb37911bf2bdde8697490530d7295e822a79a771d7e8f480c976",
+    "bench-result.json": "8a1851e4be67630ece9a4e49bfe0939616a6d430144e9891708a06eda929af29",
+    "hold-watch.stdout": "ca9553e4032f5dde8cbddd97ca88e53f0f7528e71a72ecbb1935db0da400287b",
+    "interface-tests.log": "aa96c5e4bc5adda658889c6a7d59880d31c1af5351b173bc732296b3bf256ee6"
+  },
+  "reservation_released": true
+}

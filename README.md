@@ -13,10 +13,11 @@ perception evidence below does not qualify a fresh installation.
 The current development pins use `CaptureDetections` and the renamed capture-result
 topics. Their [6 November software verification](docs/evidence/2026-11-06-capture-detections/README.md)
 is separate from the earlier hardware/installation records, which retain their
-original interfaces and revisions. The old everyday release was retired during
-the authorized 15 November cleanup. Jah now selects `r20261116-cli-output-v2`,
-with management running and application workloads stopped for operator testing;
-see the [16 November CLI and deployment verification](docs/evidence/2026-11-16-cli-output/README.md).
+original interfaces and revisions.
+Jah selects `r20261116-cli-output-v2`. For commands and installed paths, see the
+[everyday guide](docs/everyday-jah.md). The
+[16 November verification](docs/evidence/2026-11-16-cli-output/README.md)
+records the build, CLI checks and activation.
 The composition connects one selected D455 or OAK-D to the cone detector,
 COCO 80 detector, or both TensorRT detectors, renders overlays on exact retained RGB captures, and uses
 `robot_runtime`'s ROS-image/WebRTC reference viewer.
@@ -51,6 +52,8 @@ records the squash commits, new-pin software checks and branch disposition.
 Its short OAK comparisons exposed intermittent upstream tracking failures on both
 the consolidated and previously qualified selection; that performance finding
 remains open despite a passing repeat. D455 passed the new smoke gates.
+The subsequent [everyday activation and OAK investigation](docs/evidence/2026-11-15-everyday-vio-oak/README.md)
+records the fresh standard build and instrumented follow-up trials.
 
 [Event recording](docs/recording.md) adds independent RGB, annotated and colourized
 depth H.264/MP4 outputs, explicit 720p30 profiles, shared CLI/browser controls and
@@ -61,6 +64,9 @@ The [recording and RC consolidation](docs/evidence/2026-11-11-consolidation/READ
 records the combined development sources, installed software checks and native
 builds. Optional [RC vehicle integration](docs/rc-car.md) retains recording support
 without enabling vehicle hardware in the default composition.
+The [15 November bare RP2040-Zero check](docs/evidence/2026-11-15-rc-bare-pico/README.md)
+verified the existing firmware identity and USB Hold/Manual behavior without
+flashing; receiver, physical PWM and vehicle acceptance remain separate.
 
 - [Integration evidence and supported configurations](docs/evidence/2026-10-27-integration/README.md)
 - [Shared-camera dual-detector performance experiment](docs/evidence/2026-10-28-dual-detectors/README.md)

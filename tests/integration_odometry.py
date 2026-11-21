@@ -176,6 +176,12 @@ def main():
         end = measure[0] + int(args.seconds*1e9)
         while time.monotonic_ns() < end:
             rclpy.spin_once(node, timeout_sec=.1)
+        # Callbacks stop here; summary work must not age this frozen snapshot.
+        measurement_finished_ns = time.monotonic_ns()
+        report['measurement_finished_ns'] = measurement_finished_ns
+        report['status_age_at_measurement_end_ns'] = dict(
+            camera=measurement_finished_ns-observed['camera'].observed_ns,
+            odometry=measurement_finished_ns-observed['odometry'].observed_ns if observed['odometry'] else None)
         report['camera'] = {key: getattr(observed['camera'], key) for key in ('state', 'frames', 'rejected_pairs', 'stereo_pairs', 'stereo_rejected', 'combined_imu_samples', 'combined_imu_rejected', 'combined_imu_overflows')}
         # Private evidence: do not publish device/session identities unredacted.
         report['identities'] = dict(camera={key: getattr(observed['camera'], key)
@@ -207,12 +213,12 @@ def main():
             assert records['cones'], 'No cone results in measurement window'
         camera = observed['camera']
         assert camera.state == 'streaming', 'camera: ' + camera.detail
-        assert 0 <= time.monotonic_ns()-camera.observed_ns <= min(camera.expires_after_ns, 1_000_000_000), 'Camera status expired during measurement'
+        assert 0 <= measurement_finished_ns-camera.observed_ns <= min(camera.expires_after_ns, 1_000_000_000), 'Camera status expired during measurement'
         assert unit()['blocked'], 'Candidate exited during measurement'
         if expected:
             health = observed['odometry']
             assert health and health.state != 'error', 'Odometry reported an error'
-            assert 0 <= time.monotonic_ns()-health.observed_ns <= min(health.expires_after_ns, 1_000_000_000), 'Odometry status expired during measurement'
+            assert 0 <= measurement_finished_ns-health.observed_ns <= min(health.expires_after_ns, 1_000_000_000), 'Odometry status expired during measurement'
         report['passed'] = True
     except BaseException as exc:
         report.update(passed=False, error=repr(exc))

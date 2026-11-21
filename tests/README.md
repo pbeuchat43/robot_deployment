@@ -81,6 +81,10 @@ with an actual pose-bracket width of at most 50 ms, per-minute peaks and explici
 cleanup. Camera errors, expired health observations and premature run exit fail
 the fixture even if it produced samples earlier. `passed` denotes fixture completion;
 compare the recorded metrics separately with the fixed feasibility gates.
+Status freshness is evaluated at the timestamp captured immediately after the
+final ROS spin, before summary computation; the report retains that timestamp
+and the camera/odometry ages. Report-generation time does not age the frozen
+measurement snapshot, and the original expiry limits remain in force.
 The private report retains camera/session/calibration identities; redact them
 before publishing a summary.
 `--record` adds RGB/depth/annotated recording; `--wait-video` waits for an external
