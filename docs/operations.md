@@ -13,8 +13,9 @@ on the existing host. After the 4 November installation was retired, the
 [15 November activation and OAK investigation](evidence/2026-11-15-everyday-vio-oak/README.md)
 established `r20261115-dev` for everyday use. The
 [16 November CLI release](evidence/2026-11-16-cli-output/README.md) superseded it.
-Jah selects `r20261116-cli-output-v2` and records `r20261115-dev` as its rollback
-predecessor. See the [everyday guide](everyday-jah.md) for current commands and paths.
+Jah selects `r20261116-cli-output-v2`. Its rollback predecessor was retired on
+21 November. See the [everyday guide](everyday-jah.md) for current commands,
+paths and recovery.
 
 ## Bootstrap on the selected target
 

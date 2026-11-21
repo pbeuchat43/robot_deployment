@@ -105,10 +105,12 @@ directory named in the evidence record, as well as the installation cache.
 
 ## Recovery and historical installations
 
-The everyday selection records `r20261115-dev` as the previous release.
-With workloads stopped, `lucid_conduct rollback` selects that release if needed.
-It occupies disk space while inactive. For rebuilding and shared cache
-dependencies, see [installation and storage retention](operations.md#storage-retention).
+Jah has no previous release selected for rollback. On 21 November 2026,
+retiring `r20261115-dev` and its dedicated bootstrap recovered 5.86 GiB.
+After removal, `lucid_conduct doctor` verified the active release, the manager
+and web service kept running, and the HTTPS status API reported the active
+configuration. The installation and selection records retain the old release's
+history. To recover by rebuilding, follow the [installation guide](operations.md).
 
 The 15 November experiments used separate private installation and state roots.
 Their source identities and measurements are recorded in the
